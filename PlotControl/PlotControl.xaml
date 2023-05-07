@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="PlotControl.PlotControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:oxy="http://oxyplot.org/wpf"
+             xmlns:local="clr-namespace:PlotControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="450">
+    <Grid>
+        <oxy:PlotView Name="Plot" Model="{Binding PlotObj}" Margin="0" Grid.Row="0"/>
+    </Grid>
+</UserControl>
