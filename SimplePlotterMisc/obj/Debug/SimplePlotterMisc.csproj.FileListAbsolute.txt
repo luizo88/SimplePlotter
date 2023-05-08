@@ -1,0 +1,15 @@
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\SimplePlotterMisc.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\SimplePlotterMisc.pdb
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\Auxiliary.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\OxyPlot.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\OxyPlot.Wpf.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\OxyPlot.Wpf.Shared.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\Auxiliary.pdb
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\OxyPlot.xml
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\OxyPlot.Wpf.xml
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\OxyPlot.Wpf.Shared.xml
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlotterMisc.csproj.AssemblyReference.cache
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlotterMisc.csproj.CoreCompileInputs.cache
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlotterMisc.csproj.CopyComplete
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlotterMisc.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlotterMisc.pdb

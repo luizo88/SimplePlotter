@@ -42,9 +42,9 @@ namespace SimplePlotterMisc
 
         #region PUBLIC METHODS
 
-        public void AddDataSeries(string name, List<Point> points) 
+        public void AddDataSeries(string name, List<double> xPoints, List<double> yPoints) 
         {
-            dataSeries.Add(new DataSeriesObj(name, points));
+            dataSeries.Add(new DataSeriesObj(name, xPoints, yPoints));
             NotifyPropertyChanged("DataSeries");
         }
 

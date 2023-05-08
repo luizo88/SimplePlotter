@@ -70,6 +70,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Arial.
+        /// </summary>
+        internal static string Arial {
+            get {
+                return ResourceManager.GetString("Arial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ↓.
         /// </summary>
         internal static string ArrowDown {
@@ -88,11 +97,56 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Avenir.
+        /// </summary>
+        internal static string Avenir {
+            get {
+                return ResourceManager.GetString("Avenir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Axis configuration.
         /// </summary>
         internal static string AxisConfiguration {
             get {
                 return ResourceManager.GetString("AxisConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bodoni.
+        /// </summary>
+        internal static string Bodoni {
+            get {
+                return ResourceManager.GetString("Bodoni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chart box.
+        /// </summary>
+        internal static string ChartBox {
+            get {
+                return ResourceManager.GetString("ChartBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chart size [px].
+        /// </summary>
+        internal static string ChartSize {
+            get {
+                return ResourceManager.GetString("ChartSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consolas.
+        /// </summary>
+        internal static string Consolas {
+            get {
+                return ResourceManager.GetString("Consolas", resourceCulture);
             }
         }
         
@@ -106,11 +160,92 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Font name.
+        /// </summary>
+        internal static string FontName {
+            get {
+                return ResourceManager.GetString("FontName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font style.
+        /// </summary>
+        internal static string FontStyle {
+            get {
+                return ResourceManager.GetString("FontStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Franklin Gothic.
+        /// </summary>
+        internal static string FranklinGothic {
+            get {
+                return ResourceManager.GetString("FranklinGothic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frutiger.
+        /// </summary>
+        internal static string Frutiger {
+            get {
+                return ResourceManager.GetString("Frutiger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Futura.
+        /// </summary>
+        internal static string Futura {
+            get {
+                return ResourceManager.GetString("Futura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Garamond.
+        /// </summary>
+        internal static string Garamond {
+            get {
+                return ResourceManager.GetString("Garamond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helvetica.
+        /// </summary>
+        internal static string Helvetica {
+            get {
+                return ResourceManager.GetString("Helvetica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X (orig.).
+        /// </summary>
+        internal static string OriginalX {
+            get {
+                return ResourceManager.GetString("OriginalX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y (orig.).
+        /// </summary>
+        internal static string OriginalY {
+            get {
+                return ResourceManager.GetString("OriginalY", resourceCulture);
             }
         }
         
@@ -124,11 +259,119 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rockwell.
+        /// </summary>
+        internal static string Rockwell {
+            get {
+                return ResourceManager.GetString("Rockwell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Scale.
         /// </summary>
         internal static string Scale {
             get {
                 return ResourceManager.GetString("Scale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X (scaled).
+        /// </summary>
+        internal static string ScaledX {
+            get {
+                return ResourceManager.GetString("ScaledX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y (scaled).
+        /// </summary>
+        internal static string ScaledY {
+            get {
+                return ResourceManager.GetString("ScaledY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Times New Roman.
+        /// </summary>
+        internal static string TimesNewRoman {
+            get {
+                return ResourceManager.GetString("TimesNewRoman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Univers.
+        /// </summary>
+        internal static string Univers {
+            get {
+                return ResourceManager.GetString("Univers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verdana.
+        /// </summary>
+        internal static string Verdana {
+            get {
+                return ResourceManager.GetString("Verdana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X axis title.
+        /// </summary>
+        internal static string XAxisTitle {
+            get {
+                return ResourceManager.GetString("XAxisTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X axis limits (min./max.).
+        /// </summary>
+        internal static string XLimits {
+            get {
+                return ResourceManager.GetString("XLimits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X scale.
+        /// </summary>
+        internal static string XScale {
+            get {
+                return ResourceManager.GetString("XScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y axis title.
+        /// </summary>
+        internal static string YAxisTitle {
+            get {
+                return ResourceManager.GetString("YAxisTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y axis limits (min./max.).
+        /// </summary>
+        internal static string YLimits {
+            get {
+                return ResourceManager.GetString("YLimits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y scale.
+        /// </summary>
+        internal static string YScale {
+            get {
+                return ResourceManager.GetString("YScale", resourceCulture);
             }
         }
     }

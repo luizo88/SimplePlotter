@@ -95,7 +95,36 @@ namespace SPGlobalization
         public string ArrowUp { get { return string.Format("{0}", Resources.Resources.ArrowUp); } }
         public string ArrowDown { get { return string.Format("{0}", Resources.Resources.ArrowDown); } }
         public string AxisConfiguration { get { return string.Format("{0}", Resources.Resources.AxisConfiguration); } }
+        public string XScale { get { return string.Format("{0}", Resources.Resources.XScale); } }
+        public string YScale { get { return string.Format("{0}", Resources.Resources.YScale); } }
+        public string ScaledX { get { return string.Format("{0}", Resources.Resources.ScaledX); } }
+        public string ScaledY { get { return string.Format("{0}", Resources.Resources.ScaledY); } }
+        public string OriginalX { get { return string.Format("{0}", Resources.Resources.OriginalX); } }
+        public string OriginalY { get { return string.Format("{0}", Resources.Resources.OriginalY); } }
+        public string XLimits { get { return string.Format("{0}", Resources.Resources.XLimits); } }
+        public string YLimits { get { return string.Format("{0}", Resources.Resources.YLimits); } }
+        public string ChartBox { get { return string.Format("{0}", Resources.Resources.ChartBox); } }
+        public string ChartSize { get { return string.Format("{0}", Resources.Resources.ChartSize); } }
+        public string TimesNewRoman { get { return string.Format("{0}", Resources.Resources.TimesNewRoman); } }
+        public string Garamond { get { return string.Format("{0}", Resources.Resources.Garamond); } }
+        public string Futura { get { return string.Format("{0}", Resources.Resources.Futura); } }
+        public string Bodoni { get { return string.Format("{0}", Resources.Resources.Bodoni); } }
+        public string Arial { get { return string.Format("{0}", Resources.Resources.Arial); } }
+        public string Helvetica { get { return string.Format("{0}", Resources.Resources.Helvetica); } }
+        public string Verdana { get { return string.Format("{0}", Resources.Resources.Verdana); } }
+        public string Rockwell { get { return string.Format("{0}", Resources.Resources.Rockwell); } }
+        public string FranklinGothic { get { return string.Format("{0}", Resources.Resources.FranklinGothic); } }
+        public string Univers { get { return string.Format("{0}", Resources.Resources.Univers); } }
+        public string Frutiger { get { return string.Format("{0}", Resources.Resources.Frutiger); } }
+        public string Avenir { get { return string.Format("{0}", Resources.Resources.Avenir); } }
+        public string Consolas { get { return string.Format("{0}", Resources.Resources.Consolas); } }
+        public string FontStyle { get { return string.Format("{0}", Resources.Resources.FontStyle); } }
+        public string FontName { get { return string.Format("{0}", Resources.Resources.FontName); } }
+        public string XAxisTitle { get { return string.Format("{0}", Resources.Resources.XAxisTitle); } }
+        public string YAxisTitle { get { return string.Format("{0}", Resources.Resources.YAxisTitle); } }
         
+
+
 
         #endregion
 

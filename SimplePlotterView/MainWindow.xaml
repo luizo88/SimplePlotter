@@ -19,8 +19,10 @@
         </Grid.ColumnDefinitions>
         <Expander Name="expd0" Margin="5,5,0,35" Grid.Row="1" Grid.Column="0" ExpandDirection="Right" IsExpanded="True">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,0" Grid.Row="1">
-                <Grid Background="#FFF7FAFD"  HorizontalAlignment="Left" Width="440">
+                <Grid Background="#FFF7FAFD" HorizontalAlignment="Left" Width="440">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
@@ -36,9 +38,9 @@
                                 <TextBlock Name="txtDataSeries" Text="{Binding Vocabulary.DataSeries, FallbackValue=DataSeries}" FontWeight="Bold" HorizontalAlignment="Center"/>
                             </DockPanel>
                         </Expander.Header>
-                        <Grid Height="280">
+                        <Grid Height="370">
                             <Button Command="{Binding AddDataSeries}" Content="{Binding Vocabulary.AddDataSeries, FallbackValue=AddDataSeries}" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Width="150" Height="23"/>
-                            <ListView Margin="5,40,10,0" ItemsSource="{Binding AvailableDataSeries}" SelectedItem="{Binding SelectedDataSeries, Mode=TwoWay}" Height="200" VerticalAlignment="Top" Grid.ColumnSpan="2" d:ItemsSource="{d:SampleData ItemCount=3}">
+                            <ListView Margin="5,40,10,0" ItemsSource="{Binding AvailableDataSeries}" SelectedItem="{Binding SelectedDataSeries, Mode=TwoWay}" Height="140" VerticalAlignment="Top" Grid.ColumnSpan="2" d:ItemsSource="{d:SampleData ItemCount=3}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListViewItem}">
                                         <Setter Property="Height" Value="Auto"/>
@@ -50,23 +52,70 @@
                                         <GridViewColumn x:Name="Name" Header="{Binding Vocabulary.Name, FallbackValue=Name}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBox Text="{Binding Name, Mode=TwoWay}" TextAlignment="Left" BorderThickness="0" Background="{x:Null}" GotFocus="lvItem_GotFocus" IsEnabled="True"/>
+                                                    <TextBox Text="{Binding Name, Mode=TwoWay}" TextAlignment="Left" BorderThickness="0" Background="{x:Null}" IsEnabled="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn x:Name="Scale" Header="{Binding Vocabulary.Scale, FallbackValue=Scale}">
+                                        <GridViewColumn x:Name="XScale" Header="{Binding Vocabulary.XScale, FallbackValue=XScale}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBox Text="{Binding Scale, Mode=TwoWay}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" GotFocus="lvItem_GotFocus" IsEnabled="True"/>
+                                                    <TextBox Text="{Binding XScale, Mode=TwoWay}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsEnabled="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="YScale" Header="{Binding Vocabulary.YScale, FallbackValue=YScale}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding YScale, Mode=TwoWay}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsEnabled="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-                            <Button Command="{Binding RemoveDataSeries}" Content="{Binding Vocabulary.RemoveDataSeries, FallbackValue=RemoveDataSeries}" HorizontalAlignment="Left" Margin="5,250,0,0" VerticalAlignment="Top" Width="150" Height="23"/>
-                            <Button Command="{Binding DataSeriesUp}" Content="{Binding Vocabulary.ArrowUp, FallbackValue=ArrowUp}" HorizontalAlignment="Left" Margin="165,250,0,0" VerticalAlignment="Top" Width="50" Height="23"/>
-                            <Button Command="{Binding DataSeriesDown}" Content="{Binding Vocabulary.ArrowDown, FallbackValue=ArrowDown}" HorizontalAlignment="Left" Margin="225,250,0,0" VerticalAlignment="Top" Width="50" Height="23"/>
+                            <Button Command="{Binding RemoveDataSeries}" Content="{Binding Vocabulary.RemoveDataSeries, FallbackValue=RemoveDataSeries}" HorizontalAlignment="Left" Margin="5,190,0,0" VerticalAlignment="Top" Width="150" Height="23"/>
+                            <Button Command="{Binding DataSeriesUp}" Content="{Binding Vocabulary.ArrowUp, FallbackValue=ArrowUp}" HorizontalAlignment="Left" Margin="165,190,0,0" VerticalAlignment="Top" Width="50" Height="23"/>
+                            <Button Command="{Binding DataSeriesDown}" Content="{Binding Vocabulary.ArrowDown, FallbackValue=ArrowDown}" HorizontalAlignment="Left" Margin="225,190,0,0" VerticalAlignment="Top" Width="50" Height="23"/>
+                            <ListView Margin="5,230,10,0" ItemsSource="{Binding SelectedDataSeriesPoints}" Height="130" VerticalAlignment="Top" Grid.ColumnSpan="2" d:ItemsSource="{d:SampleData ItemCount=3}">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="Height" Value="Auto"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn x:Name="OriginalX" Header="{Binding Vocabulary.OriginalX, FallbackValue=OriginalX}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding X, Mode=TwoWay}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsEnabled="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="OriginalY" Header="{Binding Vocabulary.OriginalY, FallbackValue=OriginalY}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding Y, Mode=TwoWay}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsEnabled="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="ScaledX" Header="{Binding Vocabulary.ScaledX, FallbackValue=ScaledX}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding ScaledX}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsReadOnly="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="ScaledY" Header="{Binding Vocabulary.ScaledY, FallbackValue=ScaledY}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding ScaledY}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsReadOnly="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
                         </Grid>
                     </Expander>
                     <Expander Name="AxisConfiguration" Margin="10,10,10,10" Grid.Row="1" BorderBrush="#FF75CFFF" IsExpanded="False">
@@ -82,6 +131,67 @@
                             </DockPanel>
                         </Expander.Header>
                         <Grid Height="280">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{Binding Vocabulary.XLimits, FallbackValue=XLimits}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.YLimits, FallbackValue=YLimits}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.XAxisTitle, FallbackValue=XAxisTitle}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.YAxisTitle, FallbackValue=YAxisTitle}" Margin="10,100,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <CheckBox IsChecked="{Binding ManualXMinAxisLimit}" Margin="3,13,182,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding XAxisMin, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualXMinAxisLimit}" Margin="20,10,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding ManualXMaxAxisLimit}" Margin="93,13,92,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding XAxisMax, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualXMaxAxisLimit}" Margin="110,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding ManualYMinAxisLimit}" Margin="3,43,182,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding YAxisMin, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualYMinAxisLimit}" Margin="20,40,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding ManualYMaxAxisLimit}" Margin="93,43,92,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding YAxisMax, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualYMaxAxisLimit}" Margin="110,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding XAxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding YAxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Name="ChartBox" Margin="10,10,10,10" Grid.Row="2" BorderBrush="#FF75CFFF" IsExpanded="False">
+                        <Expander.Header>
+                            <DockPanel Width="395" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                <DockPanel.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFC3E3FF" Offset="1"/>
+                                        <GradientStop Color="White"/>
+                                    </LinearGradientBrush>
+                                </DockPanel.Background>
+                                <TextBlock Name="txtChartBox" Text="{Binding Vocabulary.ChartBox, FallbackValue=ChartBox}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            </DockPanel>
+                        </Expander.Header>
+                        <Grid Height="200">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{Binding Vocabulary.ChartSize, FallbackValue=ChartSize}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <TextBox Text="{Binding ChartWidth, UpdateSourceTrigger=LostFocus}" Margin="20,10,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding ChartHeight, UpdateSourceTrigger=LostFocus}" Margin="110,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Name="ChartFontStyle" Margin="10,10,10,10" Grid.Row="3" BorderBrush="#FF75CFFF" IsExpanded="False">
+                        <Expander.Header>
+                            <DockPanel Width="395" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                <DockPanel.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFC3E3FF" Offset="1"/>
+                                        <GradientStop Color="White"/>
+                                    </LinearGradientBrush>
+                                </DockPanel.Background>
+                                <TextBlock Name="txtFontStyle" Text="{Binding Vocabulary.FontStyle, FallbackValue=FontStyle}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            </DockPanel>
+                        </Expander.Header>
+                        <Grid Height="200">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{Binding Vocabulary.FontName, FallbackValue=FontName}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <ComboBox ItemsSource="{Binding AvailableFonts}" SelectedItem="{Binding SelectedFont}" Margin="20,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             
                         </Grid>
                     </Expander>
@@ -89,8 +199,26 @@
             </ScrollViewer>
         </Expander>
         <Button Content="plot" Command="{Binding DoSomething}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
-        <Grid Grid.Column="1" Grid.Row="1">
-            <oxy:PlotView Name="Plot" Model="{Binding PlotObj}" Margin="0,0,0,0" />
+        <Grid Name="PlotRef1" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="{Binding ChartWidth}" Height="{Binding ChartHeight}"/>
+        <Grid Name="PlotRef2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Grid Name="PlotGrid" Grid.Column="1" Grid.Row="1">
+            <Grid.Resources>
+                <local:MaxSizeConverter x:Key="MaxSizeConverter"></local:MaxSizeConverter>
+            </Grid.Resources>
+            <oxy:PlotView Name="Plot" Model="{Binding PlotObj}" Margin="0,0,0,0">
+                <oxy:PlotView.Width>
+                    <MultiBinding Converter="{StaticResourceExtension MaxSizeConverter}">
+                        <Binding ElementName="PlotRef1" Path="Width"/>
+                        <Binding ElementName="PlotRef2" Path="ActualWidth" />
+                    </MultiBinding>
+                </oxy:PlotView.Width>
+                <oxy:PlotView.Height>
+                    <MultiBinding Converter="{StaticResourceExtension MaxSizeConverter}">
+                        <Binding ElementName="PlotRef1" Path="Height"/>
+                        <Binding ElementName="PlotRef2" Path="ActualHeight" />
+                    </MultiBinding>
+                </oxy:PlotView.Height>
+            </oxy:PlotView>
         </Grid>
         
     </Grid>

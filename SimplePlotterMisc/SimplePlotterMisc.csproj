@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataSeriesController.cs" />
+    <Compile Include="PointObj.cs" />
     <Compile Include="DataSeriesObj.cs" />
     <Compile Include="FileReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

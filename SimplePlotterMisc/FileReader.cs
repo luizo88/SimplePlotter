@@ -12,11 +12,12 @@ namespace SimplePlotterMisc
 {
     public class FileReader
     {
-        public static List<Point> GetFileData(string pathfile)
+        public static Tuple<List<double>, List<double>> GetFileData(string pathfile)
         {
-            List<Point> result = new List<Point>();
+            Tuple<List<double>, List<double>> result = new Tuple<List<double>, List<double>>(new List<double>(), new List<double>());
             using (StreamReader reader = new StreamReader(pathfile))
             {
+                //pending: add multicolumn files
                 string separator = "";
                 string firstLine = "";
                 bool onFirstNumber = true;
@@ -47,17 +48,21 @@ namespace SimplePlotterMisc
                             }
                         }
                     }
+                    //adds the first line
                     string[] line = firstLine.Split(separator.ToCharArray());
                     double x = double.Parse(line[0].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
                     double y = double.Parse(line[1].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
-                    result.Add(new Point(x, y));
+                    result.Item1.Add(x);
+                    result.Item2.Add(y);
                 }
+                //add remaining lines
                 while (reader.Peek() >= 0)
                 {
                     string[] line = reader.ReadLine().Split(separator.ToCharArray());
                     double x = double.Parse(line[0].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
                     double y = double.Parse(line[1].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
-                    result.Add(new Point(x, y));
+                    result.Item1.Add(x);
+                    result.Item2.Add(y);
                 }
             }
             return result;

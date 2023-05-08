@@ -120,25 +120,106 @@
   <data name="AddDataSeries" xml:space="preserve">
     <value>Add data series</value>
   </data>
+  <data name="Arial" xml:space="preserve">
+    <value>Arial</value>
+  </data>
   <data name="ArrowDown" xml:space="preserve">
     <value>↓</value>
   </data>
   <data name="ArrowUp" xml:space="preserve">
     <value>↑</value>
   </data>
+  <data name="Avenir" xml:space="preserve">
+    <value>Avenir</value>
+  </data>
   <data name="AxisConfiguration" xml:space="preserve">
     <value>Axis configuration</value>
+  </data>
+  <data name="Bodoni" xml:space="preserve">
+    <value>Bodoni</value>
+  </data>
+  <data name="ChartBox" xml:space="preserve">
+    <value>Chart box</value>
+  </data>
+  <data name="ChartSize" xml:space="preserve">
+    <value>Chart size [px]</value>
+  </data>
+  <data name="Consolas" xml:space="preserve">
+    <value>Consolas</value>
   </data>
   <data name="DataSeries" xml:space="preserve">
     <value>Data series</value>
   </data>
+  <data name="FontName" xml:space="preserve">
+    <value>Font name</value>
+  </data>
+  <data name="FontStyle" xml:space="preserve">
+    <value>Font style</value>
+  </data>
+  <data name="FranklinGothic" xml:space="preserve">
+    <value>Franklin Gothic</value>
+  </data>
+  <data name="Frutiger" xml:space="preserve">
+    <value>Frutiger</value>
+  </data>
+  <data name="Futura" xml:space="preserve">
+    <value>Futura</value>
+  </data>
+  <data name="Garamond" xml:space="preserve">
+    <value>Garamond</value>
+  </data>
+  <data name="Helvetica" xml:space="preserve">
+    <value>Helvetica</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="OriginalX" xml:space="preserve">
+    <value>X (orig.)</value>
+  </data>
+  <data name="OriginalY" xml:space="preserve">
+    <value>Y (orig.)</value>
   </data>
   <data name="RemoveDataSeries" xml:space="preserve">
     <value>Remove data series</value>
   </data>
+  <data name="Rockwell" xml:space="preserve">
+    <value>Rockwell</value>
+  </data>
   <data name="Scale" xml:space="preserve">
     <value>Scale</value>
+  </data>
+  <data name="ScaledX" xml:space="preserve">
+    <value>X (scaled)</value>
+  </data>
+  <data name="ScaledY" xml:space="preserve">
+    <value>Y (scaled)</value>
+  </data>
+  <data name="TimesNewRoman" xml:space="preserve">
+    <value>Times New Roman</value>
+  </data>
+  <data name="Univers" xml:space="preserve">
+    <value>Univers</value>
+  </data>
+  <data name="Verdana" xml:space="preserve">
+    <value>Verdana</value>
+  </data>
+  <data name="XAxisTitle" xml:space="preserve">
+    <value>X axis title</value>
+  </data>
+  <data name="XLimits" xml:space="preserve">
+    <value>X axis limits (min./max.)</value>
+  </data>
+  <data name="XScale" xml:space="preserve">
+    <value>X scale</value>
+  </data>
+  <data name="YAxisTitle" xml:space="preserve">
+    <value>Y axis title</value>
+  </data>
+  <data name="YLimits" xml:space="preserve">
+    <value>Y axis limits (min./max.)</value>
+  </data>
+  <data name="YScale" xml:space="preserve">
+    <value>Y scale</value>
   </data>
 </root>
