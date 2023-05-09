@@ -201,6 +201,12 @@
   <data name="Legend" xml:space="preserve">
     <value>Leyenda</value>
   </data>
+  <data name="LegendFontSize" xml:space="preserve">
+    <value>Tamaño de fuente de leyenda</value>
+  </data>
+  <data name="LegendPosition" xml:space="preserve">
+    <value>posición de leyenda</value>
+  </data>
   <data name="LogarithmicScale" xml:space="preserve">
     <value>Escala logarítmica</value>
   </data>

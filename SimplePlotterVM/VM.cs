@@ -450,6 +450,30 @@ namespace SimplePlotterVM
             }
         }
 
+        public List<OxyPlot.Legends.LegendPosition> availableLegendPositions = new List<LegendPosition>();
+        public List<OxyPlot.Legends.LegendPosition> AvailableLegendPositions
+        {
+            get { return availableLegendPositions; }
+            set
+            {
+                availableLegendPositions = value;
+                updateLegend();
+                NotifyPropertyChanged();
+            }
+        }
+
+        public OxyPlot.Legends.LegendPosition selectedLegendPosition;
+        public OxyPlot.Legends.LegendPosition SelectedLegendPosition
+        {
+            get { return selectedLegendPosition; }
+            set
+            {
+                selectedLegendPosition = value;
+                updateLegend();
+                NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region FONTS
@@ -509,6 +533,18 @@ namespace SimplePlotterVM
             {
                 titleFontSize = value;
                 updatePlotFonts();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double legendFontSize;
+        public double LegendFontSize
+        {
+            get { return legendFontSize; }
+            set
+            {
+                legendFontSize = value;
+                updateLegend();
                 NotifyPropertyChanged();
             }
         }
@@ -588,9 +624,15 @@ namespace SimplePlotterVM
             xAxisFontSize = 0;
             yAxisFontSize = 0;
             titleFontSize = 0;
+            legendFontSize = 0;
             chartWidth = 1000;
             chartHeight = 1000;
             chartTitle = "Sample title";
+            foreach (var item in Enum.GetValues(typeof(OxyPlot.Legends.LegendPosition)))
+            {
+                AvailableLegendPositions.Add((OxyPlot.Legends.LegendPosition)item);
+            }
+            selectedLegendPosition = LegendPosition.TopRight;
         }
 
         private void updateDataSeries()
@@ -651,6 +693,7 @@ namespace SimplePlotterVM
                 serie.StrokeThickness = item.Thick;
                 serie.LineStyle = item.LineStyle;
                 serie.Color = item.OxyColor;
+                serie.RenderInLegend = item.Legend;
                 plotObj.Series.Add(serie);
             }
             //refreshes to update axes
@@ -669,12 +712,22 @@ namespace SimplePlotterVM
 
         private void updateLegend()
         {
-            plotObj.Legends.Add(new Legend
+            PlotObj.Legends.Clear();
+            if (showLegend)
             {
-                LegendPlacement = LegendPlacement.Inside,
-                LegendPosition = LegendPosition.TopRight,
-                LegendOrientation = LegendOrientation.Vertical,
-            });
+                string fontName = Auxiliary.Enumeration.GetEnumDescription(SelectedFont);
+                plotObj.Legends.Add(new Legend
+                {
+                    LegendPlacement = LegendPlacement.Inside,
+                    LegendPosition = selectedLegendPosition,
+                    LegendOrientation = LegendOrientation.Vertical,
+                    LegendFont = fontName,
+                    LegendFontSize = legendFontSize,
+                    LegendBackground = OxyColors.White,
+                    LegendBorder = OxyColors.Black
+                });
+            }
+            plotObj.InvalidatePlot(true);
         }
 
         private void updateTitles()
@@ -708,10 +761,12 @@ namespace SimplePlotterVM
             if (xLogarithmicScale)
             {
                 plotObj.Axes[0] = new LogarithmicAxis { Position = AxisPosition.Bottom };
+                plotObj.Axes[0].LabelFormatter = SimplePlotterMisc.LabelFormatters.Eng;
             }
             else
             {
                 plotObj.Axes[0] = new LinearAxis { Position = AxisPosition.Bottom };
+                plotObj.Axes[0].LabelFormatter = SimplePlotterMisc.LabelFormatters.Eng;
             }
             if (yLogarithmicScale)
             {

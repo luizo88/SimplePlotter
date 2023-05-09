@@ -59,6 +59,7 @@
     <Compile Include="Enums\EnumDescriptionTypeConverter.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\LocalizedDescriptionAttribute.cs" />
+    <Compile Include="LabelFormatters.cs" />
     <Compile Include="PointObj.cs" />
     <Compile Include="DataSeriesObj.cs" />
     <Compile Include="FileReader.cs" />

@@ -313,6 +313,24 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Legend font size.
+        /// </summary>
+        internal static string LegendFontSize {
+            get {
+                return ResourceManager.GetString("LegendFontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legend position.
+        /// </summary>
+        internal static string LegendPosition {
+            get {
+                return ResourceManager.GetString("LegendPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logarithmic scale.
         /// </summary>
         internal static string LogarithmicScale {

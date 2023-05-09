@@ -142,7 +142,11 @@ namespace SPGlobalization
         public string CustomColor { get { return string.Format("{0}", Resources.Resources.CustomColor); } }
         public string Legend { get { return string.Format("{0}", Resources.Resources.Legend); } }
         public string ShowLegend { get { return string.Format("{0}", Resources.Resources.ShowLegend); } }
+        public string LegendFontSize { get { return string.Format("{0}", Resources.Resources.LegendFontSize); } }
+        public string LegendPosition { get { return string.Format("{0}", Resources.Resources.LegendPosition); } }
         
+
+
         #endregion
 
         #region PUBLIC METHODS
