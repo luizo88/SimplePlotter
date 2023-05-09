@@ -129,7 +129,20 @@ namespace SPGlobalization
         public string MinorGridLines { get { return string.Format("{0}", Resources.Resources.MinorGridLines); } }
         public string MajorStep { get { return string.Format("{0}", Resources.Resources.MajorStep); } }
         public string MinorStep { get { return string.Format("{0}", Resources.Resources.MinorStep); } }
-
+        public string AxisFontSize { get { return string.Format("{0}", Resources.Resources.AxisFontSize); } }
+        public string TitleFontSize { get { return string.Format("{0}", Resources.Resources.TitleFontSize); } }
+        public string Thick { get { return string.Format("{0}", Resources.Resources.Thick); } }
+        public string Style { get { return string.Format("{0}", Resources.Resources.Style); } }
+        public string Color { get { return string.Format("{0}", Resources.Resources.Color); } }
+        public string Red { get { return string.Format("{0}", Resources.Resources.Red); } }
+        public string Green { get { return string.Format("{0}", Resources.Resources.Green); } }
+        public string Blue { get { return string.Format("{0}", Resources.Resources.Blue); } }
+        public string Black { get { return string.Format("{0}", Resources.Resources.Black); } }
+        public string Gray { get { return string.Format("{0}", Resources.Resources.Gray); } }
+        public string CustomColor { get { return string.Format("{0}", Resources.Resources.CustomColor); } }
+        public string Legend { get { return string.Format("{0}", Resources.Resources.Legend); } }
+        public string ShowLegend { get { return string.Format("{0}", Resources.Resources.ShowLegend); } }
+        
         #endregion
 
         #region PUBLIC METHODS

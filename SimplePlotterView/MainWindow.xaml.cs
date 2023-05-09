@@ -77,13 +77,19 @@ namespace SimplePlotterView
             }
             else
             {
+                //ComboBox cmbBx = sender as ComboBox;
+                //if (cmbBx != null)
+                //{
+                //    lvResultsToPlot.SelectedItem = cmbBx.DataContext;
+                //    return;
+                //}
                 //try CheckBox
-                CheckBox chBx = sender as CheckBox;
-                if (chBx != null)
-                {
-                    lv.SelectedItem = (sender as CheckBox).DataContext;
-                    return;
-                }
+                //CheckBox chBx = sender as CheckBox;
+                //if (chBx != null)
+                //{
+                //    lv.SelectedItem = (sender as CheckBox).DataContext;
+                //    return;
+                //}
             }
         }
 

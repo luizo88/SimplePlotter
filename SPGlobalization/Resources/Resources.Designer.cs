@@ -115,6 +115,33 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Axis font size (X/Y).
+        /// </summary>
+        internal static string AxisFontSize {
+            get {
+                return ResourceManager.GetString("AxisFontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Black.
+        /// </summary>
+        internal static string Black {
+            get {
+                return ResourceManager.GetString("Black", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue.
+        /// </summary>
+        internal static string Blue {
+            get {
+                return ResourceManager.GetString("Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bodoni.
         /// </summary>
         internal static string Bodoni {
@@ -151,11 +178,29 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        internal static string Color {
+            get {
+                return ResourceManager.GetString("Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consolas.
         /// </summary>
         internal static string Consolas {
             get {
                 return ResourceManager.GetString("Consolas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom color.
+        /// </summary>
+        internal static string CustomColor {
+            get {
+                return ResourceManager.GetString("CustomColor", resourceCulture);
             }
         }
         
@@ -223,6 +268,24 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gray.
+        /// </summary>
+        internal static string Gray {
+            get {
+                return ResourceManager.GetString("Gray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        internal static string Green {
+            get {
+                return ResourceManager.GetString("Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grid lines.
         /// </summary>
         internal static string GridLines {
@@ -237,6 +300,15 @@ namespace SPGlobalization.Resources {
         internal static string Helvetica {
             get {
                 return ResourceManager.GetString("Helvetica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legend.
+        /// </summary>
+        internal static string Legend {
+            get {
+                return ResourceManager.GetString("Legend", resourceCulture);
             }
         }
         
@@ -313,6 +385,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Red.
+        /// </summary>
+        internal static string Red {
+            get {
+                return ResourceManager.GetString("Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove data series.
         /// </summary>
         internal static string RemoveDataSeries {
@@ -358,11 +439,47 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show legend.
+        /// </summary>
+        internal static string ShowLegend {
+            get {
+                return ResourceManager.GetString("ShowLegend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style.
+        /// </summary>
+        internal static string Style {
+            get {
+                return ResourceManager.GetString("Style", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thick.
+        /// </summary>
+        internal static string Thick {
+            get {
+                return ResourceManager.GetString("Thick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Times New Roman.
         /// </summary>
         internal static string TimesNewRoman {
             get {
                 return ResourceManager.GetString("TimesNewRoman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title font size.
+        /// </summary>
+        internal static string TitleFontSize {
+            get {
+                return ResourceManager.GetString("TitleFontSize", resourceCulture);
             }
         }
         

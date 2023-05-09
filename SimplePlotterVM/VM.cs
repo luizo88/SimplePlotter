@@ -1,5 +1,6 @@
 ﻿using OxyPlot;
 using OxyPlot.Axes;
+using OxyPlot.Legends;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,7 +20,7 @@ namespace SimplePlotterVM
         public VM() 
         {
             //commands
-            DoSomething = new Auxiliary.DelegateCommand(doSomething);
+            Plot = new Auxiliary.DelegateCommand(plot);
             AddDataSeries = new Auxiliary.DelegateCommand(addDataSeries);
             RemoveDataSeries = new Auxiliary.DelegateCommand(removeDataSeries, canRemoveDataSeries);
             DataSeriesUp = new Auxiliary.DelegateCommand(dataSeriesUp, canMoveDataSeriesUp);
@@ -30,7 +31,7 @@ namespace SimplePlotterVM
 
         #region COMMANDS
 
-        public Auxiliary.DelegateCommand DoSomething { get; set; }
+        public Auxiliary.DelegateCommand Plot { get; set; }
         public Auxiliary.DelegateCommand AddDataSeries { get; set; }
         public Auxiliary.DelegateCommand RemoveDataSeries { get; set; }
         public Auxiliary.DelegateCommand DataSeriesUp { get; set; }
@@ -39,6 +40,11 @@ namespace SimplePlotterVM
         #endregion
 
         #region COMMANDS ACTIONS
+
+        private void plot(object parameter)
+        {
+            updateEntirePlot();
+        }
 
         private void addDataSeries(object parameter)
         {
@@ -432,6 +438,18 @@ namespace SimplePlotterVM
             }
         }
 
+        private bool showLegend;
+        public bool ShowLegend
+        {
+            get { return showLegend; }
+            set
+            {
+                showLegend = value;
+                updateLegend();
+                NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region FONTS
@@ -454,6 +472,42 @@ namespace SimplePlotterVM
             set
             {
                 selectedFont = value;
+                updatePlotFonts();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double xAxisFontSize;
+        public double XAxisFontSize
+        {
+            get { return xAxisFontSize; }
+            set
+            {
+                xAxisFontSize = value;
+                updatePlotFonts();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double yAxisFontSize;
+        public double YAxisFontSize
+        {
+            get { return yAxisFontSize; }
+            set
+            {
+                yAxisFontSize = value;
+                updatePlotFonts();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double titleFontSize;
+        public double TitleFontSize
+        {
+            get { return titleFontSize; }
+            set
+            {
+                titleFontSize = value;
                 updatePlotFonts();
                 NotifyPropertyChanged();
             }
@@ -531,6 +585,9 @@ namespace SimplePlotterVM
                 AvailableFonts.Add((Enums.Fonts)item);
             }
             SelectedFont = Enums.Fonts.TimesNewRoman;
+            xAxisFontSize = 0;
+            yAxisFontSize = 0;
+            titleFontSize = 0;
             chartWidth = 1000;
             chartHeight = 1000;
             chartTitle = "Sample title";
@@ -570,10 +627,54 @@ namespace SimplePlotterVM
 
         private void updateEntirePlot()
         {
+            plotSeries();
+            updateLegend();
             updateAxisScales();
             updateGridLines();
             updateTitles();
             updatePlotFonts();
+        }
+
+        public void plotSeries()
+        {
+            //cleares old series
+            plotObj.Series.Clear();
+            //adds new series
+            foreach (var item in SimplePlotterMisc.DataSeriesController.Instance.DataSeries)
+            {
+                OxyPlot.Series.FunctionSeries serie = new OxyPlot.Series.FunctionSeries();
+                for (int i = 0; i < item.Length; i++)
+                {
+                    serie.Points.Add(new OxyPlot.DataPoint(item.Points[i].ScaledX, item.Points[i].ScaledY));
+                }
+                serie.Title = item.Name;
+                serie.StrokeThickness = item.Thick;
+                serie.LineStyle = item.LineStyle;
+                serie.Color = item.OxyColor;
+                plotObj.Series.Add(serie);
+            }
+            //refreshes to update axes
+            plotObj.InvalidatePlot(true);
+            //configures axes
+            //x
+            if (manualXMinAxisLimit) plotObj.Axes[0].Minimum = XAxisMin;
+            if (manualXMinAxisLimit) plotObj.Axes[0].Maximum = XAxisMax;
+            //y
+            if (manualYMinAxisLimit) plotObj.Axes[1].Minimum = YAxisMin;
+            if (manualYMinAxisLimit) plotObj.Axes[1].Maximum = YAxisMax;
+            plotObj.Axes[1].AxisTitleDistance = 10;
+            //finally refreshes
+            plotObj.InvalidatePlot(true);
+        }
+
+        private void updateLegend()
+        {
+            plotObj.Legends.Add(new Legend
+            {
+                LegendPlacement = LegendPlacement.Inside,
+                LegendPosition = LegendPosition.TopRight,
+                LegendOrientation = LegendOrientation.Vertical,
+            });
         }
 
         private void updateTitles()
@@ -593,6 +694,12 @@ namespace SimplePlotterVM
                 item.Font = fontName;
                 item.TitleFont = fontName;
             }
+            if (plotObj.Axes.Count > 0)
+            {
+                plotObj.Axes[0].FontSize = xAxisFontSize == 0 ? double.NaN : xAxisFontSize;
+                plotObj.Axes[1].FontSize = yAxisFontSize == 0 ? double.NaN : yAxisFontSize;
+            }
+            plotObj.TitleFontSize = titleFontSize == 0 ? double.NaN : titleFontSize;
             plotObj.InvalidatePlot(true);
         }
 
@@ -661,36 +768,6 @@ namespace SimplePlotterVM
         }
 
         #endregion
-
-        public void doSomething(object parameter)
-        {
-            //cleares old series
-            plotObj.Series.Clear();
-            //adds new series
-            foreach (var item in SimplePlotterMisc.DataSeriesController.Instance.DataSeries)
-            {
-                OxyPlot.Series.FunctionSeries serie = new OxyPlot.Series.FunctionSeries();
-                for (int i = 0; i < item.Length; i++)
-                {
-                    serie.Points.Add(new OxyPlot.DataPoint(item.Points[i].ScaledX, item.Points[i].ScaledY));
-                }
-                serie.Title = item.Name;
-                plotObj.Series.Add(serie);
-            }
-            //refreshes to update axes
-            plotObj.InvalidatePlot(true);
-            //configures axes
-            //x
-            if (manualXMinAxisLimit) plotObj.Axes[0].Minimum = XAxisMin;
-            if (manualXMinAxisLimit) plotObj.Axes[0].Maximum = XAxisMax;
-            //y
-            if (manualYMinAxisLimit) plotObj.Axes[1].Minimum = YAxisMin;
-            if (manualYMinAxisLimit) plotObj.Axes[1].Maximum = YAxisMax;
-            plotObj.Axes[1].AxisTitleDistance = 10;
-            //finally refreshes
-            updateEntirePlot();
-            plotObj.InvalidatePlot(true);
-        }
 
     }
 }

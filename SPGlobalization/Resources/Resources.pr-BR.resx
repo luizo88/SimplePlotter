@@ -135,6 +135,15 @@
   <data name="AxisConfiguration" xml:space="preserve">
     <value>Configuração dos eixos</value>
   </data>
+  <data name="AxisFontSize" xml:space="preserve">
+    <value>Tamanho da fonte dos eixos (X/Y)</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Preto</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Azul</value>
+  </data>
   <data name="Bodoni" xml:space="preserve">
     <value>Bodoni</value>
   </data>
@@ -147,8 +156,14 @@
   <data name="ChartTitle" xml:space="preserve">
     <value>Título do gráfico</value>
   </data>
+  <data name="Color" xml:space="preserve">
+    <value>Cor</value>
+  </data>
   <data name="Consolas" xml:space="preserve">
     <value>Consolas</value>
+  </data>
+  <data name="CustomColor" xml:space="preserve">
+    <value>Cor pers.</value>
   </data>
   <data name="DataSeries" xml:space="preserve">
     <value>Séries de dados</value>
@@ -171,11 +186,20 @@
   <data name="Garamond" xml:space="preserve">
     <value>Garamond</value>
   </data>
+  <data name="Gray" xml:space="preserve">
+    <value>Cinza</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Verde</value>
+  </data>
   <data name="GridLines" xml:space="preserve">
     <value>Linhas de grade</value>
   </data>
   <data name="Helvetica" xml:space="preserve">
     <value>Helvetica</value>
+  </data>
+  <data name="Legend" xml:space="preserve">
+    <value>Legenda</value>
   </data>
   <data name="LogarithmicScale" xml:space="preserve">
     <value>Escala logarítmica</value>
@@ -201,6 +225,9 @@
   <data name="OriginalY" xml:space="preserve">
     <value>Y (orig.)</value>
   </data>
+  <data name="Red" xml:space="preserve">
+    <value>Vermelho</value>
+  </data>
   <data name="RemoveDataSeries" xml:space="preserve">
     <value>Remover série de dados</value>
   </data>
@@ -216,8 +243,20 @@
   <data name="ScaledY" xml:space="preserve">
     <value>Y (esc.)</value>
   </data>
+  <data name="ShowLegend" xml:space="preserve">
+    <value>Mostrar legenda</value>
+  </data>
+  <data name="Style" xml:space="preserve">
+    <value>Estilo</value>
+  </data>
+  <data name="Thick" xml:space="preserve">
+    <value>Espessura</value>
+  </data>
   <data name="TimesNewRoman" xml:space="preserve">
     <value>Times New Roman</value>
+  </data>
+  <data name="TitleFontSize" xml:space="preserve">
+    <value>Tamnho da fonte do título</value>
   </data>
   <data name="Univers" xml:space="preserve">
     <value>Univers</value>

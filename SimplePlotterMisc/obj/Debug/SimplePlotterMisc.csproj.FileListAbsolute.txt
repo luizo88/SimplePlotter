@@ -13,3 +13,6 @@ C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\obj\Debug\Si
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlotterMisc.csproj.CopyComplete
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlotterMisc.dll
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlotterMisc.pdb
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\SPGlobalization.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\SPGlobalization.pdb
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\es\SPGlobalization.resources.dll

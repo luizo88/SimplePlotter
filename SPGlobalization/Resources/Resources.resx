@@ -135,6 +135,15 @@
   <data name="AxisConfiguration" xml:space="preserve">
     <value>Axis configuration</value>
   </data>
+  <data name="AxisFontSize" xml:space="preserve">
+    <value>Axis font size (X/Y)</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
   <data name="Bodoni" xml:space="preserve">
     <value>Bodoni</value>
   </data>
@@ -147,8 +156,14 @@
   <data name="ChartTitle" xml:space="preserve">
     <value>Chart title</value>
   </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
   <data name="Consolas" xml:space="preserve">
     <value>Consolas</value>
+  </data>
+  <data name="CustomColor" xml:space="preserve">
+    <value>Custom color</value>
   </data>
   <data name="DataSeries" xml:space="preserve">
     <value>Data series</value>
@@ -171,11 +186,20 @@
   <data name="Garamond" xml:space="preserve">
     <value>Garamond</value>
   </data>
+  <data name="Gray" xml:space="preserve">
+    <value>Gray</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
   <data name="GridLines" xml:space="preserve">
     <value>Grid lines</value>
   </data>
   <data name="Helvetica" xml:space="preserve">
     <value>Helvetica</value>
+  </data>
+  <data name="Legend" xml:space="preserve">
+    <value>Legend</value>
   </data>
   <data name="LogarithmicScale" xml:space="preserve">
     <value>Logarithmic scale</value>
@@ -201,6 +225,9 @@
   <data name="OriginalY" xml:space="preserve">
     <value>Y (orig.)</value>
   </data>
+  <data name="Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
   <data name="RemoveDataSeries" xml:space="preserve">
     <value>Remove data series</value>
   </data>
@@ -216,8 +243,20 @@
   <data name="ScaledY" xml:space="preserve">
     <value>Y (scaled)</value>
   </data>
+  <data name="ShowLegend" xml:space="preserve">
+    <value>Show legend</value>
+  </data>
+  <data name="Style" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="Thick" xml:space="preserve">
+    <value>Thick</value>
+  </data>
   <data name="TimesNewRoman" xml:space="preserve">
     <value>Times New Roman</value>
+  </data>
+  <data name="TitleFontSize" xml:space="preserve">
+    <value>Title font size</value>
   </data>
   <data name="Univers" xml:space="preserve">
     <value>Univers</value>

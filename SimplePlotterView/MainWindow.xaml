@@ -71,6 +71,48 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
+                                        <GridViewColumn x:Name="Thick" Header="{Binding Vocabulary.Thick, FallbackValue=Thick}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding Thick, Mode=TwoWay}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsEnabled="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="Style" Header="{Binding Vocabulary.Style, FallbackValue=Style}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox ItemsSource="{Binding AvailableLineStyles}" SelectedItem="{Binding LineStyle}" BorderThickness="0" GotFocus="lvItem_GotFocus"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="Color" Header="{Binding Vocabulary.Color, FallbackValue=Color}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox ItemsSource="{Binding AvailableColors}" SelectedItem="{Binding Color}" IsEnabled="{Binding StandardColor}" BorderThickness="0" GotFocus="lvItem_GotFocus"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="CustomColor" Header="{Binding Vocabulary.CustomColor, FallbackValue=CustomColor}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox IsChecked="{Binding CustomColor}" Content="" Background="{x:Null}" GotFocus="lvItem_GotFocus"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="RGB" Header="{Binding Vocabulary.RGB, FallbackValue=RGB}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding RGBDescription, Mode=TwoWay}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsEnabled="{Binding CustomColor}" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="Legend" Header="{Binding Vocabulary.Legend, FallbackValue=Legend}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox IsChecked="{Binding Legend}" Content="" Background="{x:Null}" GotFocus="lvItem_GotFocus"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
@@ -205,9 +247,11 @@
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Vocabulary.ChartSize, FallbackValue=ChartSize}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.ChartTitle, FallbackValue=ChartTitle}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.ShowLegend, FallbackValue=ShowLegend}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <TextBox Text="{Binding ChartWidth, UpdateSourceTrigger=LostFocus}" Margin="20,10,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding ChartHeight, UpdateSourceTrigger=LostFocus}" Margin="110,10,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding ChartTitle, UpdateSourceTrigger=LostFocus}" Margin="20,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding ShowLegend}" Margin="20,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                         </Grid>
                     </Expander>
                     <Expander Name="ChartFontStyle" Margin="10,10,10,10" Grid.Row="4" BorderBrush="#FF75CFFF" IsExpanded="False">
@@ -228,14 +272,18 @@
                                 <ColumnDefinition Width="300"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Vocabulary.FontName, FallbackValue=FontName}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.AxisFontSize, FallbackValue=AxisFontSize}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.TitleFontSize, FallbackValue=TitleFontSize}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <ComboBox ItemsSource="{Binding AvailableFonts}" SelectedItem="{Binding SelectedFont}" Margin="20,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            
+                            <TextBox Text="{Binding XAxisFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,40,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding YAxisFontSize, UpdateSourceTrigger=LostFocus}" Margin="110,40,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding TitleFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,70,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
                 </Grid>
             </ScrollViewer>
         </Expander>
-        <Button Content="plot" Command="{Binding DoSomething}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+        <Button Content="plot" Command="{Binding Plot}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
         <Grid Name="PlotRef1" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="{Binding ChartWidth}" Height="{Binding ChartHeight}"/>
         <Grid Name="PlotRef2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <Grid Name="PlotGrid" Grid.Column="1" Grid.Row="1">
