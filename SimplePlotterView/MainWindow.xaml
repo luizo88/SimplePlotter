@@ -7,7 +7,7 @@
         xmlns:oxy="http://oxyplot.org/wpf"
         x:Class="SimplePlotterView.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="900">
+        Title="MainWindow" Height="800" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="23"/>
@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <Expander Name="expd0" Margin="5,5,0,35" Grid.Row="1" Grid.Column="0" ExpandDirection="Right" IsExpanded="True">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,0" Grid.Row="1">
-                <Grid Background="#FFF7FAFD" HorizontalAlignment="Left" Width="440">
+                <Grid Background="#FFF7FAFD" HorizontalAlignment="Left" Width="540">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -29,7 +29,7 @@
                     </Grid.RowDefinitions>
                     <Expander Name="ExpdDataSeries" Margin="10,10,10,10" Grid.Row="0" BorderBrush="#FF75CFFF" IsExpanded="True">
                         <Expander.Header>
-                            <DockPanel Width="395" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                            <DockPanel Width="495" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFC3E3FF" Offset="1"/>
@@ -121,7 +121,7 @@
                     </Expander>
                     <Expander Name="AxisConfiguration" Margin="10,10,10,10" Grid.Row="1" BorderBrush="#FF75CFFF" IsExpanded="False">
                         <Expander.Header>
-                            <DockPanel Width="395" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                            <DockPanel Width="495" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFC3E3FF" Offset="1"/>
@@ -134,21 +134,21 @@
                         <Grid Height="280">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="300"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Vocabulary.XLimits, FallbackValue=XLimits}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.YLimits, FallbackValue=YLimits}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.XAxisTitle, FallbackValue=XAxisTitle}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.YAxisTitle, FallbackValue=YAxisTitle}" Margin="10,100,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.LogarithmicScale, FallbackValue=LogarithmicScale}" Margin="10,130,10,0" VerticalAlignment="Top" Grid.Column="0"/>
-                            <CheckBox IsChecked="{Binding ManualXMinAxisLimit}" Margin="3,13,182,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <TextBox Text="{Binding XAxisMin, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualXMinAxisLimit}" Margin="20,10,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding ManualXMaxAxisLimit}" Margin="93,13,92,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <TextBox Text="{Binding XAxisMax, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualXMaxAxisLimit}" Margin="110,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding ManualYMinAxisLimit}" Margin="3,43,182,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <TextBox Text="{Binding YAxisMin, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualYMinAxisLimit}" Margin="20,40,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding ManualYMaxAxisLimit}" Margin="93,43,92,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <TextBox Text="{Binding YAxisMax, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualYMaxAxisLimit}" Margin="110,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding ManualXMinAxisLimit}" Margin="3,13,282,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding XAxisMin, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualXMinAxisLimit}" Margin="20,10,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding ManualXMaxAxisLimit}" Margin="93,13,192,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding XAxisMax, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualXMaxAxisLimit}" Margin="110,10,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding ManualYMinAxisLimit}" Margin="3,43,282,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding YAxisMin, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualYMinAxisLimit}" Margin="20,40,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding ManualYMaxAxisLimit}" Margin="93,43,192,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding YAxisMax, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualYMaxAxisLimit}" Margin="110,40,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding XAxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding YAxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <CheckBox IsChecked="{Binding XLogarithmicScale}" Content="X" Margin="20,130,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
@@ -157,7 +157,7 @@
                     </Expander>
                     <Expander Name="GridLines" Margin="10,10,10,10" Grid.Row="2" BorderBrush="#FF75CFFF" IsExpanded="False">
                         <Expander.Header>
-                            <DockPanel Width="395" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                            <DockPanel Width="495" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFC3E3FF" Offset="1"/>
@@ -170,7 +170,7 @@
                         <Grid Height="280">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="300"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Vocabulary.MajorGridLines, FallbackValue=MajorGridLines}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.MinorGridLines, FallbackValue=MinorGridLines}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
@@ -180,15 +180,15 @@
                             <CheckBox IsChecked="{Binding YMajorGridLines}" Content="Y" Margin="100,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <CheckBox IsChecked="{Binding XMinorGridLines}" Content="X" Margin="20,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <CheckBox IsChecked="{Binding YMinorGridLines}" Content="Y" Margin="100,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <TextBox Text="{Binding XMajorStep, UpdateSourceTrigger=LostFocus}" Margin="20,70,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding YMajorStep, UpdateSourceTrigger=LostFocus}" Margin="110,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding XMinorStep, UpdateSourceTrigger=LostFocus}" Margin="20,100,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding YMinorStep, UpdateSourceTrigger=LostFocus}" Margin="110,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding XMajorStep, UpdateSourceTrigger=LostFocus}" Margin="20,70,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding YMajorStep, UpdateSourceTrigger=LostFocus}" Margin="110,70,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding XMinorStep, UpdateSourceTrigger=LostFocus}" Margin="20,100,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding YMinorStep, UpdateSourceTrigger=LostFocus}" Margin="110,100,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
                     <Expander Name="ChartBox" Margin="10,10,10,10" Grid.Row="3" BorderBrush="#FF75CFFF" IsExpanded="False">
                         <Expander.Header>
-                            <DockPanel Width="395" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                            <DockPanel Width="495" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFC3E3FF" Offset="1"/>
@@ -201,18 +201,18 @@
                         <Grid Height="200">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="300"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Vocabulary.ChartSize, FallbackValue=ChartSize}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.ChartTitle, FallbackValue=ChartTitle}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
-                            <TextBox Text="{Binding ChartWidth, UpdateSourceTrigger=LostFocus}" Margin="20,10,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding ChartHeight, UpdateSourceTrigger=LostFocus}" Margin="110,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding ChartWidth, UpdateSourceTrigger=LostFocus}" Margin="20,10,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding ChartHeight, UpdateSourceTrigger=LostFocus}" Margin="110,10,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding ChartTitle, UpdateSourceTrigger=LostFocus}" Margin="20,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
                     <Expander Name="ChartFontStyle" Margin="10,10,10,10" Grid.Row="4" BorderBrush="#FF75CFFF" IsExpanded="False">
                         <Expander.Header>
-                            <DockPanel Width="395" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                            <DockPanel Width="495" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FFC3E3FF" Offset="1"/>
@@ -225,7 +225,7 @@
                         <Grid Height="200">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="300"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Vocabulary.FontName, FallbackValue=FontName}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <ComboBox ItemsSource="{Binding AvailableFonts}" SelectedItem="{Binding SelectedFont}" Margin="20,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
