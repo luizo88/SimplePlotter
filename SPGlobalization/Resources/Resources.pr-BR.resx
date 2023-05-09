@@ -142,7 +142,10 @@
     <value>Caixa do gráfico</value>
   </data>
   <data name="ChartSize" xml:space="preserve">
-    <value>Tamanho do gráfico [px]</value>
+    <value>Tamanho do gráfico [px] (larg./alt.)</value>
+  </data>
+  <data name="ChartTitle" xml:space="preserve">
+    <value>Título do gráfico</value>
   </data>
   <data name="Consolas" xml:space="preserve">
     <value>Consolas</value>
@@ -168,8 +171,26 @@
   <data name="Garamond" xml:space="preserve">
     <value>Garamond</value>
   </data>
+  <data name="GridLines" xml:space="preserve">
+    <value>Linhas de grade</value>
+  </data>
   <data name="Helvetica" xml:space="preserve">
     <value>Helvetica</value>
+  </data>
+  <data name="LogarithmicScale" xml:space="preserve">
+    <value>Escala logarítmica</value>
+  </data>
+  <data name="MajorGridLines" xml:space="preserve">
+    <value>Linhas de grade principais</value>
+  </data>
+  <data name="MajorStep" xml:space="preserve">
+    <value>Passo principal (X/Y)</value>
+  </data>
+  <data name="MinorGridLines" xml:space="preserve">
+    <value>Linhas de grade secundárias</value>
+  </data>
+  <data name="MinorStep" xml:space="preserve">
+    <value>Passo secundário (X/Y)</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nome</value>

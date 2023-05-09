@@ -142,7 +142,10 @@
     <value>Chart box</value>
   </data>
   <data name="ChartSize" xml:space="preserve">
-    <value>Chart size [px]</value>
+    <value>Chart size [px] (width/height)</value>
+  </data>
+  <data name="ChartTitle" xml:space="preserve">
+    <value>Chart title</value>
   </data>
   <data name="Consolas" xml:space="preserve">
     <value>Consolas</value>
@@ -168,8 +171,26 @@
   <data name="Garamond" xml:space="preserve">
     <value>Garamond</value>
   </data>
+  <data name="GridLines" xml:space="preserve">
+    <value>Grid lines</value>
+  </data>
   <data name="Helvetica" xml:space="preserve">
     <value>Helvetica</value>
+  </data>
+  <data name="LogarithmicScale" xml:space="preserve">
+    <value>Logarithmic scale</value>
+  </data>
+  <data name="MajorGridLines" xml:space="preserve">
+    <value>Major grid lines</value>
+  </data>
+  <data name="MajorStep" xml:space="preserve">
+    <value>Major step (X/Y)</value>
+  </data>
+  <data name="MinorGridLines" xml:space="preserve">
+    <value>Minor grid lines</value>
+  </data>
+  <data name="MinorStep" xml:space="preserve">
+    <value>Minor step (X/Y)</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

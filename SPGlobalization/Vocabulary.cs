@@ -122,9 +122,13 @@ namespace SPGlobalization
         public string FontName { get { return string.Format("{0}", Resources.Resources.FontName); } }
         public string XAxisTitle { get { return string.Format("{0}", Resources.Resources.XAxisTitle); } }
         public string YAxisTitle { get { return string.Format("{0}", Resources.Resources.YAxisTitle); } }
-        
-
-
+        public string ChartTitle { get { return string.Format("{0}", Resources.Resources.ChartTitle); } }
+        public string LogarithmicScale { get { return string.Format("{0}", Resources.Resources.LogarithmicScale); } }
+        public string GridLines { get { return string.Format("{0}", Resources.Resources.GridLines); } }
+        public string MajorGridLines { get { return string.Format("{0}", Resources.Resources.MajorGridLines); } }
+        public string MinorGridLines { get { return string.Format("{0}", Resources.Resources.MinorGridLines); } }
+        public string MajorStep { get { return string.Format("{0}", Resources.Resources.MajorStep); } }
+        public string MinorStep { get { return string.Format("{0}", Resources.Resources.MinorStep); } }
 
         #endregion
 

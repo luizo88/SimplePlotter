@@ -133,11 +133,20 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chart size [px].
+        ///   Looks up a localized string similar to Chart size [px] (width/height).
         /// </summary>
         internal static string ChartSize {
             get {
                 return ResourceManager.GetString("ChartSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chart title.
+        /// </summary>
+        internal static string ChartTitle {
+            get {
+                return ResourceManager.GetString("ChartTitle", resourceCulture);
             }
         }
         
@@ -214,11 +223,65 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Grid lines.
+        /// </summary>
+        internal static string GridLines {
+            get {
+                return ResourceManager.GetString("GridLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Helvetica.
         /// </summary>
         internal static string Helvetica {
             get {
                 return ResourceManager.GetString("Helvetica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logarithmic scale.
+        /// </summary>
+        internal static string LogarithmicScale {
+            get {
+                return ResourceManager.GetString("LogarithmicScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Major grid lines.
+        /// </summary>
+        internal static string MajorGridLines {
+            get {
+                return ResourceManager.GetString("MajorGridLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Major step (X/Y).
+        /// </summary>
+        internal static string MajorStep {
+            get {
+                return ResourceManager.GetString("MajorStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minor grid lines.
+        /// </summary>
+        internal static string MinorGridLines {
+            get {
+                return ResourceManager.GetString("MinorGridLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minor step (X/Y).
+        /// </summary>
+        internal static string MinorStep {
+            get {
+                return ResourceManager.GetString("MinorStep", resourceCulture);
             }
         }
         

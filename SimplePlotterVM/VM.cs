@@ -1,4 +1,5 @@
 ﻿using OxyPlot;
+using OxyPlot.Axes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -269,6 +270,130 @@ namespace SimplePlotterVM
             }
         }
 
+        private bool xLogarithmicScale;
+        public bool XLogarithmicScale
+        {
+            get { return xLogarithmicScale; }
+            set
+            {
+                xLogarithmicScale = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool yLogarithmicScale;
+        public bool YLogarithmicScale
+        {
+            get { return yLogarithmicScale; }
+            set
+            {
+                yLogarithmicScale = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region GRID LINES
+
+        private bool xMajorGridLines;
+        public bool XMajorGridLines
+        {
+            get { return xMajorGridLines; }
+            set
+            {
+                xMajorGridLines = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool yMajorGridLines;
+        public bool YMajorGridLines
+        {
+            get { return yMajorGridLines; }
+            set
+            {
+                yMajorGridLines = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool xMinorGridLines;
+        public bool XMinorGridLines
+        {
+            get { return xMinorGridLines; }
+            set
+            {
+                xMinorGridLines = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool yMinorGridLines;
+        public bool YMinorGridLines
+        {
+            get { return yMinorGridLines; }
+            set
+            {
+                yMinorGridLines = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double xMajorStep;
+        public double XMajorStep
+        {
+            get { return xMajorStep; }
+            set
+            {
+                xMajorStep = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double yMajorStep;
+        public double YMajorStep
+        {
+            get { return yMajorStep; }
+            set
+            {
+                yMajorStep = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double xMinorStep;
+        public double XMinorStep
+        {
+            get { return xMinorStep; }
+            set
+            {
+                xMinorStep = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double yMinorStep;
+        public double YMinorStep
+        {
+            get { return yMinorStep; }
+            set
+            {
+                yMinorStep = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region CHART BOX
@@ -291,6 +416,18 @@ namespace SimplePlotterVM
             set
             {
                 chartHeight = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string chartTitle;
+        public string ChartTitle
+        {
+            get { return chartTitle; }
+            set
+            {
+                chartTitle = value;
+                updateTitles();
                 NotifyPropertyChanged();
             }
         }
@@ -378,6 +515,16 @@ namespace SimplePlotterVM
             manualYMaxAxisLimit = false;
             xAxisTitle = "X";
             yAxisTitle = "Y";
+            xLogarithmicScale = false;
+            yLogarithmicScale = false;
+            xMajorGridLines = false;
+            yMajorGridLines = false;
+            xMinorGridLines = false;
+            yMinorGridLines = false;
+            xMajorStep = 0;
+            yMajorStep = 0;
+            xMinorStep = 0;
+            yMinorStep = 0;
             AvailableFonts.Clear();
             foreach (var item in Enum.GetValues(typeof(Enums.Fonts)))
             {
@@ -386,6 +533,7 @@ namespace SimplePlotterVM
             SelectedFont = Enums.Fonts.TimesNewRoman;
             chartWidth = 1000;
             chartHeight = 1000;
+            chartTitle = "Sample title";
         }
 
         private void updateDataSeries()
@@ -416,12 +564,14 @@ namespace SimplePlotterVM
 
         private void addSampleDataSeries()
         {
-            SimplePlotterMisc.DataSeriesController.Instance.AddDataSeries("Example", new List<double> { 0, 1, 2, 3, 4, 5, 6 }, new List<double> { 0, 1, 4, 8, 16, 32, 64 });
+            SimplePlotterMisc.DataSeriesController.Instance.AddDataSeries("Example", new List<double> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, new List<double> { 0, 1, 4, 8, 16, 32, 64, 128, 256, 512, 1024 });
             AvailableDataSeries.Add(SimplePlotterMisc.DataSeriesController.Instance.DataSeries[0]);
         }
 
         private void updateEntirePlot()
         {
+            updateAxisScales();
+            updateGridLines();
             updateTitles();
             updatePlotFonts();
         }
@@ -430,6 +580,7 @@ namespace SimplePlotterVM
         {
             plotObj.Axes[0].Title = xAxisTitle;
             plotObj.Axes[1].Title = yAxisTitle;
+            plotObj.Title = chartTitle;
             plotObj.InvalidatePlot(true);
         }
 
@@ -445,12 +596,74 @@ namespace SimplePlotterVM
             plotObj.InvalidatePlot(true);
         }
 
+        private void updateAxisScales()
+        {
+            if (xLogarithmicScale)
+            {
+                plotObj.Axes[0] = new LogarithmicAxis { Position = AxisPosition.Bottom };
+            }
+            else
+            {
+                plotObj.Axes[0] = new LinearAxis { Position = AxisPosition.Bottom };
+            }
+            if (yLogarithmicScale)
+            {
+                plotObj.Axes[1] = new LogarithmicAxis { Position = AxisPosition.Left };
+            }
+            else
+            {
+                plotObj.Axes[1] = new LinearAxis { Position = AxisPosition.Left };
+            }
+            plotObj.InvalidatePlot(true);
+        }
+
+        private void updateGridLines()
+        {
+            //major
+            if (XMajorGridLines)
+            {
+                plotObj.Axes[0].MajorGridlineStyle = LineStyle.Solid;
+            }
+            else
+            {
+                plotObj.Axes[0].MajorGridlineStyle = LineStyle.None;
+            }
+            if (YMajorGridLines)
+            {
+                plotObj.Axes[1].MajorGridlineStyle = LineStyle.Solid;
+            }
+            else
+            {
+                plotObj.Axes[1].MajorGridlineStyle = LineStyle.None;
+            }
+            plotObj.Axes[0].MajorStep = XMajorStep == 0 ? double.NaN : XMajorStep;
+            plotObj.Axes[1].MajorStep = YMajorStep == 0 ? double.NaN : YMajorStep;
+            //minor
+            if (XMinorGridLines)
+            {
+                plotObj.Axes[0].MinorGridlineStyle = LineStyle.Dash;
+            }
+            else
+            {
+                plotObj.Axes[0].MinorGridlineStyle = LineStyle.None;
+            }
+            if (YMinorGridLines)
+            {
+                plotObj.Axes[1].MinorGridlineStyle = LineStyle.Dash;
+            }
+            else
+            {
+                plotObj.Axes[1].MinorGridlineStyle = LineStyle.None;
+            }
+            plotObj.Axes[0].MinorStep = XMinorStep == 0 ? double.NaN : XMinorStep;
+            plotObj.Axes[1].MinorStep = YMinorStep == 0 ? double.NaN : YMinorStep;
+            plotObj.InvalidatePlot(true);
+        }
+
         #endregion
 
         public void doSomething(object parameter)
         {
-            //title
-            plotObj.Title = "Test - plotObj";
             //cleares old series
             plotObj.Series.Clear();
             //adds new series
@@ -470,12 +683,9 @@ namespace SimplePlotterVM
             //x
             if (manualXMinAxisLimit) plotObj.Axes[0].Minimum = XAxisMin;
             if (manualXMinAxisLimit) plotObj.Axes[0].Maximum = XAxisMax;
-            
             //y
             if (manualYMinAxisLimit) plotObj.Axes[1].Minimum = YAxisMin;
             if (manualYMinAxisLimit) plotObj.Axes[1].Maximum = YAxisMax;
-            //plotObj.Axes[1].MinorStep = 0.1;
-            //plotObj.Axes[1].MajorStep = 0.5;
             plotObj.Axes[1].AxisTitleDistance = 10;
             //finally refreshes
             updateEntirePlot();
