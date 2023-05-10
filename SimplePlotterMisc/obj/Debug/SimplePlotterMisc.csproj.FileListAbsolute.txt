@@ -16,3 +16,4 @@ C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\obj\Debug\Si
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\SPGlobalization.dll
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\SPGlobalization.pdb
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\es\SPGlobalization.resources.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\bin\Debug\pt-BR\SPGlobalization.resources.dll

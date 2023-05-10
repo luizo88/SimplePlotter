@@ -18,3 +18,4 @@ C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterVM\obj\Debug\Simp
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterVM\obj\Debug\SimplePlotterVM.csproj.CopyComplete
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterVM\obj\Debug\SimplePlotterVM.dll
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterVM\obj\Debug\SimplePlotterVM.pdb
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterVM\bin\Debug\pt-BR\SPGlobalization.resources.dll

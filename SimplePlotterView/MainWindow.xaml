@@ -17,6 +17,43 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="400*"/>
         </Grid.ColumnDefinitions>
+        <Menu Name="mainMenu" Margin="0,0,0,0" Grid.ColumnSpan="3">
+            <MenuItem Name="menuFile" Header="{Binding Vocabulary.File, FallbackValue=File}">
+                <MenuItem Name="menuOpen" Header="{Binding Vocabulary.Open, FallbackValue=Open}" Command="{Binding OpenFileCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="Resources/Open.ico" Height="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="menuSave" Header="{Binding Vocabulary.Save, FallbackValue=Save}" Command="{Binding SaveFileCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="Resources/Save.ico" Height="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Name="menuLanguage" Header="{Binding Vocabulary.Language, FallbackValue=Language}">
+                <MenuItem Name="menuInterface" Header="{Binding Vocabulary.Interface, FallbackValue=Interface}" IsEnabled="True">
+                    <MenuItem.Icon>
+                        <Image Source="Resources/Language.ico" Height="16"/>
+                    </MenuItem.Icon>
+                    <MenuItem Name="menuIntPT" Header="PT" Command="{Binding InterfaceLanguageChangeCommand}" CommandParameter="0">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/PT.ico" Height="16"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Name="menuIntES" Header="ES" Command="{Binding InterfaceLanguageChangeCommand}"  CommandParameter="1">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/ES.ico" Height="16"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Name="menuIntEN" Header="EN" Command="{Binding InterfaceLanguageChangeCommand}"  CommandParameter="2">
+                        <MenuItem.Icon>
+                            <Image Source="Resources/EN.ico" Height="16"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <Label Name="lblVersion" Content="Version: x.x.x.x" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,0,0"/>
         <Expander Name="expd0" Margin="5,5,0,35" Grid.Row="1" Grid.Column="0" ExpandDirection="Right" IsExpanded="True">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,0" Grid.Row="1">
                 <Grid Background="#FFF7FAFD" HorizontalAlignment="Left" Width="540">
@@ -325,7 +362,7 @@
                 </Grid>
             </ScrollViewer>
         </Expander>
-        <Button Content="plot" Command="{Binding Plot}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+        <Button Content="plot" Command="{Binding Plot}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Grid Name="PlotRef1" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="{Binding ChartWidth}" Height="{Binding ChartHeight}"/>
         <Grid Name="PlotRef2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <Grid Name="PlotGrid" Grid.Column="1" Grid.Row="1">
@@ -347,6 +384,5 @@
                 </oxy:PlotView.Height>
             </oxy:PlotView>
         </Grid>
-        
     </Grid>
 </Window>

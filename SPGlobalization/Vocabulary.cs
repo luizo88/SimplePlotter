@@ -167,7 +167,16 @@ namespace SPGlobalization
         public string BackColor { get { return string.Format("{0}", Resources.Resources.BackColor); } }
         public string BackgroundColor { get { return string.Format("{0}", Resources.Resources.BackgroundColor); } }
         public string GridLinesColor { get { return string.Format("{0}", Resources.Resources.GridLinesColor); } }
-        
+        public string File { get { return string.Format("{0}", Resources.Resources.File); } }
+        public string Open { get { return string.Format("{0}", Resources.Resources.Open); } }
+        public string Save { get { return string.Format("{0}", Resources.Resources.Save); } }
+        public string Language { get { return string.Format("{0}", Resources.Resources.Language); } }
+        public string Interface { get { return string.Format("{0}", Resources.Resources.Interface); } }
+        public string PT { get { return string.Format("{0}", Resources.Resources.PT); } }
+        public string ES { get { return string.Format("{0}", Resources.Resources.ES); } }
+        public string EN { get { return string.Format("{0}", Resources.Resources.EN); } }
+
+
 
 
 

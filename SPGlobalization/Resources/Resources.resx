@@ -198,8 +198,17 @@
   <data name="Default" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="EN" xml:space="preserve">
+    <value>EN</value>
+  </data>
   <data name="Engineering" xml:space="preserve">
     <value>Engineering</value>
+  </data>
+  <data name="ES" xml:space="preserve">
+    <value>ES</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
   </data>
   <data name="FontName" xml:space="preserve">
     <value>Font name</value>
@@ -243,6 +252,12 @@
   <data name="Helvetica" xml:space="preserve">
     <value>Helvetica</value>
   </data>
+  <data name="Interface" xml:space="preserve">
+    <value>Interface</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="Legend" xml:space="preserve">
     <value>Legend</value>
   </data>
@@ -270,11 +285,17 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
   <data name="OriginalX" xml:space="preserve">
     <value>X (orig.)</value>
   </data>
   <data name="OriginalY" xml:space="preserve">
     <value>Y (orig.)</value>
+  </data>
+  <data name="PT" xml:space="preserve">
+    <value>PT</value>
   </data>
   <data name="Rainbow" xml:space="preserve">
     <value>Rainbow</value>
@@ -299,6 +320,9 @@
   </data>
   <data name="Rockwell" xml:space="preserve">
     <value>Rockwell</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="Scale" xml:space="preserve">
     <value>Scale</value>

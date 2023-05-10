@@ -118,5 +118,14 @@
       <Name>SimplePlotterVM</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Directory.ico" />
+    <Resource Include="Resources\EN.ico" />
+    <Resource Include="Resources\ES.ico" />
+    <Resource Include="Resources\Language.ico" />
+    <Resource Include="Resources\Open.ico" />
+    <Resource Include="Resources\PT.ico" />
+    <Resource Include="Resources\Save.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

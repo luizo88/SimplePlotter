@@ -25,3 +25,4 @@ C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\obj\Debug\Simple
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\obj\Debug\SimplePlotter.csproj.CopyComplete
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\obj\Debug\SimplePlotter.exe
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\obj\Debug\SimplePlotter.pdb
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\bin\Debug\pt-BR\SPGlobalization.resources.dll

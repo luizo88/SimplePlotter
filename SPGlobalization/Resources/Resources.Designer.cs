@@ -304,11 +304,38 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EN.
+        /// </summary>
+        internal static string EN {
+            get {
+                return ResourceManager.GetString("EN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Engineering.
         /// </summary>
         internal static string Engineering {
             get {
                 return ResourceManager.GetString("Engineering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ES.
+        /// </summary>
+        internal static string ES {
+            get {
+                return ResourceManager.GetString("ES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        internal static string File {
+            get {
+                return ResourceManager.GetString("File", resourceCulture);
             }
         }
         
@@ -439,6 +466,24 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Interface.
+        /// </summary>
+        internal static string Interface {
+            get {
+                return ResourceManager.GetString("Interface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Legend.
         /// </summary>
         internal static string Legend {
@@ -520,6 +565,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        internal static string Open {
+            get {
+                return ResourceManager.GetString("Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to X (orig.).
         /// </summary>
         internal static string OriginalX {
@@ -534,6 +588,15 @@ namespace SPGlobalization.Resources {
         internal static string OriginalY {
             get {
                 return ResourceManager.GetString("OriginalY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PT.
+        /// </summary>
+        internal static string PT {
+            get {
+                return ResourceManager.GetString("PT", resourceCulture);
             }
         }
         
@@ -606,6 +669,15 @@ namespace SPGlobalization.Resources {
         internal static string Rockwell {
             get {
                 return ResourceManager.GetString("Rockwell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         

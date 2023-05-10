@@ -23,6 +23,9 @@ namespace SimplePlotterVM
         public VM() 
         {
             //commands
+            OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
+            SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
+            InterfaceLanguageChangeCommand = new Auxiliary.DelegateCommand(changeInterfaceLanguage);
             Plot = new Auxiliary.DelegateCommand(plot);
             AddDataSeries = new Auxiliary.DelegateCommand(addDataSeries);
             RemoveDataSeries = new Auxiliary.DelegateCommand(removeDataSeries, canRemoveDataSeries);
@@ -35,6 +38,9 @@ namespace SimplePlotterVM
 
         #region COMMANDS
 
+        public Auxiliary.DelegateCommand OpenFileCommand { get; set; }
+        public Auxiliary.DelegateCommand SaveFileCommand { get; set; }
+        public Auxiliary.DelegateCommand InterfaceLanguageChangeCommand { get; set; }
         public Auxiliary.DelegateCommand Plot { get; set; }
         public Auxiliary.DelegateCommand AddDataSeries { get; set; }
         public Auxiliary.DelegateCommand RemoveDataSeries { get; set; }
@@ -45,6 +51,23 @@ namespace SimplePlotterVM
         #endregion
 
         #region COMMANDS ACTIONS
+
+        private void openFile(object parameter)
+        {
+            //pending
+        }
+
+        private void saveFile(object parameter)
+        {
+            //pending
+        }
+
+        private void changeInterfaceLanguage(object parameter)
+        {
+            SPGlobalization.Languages language = (SPGlobalization.Languages)Convert.ToInt32(parameter);
+            SPGlobalization.Vocabulary.Instance.ActualLanguage = language;
+            InterfaceLanguage = language;
+        }
 
         private void plot(object parameter)
         {
@@ -698,6 +721,17 @@ namespace SimplePlotterVM
             set
             {
                 question = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private SPGlobalization.Languages interfaceLanguage;
+        public SPGlobalization.Languages InterfaceLanguage
+        {
+            get { return interfaceLanguage; }
+            set
+            {
+                interfaceLanguage = value;
                 NotifyPropertyChanged();
             }
         }
