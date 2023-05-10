@@ -144,6 +144,12 @@
   <data name="AxisLabelsStyle" xml:space="preserve">
     <value>Axis labels style (X/Y)</value>
   </data>
+  <data name="BackColor" xml:space="preserve">
+    <value>Back color</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Background color</value>
+  </data>
   <data name="Black" xml:space="preserve">
     <value>Black</value>
   </data>
@@ -170,6 +176,9 @@
   </data>
   <data name="Color" xml:space="preserve">
     <value>Color</value>
+  </data>
+  <data name="Colors" xml:space="preserve">
+    <value>Colors</value>
   </data>
   <data name="ColorTemplate" xml:space="preserve">
     <value>Color template</value>
@@ -227,6 +236,9 @@
   </data>
   <data name="GridLines" xml:space="preserve">
     <value>Grid lines</value>
+  </data>
+  <data name="GridLinesColor" xml:space="preserve">
+    <value>Grid lines color</value>
   </data>
   <data name="Helvetica" xml:space="preserve">
     <value>Helvetica</value>
@@ -303,6 +315,9 @@
   <data name="ShowLegend" xml:space="preserve">
     <value>Show legend</value>
   </data>
+  <data name="SiliconSteel" xml:space="preserve">
+    <value>Silicon steel</value>
+  </data>
   <data name="Style" xml:space="preserve">
     <value>Style</value>
   </data>
@@ -320,6 +335,9 @@
   </data>
   <data name="Verdana" xml:space="preserve">
     <value>Verdana</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>White</value>
   </data>
   <data name="XAxisTitle" xml:space="preserve">
     <value>X axis title</value>

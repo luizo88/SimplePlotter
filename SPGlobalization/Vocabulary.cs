@@ -139,6 +139,7 @@ namespace SPGlobalization
         public string Blue { get { return string.Format("{0}", Resources.Resources.Blue); } }
         public string Black { get { return string.Format("{0}", Resources.Resources.Black); } }
         public string Gray { get { return string.Format("{0}", Resources.Resources.Gray); } }
+        public string White { get { return string.Format("{0}", Resources.Resources.White); } }
         public string CustomColor { get { return string.Format("{0}", Resources.Resources.CustomColor); } }
         public string Legend { get { return string.Format("{0}", Resources.Resources.Legend); } }
         public string ShowLegend { get { return string.Format("{0}", Resources.Resources.ShowLegend); } }
@@ -161,6 +162,14 @@ namespace SPGlobalization
         public string RedToGreen { get { return string.Format("{0}", Resources.Resources.RedToGreen); } }
         public string ColorTemplate { get { return string.Format("{0}", Resources.Resources.ColorTemplate); } }
         public string Apply { get { return string.Format("{0}", Resources.Resources.Apply); } }
+        public string SiliconSteel { get { return string.Format("{0}", Resources.Resources.SiliconSteel); } }
+        public string Colors { get { return string.Format("{0}", Resources.Resources.Colors); } }
+        public string BackColor { get { return string.Format("{0}", Resources.Resources.BackColor); } }
+        public string BackgroundColor { get { return string.Format("{0}", Resources.Resources.BackgroundColor); } }
+        public string GridLinesColor { get { return string.Format("{0}", Resources.Resources.GridLinesColor); } }
+        
+
+
 
 
         #endregion

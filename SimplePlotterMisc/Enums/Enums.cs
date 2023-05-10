@@ -20,7 +20,9 @@ namespace SimplePlotterMisc.Enums
         [LocalizedDescription("Black")]
         Black = 3,
         [LocalizedDescription("Gray")]
-        Gray = 4
+        Gray = 4,
+        [LocalizedDescription("White")]
+        White = 5
     }
 
     [TypeConverter(typeof(EnumDescriptionTypeConverter))]
@@ -87,7 +89,9 @@ namespace SimplePlotterMisc.Enums
         [LocalizedDescription("GreenToRed")]
         GreenToRed = 8,
         [LocalizedDescription("RedToGreen")]
-        RedToGreen = 9
+        RedToGreen = 9,
+        [LocalizedDescription("SiliconSteel")]
+        SiliconSteel = 10
     }
 
 }

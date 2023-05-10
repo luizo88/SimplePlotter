@@ -1,6 +1,7 @@
 ﻿using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Legends;
+using SimplePlotterMisc;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.TextFormatting;
 
 namespace SimplePlotterVM
 {
@@ -206,6 +209,7 @@ namespace SimplePlotterVM
             set
             {
                 manualXMinAxisLimit = value;
+                updateEntirePlot();
                 NotifyPropertyChanged();
             }
         }
@@ -217,6 +221,7 @@ namespace SimplePlotterVM
             set
             {
                 manualXMaxAxisLimit = value;
+                updateEntirePlot();
                 NotifyPropertyChanged();
             }
         }
@@ -228,6 +233,7 @@ namespace SimplePlotterVM
             set
             {
                 xAxisMin = value;
+                updateEntirePlot();
                 NotifyPropertyChanged();
             }
         }
@@ -239,6 +245,7 @@ namespace SimplePlotterVM
             set
             {
                 xAxisMax = value;
+                updateEntirePlot();
                 NotifyPropertyChanged();
             }
         }
@@ -250,6 +257,7 @@ namespace SimplePlotterVM
             set
             {
                 manualYMinAxisLimit = value;
+                updateEntirePlot();
                 NotifyPropertyChanged();
             }
         }
@@ -261,6 +269,7 @@ namespace SimplePlotterVM
             set
             {
                 manualYMaxAxisLimit = value;
+                updateEntirePlot();
                 NotifyPropertyChanged();
             }
         }
@@ -272,6 +281,7 @@ namespace SimplePlotterVM
             set
             {
                 yAxisMin = value;
+                updateEntirePlot();
                 NotifyPropertyChanged();
             }
         }
@@ -283,6 +293,7 @@ namespace SimplePlotterVM
             set
             {
                 yAxisMax = value;
+                updateEntirePlot();
                 NotifyPropertyChanged();
             }
         }
@@ -428,7 +439,7 @@ namespace SimplePlotterVM
             get { return xMajorStep; }
             set
             {
-                if (value > 0)
+                if (value >= 0)
                 {
                     xMajorStep = value;
                     updateEntirePlot();
@@ -443,7 +454,7 @@ namespace SimplePlotterVM
             get { return yMajorStep; }
             set
             {
-                if (value > 0)
+                if (value >= 0)
                 {
                     yMajorStep = value;
                     updateEntirePlot();
@@ -458,7 +469,7 @@ namespace SimplePlotterVM
             get { return xMinorStep; }
             set
             {
-                if (value > 0)
+                if (value >= 0)
                 {
                     xMinorStep = value;
                     updateEntirePlot();
@@ -473,7 +484,7 @@ namespace SimplePlotterVM
             get { return yMinorStep; }
             set
             {
-                if (value > 0)
+                if (value >= 0)
                 {
                     yMinorStep = value;
                     updateEntirePlot();
@@ -693,6 +704,177 @@ namespace SimplePlotterVM
 
         #endregion
 
+        #region COLOR
+
+        private ObservableCollection<SimplePlotterMisc.Enums.Colors> availableColors = new ObservableCollection<SimplePlotterMisc.Enums.Colors>();
+        public ObservableCollection<SimplePlotterMisc.Enums.Colors> AvailableColors
+        {
+            get { return availableColors; }
+            set
+            {
+                availableColors = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private SimplePlotterMisc.Enums.Colors selectedBackColor;
+        public SimplePlotterMisc.Enums.Colors SelectedBackColor
+        {
+            get { return selectedBackColor; }
+            set
+            {
+                selectedBackColor = value;
+                BackColorRGBDescription = SimplePlotterMisc.ColorTemplateController.GetRGBDescriptionFromColor(selectedBackColor);
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool customBackColor;
+        public bool CustomBackColor
+        {
+            get { return customBackColor; }
+            set
+            {
+                customBackColor = value;
+                StandardBackColor = !customBackColor;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool standardBackColor;
+        public bool StandardBackColor
+        {
+            get { return standardBackColor; }
+            set
+            {
+                standardBackColor = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string backColorRGBDescription;
+        public string BackColorRGBDescription
+        {
+            get { return backColorRGBDescription; }
+            set
+            {
+                if (SimplePlotterMisc.ColorTemplateController.ValidateRGBDescription(value))
+                {
+                    backColorRGBDescription = value;
+                    updateEntirePlot();
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private SimplePlotterMisc.Enums.Colors selectedBackgroundColor;
+        public SimplePlotterMisc.Enums.Colors SelectedBackgroundColor
+        {
+            get { return selectedBackgroundColor; }
+            set
+            {
+                selectedBackgroundColor = value;
+                BackgroundColorRGBDescription = SimplePlotterMisc.ColorTemplateController.GetRGBDescriptionFromColor(selectedBackgroundColor);
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool customBackgroundColor;
+        public bool CustomBackgroundColor
+        {
+            get { return customBackgroundColor; }
+            set
+            {
+                customBackgroundColor = value;
+                StandardBackgroundColor = !customBackgroundColor;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool standardBackgroundColor;
+        public bool StandardBackgroundColor
+        {
+            get { return standardBackgroundColor; }
+            set
+            {
+                standardBackgroundColor = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string backgroundColorRGBDescription;
+        public string BackgroundColorRGBDescription
+        {
+            get { return backgroundColorRGBDescription; }
+            set
+            {
+                if (SimplePlotterMisc.ColorTemplateController.ValidateRGBDescription(value))
+                {
+                    backgroundColorRGBDescription = value;
+                    updateEntirePlot();
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private SimplePlotterMisc.Enums.Colors selectedGridLinesColor;
+        public SimplePlotterMisc.Enums.Colors SelectedGridLinesColor
+        {
+            get { return selectedGridLinesColor; }
+            set
+            {
+                selectedGridLinesColor = value;
+                GridLinesColorRGBDescription = SimplePlotterMisc.ColorTemplateController.GetRGBDescriptionFromColor(selectedGridLinesColor);
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool customGridLinesColor;
+        public bool CustomGridLinesColor
+        {
+            get { return customGridLinesColor; }
+            set
+            {
+                customGridLinesColor = value;
+                StandardGridLinesColor = !customGridLinesColor;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool standardGridLinesColor;
+        public bool StandardGridLinesColor
+        {
+            get { return standardGridLinesColor; }
+            set
+            {
+                standardGridLinesColor = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string gridLinesColorRGBDescription;
+        public string GridLinesColorRGBDescription
+        {
+            get { return gridLinesColorRGBDescription; }
+            set
+            {
+                if (SimplePlotterMisc.ColorTemplateController.ValidateRGBDescription(value))
+                {
+                    gridLinesColorRGBDescription = value;
+                    updateEntirePlot();
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region PRIVATE METHODS
@@ -742,6 +924,16 @@ namespace SimplePlotterVM
             {
                 AvailableLegendPositions.Add((OxyPlot.Legends.LegendPosition)item);
             }
+            foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.Colors)))
+            {
+                AvailableColors.Add((SimplePlotterMisc.Enums.Colors)item);
+            }
+            SelectedBackColor = SimplePlotterMisc.Enums.Colors.White;
+            CustomBackColor = false;
+            SelectedBackgroundColor = SimplePlotterMisc.Enums.Colors.White;
+            CustomBackgroundColor = false;
+            SelectedGridLinesColor = SimplePlotterMisc.Enums.Colors.Gray;
+            CustomGridLinesColor = false;
             selectedLegendPosition = LegendPosition.TopRight;
         }
 
@@ -788,6 +980,8 @@ namespace SimplePlotterVM
             updateGridLines();
             updateTitles();
             updatePlotFonts();
+            updateColors();
+            plotObj.InvalidatePlot(true);
         }
 
         public void plotSeries()
@@ -887,10 +1081,10 @@ namespace SimplePlotterVM
                 //limits
                 //x
                 if (manualXMinAxisLimit) plotObj.Axes[0].Minimum = XAxisMin;
-                if (manualXMinAxisLimit) plotObj.Axes[0].Maximum = XAxisMax;
+                if (manualXMaxAxisLimit) plotObj.Axes[0].Maximum = XAxisMax;
                 //y
                 if (manualYMinAxisLimit) plotObj.Axes[1].Minimum = YAxisMin;
-                if (manualYMinAxisLimit) plotObj.Axes[1].Maximum = YAxisMax;
+                if (manualYMaxAxisLimit) plotObj.Axes[1].Maximum = YAxisMax;
                 plotObj.InvalidatePlot(true);
             }
         }
@@ -939,6 +1133,23 @@ namespace SimplePlotterVM
                 plotObj.Axes[1].MinorStep = YMinorStep == 0 ? double.NaN : YMinorStep;
                 plotObj.InvalidatePlot(true);
             }
+        }
+
+        private void updateColors()
+        {
+            if (backColorRGBDescription != null) PlotObj.Background = ColorTemplateController.GetOxyColorFromRGBDescription(backColorRGBDescription);
+            if (backgroundColorRGBDescription != null) PlotObj.PlotAreaBackground = ColorTemplateController.GetOxyColorFromRGBDescription(backgroundColorRGBDescription);
+            if (gridLinesColorRGBDescription != null)
+            {
+                if (PlotObj.Axes.Count > 0)
+                {
+                    plotObj.Axes[0].MajorGridlineColor = ColorTemplateController.GetOxyColorFromRGBDescription(gridLinesColorRGBDescription);
+                    plotObj.Axes[1].MajorGridlineColor = ColorTemplateController.GetOxyColorFromRGBDescription(gridLinesColorRGBDescription);
+                    plotObj.Axes[0].MinorGridlineColor = ColorTemplateController.GetOxyColorFromRGBDescription(gridLinesColorRGBDescription);
+                    plotObj.Axes[1].MinorGridlineColor = ColorTemplateController.GetOxyColorFromRGBDescription(gridLinesColorRGBDescription);
+                }
+            }
+            plotObj.InvalidatePlot(true);
         }
 
         #endregion

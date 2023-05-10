@@ -7,7 +7,7 @@
         xmlns:oxy="http://oxyplot.org/wpf"
         x:Class="SimplePlotterView.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1200">
+        Title="MainWindow" Height="900" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="23"/>
@@ -21,6 +21,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,0" Grid.Row="1">
                 <Grid Background="#FFF7FAFD" HorizontalAlignment="Left" Width="540">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -288,6 +289,37 @@
                             <TextBox Text="{Binding YAxisFontSize, UpdateSourceTrigger=LostFocus}" Margin="110,40,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding TitleFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,70,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding LegendFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,100,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Name="Colors" Margin="10,10,10,10" Grid.Row="5" BorderBrush="#FF75CFFF" IsExpanded="False">
+                        <Expander.Header>
+                            <DockPanel Width="495" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                <DockPanel.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFC3E3FF" Offset="1"/>
+                                        <GradientStop Color="White"/>
+                                    </LinearGradientBrush>
+                                </DockPanel.Background>
+                                <TextBlock Name="txtColors" Text="{Binding Vocabulary.Colors, FallbackValue=Colors}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            </DockPanel>
+                        </Expander.Header>
+                        <Grid Height="130">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="300"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{Binding Vocabulary.BackColor, FallbackValue=BackColor}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <ComboBox ItemsSource="{Binding AvailableColors}" SelectedItem="{Binding SelectedBackColor}" IsEnabled="{Binding StandardBackColor}" Margin="20,10,150,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding CustomBackColor}" Margin="160,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding BackColorRGBDescription, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding CustomBackColor}" Margin="180,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <Label Content="{Binding Vocabulary.BackgroundColor, FallbackValue=BackgroundColor}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <ComboBox ItemsSource="{Binding AvailableColors}" SelectedItem="{Binding SelectedBackgroundColor}" IsEnabled="{Binding StandardBackgroundColor}" Margin="20,40,150,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding CustomBackgroundColor}" Margin="160,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding BackgroundColorRGBDescription, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding CustomBackgroundColor}" Margin="180,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <Label Content="{Binding Vocabulary.GridLinesColor, FallbackValue=GridLinesColor}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <ComboBox ItemsSource="{Binding AvailableColors}" SelectedItem="{Binding SelectedGridLinesColor}" IsEnabled="{Binding StandardGridLinesColor}" Margin="20,70,150,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding CustomGridLinesColor}" Margin="160,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding GridLinesColorRGBDescription, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding CustomGridLinesColor}" Margin="180,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
                 </Grid>

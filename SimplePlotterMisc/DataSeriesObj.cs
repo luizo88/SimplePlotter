@@ -46,8 +46,8 @@ namespace SimplePlotterMisc
             color = Enums.Colors.Black;
             customColor = false;
             standardColor = true;
-            rgb = getRGBFromColor(color);
-            rgbDescription = getRGBDescriptionFromColor(color);
+            rgb = ColorTemplateController.GetRGBFromColor(color);
+            rgbDescription = ColorTemplateController.GetRGBDescriptionFromColor(color);
             legend = true;
         }
 
@@ -146,8 +146,8 @@ namespace SimplePlotterMisc
             set
             {
                 color = value;
-                RGB = getRGBFromColor(color);
-                RGBDescription = getRGBDescriptionFromColor(color);
+                RGB = ColorTemplateController.GetRGBFromColor(color);
+                RGBDescription = ColorTemplateController.GetRGBDescriptionFromColor(color);
                 NotifyPropertyChanged();
             }
         }
@@ -164,8 +164,8 @@ namespace SimplePlotterMisc
             {
                 customColor = value;
                 StandardColor = !customColor;
-                RGBDescription = getRGBDescriptionFromColor(color);
-                RGB = getRGBFromRGBDescription(rgbDescription);
+                RGBDescription = ColorTemplateController.GetRGBDescriptionFromColor(color);
+                RGB = ColorTemplateController.GetRGBFromRGBDescription(rgbDescription);
                 NotifyPropertyChanged();
             }
         }
@@ -185,10 +185,10 @@ namespace SimplePlotterMisc
             get { return rgbDescription; }
             set
             {
-                if(validateRGBDescription(value))
+                if(ColorTemplateController.ValidateRGBDescription(value))
                 {
                     rgbDescription = value;
-                    rgb = getRGBFromRGBDescription(rgbDescription);
+                    rgb = ColorTemplateController.GetRGBFromRGBDescription(rgbDescription);
                     NotifyPropertyChanged();
                 }
             }
@@ -239,56 +239,6 @@ namespace SimplePlotterMisc
                 points.Add(new PointObj(xPoints[i], yPoints[i], scaleX, scaleY, xPoints[i] * xScale, yPoints[i] * YScale));
             }
             NotifyPropertyChanged("Points");
-        }
-
-        private Tuple<byte, byte, byte> getRGBFromColor(Enums.Colors color)
-        {
-            switch (color)
-            {
-                case Enums.Colors.Red: return new Tuple<byte, byte, byte>(255, 0, 0);
-                case Enums.Colors.Green: return new Tuple<byte, byte, byte>(0, 150, 0);
-                case Enums.Colors.Blue: return new Tuple<byte, byte, byte>(0, 0, 255);
-                case Enums.Colors.Black: return new Tuple<byte, byte, byte>(0, 0, 0);
-                case Enums.Colors.Gray:return new Tuple<byte, byte, byte>(120, 120, 120);
-                default:
-                    throw new Exception("Unknow color");
-            }
-        }
-
-        private string getRGBDescriptionFromColor(Enums.Colors color)
-        {
-            Tuple<byte, byte, byte> rgb = getRGBFromColor(color);
-            return string.Format("{0}|{1}|{2}", rgb.Item1, rgb.Item2, rgb.Item3);
-        }
-        private Tuple<byte, byte, byte> getRGBFromRGBDescription(string rgbDescription)
-        {
-            byte[] rgbResult = new byte[4];
-            string[] vars = rgbDescription.Split('|');
-            for (int i = 0; i < vars.Length; i++)
-            {
-                byte b;
-                if (byte.TryParse(vars[i], out b))
-                {
-                    rgbResult[i] = b;
-                }
-            }
-            return new Tuple<byte, byte, byte>(rgbResult[0], rgbResult[1], rgbResult[2]);
-        }
-
-        public bool validateRGBDescription(string variable)
-        {
-            bool result = true;
-            string[] vars = variable.Split('|');
-            if (vars.Length != 3) return false;
-            for (int i = 0; i < vars.Length; i++)
-            {
-                byte b;
-                if (!byte.TryParse(vars[i], out b))
-                {
-                    result = false;
-                }
-            }
-            return result;
         }
 
         #endregion

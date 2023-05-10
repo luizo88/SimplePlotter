@@ -144,6 +144,12 @@
   <data name="AxisLabelsStyle" xml:space="preserve">
     <value>Estilo de los valores de eje (X/Y)</value>
   </data>
+  <data name="BackColor" xml:space="preserve">
+    <value>Color de fondo</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Color de fondo del quadro</value>
+  </data>
   <data name="Black" xml:space="preserve">
     <value>Negro</value>
   </data>
@@ -170,6 +176,9 @@
   </data>
   <data name="Color" xml:space="preserve">
     <value>Color</value>
+  </data>
+  <data name="Colors" xml:space="preserve">
+    <value>Colores</value>
   </data>
   <data name="ColorTemplate" xml:space="preserve">
     <value>Paleta de colores</value>
@@ -227,6 +236,9 @@
   </data>
   <data name="GridLines" xml:space="preserve">
     <value>Líneas de cuadrícula</value>
+  </data>
+  <data name="GridLinesColor" xml:space="preserve">
+    <value>Color de las líneas de cuadrícula</value>
   </data>
   <data name="Helvetica" xml:space="preserve">
     <value>Helvetica</value>
@@ -303,6 +315,9 @@
   <data name="ShowLegend" xml:space="preserve">
     <value>Mostrar leyenda</value>
   </data>
+  <data name="SiliconSteel" xml:space="preserve">
+    <value>Acero al silicio</value>
+  </data>
   <data name="Style" xml:space="preserve">
     <value>Estilo</value>
   </data>
@@ -320,6 +335,9 @@
   </data>
   <data name="Verdana" xml:space="preserve">
     <value>Verdana</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Blanco</value>
   </data>
   <data name="XAxisTitle" xml:space="preserve">
     <value>Título del eje X</value>

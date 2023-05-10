@@ -142,6 +142,24 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back color.
+        /// </summary>
+        internal static string BackColor {
+            get {
+                return ResourceManager.GetString("BackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background color.
+        /// </summary>
+        internal static string BackgroundColor {
+            get {
+                return ResourceManager.GetString("BackgroundColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Black.
         /// </summary>
         internal static string Black {
@@ -219,6 +237,15 @@ namespace SPGlobalization.Resources {
         internal static string Color {
             get {
                 return ResourceManager.GetString("Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colors.
+        /// </summary>
+        internal static string Colors {
+            get {
+                return ResourceManager.GetString("Colors", resourceCulture);
             }
         }
         
@@ -390,6 +417,15 @@ namespace SPGlobalization.Resources {
         internal static string GridLines {
             get {
                 return ResourceManager.GetString("GridLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid lines color.
+        /// </summary>
+        internal static string GridLinesColor {
+            get {
+                return ResourceManager.GetString("GridLinesColor", resourceCulture);
             }
         }
         
@@ -619,6 +655,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Silicon steel.
+        /// </summary>
+        internal static string SiliconSteel {
+            get {
+                return ResourceManager.GetString("SiliconSteel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Style.
         /// </summary>
         internal static string Style {
@@ -669,6 +714,15 @@ namespace SPGlobalization.Resources {
         internal static string Verdana {
             get {
                 return ResourceManager.GetString("Verdana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White.
+        /// </summary>
+        internal static string White {
+            get {
+                return ResourceManager.GetString("White", resourceCulture);
             }
         }
         
