@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPGlobalization", "SPGlobal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePlotterMisc", "SimplePlotterMisc\SimplePlotterMisc.csproj", "{A2577089-6AEC-44B0-9D57-F46A52A5E635}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{D2E4947C-FF58-4353-B84A-284C2EA3DEE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,8 @@ Global
 		{A2577089-6AEC-44B0-9D57-F46A52A5E635}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2577089-6AEC-44B0-9D57-F46A52A5E635}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2577089-6AEC-44B0-9D57-F46A52A5E635}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2E4947C-FF58-4353-B84A-284C2EA3DEE7}.Debug|Any CPU.ActiveCfg = Debug
+		{D2E4947C-FF58-4353-B84A-284C2EA3DEE7}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
