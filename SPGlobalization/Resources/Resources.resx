@@ -138,6 +138,9 @@
   <data name="AxisFontSize" xml:space="preserve">
     <value>Axis font size (X/Y)</value>
   </data>
+  <data name="AxisLabelsStyle" xml:space="preserve">
+    <value>Axis labels style (X/Y)</value>
+  </data>
   <data name="Black" xml:space="preserve">
     <value>Black</value>
   </data>
@@ -167,6 +170,12 @@
   </data>
   <data name="DataSeries" xml:space="preserve">
     <value>Data series</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Engineering" xml:space="preserve">
+    <value>Engineering</value>
   </data>
   <data name="FontName" xml:space="preserve">
     <value>Font name</value>
@@ -248,6 +257,9 @@
   </data>
   <data name="ScaledY" xml:space="preserve">
     <value>Y (scaled)</value>
+  </data>
+  <data name="Scientific" xml:space="preserve">
+    <value>Scientific</value>
   </data>
   <data name="ShowLegend" xml:space="preserve">
     <value>Show legend</value>

@@ -173,7 +173,7 @@
                                 <TextBlock Name="txtAxisConfiguration" Text="{Binding Vocabulary.AxisConfiguration, FallbackValue=AxisConfiguration}" FontWeight="Bold" HorizontalAlignment="Center"/>
                             </DockPanel>
                         </Expander.Header>
-                        <Grid Height="280">
+                        <Grid Height="190">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="220"/>
                                 <ColumnDefinition Width="300"/>
@@ -183,6 +183,7 @@
                             <Label Content="{Binding Vocabulary.XAxisTitle, FallbackValue=XAxisTitle}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.YAxisTitle, FallbackValue=YAxisTitle}" Margin="10,100,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.LogarithmicScale, FallbackValue=LogarithmicScale}" Margin="10,130,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.AxisLabelsStyle, FallbackValue=AxisLabelsStyle}" Margin="10,160,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <CheckBox IsChecked="{Binding ManualXMinAxisLimit}" Margin="3,13,282,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding XAxisMin, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualXMinAxisLimit}" Margin="20,10,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <CheckBox IsChecked="{Binding ManualXMaxAxisLimit}" Margin="93,13,192,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
@@ -195,6 +196,8 @@
                             <TextBox Text="{Binding YAxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <CheckBox IsChecked="{Binding XLogarithmicScale}" Content="X" Margin="20,130,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <CheckBox IsChecked="{Binding YLogarithmicScale}" Content="Y" Margin="100,130,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <ComboBox ItemsSource="{Binding AvailableAxisLabelFormats}" SelectedItem="{Binding SelectedXAxisLabelFormat}" Margin="20,160,180,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <ComboBox ItemsSource="{Binding AvailableAxisLabelFormats}" SelectedItem="{Binding SelectedYAxisLabelFormat}" Margin="140,160,60,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
                     <Expander Name="GridLines" Margin="10,10,10,10" Grid.Row="2" BorderBrush="#FF75CFFF" IsExpanded="False">
@@ -209,7 +212,7 @@
                                 <TextBlock Name="txtGridLines" Text="{Binding Vocabulary.GridLines, FallbackValue=GridLines}" FontWeight="Bold" HorizontalAlignment="Center"/>
                             </DockPanel>
                         </Expander.Header>
-                        <Grid Height="280">
+                        <Grid Height="130">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="220"/>
                                 <ColumnDefinition Width="300"/>
@@ -240,7 +243,7 @@
                                 <TextBlock Name="txtChartBox" Text="{Binding Vocabulary.ChartBox, FallbackValue=ChartBox}" FontWeight="Bold" HorizontalAlignment="Center"/>
                             </DockPanel>
                         </Expander.Header>
-                        <Grid Height="200">
+                        <Grid Height="130">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="220"/>
                                 <ColumnDefinition Width="300"/>
@@ -268,7 +271,7 @@
                                 <TextBlock Name="txtFontStyle" Text="{Binding Vocabulary.FontStyle, FallbackValue=FontStyle}" FontWeight="Bold" HorizontalAlignment="Center"/>
                             </DockPanel>
                         </Expander.Header>
-                        <Grid Height="200">
+                        <Grid Height="130">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="220"/>
                                 <ColumnDefinition Width="300"/>

@@ -144,7 +144,15 @@ namespace SPGlobalization
         public string ShowLegend { get { return string.Format("{0}", Resources.Resources.ShowLegend); } }
         public string LegendFontSize { get { return string.Format("{0}", Resources.Resources.LegendFontSize); } }
         public string LegendPosition { get { return string.Format("{0}", Resources.Resources.LegendPosition); } }
-        
+        public string Default { get { return string.Format("{0}", Resources.Resources.Default); } }
+        public string Scientific { get { return string.Format("{0}", Resources.Resources.Scientific); } }
+        public string Engineering { get { return string.Format("{0}", Resources.Resources.Engineering); } }
+        public string AxisLabelsStyle { get { return string.Format("{0}", Resources.Resources.AxisLabelsStyle); } }
+
+
+
+
+
 
 
         #endregion

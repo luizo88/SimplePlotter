@@ -300,6 +300,41 @@ namespace SimplePlotterVM
             }
         }
 
+        private List<SimplePlotterMisc.Enums.AxisLabelFormats> availableAxisLabelFormats = new List<SimplePlotterMisc.Enums.AxisLabelFormats>();
+        public List<SimplePlotterMisc.Enums.AxisLabelFormats> AvailableAxisLabelFormats
+        {
+            get { return availableAxisLabelFormats; }
+            set
+            {
+                availableAxisLabelFormats = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private SimplePlotterMisc.Enums.AxisLabelFormats selectedXAxisLabelFormat;
+        public SimplePlotterMisc.Enums.AxisLabelFormats SelectedXAxisLabelFormat
+        {
+            get { return selectedXAxisLabelFormat; }
+            set
+            {
+                selectedXAxisLabelFormat = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private SimplePlotterMisc.Enums.AxisLabelFormats selectedYAxisLabelFormat;
+        public SimplePlotterMisc.Enums.AxisLabelFormats SelectedYAxisLabelFormat
+        {
+            get { return selectedYAxisLabelFormat; }
+            set
+            {
+                selectedYAxisLabelFormat = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region GRID LINES
@@ -607,6 +642,12 @@ namespace SimplePlotterVM
             yAxisTitle = "Y";
             xLogarithmicScale = false;
             yLogarithmicScale = false;
+            foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.AxisLabelFormats)))
+            {
+                AvailableAxisLabelFormats.Add((SimplePlotterMisc.Enums.AxisLabelFormats)item);
+            }
+            selectedXAxisLabelFormat = SimplePlotterMisc.Enums.AxisLabelFormats.Default;
+            selectedYAxisLabelFormat = SimplePlotterMisc.Enums.AxisLabelFormats.Default;
             xMajorGridLines = false;
             yMajorGridLines = false;
             xMinorGridLines = false;
@@ -663,7 +704,7 @@ namespace SimplePlotterVM
 
         private void addSampleDataSeries()
         {
-            SimplePlotterMisc.DataSeriesController.Instance.AddDataSeries("Example", new List<double> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, new List<double> { 0, 1, 4, 8, 16, 32, 64, 128, 256, 512, 1024 });
+            SimplePlotterMisc.DataSeriesController.Instance.AddDataSeries("Example", new List<double> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 1e3, 2e6 }, new List<double> { 0, 1, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 1e4, 2e5, 4e6 });
             AvailableDataSeries.Add(SimplePlotterMisc.DataSeriesController.Instance.DataSeries[0]);
         }
 
@@ -671,7 +712,7 @@ namespace SimplePlotterVM
         {
             plotSeries();
             updateLegend();
-            updateAxisScales();
+            updateAxis();
             updateGridLines();
             updateTitles();
             updatePlotFonts();
@@ -756,17 +797,15 @@ namespace SimplePlotterVM
             plotObj.InvalidatePlot(true);
         }
 
-        private void updateAxisScales()
+        private void updateAxis()
         {
             if (xLogarithmicScale)
             {
                 plotObj.Axes[0] = new LogarithmicAxis { Position = AxisPosition.Bottom };
-                plotObj.Axes[0].LabelFormatter = SimplePlotterMisc.LabelFormatters.Eng;
             }
             else
             {
                 plotObj.Axes[0] = new LinearAxis { Position = AxisPosition.Bottom };
-                plotObj.Axes[0].LabelFormatter = SimplePlotterMisc.LabelFormatters.Eng;
             }
             if (yLogarithmicScale)
             {
@@ -776,6 +815,8 @@ namespace SimplePlotterVM
             {
                 plotObj.Axes[1] = new LinearAxis { Position = AxisPosition.Left };
             }
+            plotObj.Axes[0].LabelFormatter = SimplePlotterMisc.LabelFormatters.GetLabelFormatter(selectedXAxisLabelFormat);
+            plotObj.Axes[1].LabelFormatter = SimplePlotterMisc.LabelFormatters.GetLabelFormatter(selectedYAxisLabelFormat);
             plotObj.InvalidatePlot(true);
         }
 

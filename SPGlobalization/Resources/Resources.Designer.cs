@@ -124,6 +124,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Axis labels style (X/Y).
+        /// </summary>
+        internal static string AxisLabelsStyle {
+            get {
+                return ResourceManager.GetString("AxisLabelsStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Black.
         /// </summary>
         internal static string Black {
@@ -210,6 +219,24 @@ namespace SPGlobalization.Resources {
         internal static string DataSeries {
             get {
                 return ResourceManager.GetString("DataSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        internal static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engineering.
+        /// </summary>
+        internal static string Engineering {
+            get {
+                return ResourceManager.GetString("Engineering", resourceCulture);
             }
         }
         
@@ -453,6 +480,15 @@ namespace SPGlobalization.Resources {
         internal static string ScaledY {
             get {
                 return ResourceManager.GetString("ScaledY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scientific.
+        /// </summary>
+        internal static string Scientific {
+            get {
+                return ResourceManager.GetString("Scientific", resourceCulture);
             }
         }
         

@@ -23,5 +23,15 @@ namespace SimplePlotterMisc.Enums
         Gray = 4
     }
 
+    [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+    public enum AxisLabelFormats
+    {
+        [LocalizedDescription("Default")]
+        Default = 0,
+        [LocalizedDescription("Scientific")]
+        Scientific = 1,
+        [LocalizedDescription("Engineering")]
+        Engineering = 2
+    }
 
 }

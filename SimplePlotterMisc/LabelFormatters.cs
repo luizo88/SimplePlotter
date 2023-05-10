@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OxyPlot.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,34 @@ namespace SimplePlotterMisc
 {
     public static class LabelFormatters
     {
+        public static Func<double, string> GetLabelFormatter(Enums.AxisLabelFormats style)
+        {
+            switch (style)
+            {
+                case Enums.AxisLabelFormats.Default: return DoNothing;
+                case Enums.AxisLabelFormats.Scientific: return Power10;
+                case Enums.AxisLabelFormats.Engineering: return SI;
+                default: throw new NotImplementedException();
+            }
+        }
+
+        public static string DoNothing(double input)
+        {
+            if (input > 100)
+            {
+                return Math.Round(input, 6).ToString();
+            }
+            else
+            {
+                return input.ToString();
+            }
+        }
+
         public static string SI(double input)
         {
             double res = double.NaN;
             string suffix = string.Empty;
+            if (input > 999) input = Math.Round(input, 6);
             // Prevod malych hodnot
             if (Math.Abs(input) <= 0.001)
             {
@@ -59,7 +84,7 @@ namespace SimplePlotterMisc
             return double.IsNaN(res) ? Math.Round(input, 6).ToString() : $"{Math.Round(res, 6)}{suffix}";
         }
 
-        public static string Eng(this double x)
+        public static string Power10(this double x)
         {
             string format = "g4";
             if (x == 0) return "0";
@@ -74,7 +99,7 @@ namespace SimplePlotterMisc
             // group exponents in multiples of 3 (thousands)
             //int exp = (int)Math.Floor(Math.Log(x, 10) / 3) * 3;
             // otherwise use:
-            int exp = (int)Math.Floor(Math.Log(x, 10));
+            int exp = (int)Math.Floor(Math.Round(Math.Log(x, 10), 6));
             // and handle the exp==1 case separetly to avoid 10¹
             x *= Math.Pow(10, -exp);
             int exp_sign = Math.Sign(exp);
@@ -98,7 +123,14 @@ namespace SimplePlotterMisc
             if (dig.Length > 0)
             {
                 // has exponent
-                result =  $"{sig}{x.ToString(format)}×10{dig}";
+                if (x == 1)
+                {
+                    result = $"{sig}10{dig}";
+                }
+                else
+                {
+                    result = $"{sig}{x.ToString(format)}×10{dig}";
+                }
             }
             else
             {
@@ -107,20 +139,6 @@ namespace SimplePlotterMisc
             }
             //return $"{result,12}";
             return result;
-        }
-
-        public static String Power10(double input)
-        {
-            string SuperscriptDigits = "\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079";
-            string expstr = String.Format("{0:0.#E0}", input);
-            var numparts = expstr.Split('E');
-            char[] powerchars = numparts[1].ToArray();
-            for (int i = 0; i < powerchars.Length; i++)
-            {
-                powerchars[i] = (powerchars[i] == '-') ? '\u207b' : SuperscriptDigits[powerchars[i] - '0'];
-            }
-            numparts[1] = new String(powerchars);
-            return String.Join(" x 10", numparts);
         }
 
     }
