@@ -25,6 +25,7 @@ namespace SimplePlotterVM
             RemoveDataSeries = new Auxiliary.DelegateCommand(removeDataSeries, canRemoveDataSeries);
             DataSeriesUp = new Auxiliary.DelegateCommand(dataSeriesUp, canMoveDataSeriesUp);
             DataSeriesDown = new Auxiliary.DelegateCommand(dataSeriesDown, canMoveDataSeriesDown);
+            ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
             updateCompositeInfo();
             addSampleDataSeries();
         }
@@ -36,6 +37,7 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand RemoveDataSeries { get; set; }
         public Auxiliary.DelegateCommand DataSeriesUp { get; set; }
         public Auxiliary.DelegateCommand DataSeriesDown { get; set; }
+        public Auxiliary.DelegateCommand ApplyColorTemplate { get; set; }
 
         #endregion
 
@@ -61,6 +63,8 @@ namespace SimplePlotterVM
                     SimplePlotterMisc.DataSeriesController.Instance.AddDataSeries(name, points.Item1, points.Item2);
                 }
                 updateDataSeries();
+                updateSelectedDataSeriesPoints();
+                updateEntirePlot();
             }
         }
 
@@ -68,6 +72,8 @@ namespace SimplePlotterVM
         {
             SimplePlotterMisc.DataSeriesController.Instance.RemoveDataSeries(selectedDataSeries);
             updateDataSeries();
+            updateSelectedDataSeriesPoints();
+            updateEntirePlot();
         }
 
         private bool canRemoveDataSeries()
@@ -105,11 +111,20 @@ namespace SimplePlotterVM
             return result;
         }
 
+        private void applyColorTemplate(object parameter)
+        {
+            var colorList = SimplePlotterMisc.ColorTemplateController.GetRGBListFromColorTemplate(selectedColorTemplate, availableDataSeries.Count);
+            for (int i = 0; i < availableDataSeries.Count; i++)
+            {
+                availableDataSeries[i].CustomColor = true;
+                availableDataSeries[i].RGBDescription = string.Format("{0}|{1}|{2}", colorList[i].Item1, colorList[i].Item2, colorList[i].Item3);
+            }
+            updateEntirePlot();
+        }
+
         #endregion
 
         #region PROPERTIES
-
-        #region PLOT/CHART
 
         public OxyPlot.PlotModel plotObj = new OxyPlot.PlotModel();
         public OxyPlot.PlotModel PlotObj
@@ -121,8 +136,6 @@ namespace SimplePlotterVM
                 NotifyPropertyChanged();
             }
         }
-
-        #endregion
 
         #region DATA SERIES
 
@@ -156,6 +169,28 @@ namespace SimplePlotterVM
             set
             {
                 selectedDataSeriesPoints = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<SimplePlotterMisc.Enums.ColorTemplates> availableColorTemplates = new ObservableCollection<SimplePlotterMisc.Enums.ColorTemplates>();
+        public ObservableCollection<SimplePlotterMisc.Enums.ColorTemplates> AvailableColorTemplates
+        {
+            get { return availableColorTemplates; }
+            set
+            {
+                availableColorTemplates = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private SimplePlotterMisc.Enums.ColorTemplates selectedColorTemplate;
+        public SimplePlotterMisc.Enums.ColorTemplates SelectedColorTemplate
+        {
+            get { return selectedColorTemplate; }
+            set
+            {
+                selectedColorTemplate = value;
                 NotifyPropertyChanged();
             }
         }
@@ -300,8 +335,8 @@ namespace SimplePlotterVM
             }
         }
 
-        private List<SimplePlotterMisc.Enums.AxisLabelFormats> availableAxisLabelFormats = new List<SimplePlotterMisc.Enums.AxisLabelFormats>();
-        public List<SimplePlotterMisc.Enums.AxisLabelFormats> AvailableAxisLabelFormats
+        private ObservableCollection<SimplePlotterMisc.Enums.AxisLabelFormats> availableAxisLabelFormats = new ObservableCollection<SimplePlotterMisc.Enums.AxisLabelFormats>();
+        public ObservableCollection<SimplePlotterMisc.Enums.AxisLabelFormats> AvailableAxisLabelFormats
         {
             get { return availableAxisLabelFormats; }
             set
@@ -393,9 +428,12 @@ namespace SimplePlotterVM
             get { return xMajorStep; }
             set
             {
-                xMajorStep = value;
-                updateEntirePlot();
-                NotifyPropertyChanged();
+                if (value > 0)
+                {
+                    xMajorStep = value;
+                    updateEntirePlot();
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -405,9 +443,12 @@ namespace SimplePlotterVM
             get { return yMajorStep; }
             set
             {
-                yMajorStep = value;
-                updateEntirePlot();
-                NotifyPropertyChanged();
+                if (value > 0)
+                {
+                    yMajorStep = value;
+                    updateEntirePlot();
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -417,9 +458,12 @@ namespace SimplePlotterVM
             get { return xMinorStep; }
             set
             {
-                xMinorStep = value;
-                updateEntirePlot();
-                NotifyPropertyChanged();
+                if (value > 0)
+                {
+                    xMinorStep = value;
+                    updateEntirePlot();
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -429,9 +473,12 @@ namespace SimplePlotterVM
             get { return yMinorStep; }
             set
             {
-                yMinorStep = value;
-                updateEntirePlot();
-                NotifyPropertyChanged();
+                if (value > 0)
+                {
+                    yMinorStep = value;
+                    updateEntirePlot();
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -445,8 +492,11 @@ namespace SimplePlotterVM
             get { return chartWidth; }
             set
             {
-                chartWidth = value;
-                NotifyPropertyChanged();
+                if (value > 0)
+                {
+                    chartWidth = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -456,8 +506,11 @@ namespace SimplePlotterVM
             get { return chartHeight; }
             set
             {
-                chartHeight = value;
-                NotifyPropertyChanged();
+                if (value > 0)
+                {
+                    chartHeight = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -485,8 +538,8 @@ namespace SimplePlotterVM
             }
         }
 
-        public List<OxyPlot.Legends.LegendPosition> availableLegendPositions = new List<LegendPosition>();
-        public List<OxyPlot.Legends.LegendPosition> AvailableLegendPositions
+        public ObservableCollection<OxyPlot.Legends.LegendPosition> availableLegendPositions = new ObservableCollection<LegendPosition>();
+        public ObservableCollection<OxyPlot.Legends.LegendPosition> AvailableLegendPositions
         {
             get { return availableLegendPositions; }
             set
@@ -513,8 +566,8 @@ namespace SimplePlotterVM
 
         #region FONTS
 
-        private ObservableCollection<Enums.Fonts> availableFonts = new ObservableCollection<Enums.Fonts>();
-        public ObservableCollection<Enums.Fonts> AvailableFonts
+        private ObservableCollection<SimplePlotterMisc.Enums.Fonts> availableFonts = new ObservableCollection<SimplePlotterMisc.Enums.Fonts>();
+        public ObservableCollection<SimplePlotterMisc.Enums.Fonts> AvailableFonts
         {
             get { return availableFonts; }
             set
@@ -524,8 +577,8 @@ namespace SimplePlotterVM
             }
         }
 
-        private Enums.Fonts selectedFont;
-        public Enums.Fonts SelectedFont
+        private SimplePlotterMisc.Enums.Fonts selectedFont;
+        public SimplePlotterMisc.Enums.Fonts SelectedFont
         {
             get { return selectedFont; }
             set
@@ -542,9 +595,12 @@ namespace SimplePlotterVM
             get { return xAxisFontSize; }
             set
             {
-                xAxisFontSize = value;
-                updatePlotFonts();
-                NotifyPropertyChanged();
+                if (value > 0)
+                {
+                    xAxisFontSize = value;
+                    updatePlotFonts();
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -554,9 +610,12 @@ namespace SimplePlotterVM
             get { return yAxisFontSize; }
             set
             {
-                yAxisFontSize = value;
-                updatePlotFonts();
-                NotifyPropertyChanged();
+                if (value > 0)
+                {
+                    yAxisFontSize = value;
+                    updatePlotFonts();
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -566,9 +625,12 @@ namespace SimplePlotterVM
             get { return titleFontSize; }
             set
             {
-                titleFontSize = value;
-                updatePlotFonts();
-                NotifyPropertyChanged();
+                if (value > 0)
+                {
+                    titleFontSize = value;
+                    updatePlotFonts();
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -578,9 +640,12 @@ namespace SimplePlotterVM
             get { return legendFontSize; }
             set
             {
-                legendFontSize = value;
-                updateLegend();
-                NotifyPropertyChanged();
+                if (value > 0)
+                {
+                    legendFontSize = value;
+                    updateLegend();
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -634,6 +699,10 @@ namespace SimplePlotterVM
 
         private void updateCompositeInfo()
         {
+            foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.ColorTemplates)))
+            {
+                AvailableColorTemplates.Add((SimplePlotterMisc.Enums.ColorTemplates)item);
+            }
             manualXMinAxisLimit = false;
             manualXMaxAxisLimit = false;
             manualYMinAxisLimit = false;
@@ -657,11 +726,11 @@ namespace SimplePlotterVM
             xMinorStep = 0;
             yMinorStep = 0;
             AvailableFonts.Clear();
-            foreach (var item in Enum.GetValues(typeof(Enums.Fonts)))
+            foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.Fonts)))
             {
-                AvailableFonts.Add((Enums.Fonts)item);
+                AvailableFonts.Add((SimplePlotterMisc.Enums.Fonts)item);
             }
-            SelectedFont = Enums.Fonts.TimesNewRoman;
+            SelectedFont = SimplePlotterMisc.Enums.Fonts.TimesNewRoman;
             xAxisFontSize = 0;
             yAxisFontSize = 0;
             titleFontSize = 0;
@@ -685,15 +754,18 @@ namespace SimplePlotterVM
                 availableDataSeries.Add(item);
             }
             NotifyPropertyChanged("AvailableDataSeries");
-            SelectedDataSeries = sds;
+            if (SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Contains(sds)) SelectedDataSeries = sds;
         }
 
         private void updateSelectedDataSeriesPoints()
         {
             selectedDataSeriesPoints.Clear();
-            foreach (var item in selectedDataSeries.Points)
+            if (selectedDataSeries != null)
             {
-                selectedDataSeriesPoints.Add(item);
+                foreach (var item in selectedDataSeries.Points)
+                {
+                    selectedDataSeriesPoints.Add(item);
+                }
             }
             NotifyPropertyChanged("SelectedDataSeriesPoints");
         }
@@ -739,16 +811,6 @@ namespace SimplePlotterVM
             }
             //refreshes to update axes
             plotObj.InvalidatePlot(true);
-            //configures axes
-            //x
-            if (manualXMinAxisLimit) plotObj.Axes[0].Minimum = XAxisMin;
-            if (manualXMinAxisLimit) plotObj.Axes[0].Maximum = XAxisMax;
-            //y
-            if (manualYMinAxisLimit) plotObj.Axes[1].Minimum = YAxisMin;
-            if (manualYMinAxisLimit) plotObj.Axes[1].Maximum = YAxisMax;
-            plotObj.Axes[1].AxisTitleDistance = 10;
-            //finally refreshes
-            plotObj.InvalidatePlot(true);
         }
 
         private void updateLegend()
@@ -773,10 +835,13 @@ namespace SimplePlotterVM
 
         private void updateTitles()
         {
-            plotObj.Axes[0].Title = xAxisTitle;
-            plotObj.Axes[1].Title = yAxisTitle;
-            plotObj.Title = chartTitle;
-            plotObj.InvalidatePlot(true);
+            if (plotObj.Axes.Count > 0)
+            {
+                plotObj.Axes[0].Title = xAxisTitle;
+                plotObj.Axes[1].Title = yAxisTitle;
+                plotObj.Title = chartTitle;
+                plotObj.InvalidatePlot(true);
+            }
         }
 
         private void updatePlotFonts()
@@ -799,68 +864,81 @@ namespace SimplePlotterVM
 
         private void updateAxis()
         {
-            if (xLogarithmicScale)
+            if (plotObj.Axes.Count > 0)
             {
-                plotObj.Axes[0] = new LogarithmicAxis { Position = AxisPosition.Bottom };
+                if (xLogarithmicScale)
+                {
+                    plotObj.Axes[0] = new LogarithmicAxis { Position = AxisPosition.Bottom };
+                }
+                else
+                {
+                    plotObj.Axes[0] = new LinearAxis { Position = AxisPosition.Bottom };
+                }
+                if (yLogarithmicScale)
+                {
+                    plotObj.Axes[1] = new LogarithmicAxis { Position = AxisPosition.Left };
+                }
+                else
+                {
+                    plotObj.Axes[1] = new LinearAxis { Position = AxisPosition.Left };
+                }
+                plotObj.Axes[0].LabelFormatter = SimplePlotterMisc.LabelFormatters.GetLabelFormatter(selectedXAxisLabelFormat);
+                plotObj.Axes[1].LabelFormatter = SimplePlotterMisc.LabelFormatters.GetLabelFormatter(selectedYAxisLabelFormat);
+                //limits
+                //x
+                if (manualXMinAxisLimit) plotObj.Axes[0].Minimum = XAxisMin;
+                if (manualXMinAxisLimit) plotObj.Axes[0].Maximum = XAxisMax;
+                //y
+                if (manualYMinAxisLimit) plotObj.Axes[1].Minimum = YAxisMin;
+                if (manualYMinAxisLimit) plotObj.Axes[1].Maximum = YAxisMax;
+                plotObj.InvalidatePlot(true);
             }
-            else
-            {
-                plotObj.Axes[0] = new LinearAxis { Position = AxisPosition.Bottom };
-            }
-            if (yLogarithmicScale)
-            {
-                plotObj.Axes[1] = new LogarithmicAxis { Position = AxisPosition.Left };
-            }
-            else
-            {
-                plotObj.Axes[1] = new LinearAxis { Position = AxisPosition.Left };
-            }
-            plotObj.Axes[0].LabelFormatter = SimplePlotterMisc.LabelFormatters.GetLabelFormatter(selectedXAxisLabelFormat);
-            plotObj.Axes[1].LabelFormatter = SimplePlotterMisc.LabelFormatters.GetLabelFormatter(selectedYAxisLabelFormat);
-            plotObj.InvalidatePlot(true);
         }
 
         private void updateGridLines()
         {
-            //major
-            if (XMajorGridLines)
+            if (plotObj.Axes.Count > 0)
             {
-                plotObj.Axes[0].MajorGridlineStyle = LineStyle.Solid;
+                //major
+                if (XMajorGridLines)
+                {
+                    plotObj.Axes[0].MajorGridlineStyle = LineStyle.Solid;
+                }
+                else
+                {
+                    plotObj.Axes[0].MajorGridlineStyle = LineStyle.None;
+                }
+                if (YMajorGridLines)
+                {
+                    plotObj.Axes[1].MajorGridlineStyle = LineStyle.Solid;
+                }
+                else
+                {
+                    plotObj.Axes[1].MajorGridlineStyle = LineStyle.None;
+                }
+                plotObj.Axes[0].MajorStep = XMajorStep == 0 ? double.NaN : XMajorStep;
+                plotObj.Axes[1].MajorStep = YMajorStep == 0 ? double.NaN : YMajorStep;
+                //minor
+                if (XMinorGridLines)
+                {
+                    plotObj.Axes[0].MinorGridlineStyle = LineStyle.Dash;
+                }
+                else
+                {
+                    plotObj.Axes[0].MinorGridlineStyle = LineStyle.None;
+                }
+                if (YMinorGridLines)
+                {
+                    plotObj.Axes[1].MinorGridlineStyle = LineStyle.Dash;
+                }
+                else
+                {
+                    plotObj.Axes[1].MinorGridlineStyle = LineStyle.None;
+                }
+                plotObj.Axes[0].MinorStep = XMinorStep == 0 ? double.NaN : XMinorStep;
+                plotObj.Axes[1].MinorStep = YMinorStep == 0 ? double.NaN : YMinorStep;
+                plotObj.InvalidatePlot(true);
             }
-            else
-            {
-                plotObj.Axes[0].MajorGridlineStyle = LineStyle.None;
-            }
-            if (YMajorGridLines)
-            {
-                plotObj.Axes[1].MajorGridlineStyle = LineStyle.Solid;
-            }
-            else
-            {
-                plotObj.Axes[1].MajorGridlineStyle = LineStyle.None;
-            }
-            plotObj.Axes[0].MajorStep = XMajorStep == 0 ? double.NaN : XMajorStep;
-            plotObj.Axes[1].MajorStep = YMajorStep == 0 ? double.NaN : YMajorStep;
-            //minor
-            if (XMinorGridLines)
-            {
-                plotObj.Axes[0].MinorGridlineStyle = LineStyle.Dash;
-            }
-            else
-            {
-                plotObj.Axes[0].MinorGridlineStyle = LineStyle.None;
-            }
-            if (YMinorGridLines)
-            {
-                plotObj.Axes[1].MinorGridlineStyle = LineStyle.Dash;
-            }
-            else
-            {
-                plotObj.Axes[1].MinorGridlineStyle = LineStyle.None;
-            }
-            plotObj.Axes[0].MinorStep = XMinorStep == 0 ? double.NaN : XMinorStep;
-            plotObj.Axes[1].MinorStep = YMinorStep == 0 ? double.NaN : YMinorStep;
-            plotObj.InvalidatePlot(true);
         }
 
         #endregion

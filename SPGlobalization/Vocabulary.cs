@@ -148,11 +148,19 @@ namespace SPGlobalization
         public string Scientific { get { return string.Format("{0}", Resources.Resources.Scientific); } }
         public string Engineering { get { return string.Format("{0}", Resources.Resources.Engineering); } }
         public string AxisLabelsStyle { get { return string.Format("{0}", Resources.Resources.AxisLabelsStyle); } }
-
-
-
-
-
+        public string RGB { get { return string.Format("{0}", Resources.Resources.RGB); } }
+        public string Rainbow { get { return string.Format("{0}", Resources.Resources.Rainbow); } }
+        public string Cycle { get { return string.Format("{0}", Resources.Resources.Cycle); } }
+        public string GrayScale { get { return string.Format("{0}", Resources.Resources.GrayScale); } }
+        public string RedScale { get { return string.Format("{0}", Resources.Resources.RedScale); } }
+        public string GreenScale { get { return string.Format("{0}", Resources.Resources.GreenScale); } }
+        public string BlueScale { get { return string.Format("{0}", Resources.Resources.BlueScale); } }
+        public string BlueToRed { get { return string.Format("{0}", Resources.Resources.BlueToRed); } }
+        public string RedToBlue { get { return string.Format("{0}", Resources.Resources.RedToBlue); } }
+        public string GreenToRed { get { return string.Format("{0}", Resources.Resources.GreenToRed); } }
+        public string RedToGreen { get { return string.Format("{0}", Resources.Resources.RedToGreen); } }
+        public string ColorTemplate { get { return string.Format("{0}", Resources.Resources.ColorTemplate); } }
+        public string Apply { get { return string.Format("{0}", Resources.Resources.Apply); } }
 
 
         #endregion

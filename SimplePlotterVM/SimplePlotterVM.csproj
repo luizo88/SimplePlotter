@@ -57,10 +57,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\EnumBindingSourceExtension.cs" />
-    <Compile Include="Enums\EnumDescriptionTypeConverter.cs" />
-    <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Enums\LocalizedDescriptionAttribute.cs" />
     <Compile Include="VM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

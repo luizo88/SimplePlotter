@@ -70,6 +70,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        internal static string Apply {
+            get {
+                return ResourceManager.GetString("Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Arial.
         /// </summary>
         internal static string Arial {
@@ -151,6 +160,24 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blue scale.
+        /// </summary>
+        internal static string BlueScale {
+            get {
+                return ResourceManager.GetString("BlueScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue to red.
+        /// </summary>
+        internal static string BlueToRed {
+            get {
+                return ResourceManager.GetString("BlueToRed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bodoni.
         /// </summary>
         internal static string Bodoni {
@@ -196,6 +223,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Color template.
+        /// </summary>
+        internal static string ColorTemplate {
+            get {
+                return ResourceManager.GetString("ColorTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Consolas.
         /// </summary>
         internal static string Consolas {
@@ -210,6 +246,15 @@ namespace SPGlobalization.Resources {
         internal static string CustomColor {
             get {
                 return ResourceManager.GetString("CustomColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cycle.
+        /// </summary>
+        internal static string Cycle {
+            get {
+                return ResourceManager.GetString("Cycle", resourceCulture);
             }
         }
         
@@ -304,11 +349,38 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gray scale.
+        /// </summary>
+        internal static string GrayScale {
+            get {
+                return ResourceManager.GetString("GrayScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Green.
         /// </summary>
         internal static string Green {
             get {
                 return ResourceManager.GetString("Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green scale.
+        /// </summary>
+        internal static string GreenScale {
+            get {
+                return ResourceManager.GetString("GreenScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green to red.
+        /// </summary>
+        internal static string GreenToRed {
+            get {
+                return ResourceManager.GetString("GreenToRed", resourceCulture);
             }
         }
         
@@ -430,6 +502,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rainbow.
+        /// </summary>
+        internal static string Rainbow {
+            get {
+                return ResourceManager.GetString("Rainbow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Red.
         /// </summary>
         internal static string Red {
@@ -439,11 +520,47 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Red scale.
+        /// </summary>
+        internal static string RedScale {
+            get {
+                return ResourceManager.GetString("RedScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red to blue.
+        /// </summary>
+        internal static string RedToBlue {
+            get {
+                return ResourceManager.GetString("RedToBlue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red to green.
+        /// </summary>
+        internal static string RedToGreen {
+            get {
+                return ResourceManager.GetString("RedToGreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove data series.
         /// </summary>
         internal static string RemoveDataSeries {
             get {
                 return ResourceManager.GetString("RemoveDataSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RGB.
+        /// </summary>
+        internal static string RGB {
+            get {
+                return ResourceManager.GetString("RGB", resourceCulture);
             }
         }
         

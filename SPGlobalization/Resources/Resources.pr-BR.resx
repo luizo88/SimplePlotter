@@ -120,6 +120,9 @@
   <data name="AddDataSeries" xml:space="preserve">
     <value>Adicionar série de dados</value>
   </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
   <data name="Arial" xml:space="preserve">
     <value>Arial</value>
   </data>
@@ -147,6 +150,12 @@
   <data name="Blue" xml:space="preserve">
     <value>Azul</value>
   </data>
+  <data name="BlueScale" xml:space="preserve">
+    <value>Escala de azul</value>
+  </data>
+  <data name="BlueToRed" xml:space="preserve">
+    <value>Azul para vermelho</value>
+  </data>
   <data name="Bodoni" xml:space="preserve">
     <value>Bodoni</value>
   </data>
@@ -162,11 +171,17 @@
   <data name="Color" xml:space="preserve">
     <value>Cor</value>
   </data>
+  <data name="ColorTemplate" xml:space="preserve">
+    <value>Paleta de cores</value>
+  </data>
   <data name="Consolas" xml:space="preserve">
     <value>Consolas</value>
   </data>
   <data name="CustomColor" xml:space="preserve">
     <value>Cor pers.</value>
+  </data>
+  <data name="Cycle" xml:space="preserve">
+    <value>Cíclico</value>
   </data>
   <data name="DataSeries" xml:space="preserve">
     <value>Séries de dados</value>
@@ -198,8 +213,17 @@
   <data name="Gray" xml:space="preserve">
     <value>Cinza</value>
   </data>
+  <data name="GrayScale" xml:space="preserve">
+    <value>Escala de cinza</value>
+  </data>
   <data name="Green" xml:space="preserve">
     <value>Verde</value>
+  </data>
+  <data name="GreenScale" xml:space="preserve">
+    <value>Escala de verde</value>
+  </data>
+  <data name="GreenToRed" xml:space="preserve">
+    <value>Verde para vermelho</value>
   </data>
   <data name="GridLines" xml:space="preserve">
     <value>Linhas de grade</value>
@@ -240,11 +264,26 @@
   <data name="OriginalY" xml:space="preserve">
     <value>Y (orig.)</value>
   </data>
+  <data name="Rainbow" xml:space="preserve">
+    <value>Arco-íris</value>
+  </data>
   <data name="Red" xml:space="preserve">
     <value>Vermelho</value>
   </data>
+  <data name="RedScale" xml:space="preserve">
+    <value>Escala de vermelho</value>
+  </data>
+  <data name="RedToBlue" xml:space="preserve">
+    <value>Vermelho para azul</value>
+  </data>
+  <data name="RedToGreen" xml:space="preserve">
+    <value>Vermelho para verde</value>
+  </data>
   <data name="RemoveDataSeries" xml:space="preserve">
     <value>Remover série de dados</value>
+  </data>
+  <data name="RGB" xml:space="preserve">
+    <value>RGB</value>
   </data>
   <data name="Rockwell" xml:space="preserve">
     <value>Rockwell</value>
