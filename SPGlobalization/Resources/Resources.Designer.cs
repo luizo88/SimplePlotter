@@ -646,6 +646,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh plot.
+        /// </summary>
+        internal static string RefreshPlot {
+            get {
+                return ResourceManager.GetString("RefreshPlot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove data series.
         /// </summary>
         internal static string RemoveDataSeries {

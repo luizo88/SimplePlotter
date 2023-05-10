@@ -175,8 +175,7 @@ namespace SPGlobalization
         public string PT { get { return string.Format("{0}", Resources.Resources.PT); } }
         public string ES { get { return string.Format("{0}", Resources.Resources.ES); } }
         public string EN { get { return string.Format("{0}", Resources.Resources.EN); } }
-
-
+        public string RefreshPlot { get { return string.Format("{0}", Resources.Resources.RefreshPlot); } }
 
 
 

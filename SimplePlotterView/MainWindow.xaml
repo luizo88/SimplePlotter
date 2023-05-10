@@ -7,7 +7,7 @@
         xmlns:oxy="http://oxyplot.org/wpf"
         x:Class="SimplePlotterView.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1200">
+        Title="SimplePlotter" Height="900" Width="1200" Icon="Resources/SimplePlotterIcon16x16.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="23"/>
@@ -53,7 +53,7 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <Label Name="lblVersion" Content="Version: x.x.x.x" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,0,0"/>
+        <Label Name="lblVersion" Content="{Binding Version, FallbackValue='v. x.X.X.X'}" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,0,0"/>
         <Expander Name="expd0" Margin="5,5,0,35" Grid.Row="1" Grid.Column="0" ExpandDirection="Right" IsExpanded="True">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,0" Grid.Row="1">
                 <Grid Background="#FFF7FAFD" HorizontalAlignment="Left" Width="540">
@@ -340,7 +340,7 @@
                                 <TextBlock Name="txtColors" Text="{Binding Vocabulary.Colors, FallbackValue=Colors}" FontWeight="Bold" HorizontalAlignment="Center"/>
                             </DockPanel>
                         </Expander.Header>
-                        <Grid Height="130">
+                        <Grid Height="100">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="220"/>
                                 <ColumnDefinition Width="300"/>
@@ -362,7 +362,7 @@
                 </Grid>
             </ScrollViewer>
         </Expander>
-        <Button Content="plot" Command="{Binding Plot}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button Content="{Binding Vocabulary.RefreshPlot, FallbackValue=RefreshPlot}" Command="{Binding RefreshPlot}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Grid Name="PlotRef1" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="{Binding ChartWidth}" Height="{Binding ChartHeight}"/>
         <Grid Name="PlotRef2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <Grid Name="PlotGrid" Grid.Column="1" Grid.Row="1">

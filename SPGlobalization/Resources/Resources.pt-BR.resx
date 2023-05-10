@@ -312,6 +312,9 @@
   <data name="RedToGreen" xml:space="preserve">
     <value>Vermelho para verde</value>
   </data>
+  <data name="RefreshPlot" xml:space="preserve">
+    <value>Atualizar o gráfico</value>
+  </data>
   <data name="RemoveDataSeries" xml:space="preserve">
     <value>Remover série de dados</value>
   </data>

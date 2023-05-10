@@ -127,5 +127,15 @@
     <Resource Include="Resources\PT.ico" />
     <Resource Include="Resources\Save.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SimplePlotterIcon256x256.ico" />
+    <Resource Include="Resources\SimplePlotterIcon64x64.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SimplePlotterIcon16x16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SimplePlotterIcon48x48.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

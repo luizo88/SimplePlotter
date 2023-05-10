@@ -1,4 +1,5 @@
-﻿using OxyPlot;
+﻿using Auxiliary;
+using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Legends;
 using SimplePlotterMisc;
@@ -22,11 +23,12 @@ namespace SimplePlotterVM
 
         public VM() 
         {
+            Version = "v. 1.0.0.0";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
             InterfaceLanguageChangeCommand = new Auxiliary.DelegateCommand(changeInterfaceLanguage);
-            Plot = new Auxiliary.DelegateCommand(plot);
+            RefreshPlot = new Auxiliary.DelegateCommand(refreshPlot);
             AddDataSeries = new Auxiliary.DelegateCommand(addDataSeries);
             RemoveDataSeries = new Auxiliary.DelegateCommand(removeDataSeries, canRemoveDataSeries);
             DataSeriesUp = new Auxiliary.DelegateCommand(dataSeriesUp, canMoveDataSeriesUp);
@@ -34,13 +36,29 @@ namespace SimplePlotterVM
             ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
             updateCompositeInfo();
             addSampleDataSeries();
+            //assings the event to update the graphic based on data series changes
+            SimplePlotterMisc.DataSeriesController.Instance.PropertyChanged += onDataSeriesPropertyChanged;
+            updateEntirePlot();
         }
+
+        #region EVENTS
+
+        void onDataSeriesPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "NeedToPlotAgain")
+            {
+                if (!longProcessRuning) updateEntirePlot();
+            }
+        }
+
+        #endregion
 
         #region COMMANDS
 
         public Auxiliary.DelegateCommand OpenFileCommand { get; set; }
         public Auxiliary.DelegateCommand SaveFileCommand { get; set; }
         public Auxiliary.DelegateCommand InterfaceLanguageChangeCommand { get; set; }
+        public DelegateCommand RefreshPlot { get; }
         public Auxiliary.DelegateCommand Plot { get; set; }
         public Auxiliary.DelegateCommand AddDataSeries { get; set; }
         public Auxiliary.DelegateCommand RemoveDataSeries { get; set; }
@@ -69,13 +87,14 @@ namespace SimplePlotterVM
             InterfaceLanguage = language;
         }
 
-        private void plot(object parameter)
+        private void refreshPlot(object parameter)
         {
             updateEntirePlot();
         }
 
         private void addDataSeries(object parameter)
         {
+            longProcessRuning = true;
             Microsoft.Win32.OpenFileDialog myBrowser = new Microsoft.Win32.OpenFileDialog();
             myBrowser.Filter = "TextFiles|*.txt|CSV|*.csv|Data table|*.tab";
             myBrowser.DefaultExt = "txt";
@@ -92,6 +111,7 @@ namespace SimplePlotterVM
                 updateSelectedDataSeriesPoints();
                 updateEntirePlot();
             }
+            longProcessRuning = false;
         }
 
         private void removeDataSeries(object parameter)
@@ -139,6 +159,7 @@ namespace SimplePlotterVM
 
         private void applyColorTemplate(object parameter)
         {
+            longProcessRuning = true;
             var colorList = SimplePlotterMisc.ColorTemplateController.GetRGBListFromColorTemplate(selectedColorTemplate, availableDataSeries.Count);
             for (int i = 0; i < availableDataSeries.Count; i++)
             {
@@ -146,6 +167,7 @@ namespace SimplePlotterVM
                 availableDataSeries[i].RGBDescription = string.Format("{0}|{1}|{2}", colorList[i].Item1, colorList[i].Item2, colorList[i].Item3);
             }
             updateEntirePlot();
+            longProcessRuning = false;
         }
 
         #endregion
@@ -687,6 +709,19 @@ namespace SimplePlotterVM
 
         #region MISC
 
+        private bool longProcessRuning = false;
+
+        private string version;
+        public string Version
+        {
+            get { return version; }
+            set
+            {
+                version = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public SPGlobalization.Vocabulary Vocabulary
         {
             get { return SPGlobalization.Vocabulary.Instance; }
@@ -1002,7 +1037,7 @@ namespace SimplePlotterVM
 
         private void addSampleDataSeries()
         {
-            SimplePlotterMisc.DataSeriesController.Instance.AddDataSeries("Example", new List<double> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 1e3, 2e6 }, new List<double> { 0, 1, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 1e4, 2e5, 4e6 });
+            SimplePlotterMisc.DataSeriesController.Instance.AddDataSeries("Example", new List<double> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, new List<double> { 0, 1, 4, 8, 16, 32, 64, 128, 256, 512, 1024 });
             AvailableDataSeries.Add(SimplePlotterMisc.DataSeriesController.Instance.DataSeries[0]);
         }
 
