@@ -24,11 +24,12 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.1.0.2";
+            Version = "v. 1.1.0.3";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
             InterfaceLanguageChangeCommand = new Auxiliary.DelegateCommand(changeInterfaceLanguage);
+            RestoreInitialConfig = new Auxiliary.DelegateCommand(restoreInitialConfig);
             RefreshPlot = new Auxiliary.DelegateCommand(refreshPlot);
             CopyPlotToClipboard = new Auxiliary.DelegateCommand(copyPlotToClipboard);
             ExportPlot = new Auxiliary.DelegateCommand(exportPlot);
@@ -61,6 +62,7 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand OpenFileCommand { get; set; }
         public Auxiliary.DelegateCommand SaveFileCommand { get; set; }
         public Auxiliary.DelegateCommand InterfaceLanguageChangeCommand { get; set; }
+        public Auxiliary.DelegateCommand RestoreInitialConfig { get; set; }
         public Auxiliary.DelegateCommand RefreshPlot { get; }
         public Auxiliary.DelegateCommand CopyPlotToClipboard { get; }
         public Auxiliary.DelegateCommand ExportPlot { get; }
@@ -170,6 +172,12 @@ namespace SimplePlotterVM
             SPGlobalization.Languages language = (SPGlobalization.Languages)Convert.ToInt32(parameter);
             SPGlobalization.Vocabulary.Instance.ActualLanguage = language;
             InterfaceLanguage = language;
+        }
+
+        private void restoreInitialConfig(object parameter)
+        {
+            setInitialConfig();
+            updateEntirePlot();
         }
 
         private void refreshPlot(object parameter)
@@ -1075,18 +1083,37 @@ namespace SimplePlotterVM
             {
                 AvailableColorTemplates.Add((SimplePlotterMisc.Enums.ColorTemplates)item);
             }
-            manualXMinAxisLimit = false;
-            manualXMaxAxisLimit = false;
-            manualYMinAxisLimit = false;
-            manualYMaxAxisLimit = false;
             xAxisTitle = "X";
             yAxisTitle = "Y";
-            xLogarithmicScale = false;
-            yLogarithmicScale = false;
             foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.AxisLabelFormats)))
             {
                 AvailableAxisLabelFormats.Add((SimplePlotterMisc.Enums.AxisLabelFormats)item);
             }
+            AvailableFonts.Clear();
+            foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.Fonts)))
+            {
+                AvailableFonts.Add((SimplePlotterMisc.Enums.Fonts)item);
+            }
+            chartTitle = "Sample title";
+            foreach (var item in Enum.GetValues(typeof(OxyPlot.Legends.LegendPosition)))
+            {
+                AvailableLegendPositions.Add((OxyPlot.Legends.LegendPosition)item);
+            }
+            foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.Colors)))
+            {
+                AvailableColors.Add((SimplePlotterMisc.Enums.Colors)item);
+            }
+            setInitialConfig();
+        }
+
+        private void setInitialConfig()
+        {
+            manualXMinAxisLimit = false;
+            manualXMaxAxisLimit = false;
+            manualYMinAxisLimit = false;
+            manualYMaxAxisLimit = false;
+            xLogarithmicScale = false;
+            yLogarithmicScale = false;
             selectedXAxisLabelFormat = SimplePlotterMisc.Enums.AxisLabelFormats.Default;
             selectedYAxisLabelFormat = SimplePlotterMisc.Enums.AxisLabelFormats.Default;
             xMajorGridLines = false;
@@ -1097,11 +1124,6 @@ namespace SimplePlotterVM
             yMajorStep = 0;
             xMinorStep = 0;
             yMinorStep = 0;
-            AvailableFonts.Clear();
-            foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.Fonts)))
-            {
-                AvailableFonts.Add((SimplePlotterMisc.Enums.Fonts)item);
-            }
             SelectedFont = SimplePlotterMisc.Enums.Fonts.TimesNewRoman;
             xAxisFontSize = 0;
             yAxisFontSize = 0;
@@ -1109,15 +1131,6 @@ namespace SimplePlotterVM
             legendFontSize = 0;
             chartWidth = 500;
             chartHeight = 500;
-            chartTitle = "Sample title";
-            foreach (var item in Enum.GetValues(typeof(OxyPlot.Legends.LegendPosition)))
-            {
-                AvailableLegendPositions.Add((OxyPlot.Legends.LegendPosition)item);
-            }
-            foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.Colors)))
-            {
-                AvailableColors.Add((SimplePlotterMisc.Enums.Colors)item);
-            }
             SelectedBackColor = SimplePlotterMisc.Enums.Colors.White;
             CustomBackColor = false;
             SelectedBackgroundColor = SimplePlotterMisc.Enums.Colors.White;

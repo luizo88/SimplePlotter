@@ -592,6 +592,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        internal static string Options {
+            get {
+                return ResourceManager.GetString("Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to X (orig.).
         /// </summary>
         internal static string OriginalX {
@@ -606,6 +615,15 @@ namespace SPGlobalization.Resources {
         internal static string OriginalY {
             get {
                 return ResourceManager.GetString("OriginalY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plot.
+        /// </summary>
+        internal static string Plot {
+            get {
+                return ResourceManager.GetString("Plot", resourceCulture);
             }
         }
         
@@ -678,6 +696,15 @@ namespace SPGlobalization.Resources {
         internal static string RemoveDataSeries {
             get {
                 return ResourceManager.GetString("RemoveDataSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore initial configuration.
+        /// </summary>
+        internal static string RestoreInitialConfig {
+            get {
+                return ResourceManager.GetString("RestoreInitialConfig", resourceCulture);
             }
         }
         

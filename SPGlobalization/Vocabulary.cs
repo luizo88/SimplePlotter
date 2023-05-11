@@ -178,6 +178,9 @@ namespace SPGlobalization
         public string RefreshPlot { get { return string.Format("{0}", Resources.Resources.RefreshPlot); } }
         public string CopyPlotToClipboard { get { return string.Format("{0}", Resources.Resources.CopyPlotToClipboard); } }
         public string ExportPlot { get { return string.Format("{0}", Resources.Resources.ExportPlot); } }
+        public string Options { get { return string.Format("{0}", Resources.Resources.Options); } }
+        public string RestoreInitialConfig { get { return string.Format("{0}", Resources.Resources.RestoreInitialConfig); } }
+        public string Plot { get { return string.Format("{0}", Resources.Resources.Plot); } }
 
         #endregion
 

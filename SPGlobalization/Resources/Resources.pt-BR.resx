@@ -294,11 +294,17 @@
   <data name="Open" xml:space="preserve">
     <value>Abrir</value>
   </data>
+  <data name="Options" xml:space="preserve">
+    <value>Opções</value>
+  </data>
   <data name="OriginalX" xml:space="preserve">
     <value>X (orig.)</value>
   </data>
   <data name="OriginalY" xml:space="preserve">
     <value>Y (orig.)</value>
+  </data>
+  <data name="Plot" xml:space="preserve">
+    <value>Gráfico</value>
   </data>
   <data name="PT" xml:space="preserve">
     <value>PT</value>
@@ -323,6 +329,9 @@
   </data>
   <data name="RemoveDataSeries" xml:space="preserve">
     <value>Remover série de dados</value>
+  </data>
+  <data name="RestoreInitialConfig" xml:space="preserve">
+    <value>Restaurar configurações iniciais</value>
   </data>
   <data name="RGB" xml:space="preserve">
     <value>RGB</value>

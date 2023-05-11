@@ -55,6 +55,25 @@
                     </MenuItem>
                 </MenuItem>
             </MenuItem>
+            <MenuItem Name="menuOptions" Header="{Binding Vocabulary.Options, FallbackValue=Options}">
+                <MenuItem Name="menuRestoreInitialConfig" Header="{Binding Vocabulary.RestoreInitialConfig, FallbackValue=RestoreInitialConfig}" Command="{Binding RestoreInitialConfig}">
+                    <MenuItem.Icon>
+                        <Image Source="Resources/Restore.ico" Height="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Name="menuPlot" Header="{Binding Vocabulary.Plot, FallbackValue=Plot}">
+                <MenuItem Name="menuCopyToClipboard" Header="{Binding Vocabulary.CopyPlotToClipboard, FallbackValue=CopyPlotToClipboard}" Command="{Binding CopyPlotToClipboard}">
+                    <MenuItem.Icon>
+                        <Image Source="Resources/Clipboard.ico" Height="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="menuExportPlot" Header="{Binding Vocabulary.ExportPlot, FallbackValue=ExportPlot}" Command="{Binding ExportPlot}">
+                    <MenuItem.Icon>
+                        <Image Source="Resources/PNG.ico" Height="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
         </Menu>
         <Label Name="lblVersion" Content="{Binding Version, FallbackValue='v. x.X.X.X'}" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,0,0"/>
         <Expander Name="expd0" Margin="5,5,0,35" Grid.Row="1" Grid.Column="0" ExpandDirection="Right" IsExpanded="True">
@@ -368,12 +387,8 @@
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Button Content="{Binding Vocabulary.RefreshPlot, FallbackValue=RefreshPlot}" Command="{Binding RefreshPlot}" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Center" Grid.Column="0"/>
-            <Button Content="{Binding Vocabulary.CopyPlotToClipboard, FallbackValue=CopyPlotToClipboard}" Command="{Binding CopyPlotToClipboard}" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Center" Grid.Column="1"/>
-            <Button Content="{Binding Vocabulary.ExportPlot, FallbackValue=ExportPlot}" Command="{Binding ExportPlot}" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Center" Grid.Column="2"/>
         </Grid>
         <Grid Name="PlotRef1" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="{Binding ChartWidth}" Height="{Binding ChartHeight}"/>
         <Grid Name="PlotRef2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
