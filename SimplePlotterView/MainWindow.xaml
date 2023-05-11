@@ -369,9 +369,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Content="{Binding Vocabulary.RefreshPlot, FallbackValue=RefreshPlot}" Command="{Binding RefreshPlot}" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Top" Grid.Column="0"/>
-            <Button Content="{Binding Vocabulary.CopyPlotToClipboard, FallbackValue=CopyPlotToClipboard}" Command="{Binding CopyPlotToClipboard}" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Top" Grid.Column="1"/>
+            <Button Content="{Binding Vocabulary.RefreshPlot, FallbackValue=RefreshPlot}" Command="{Binding RefreshPlot}" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Center" Grid.Column="0"/>
+            <Button Content="{Binding Vocabulary.CopyPlotToClipboard, FallbackValue=CopyPlotToClipboard}" Command="{Binding CopyPlotToClipboard}" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Center" Grid.Column="1"/>
+            <Button Content="{Binding Vocabulary.ExportPlot, FallbackValue=ExportPlot}" Command="{Binding ExportPlot}" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Center" Grid.Column="2"/>
         </Grid>
         <Grid Name="PlotRef1" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="{Binding ChartWidth}" Height="{Binding ChartHeight}"/>
         <Grid Name="PlotRef2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>

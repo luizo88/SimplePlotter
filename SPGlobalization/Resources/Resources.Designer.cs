@@ -340,6 +340,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export plot.
+        /// </summary>
+        internal static string ExportPlot {
+            get {
+                return ResourceManager.GetString("ExportPlot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
         internal static string File {

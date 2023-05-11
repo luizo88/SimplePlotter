@@ -24,13 +24,14 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.1.0.1";
+            Version = "v. 1.1.0.2";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
             InterfaceLanguageChangeCommand = new Auxiliary.DelegateCommand(changeInterfaceLanguage);
             RefreshPlot = new Auxiliary.DelegateCommand(refreshPlot);
             CopyPlotToClipboard = new Auxiliary.DelegateCommand(copyPlotToClipboard);
+            ExportPlot = new Auxiliary.DelegateCommand(exportPlot);
             AddDataSeries = new Auxiliary.DelegateCommand(addDataSeries);
             RemoveDataSeries = new Auxiliary.DelegateCommand(removeDataSeries, canRemoveDataSeries);
             DataSeriesUp = new Auxiliary.DelegateCommand(dataSeriesUp, canMoveDataSeriesUp);
@@ -62,6 +63,7 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand InterfaceLanguageChangeCommand { get; set; }
         public Auxiliary.DelegateCommand RefreshPlot { get; }
         public Auxiliary.DelegateCommand CopyPlotToClipboard { get; }
+        public Auxiliary.DelegateCommand ExportPlot { get; }
         public Auxiliary.DelegateCommand Plot { get; set; }
         public Auxiliary.DelegateCommand AddDataSeries { get; set; }
         public Auxiliary.DelegateCommand RemoveDataSeries { get; set; }
@@ -177,10 +179,25 @@ namespace SimplePlotterVM
 
         private void copyPlotToClipboard(object parameter)
         {
-            https://oxyplot.readthedocs.io/en/latest/export/export-png.html
+            //https://oxyplot.readthedocs.io/en/latest/export/export-png.html
             var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
             var bitmap = pngExporter.ExportToBitmap(plotObj);
             System.Windows.Clipboard.SetImage(bitmap);
+        }
+
+        private void exportPlot(object parameter)
+        {
+            //https://oxyplot.readthedocs.io/en/latest/export/export-png.html
+            Microsoft.Win32.SaveFileDialog myBrowser = new Microsoft.Win32.SaveFileDialog();
+            myBrowser.Filter = "PNG (*.png)|*.png";
+            myBrowser.DefaultExt = "png";
+            myBrowser.FileName = string.Format("Chart_{0}x{1}.png", ChartWidth, ChartHeight);
+            if (myBrowser.ShowDialog() == true)
+            {
+                var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
+                pngExporter.ExportToFile(PlotObj, myBrowser.FileName);
+            }
+            
         }
 
         private void addDataSeries(object parameter)
@@ -1090,8 +1107,8 @@ namespace SimplePlotterVM
             yAxisFontSize = 0;
             titleFontSize = 0;
             legendFontSize = 0;
-            chartWidth = 1000;
-            chartHeight = 1000;
+            chartWidth = 500;
+            chartHeight = 500;
             chartTitle = "Sample title";
             foreach (var item in Enum.GetValues(typeof(OxyPlot.Legends.LegendPosition)))
             {

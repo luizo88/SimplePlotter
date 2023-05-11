@@ -210,6 +210,9 @@
   <data name="ES" xml:space="preserve">
     <value>ES</value>
   </data>
+  <data name="ExportPlot" xml:space="preserve">
+    <value>Exportar gráfico</value>
+  </data>
   <data name="File" xml:space="preserve">
     <value>Arquivo</value>
   </data>
