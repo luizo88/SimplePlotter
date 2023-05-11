@@ -1,0 +1,218 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:SimplePlotterView">
+
+    <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <local:ReverseBooleanToVisibilityConverter x:Key="ReverseBooleanToVisibilityConverter" />
+    <local:ReverseBooleanConverter x:Key="ReverseBooleanConverter" />
+    <local:BooleanToScrollBarVisibilityConverter x:Key="BooleanToScrollBarVisibilityConverter" />
+    <local:FontWeightConverter x:Key="FontWeightConverter" />
+    <local:BoolToStringConverter x:Key="BoolToStringConverter" FalseValue="I" TrueValue="A"/>
+
+    <LinearGradientBrush x:Key="BaseColor" StartPoint="0.5,0" EndPoint="0.5,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="LightGray" Offset="1" />
+                <GradientStop Color="White"/>
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="SelectedListViewItemGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="White" Offset="0"/>
+        <GradientStop Color="LightGray" Offset="1"/>
+    </LinearGradientBrush>
+
+    <Style TargetType="{x:Type UserControl}">
+        <Setter Property="Background" Value="White"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type DockPanel}">
+        <Setter Property="Height" Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}" />
+        <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+        <Setter Property="DockPanel.Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5,1">
+                    <GradientStop Color="LightGray" Offset="1" />
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Expander}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="BorderBrush" Value="LightGray"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="IsExpanded" Value="True"/>
+    </Style>
+
+    <Style TargetType="{x:Type Menu}">
+        <Setter Property="Menu.Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="LightGray" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Menu.ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel VerticalAlignment="Center" HorizontalAlignment="Left"  Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="Black" />
+    </Style>
+
+
+    <Style TargetType="GroupBox">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Margin" Value="0,5,0,0" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" FontWeight="Bold"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CheckGroupBox" TargetType="{x:Type GroupBox}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Margin" Value="0,5,0,0" />
+    </Style>
+
+    <Style TargetType="{x:Type Window}" >
+        <Setter Property="Background" Value="White"/>
+    </Style>
+
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource ResourceKey=BaseColor}"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Height" Value="23"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="FontWeight" Value="Normal" />
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip" Value="{Binding (Validation.Errors).CurrentItem.ErrorContent, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="Red"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+            </Trigger>
+            <Trigger Property="IsReadOnly" Value="True">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Foreground" Value="#FFB4B4B4"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Foreground" Value="Gray"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Title" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+
+    <Style x:Key="TitleH2" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontWeight" Value="Normal" />
+        <Style.Triggers>
+            <Trigger Property="Text" Value="0">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip" Value="{Binding (Validation.Errors).CurrentItem.ErrorContent, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="Red"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type CheckBox}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="Foreground" Value="DarkGray"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="AlternativeListViewItemStyle" TargetType="{x:Type ListViewItem}">
+        <Setter Property="Height" Value="22" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Style.Triggers>
+            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                <Setter Property="Background" Value="White"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <DataTemplate x:Key="GridColumnHeaderTemplate">
+        <DockPanel>
+            <TextBlock Foreground="DarkGray">
+                <TextBlock.Text>
+                    <Binding/>
+                </TextBlock.Text>
+            </TextBlock>
+        </DockPanel>
+    </DataTemplate>
+
+    <Style TargetType="{x:Type DataGrid}">
+        <Setter Property="Foreground" Value="DarkGray" />
+    </Style>
+
+    <Style x:Key="StrongColumnHeader" TargetType="{x:Type DataGridColumnHeader}" >
+        <Setter Property="Background" Value="LightGray" />
+    </Style>
+
+    <Style TargetType="{x:Type RadioButton}">
+        <Setter Property="Foreground" Value="DarkGray"/>
+    </Style>
+
+    <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="Foreground" Value="DarkGray"/>
+        <Setter Property="Height" Value="23"/>
+    </Style>
+
+    <Style TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="Foreground" Value="DarkGray"/>
+    </Style>
+
+    <Style TargetType="{x:Type ListViewItem}">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+
+</ResourceDictionary>
