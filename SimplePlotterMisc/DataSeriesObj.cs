@@ -38,17 +38,40 @@ namespace SimplePlotterMisc
             {
                 availableLineStyles.Add((OxyPlot.LineStyle)item);
             }
-            lineStyle = OxyPlot.LineStyle.Solid;
+            this.lineStyle = OxyPlot.LineStyle.Solid;
             foreach (var item in Enum.GetValues(typeof(Enums.Colors)))
             {
                 availableColors.Add((Enums.Colors)item);
             }
-            color = Enums.Colors.Black;
-            customColor = false;
-            standardColor = true;
-            rgb = ColorTemplateController.GetRGBFromColor(color);
-            rgbDescription = ColorTemplateController.GetRGBDescriptionFromColor(color);
-            legend = true;
+            this.color = Enums.Colors.Black;
+            this.customColor = false;
+            this.standardColor = true;
+            this.rgb = ColorTemplateController.GetRGBFromColor(color);
+            this.rgbDescription = ColorTemplateController.GetRGBDescriptionFromColor(color);
+            this.legend = true;
+        }
+
+        public DataSeriesObj(string name, List<double> xPoints, List<double> yPoints, double xScale, double yScale,
+            double thick, OxyPlot.LineStyle lineStyle, SimplePlotterMisc.Enums.Colors color, bool customColor, string RGBDescription, bool legend)
+        {
+            this.name = name;
+            this.xScale = xScale;
+            this.yScale = yScale;
+            updatePointList(xScale, yScale, xPoints, yPoints);
+            this.thick = thick;
+            foreach (var item in Enum.GetValues(typeof(OxyPlot.LineStyle)))
+            {
+                availableLineStyles.Add((OxyPlot.LineStyle)item);
+            }
+            this.lineStyle = lineStyle;
+            foreach (var item in Enum.GetValues(typeof(Enums.Colors)))
+            {
+                availableColors.Add((Enums.Colors)item);
+            }
+            this.color = color;
+            this.CustomColor = customColor;
+            this.RGBDescription = RGBDescription;
+            this.legend = legend;
         }
 
         #region PROPERTIES
@@ -70,6 +93,27 @@ namespace SimplePlotterMisc
             {
                 points = value;
                 NotifyPropertyChanged();
+            }
+        }
+
+        public List<double> XPoints
+        {
+            get
+            {
+                var linq = from p
+                           in points
+                           select p.X;
+                return linq.ToList();
+            }
+        }
+        public List<double> YPoints
+        {
+            get
+            {
+                var linq = from p
+                           in points
+                           select p.Y;
+                return linq.ToList();
             }
         }
 

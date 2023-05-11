@@ -268,6 +268,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy plot to clipboard.
+        /// </summary>
+        internal static string CopyPlotToClipboard {
+            get {
+                return ResourceManager.GetString("CopyPlotToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom color.
         /// </summary>
         internal static string CustomColor {

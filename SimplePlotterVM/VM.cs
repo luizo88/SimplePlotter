@@ -2,6 +2,7 @@
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Legends;
+using OxyPlot.Wpf;
 using SimplePlotterMisc;
 using System;
 using System.Collections.Generic;
@@ -23,12 +24,13 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.0.0.0";
+            Version = "v. 1.1.0.0";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
             InterfaceLanguageChangeCommand = new Auxiliary.DelegateCommand(changeInterfaceLanguage);
             RefreshPlot = new Auxiliary.DelegateCommand(refreshPlot);
+            CopyPlotToClipboard = new Auxiliary.DelegateCommand(copyPlotToClipboard);
             AddDataSeries = new Auxiliary.DelegateCommand(addDataSeries);
             RemoveDataSeries = new Auxiliary.DelegateCommand(removeDataSeries, canRemoveDataSeries);
             DataSeriesUp = new Auxiliary.DelegateCommand(dataSeriesUp, canMoveDataSeriesUp);
@@ -58,7 +60,8 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand OpenFileCommand { get; set; }
         public Auxiliary.DelegateCommand SaveFileCommand { get; set; }
         public Auxiliary.DelegateCommand InterfaceLanguageChangeCommand { get; set; }
-        public DelegateCommand RefreshPlot { get; }
+        public Auxiliary.DelegateCommand RefreshPlot { get; }
+        public Auxiliary.DelegateCommand CopyPlotToClipboard { get; }
         public Auxiliary.DelegateCommand Plot { get; set; }
         public Auxiliary.DelegateCommand AddDataSeries { get; set; }
         public Auxiliary.DelegateCommand RemoveDataSeries { get; set; }
@@ -72,12 +75,92 @@ namespace SimplePlotterVM
 
         private void openFile(object parameter)
         {
-            //pending
+            LongProcessRuning = true;
+            //gets the data
+            SimplePlotterData.DataObject dtob = null;
+            Microsoft.Win32.OpenFileDialog myBrowser = new Microsoft.Win32.OpenFileDialog();
+            myBrowser.Filter = "XML files (*.txt)|*.xml";
+            myBrowser.DefaultExt = "xml";
+            if (myBrowser.ShowDialog() == true)
+            {
+                DataSeriesController.Instance.DataSeries.Clear();
+                dtob = SimplePlotterData.FileManager.OpenXML(myBrowser.FileName);
+                //gets data series
+                for (int i = 0; i < dtob.DataSeriesName.Count; i++)
+                {
+                    DataSeriesController.Instance.DataSeries.Add(new DataSeriesObj(dtob.DataSeriesName[i], dtob.DataSeriesXPoints[i], dtob.DataSeriesYPoints[i], dtob.DataSeriesScaleX[i], dtob.DataSeriesScaleY[i],
+                        dtob.DataSeriesThick[i], dtob.DataSeriesLineStyle[i], dtob.DataSeriesColor[i], dtob.DataSeriesCustomColor[i], dtob.DataSeriesRGBDescription[i], dtob.DataSeriesLegend[i]));
+                }
+                //values
+                ManualXMinAxisLimit = dtob.ManualXMinAxisLimit;
+                ManualXMaxAxisLimit = dtob.ManualXMaxAxisLimit;
+                XAxisMin = dtob.XAxisMin;
+                XAxisMax = dtob.XAxisMax;
+                ManualYMinAxisLimit = dtob.ManualYMinAxisLimit;
+                ManualYMaxAxisLimit = dtob.ManualYMaxAxisLimit;
+                YAxisMin = dtob.YAxisMin;
+                YAxisMax = dtob.YAxisMax;
+                XAxisTitle = dtob.XAxisTitle;
+                YAxisTitle = dtob.YAxisTitle;
+                XLogarithmicScale = dtob.XLogarithmicScale;
+                YLogarithmicScale = dtob.YLogarithmicScale;
+                SelectedXAxisLabelFormat = dtob.SelectedXAxisLabelFormat;
+                SelectedYAxisLabelFormat = dtob.SelectedYAxisLabelFormat;
+                XMajorGridLines = dtob.XMajorGridLines;
+                YMajorGridLines = dtob.YMajorGridLines;
+                XMinorGridLines = dtob.XMinorGridLines;
+                YMinorGridLines = dtob.YMinorGridLines;
+                XMajorStep = dtob.XMajorStep;
+                YMajorStep = dtob.YMajorStep;
+                XMinorStep = dtob.XMinorStep;
+                YMinorStep = dtob.YMinorStep;
+                ChartWidth = dtob.ChartWidth;
+                ChartHeight = dtob.ChartHeight;
+                ChartTitle = dtob.ChartTitle;
+                ShowLegend = dtob.ShowLegend;
+                SelectedLegendPosition = dtob.SelectedLegendPosition;
+                SelectedFont = dtob.SelectedFont;
+                XAxisFontSize = dtob.XAxisFontSize;
+                YAxisFontSize = dtob.YAxisFontSize;
+                TitleFontSize = dtob.TitleFontSize;
+                LegendFontSize = dtob.LegendFontSize;
+                SelectedBackColor = dtob.SelectedBackColor;
+                CustomBackColor = dtob.CustomBackColor;
+                BackColorRGBDescription = dtob.BackColorRGBDescription;
+                SelectedBackgroundColor = dtob.SelectedBackgroundColor;
+                CustomBackgroundColor = dtob.CustomBackgroundColor;
+                BackgroundColorRGBDescription = dtob.BackgroundColorRGBDescription;
+                SelectedGridLinesColor = dtob.SelectedGridLinesColor;
+                CustomGridLinesColor = dtob.CustomGridLinesColor;
+                GridLinesColorRGBDescription = dtob.GridLinesColorRGBDescription;
+            }
+            LongProcessRuning = false;
+            updateDataSeries();
+            updateSelectedDataSeriesPoints();
+            updateEntirePlot();
         }
 
         private void saveFile(object parameter)
         {
-            //pending
+            Microsoft.Win32.SaveFileDialog myBrowser = new Microsoft.Win32.SaveFileDialog();
+            myBrowser.Filter = "XML files (*.txt)|*.xml";
+            myBrowser.DefaultExt = "xml";
+            myBrowser.FileName = "SimplePlotterFile.xml";
+            if (myBrowser.ShowDialog() == true)
+            {
+                SimplePlotterData.DataObject dtOb = new SimplePlotterData.DataObject(AvailableDataSeries.ToList(), manualXMinAxisLimit, manualXMaxAxisLimit,
+                    xAxisMin, xAxisMax, manualYMinAxisLimit, manualYMaxAxisLimit, yAxisMin, yAxisMax,
+                    xAxisTitle, yAxisTitle, xLogarithmicScale, yLogarithmicScale,
+                    selectedXAxisLabelFormat, selectedYAxisLabelFormat,
+                    xMajorGridLines, yMajorGridLines, xMinorGridLines, yMinorGridLines,
+                    xMajorStep, yMajorStep, xMinorStep, yMinorStep, chartWidth, chartHeight, chartTitle,
+                    showLegend, selectedLegendPosition, selectedFont,
+                     xAxisFontSize, yAxisFontSize, titleFontSize, legendFontSize,
+                    selectedBackColor, customBackColor, backColorRGBDescription,
+                    selectedBackgroundColor, customBackgroundColor, backgroundColorRGBDescription,
+                    selectedGridLinesColor, customGridLinesColor, gridLinesColorRGBDescription);
+                SimplePlotterData.FileManager.SaveXML(dtOb, myBrowser.FileName);
+            }
         }
 
         private void changeInterfaceLanguage(object parameter)
@@ -92,9 +175,17 @@ namespace SimplePlotterVM
             updateEntirePlot();
         }
 
+        private void copyPlotToClipboard(object parameter)
+        {
+            https://oxyplot.readthedocs.io/en/latest/export/export-png.html
+            var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
+            var bitmap = pngExporter.ExportToBitmap(plotObj);
+            System.Windows.Clipboard.SetImage(bitmap);
+        }
+
         private void addDataSeries(object parameter)
         {
-            longProcessRuning = true;
+            LongProcessRuning = true;
             Microsoft.Win32.OpenFileDialog myBrowser = new Microsoft.Win32.OpenFileDialog();
             myBrowser.Filter = "TextFiles|*.txt|CSV|*.csv|Data table|*.tab";
             myBrowser.DefaultExt = "txt";
@@ -111,15 +202,17 @@ namespace SimplePlotterVM
                 updateSelectedDataSeriesPoints();
                 updateEntirePlot();
             }
-            longProcessRuning = false;
+            LongProcessRuning = false;
         }
 
         private void removeDataSeries(object parameter)
         {
+            int index = SimplePlotterMisc.DataSeriesController.Instance.DataSeries.IndexOf(selectedDataSeries);
             SimplePlotterMisc.DataSeriesController.Instance.RemoveDataSeries(selectedDataSeries);
             updateDataSeries();
             updateSelectedDataSeriesPoints();
             updateEntirePlot();
+            if (SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Count > 0) SelectedDataSeries = SimplePlotterMisc.DataSeriesController.Instance.DataSeries[Math.Min(index, SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Count - 1)];
         }
 
         private bool canRemoveDataSeries()
@@ -159,7 +252,7 @@ namespace SimplePlotterVM
 
         private void applyColorTemplate(object parameter)
         {
-            longProcessRuning = true;
+            LongProcessRuning = true;
             var colorList = SimplePlotterMisc.ColorTemplateController.GetRGBListFromColorTemplate(selectedColorTemplate, availableDataSeries.Count);
             for (int i = 0; i < availableDataSeries.Count; i++)
             {
@@ -167,7 +260,7 @@ namespace SimplePlotterVM
                 availableDataSeries[i].RGBDescription = string.Format("{0}|{1}|{2}", colorList[i].Item1, colorList[i].Item2, colorList[i].Item3);
             }
             updateEntirePlot();
-            longProcessRuning = false;
+            LongProcessRuning = false;
         }
 
         #endregion
@@ -542,8 +635,8 @@ namespace SimplePlotterVM
 
         #region CHART BOX
 
-        private double chartWidth;
-        public double ChartWidth
+        private int chartWidth;
+        public int ChartWidth
         {
             get { return chartWidth; }
             set
@@ -556,8 +649,8 @@ namespace SimplePlotterVM
             }
         }
 
-        private double chartHeight;
-        public double ChartHeight
+        private int chartHeight;
+        public int ChartHeight
         {
             get { return chartHeight; }
             set
@@ -702,72 +795,6 @@ namespace SimplePlotterVM
                     updateLegend();
                     NotifyPropertyChanged();
                 }
-            }
-        }
-
-        #endregion
-
-        #region MISC
-
-        private bool longProcessRuning = false;
-
-        private string version;
-        public string Version
-        {
-            get { return version; }
-            set
-            {
-                version = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public SPGlobalization.Vocabulary Vocabulary
-        {
-            get { return SPGlobalization.Vocabulary.Instance; }
-        }
-
-        private Exception ex;
-        public Exception Ex
-        {
-            get { return ex; }
-            set
-            {
-                ex = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        private MessageBoxResult answer;
-        public MessageBoxResult Answer
-        {
-            get { return answer; }
-            set
-            {
-                answer = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        private string question;
-        public string Question
-        {
-            get { return question; }
-            set
-            {
-                question = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        private SPGlobalization.Languages interfaceLanguage;
-        public SPGlobalization.Languages InterfaceLanguage
-        {
-            get { return interfaceLanguage; }
-            set
-            {
-                interfaceLanguage = value;
-                NotifyPropertyChanged();
             }
         }
 
@@ -944,6 +971,83 @@ namespace SimplePlotterVM
 
         #endregion
 
+        #region MISC
+
+        private bool longProcessRuning = false;
+        public bool LongProcessRuning
+        {
+            get { return longProcessRuning; }
+            set
+            {
+                if (value.Equals(longProcessRuning)) return;
+                longProcessRuning = value;
+                if (!longProcessRuning) updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string version;
+        public string Version
+        {
+            get { return version; }
+            set
+            {
+                version = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public SPGlobalization.Vocabulary Vocabulary
+        {
+            get { return SPGlobalization.Vocabulary.Instance; }
+        }
+
+        private Exception ex;
+        public Exception Ex
+        {
+            get { return ex; }
+            set
+            {
+                ex = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private MessageBoxResult answer;
+        public MessageBoxResult Answer
+        {
+            get { return answer; }
+            set
+            {
+                answer = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string question;
+        public string Question
+        {
+            get { return question; }
+            set
+            {
+                question = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private SPGlobalization.Languages interfaceLanguage;
+        public SPGlobalization.Languages InterfaceLanguage
+        {
+            get { return interfaceLanguage; }
+            set
+            {
+                interfaceLanguage = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region PRIVATE METHODS
@@ -1043,14 +1147,17 @@ namespace SimplePlotterVM
 
         private void updateEntirePlot()
         {
-            plotSeries();
-            updateLegend();
-            updateAxis();
-            updateGridLines();
-            updateTitles();
-            updatePlotFonts();
-            updateColors();
-            plotObj.InvalidatePlot(true);
+            if (!longProcessRuning)
+            {
+                plotSeries();
+                updateLegend();
+                updateAxis();
+                updateGridLines();
+                updateTitles();
+                updatePlotFonts();
+                updateColors();
+                plotObj.InvalidatePlot(true);
+            }
         }
 
         public void plotSeries()

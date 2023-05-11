@@ -32,3 +32,5 @@ C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterView\obj\Debug\Si
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterView\obj\Debug\SimplePlotterView.pdb
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterView\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterView\bin\Debug\pt-BR\SPGlobalization.resources.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterView\bin\Debug\SimplePlotterData.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterView\bin\Debug\SimplePlotterData.pdb

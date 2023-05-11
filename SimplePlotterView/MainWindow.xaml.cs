@@ -77,19 +77,25 @@ namespace SimplePlotterView
             }
             else
             {
-                //ComboBox cmbBx = sender as ComboBox;
-                //if (cmbBx != null)
-                //{
-                //    lvResultsToPlot.SelectedItem = cmbBx.DataContext;
-                //    return;
-                //}
-                //try CheckBox
-                //CheckBox chBx = sender as CheckBox;
-                //if (chBx != null)
-                //{
-                //    lv.SelectedItem = (sender as CheckBox).DataContext;
-                //    return;
-                //}
+                //try ComboBox
+                ComboBox cmbBx = sender as ComboBox;
+                lv = GetParent(cmbBx);
+                if (cmbBx != null)
+                {
+                    lv.SelectedItem = (sender as ComboBox).DataContext;
+                    return;
+                }
+                else
+                {
+                    //try CheckBox
+                    CheckBox chBx = sender as CheckBox;
+                    lv = GetParent(chBx);
+                    if (chBx != null)
+                    {
+                        lv.SelectedItem = (sender as CheckBox).DataContext;
+                        return;
+                    }
+                }
             }
         }
 
@@ -157,12 +163,15 @@ namespace SimplePlotterView
                 TextBox tb = (TextBox)sender;
                 ListViewItem lvi = getAncestorOfType<ListViewItem>(tb);
                 ListView lv = getAncestorOfType<ListView>(lvi);
-                int currentSelected = lv.SelectedIndex + 1;
+                bool shiftPressed = Keyboard.Modifiers.HasFlag(ModifierKeys.Shift);
+                int currentSelected = lv.SelectedIndex;
+                if (shiftPressed && currentSelected == 0) return;
+                if (!shiftPressed && currentSelected == lv.Items.Count - 1) return;
                 int total = lv.Items.Count;
                 if (currentSelected < total)
                 {
                     BindingExpression be = tb.GetBindingExpression(TextBox.TextProperty);
-                    ListViewItem nlvi = (ListViewItem)lv.ItemContainerGenerator.ContainerFromIndex(currentSelected);
+                    ListViewItem nlvi = (ListViewItem)lv.ItemContainerGenerator.ContainerFromIndex(currentSelected + (shiftPressed ? -1 : 1));
                     foreach (var txtBx in findVisualChildren<TextBox>(lv))
                     {
                         BindingExpression nbe = txtBx.GetBindingExpression(TextBox.TextProperty);

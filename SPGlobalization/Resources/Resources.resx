@@ -186,6 +186,9 @@
   <data name="Consolas" xml:space="preserve">
     <value>Consolas</value>
   </data>
+  <data name="CopyPlotToClipboard" xml:space="preserve">
+    <value>Copy plot to clipboard</value>
+  </data>
   <data name="CustomColor" xml:space="preserve">
     <value>Custom color</value>
   </data>

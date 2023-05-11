@@ -7,7 +7,7 @@
         xmlns:oxy="http://oxyplot.org/wpf"
         x:Class="SimplePlotterView.MainWindow"
         mc:Ignorable="d"
-        Title="SimplePlotter" Height="900" Width="1200" Icon="Resources/SimplePlotterIcon16x16.ico">
+        Title="SimplePlotter" Height="900" Width="1200" WindowState="Maximized" Icon="Resources/SimplePlotterIcon16x16.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="23"/>
@@ -362,7 +362,14 @@
                 </Grid>
             </ScrollViewer>
         </Expander>
-        <Button Content="{Binding Vocabulary.RefreshPlot, FallbackValue=RefreshPlot}" Command="{Binding RefreshPlot}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="{Binding Vocabulary.RefreshPlot, FallbackValue=RefreshPlot}" Command="{Binding RefreshPlot}" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Top" Grid.Column="0"/>
+            <Button Content="{Binding Vocabulary.CopyPlotToClipboard, FallbackValue=CopyPlotToClipboard}" Command="{Binding CopyPlotToClipboard}" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Top" Grid.Column="1"/>
+        </Grid>
         <Grid Name="PlotRef1" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="{Binding ChartWidth}" Height="{Binding ChartHeight}"/>
         <Grid Name="PlotRef2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <Grid Name="PlotGrid" Grid.Column="1" Grid.Row="1">

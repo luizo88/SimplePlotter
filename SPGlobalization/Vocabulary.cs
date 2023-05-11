@@ -176,9 +176,7 @@ namespace SPGlobalization
         public string ES { get { return string.Format("{0}", Resources.Resources.ES); } }
         public string EN { get { return string.Format("{0}", Resources.Resources.EN); } }
         public string RefreshPlot { get { return string.Format("{0}", Resources.Resources.RefreshPlot); } }
-
-
-
+        public string CopyPlotToClipboard { get { return string.Format("{0}", Resources.Resources.CopyPlotToClipboard); } }
 
         #endregion
 

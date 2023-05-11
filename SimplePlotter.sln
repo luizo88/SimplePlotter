@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePlotterMisc", "Simple
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{D2E4947C-FF58-4353-B84A-284C2EA3DEE7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F1B7ED96-C5B4-411C-9FEE-9ADEC81AAA2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePlotterData", "SimplePlotterData\SimplePlotterData.csproj", "{61B8817F-87C5-43F2-927A-5C47837B91CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,10 @@ Global
 		{A2577089-6AEC-44B0-9D57-F46A52A5E635}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2E4947C-FF58-4353-B84A-284C2EA3DEE7}.Debug|Any CPU.ActiveCfg = Debug
 		{D2E4947C-FF58-4353-B84A-284C2EA3DEE7}.Release|Any CPU.ActiveCfg = Release
+		{61B8817F-87C5-43F2-927A-5C47837B91CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B8817F-87C5-43F2-927A-5C47837B91CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B8817F-87C5-43F2-927A-5C47837B91CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B8817F-87C5-43F2-927A-5C47837B91CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +72,7 @@ Global
 		{F79FFF16-CAC2-439C-82C6-F78EA7FF550A} = {1622B369-A2BB-4586-991A-CEA9C81F46F1}
 		{B8BDEA03-E2CF-4146-84B2-C038163A2C9D} = {20D12AB0-98C5-4B16-B79E-BBE021BE121E}
 		{A8C4501C-582D-4E75-99ED-7F95B21984B3} = {1622B369-A2BB-4586-991A-CEA9C81F46F1}
+		{61B8817F-87C5-43F2-927A-5C47837B91CE} = {F1B7ED96-C5B4-411C-9FEE-9ADEC81AAA2D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D619C838-CB1A-4A9C-9750-BA94A080FF66}

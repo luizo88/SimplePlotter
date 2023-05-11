@@ -186,6 +186,9 @@
   <data name="Consolas" xml:space="preserve">
     <value>Consolas</value>
   </data>
+  <data name="CopyPlotToClipboard" xml:space="preserve">
+    <value>Copiar gráfico para área de transferência</value>
+  </data>
   <data name="CustomColor" xml:space="preserve">
     <value>Cor pers.</value>
   </data>
