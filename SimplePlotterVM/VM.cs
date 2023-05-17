@@ -140,6 +140,7 @@ namespace SimplePlotterVM
                 ChartTitle = dtob.ChartTitle;
                 ShowLegend = dtob.ShowLegend;
                 SelectedLegendPosition = dtob.SelectedLegendPosition;
+                ShowLegendArrows = dtob.ShowLegendArrows;
                 SelectedFont = dtob.SelectedFont;
                 XAxisFontSize = dtob.XAxisFontSize;
                 YAxisFontSize = dtob.YAxisFontSize;
@@ -178,7 +179,7 @@ namespace SimplePlotterVM
                     selectedXAxisLabelFormat, selectedYAxisLabelFormat, selectedY2AxisLabelFormat,
                     xMajorGridLines, yMajorGridLines, y2MajorGridLines, xMinorGridLines, yMinorGridLines, y2MinorGridLines,
                     xMajorStep, yMajorStep, y2MajorStep, xMinorStep, yMinorStep, y2MinorStep, chartWidth, chartHeight, chartTitle,
-                    showLegend, selectedLegendPosition, selectedFont,
+                    showLegend, selectedLegendPosition, showLegendArrows, selectedFont,
                     xAxisFontSize, yAxisFontSize, y2AxisFontSize, titleFontSize, legendFontSize,
                     selectedBackColor, customBackColor, backColorRGBDescription,
                     selectedBackgroundColor, customBackgroundColor, backgroundColorRGBDescription,
@@ -905,7 +906,7 @@ namespace SimplePlotterVM
             }
         }
 
-        public ObservableCollection<OxyPlot.Legends.LegendPosition> availableLegendPositions = new ObservableCollection<LegendPosition>();
+        private ObservableCollection<OxyPlot.Legends.LegendPosition> availableLegendPositions = new ObservableCollection<LegendPosition>();
         public ObservableCollection<OxyPlot.Legends.LegendPosition> AvailableLegendPositions
         {
             get { return availableLegendPositions; }
@@ -917,7 +918,7 @@ namespace SimplePlotterVM
             }
         }
 
-        public OxyPlot.Legends.LegendPosition selectedLegendPosition;
+        private OxyPlot.Legends.LegendPosition selectedLegendPosition;
         public OxyPlot.Legends.LegendPosition SelectedLegendPosition
         {
             get { return selectedLegendPosition; }
@@ -925,6 +926,18 @@ namespace SimplePlotterVM
             {
                 selectedLegendPosition = value;
                 updateLegend();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool showLegendArrows;
+        public bool ShowLegendArrows
+        {
+            get { return showLegendArrows; }
+            set
+            {
+                showLegendArrows = value;
+                updateEntirePlot();
                 NotifyPropertyChanged();
             }
         }
@@ -1499,7 +1512,7 @@ namespace SimplePlotterVM
                         serie.Points.Add(new OxyPlot.DataPoint(item.Points[i].ScaledX, item.Points[i].ScaledY));
                     }
                 }
-                serie.Title = item.Name;
+                serie.Title = string.Format("{0}{1}", (showLegendArrows ? (item.SecondY ? "[→] " : "[←] ") : ""), item.Name);
                 serie.StrokeThickness = item.Thick;
                 serie.LineStyle = item.LineStyle;
                 serie.Color = item.OxyColor;

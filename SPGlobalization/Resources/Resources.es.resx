@@ -366,6 +366,9 @@
   <data name="ShowLegend" xml:space="preserve">
     <value>Mostrar leyenda</value>
   </data>
+  <data name="ShowLegendArrows" xml:space="preserve">
+    <value>Mostrar flechas de leyenda</value>
+  </data>
   <data name="SiliconSteel" xml:space="preserve">
     <value>Acero al silicio</value>
   </data>

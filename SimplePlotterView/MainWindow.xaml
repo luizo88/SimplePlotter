@@ -301,12 +301,12 @@
                             <Label Content="{Binding Vocabulary.MinorGridLines, FallbackValue=MinorGridLines}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.MajorStep, FallbackValue=MajorStep}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.MinorStep, FallbackValue=MinorStep}" Margin="10,100,10,0" VerticalAlignment="Top" Grid.Column="0"/>
-                            <CheckBox IsChecked="{Binding XMajorGridLines}" Content="X" Margin="20,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <CheckBox IsChecked="{Binding YMajorGridLines}" Content="Y" Margin="110,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <CheckBox IsChecked="{Binding Y2MajorGridLines}" Content="Y2" Margin="200,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <CheckBox IsChecked="{Binding XMinorGridLines}" Content="X" Margin="20,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <CheckBox IsChecked="{Binding YMinorGridLines}" Content="Y" Margin="110,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <CheckBox IsChecked="{Binding Y2MinorGridLines}" Content="Y2" Margin="200,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding XMajorGridLines}" Content="X" Margin="20,13,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding YMajorGridLines}" Content="Y" Margin="110,13,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding Y2MajorGridLines}" Content="Y2" Margin="200,13,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding XMinorGridLines}" Content="X" Margin="20,43,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding YMinorGridLines}" Content="Y" Margin="110,43,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding Y2MinorGridLines}" Content="Y2" Margin="200,43,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding XMajorStep, UpdateSourceTrigger=LostFocus}" Margin="20,70,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding YMajorStep, UpdateSourceTrigger=LostFocus}" Margin="110,70,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding Y2MajorStep, UpdateSourceTrigger=LostFocus}" Margin="200,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
@@ -327,7 +327,7 @@
                                 <TextBlock Name="txtChartBox" Text="{Binding Vocabulary.ChartBox, FallbackValue=ChartBox}" FontWeight="Bold" HorizontalAlignment="Center"/>
                             </DockPanel>
                         </Expander.Header>
-                        <Grid Height="130">
+                        <Grid Height="160">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="240"/>
                                 <ColumnDefinition Width="280"/>
@@ -336,11 +336,13 @@
                             <Label Content="{Binding Vocabulary.ChartTitle, FallbackValue=ChartTitle}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.ShowLegend, FallbackValue=ShowLegend}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.LegendPosition, FallbackValue=LegendPosition}" Margin="10,100,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.ShowLegendArrows, FallbackValue=ShowLegendArrows}" Margin="10,130,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <TextBox Text="{Binding ChartWidth, UpdateSourceTrigger=LostFocus}" Margin="20,10,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding ChartHeight, UpdateSourceTrigger=LostFocus}" Margin="110,10,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding ChartTitle, UpdateSourceTrigger=LostFocus}" Margin="20,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding ShowLegend}" Margin="20,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding ShowLegend}" Margin="20,73,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <ComboBox ItemsSource="{Binding AvailableLegendPositions}" SelectedItem="{Binding SelectedLegendPosition}" Margin="20,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding ShowLegendArrows}" Margin="20,133,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                         </Grid>
                     </Expander>
                     <Expander Name="ExpdChartFontStyle" Margin="10,10,10,10" Grid.Row="4" BorderBrush="DarkGray" IsExpanded="False">
@@ -391,15 +393,15 @@
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Vocabulary.BackColor, FallbackValue=BackColor}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <ComboBox ItemsSource="{Binding AvailableColors}" SelectedItem="{Binding SelectedBackColor}" IsEnabled="{Binding StandardBackColor}" Margin="20,10,150,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding CustomBackColor}" Margin="160,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding CustomBackColor}" Margin="160,13,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding BackColorRGBDescription, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding CustomBackColor}" Margin="180,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <Label Content="{Binding Vocabulary.BackgroundColor, FallbackValue=BackgroundColor}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <ComboBox ItemsSource="{Binding AvailableColors}" SelectedItem="{Binding SelectedBackgroundColor}" IsEnabled="{Binding StandardBackgroundColor}" Margin="20,40,150,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding CustomBackgroundColor}" Margin="160,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding CustomBackgroundColor}" Margin="160,43,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding BackgroundColorRGBDescription, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding CustomBackgroundColor}" Margin="180,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <Label Content="{Binding Vocabulary.GridLinesColor, FallbackValue=GridLinesColor}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <ComboBox ItemsSource="{Binding AvailableColors}" SelectedItem="{Binding SelectedGridLinesColor}" IsEnabled="{Binding StandardGridLinesColor}" Margin="20,70,150,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding CustomGridLinesColor}" Margin="160,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding CustomGridLinesColor}" Margin="160,73,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding GridLinesColorRGBDescription, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding CustomGridLinesColor}" Margin="180,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>

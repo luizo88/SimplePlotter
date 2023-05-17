@@ -366,6 +366,9 @@
   <data name="ShowLegend" xml:space="preserve">
     <value>Show legend</value>
   </data>
+  <data name="ShowLegendArrows" xml:space="preserve">
+    <value>Show legend arrows</value>
+  </data>
   <data name="SiliconSteel" xml:space="preserve">
     <value>Silicon steel</value>
   </data>

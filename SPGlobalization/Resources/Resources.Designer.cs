@@ -808,6 +808,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show legend arrows.
+        /// </summary>
+        internal static string ShowLegendArrows {
+            get {
+                return ResourceManager.GetString("ShowLegendArrows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Silicon steel.
         /// </summary>
         internal static string SiliconSteel {

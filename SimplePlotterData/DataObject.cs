@@ -60,6 +60,7 @@ namespace SimplePlotterData
         public string ChartTitle { get; set; }
         public bool ShowLegend { get; set; }
         public OxyPlot.Legends.LegendPosition SelectedLegendPosition { get; set; }
+        public bool ShowLegendArrows { get; set; }
         public SimplePlotterMisc.Enums.Fonts SelectedFont { get; set; }
         public double XAxisFontSize { get; set; }
         public double YAxisFontSize { get; set; }
@@ -86,7 +87,7 @@ namespace SimplePlotterData
             SimplePlotterMisc.Enums.AxisLabelFormats selectedY2AxisLabelFormat,
             bool xMajorGridLines, bool yMajorGridLines, bool y2MajorGridLines, bool xMinorGridLines, bool yMinorGridLines, bool y2MinorGridLines,
             double xMajorStep, double yMajorStep, double y2MajorStep, double xMinorStep, double yMinorStep, double y2MinorStep, int chartWidth, int chartHeight, string chartTitle,
-            bool showLegend, OxyPlot.Legends.LegendPosition selectedLegendPosition, SimplePlotterMisc.Enums.Fonts selectedFont,
+            bool showLegend, OxyPlot.Legends.LegendPosition selectedLegendPosition, bool showLegendArrows, SimplePlotterMisc.Enums.Fonts selectedFont,
             double xAxisFontSize, double yAxisFontSize, double y2AxisFontSize, double titleFontSize, double legendFontSize,
             SimplePlotterMisc.Enums.Colors selectedBackColor, bool customBackColor, string backColorRGBDescription,
             SimplePlotterMisc.Enums.Colors selectedBackgroundColor, bool customBackgroundColor, string backgroundColorRGBDescription,
@@ -159,6 +160,7 @@ namespace SimplePlotterData
             ChartTitle = chartTitle;
             ShowLegend = showLegend;
             SelectedLegendPosition = selectedLegendPosition;
+            ShowLegendArrows = showLegendArrows;
             SelectedFont = selectedFont;
             XAxisFontSize = xAxisFontSize;
             YAxisFontSize = yAxisFontSize;
@@ -181,7 +183,7 @@ namespace SimplePlotterData
         public DataObject()
             : this(new List<SimplePlotterMisc.DataSeriesObj>(), false, false, 0, 0, false, false, 0, 0, false, false, 0, 0, "", "", "",
                   false, false, false, SimplePlotterMisc.Enums.AxisLabelFormats.Default, SimplePlotterMisc.Enums.AxisLabelFormats.Default,
-                  SimplePlotterMisc.Enums.AxisLabelFormats.Default, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0, 0, 0, "", false, LegendPosition.TopRight,
+                  SimplePlotterMisc.Enums.AxisLabelFormats.Default, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0, 0, 0, "", false, LegendPosition.TopRight, false,
                   SimplePlotterMisc.Enums.Fonts.TimesNewRoman, 0, 0, 0, 0, 0, SimplePlotterMisc.Enums.Colors.White, false, "255|255|255",
                   SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", 0, 0)
         { }

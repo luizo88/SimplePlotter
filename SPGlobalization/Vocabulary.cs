@@ -187,6 +187,7 @@ namespace SPGlobalization
         public string FramesPerSecond { get { return string.Format("{0}", Resources.Resources.FramesPerSecond); } }
         public string SecondY { get { return string.Format("{0}", Resources.Resources.SecondY); } }
         public string Y2Limits { get { return string.Format("{0}", Resources.Resources.Y2Limits); } }
+        public string ShowLegendArrows { get { return string.Format("{0}", Resources.Resources.ShowLegendArrows); } }
         
         #endregion
 
