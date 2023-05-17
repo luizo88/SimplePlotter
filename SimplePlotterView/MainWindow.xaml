@@ -174,6 +174,13 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
+                                        <GridViewColumn x:Name="SecondY" Header="{Binding Vocabulary.SecondY, FallbackValue=SecondX}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox IsChecked="{Binding SecondY}" Content="" Background="{x:Null}" GotFocus="lvItem_GotFocus"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
@@ -237,31 +244,40 @@
                                 <TextBlock Name="txtAxisConfiguration" Text="{Binding Vocabulary.AxisConfiguration, FallbackValue=AxisConfiguration}" FontWeight="Bold" HorizontalAlignment="Center"/>
                             </DockPanel>
                         </Expander.Header>
-                        <Grid Height="190">
+                        <Grid Height="250">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="240"/>
+                                <ColumnDefinition Width="280"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Vocabulary.XLimits, FallbackValue=XLimits}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.YLimits, FallbackValue=YLimits}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
-                            <Label Content="{Binding Vocabulary.XAxisTitle, FallbackValue=XAxisTitle}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
-                            <Label Content="{Binding Vocabulary.YAxisTitle, FallbackValue=YAxisTitle}" Margin="10,100,10,0" VerticalAlignment="Top" Grid.Column="0"/>
-                            <Label Content="{Binding Vocabulary.LogarithmicScale, FallbackValue=LogarithmicScale}" Margin="10,130,10,0" VerticalAlignment="Top" Grid.Column="0"/>
-                            <Label Content="{Binding Vocabulary.AxisLabelsStyle, FallbackValue=AxisLabelsStyle}" Margin="10,160,10,0" VerticalAlignment="Top" Grid.Column="0"/>
-                            <CheckBox IsChecked="{Binding ManualXMinAxisLimit}" Margin="3,13,282,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <Label Content="{Binding Vocabulary.Y2Limits, FallbackValue=Y2Limits}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.XAxisTitle, FallbackValue=XAxisTitle}" Margin="10,100,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.YAxisTitle, FallbackValue=YAxisTitle}" Margin="10,130,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.Y2AxisTitle, FallbackValue=Y2AxisTitle}" Margin="10,160,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.LogarithmicScale, FallbackValue=LogarithmicScale}" Margin="10,190,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.AxisLabelsStyle, FallbackValue=AxisLabelsStyle}" Margin="10,220,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <CheckBox IsChecked="{Binding ManualXMinAxisLimit}" Margin="3,13,262,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding XAxisMin, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualXMinAxisLimit}" Margin="20,10,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding ManualXMaxAxisLimit}" Margin="93,13,192,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding ManualXMaxAxisLimit}" Margin="93,13,172,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding XAxisMax, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualXMaxAxisLimit}" Margin="110,10,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding ManualYMinAxisLimit}" Margin="3,43,282,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding ManualYMinAxisLimit}" Margin="3,43,262,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding YAxisMin, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualYMinAxisLimit}" Margin="20,40,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding ManualYMaxAxisLimit}" Margin="93,43,192,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding ManualYMaxAxisLimit}" Margin="93,43,172,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding YAxisMax, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualYMaxAxisLimit}" Margin="110,40,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding XAxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding YAxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding XLogarithmicScale}" Content="X" Margin="20,130,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <CheckBox IsChecked="{Binding YLogarithmicScale}" Content="Y" Margin="100,130,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <ComboBox ItemsSource="{Binding AvailableAxisLabelFormats}" SelectedItem="{Binding SelectedXAxisLabelFormat}" Margin="20,160,180,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <ComboBox ItemsSource="{Binding AvailableAxisLabelFormats}" SelectedItem="{Binding SelectedYAxisLabelFormat}" Margin="140,160,60,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding ManualY2MinAxisLimit}" Margin="3,73,262,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding Y2AxisMin, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualY2MinAxisLimit}" Margin="20,70,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding ManualY2MaxAxisLimit}" Margin="93,73,172,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding Y2AxisMax, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualY2MaxAxisLimit}" Margin="110,70,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding XAxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding YAxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,130,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding Y2AxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,160,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding XLogarithmicScale}" Content="X" Margin="20,190,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding YLogarithmicScale}" Content="Y" Margin="100,190,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding Y2LogarithmicScale}" Content="Y2" Margin="180,190,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <ComboBox ItemsSource="{Binding AvailableAxisLabelFormats}" SelectedItem="{Binding SelectedXAxisLabelFormat}" Margin="20,220,180,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <ComboBox ItemsSource="{Binding AvailableAxisLabelFormats}" SelectedItem="{Binding SelectedYAxisLabelFormat}" Margin="100,220,100,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <ComboBox ItemsSource="{Binding AvailableAxisLabelFormats}" SelectedItem="{Binding SelectedY2AxisLabelFormat}" Margin="180,220,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
                     <Expander Name="ExpdGridLines" Margin="10,10,10,10" Grid.Row="2" BorderBrush="DarkGray" IsExpanded="False">
@@ -278,21 +294,25 @@
                         </Expander.Header>
                         <Grid Height="130">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="240"/>
+                                <ColumnDefinition Width="280"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Vocabulary.MajorGridLines, FallbackValue=MajorGridLines}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.MinorGridLines, FallbackValue=MinorGridLines}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.MajorStep, FallbackValue=MajorStep}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.MinorStep, FallbackValue=MinorStep}" Margin="10,100,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <CheckBox IsChecked="{Binding XMajorGridLines}" Content="X" Margin="20,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <CheckBox IsChecked="{Binding YMajorGridLines}" Content="Y" Margin="100,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding YMajorGridLines}" Content="Y" Margin="110,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding Y2MajorGridLines}" Content="Y2" Margin="200,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <CheckBox IsChecked="{Binding XMinorGridLines}" Content="X" Margin="20,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <CheckBox IsChecked="{Binding YMinorGridLines}" Content="Y" Margin="100,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <TextBox Text="{Binding XMajorStep, UpdateSourceTrigger=LostFocus}" Margin="20,70,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding YMajorStep, UpdateSourceTrigger=LostFocus}" Margin="110,70,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding XMinorStep, UpdateSourceTrigger=LostFocus}" Margin="20,100,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding YMinorStep, UpdateSourceTrigger=LostFocus}" Margin="110,100,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <CheckBox IsChecked="{Binding YMinorGridLines}" Content="Y" Margin="110,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding Y2MinorGridLines}" Content="Y2" Margin="200,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <TextBox Text="{Binding XMajorStep, UpdateSourceTrigger=LostFocus}" Margin="20,70,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding YMajorStep, UpdateSourceTrigger=LostFocus}" Margin="110,70,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding Y2MajorStep, UpdateSourceTrigger=LostFocus}" Margin="200,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding XMinorStep, UpdateSourceTrigger=LostFocus}" Margin="20,100,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding YMinorStep, UpdateSourceTrigger=LostFocus}" Margin="110,100,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding Y2MinorStep, UpdateSourceTrigger=LostFocus}" Margin="200,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
                     <Expander Name="ExpdChartBox" Margin="10,10,10,10" Grid.Row="3" BorderBrush="DarkGray" IsExpanded="False">
@@ -309,15 +329,15 @@
                         </Expander.Header>
                         <Grid Height="130">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="240"/>
+                                <ColumnDefinition Width="280"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Vocabulary.ChartSize, FallbackValue=ChartSize}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.ChartTitle, FallbackValue=ChartTitle}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.ShowLegend, FallbackValue=ShowLegend}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.LegendPosition, FallbackValue=LegendPosition}" Margin="10,100,10,0" VerticalAlignment="Top" Grid.Column="0"/>
-                            <TextBox Text="{Binding ChartWidth, UpdateSourceTrigger=LostFocus}" Margin="20,10,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding ChartHeight, UpdateSourceTrigger=LostFocus}" Margin="110,10,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding ChartWidth, UpdateSourceTrigger=LostFocus}" Margin="20,10,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding ChartHeight, UpdateSourceTrigger=LostFocus}" Margin="110,10,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding ChartTitle, UpdateSourceTrigger=LostFocus}" Margin="20,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <CheckBox IsChecked="{Binding ShowLegend}" Margin="20,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <ComboBox ItemsSource="{Binding AvailableLegendPositions}" SelectedItem="{Binding SelectedLegendPosition}" Margin="20,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
@@ -337,18 +357,19 @@
                         </Expander.Header>
                         <Grid Height="130">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="240"/>
+                                <ColumnDefinition Width="280"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Vocabulary.FontName, FallbackValue=FontName}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.AxisFontSize, FallbackValue=AxisFontSize}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.TitleFontSize, FallbackValue=TitleFontSize}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <Label Content="{Binding Vocabulary.LegendFontSize, FallbackValue=LegendFontSize}" Margin="10,100,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <ComboBox ItemsSource="{Binding AvailableFonts}" SelectedItem="{Binding SelectedFont}" Margin="20,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding XAxisFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,40,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding YAxisFontSize, UpdateSourceTrigger=LostFocus}" Margin="110,40,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding TitleFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,70,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding LegendFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,100,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding XAxisFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,40,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding YAxisFontSize, UpdateSourceTrigger=LostFocus}" Margin="110,40,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding Y2AxisFontSize, UpdateSourceTrigger=LostFocus}" Margin="200,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding TitleFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,70,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding LegendFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,100,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
                     <Expander Name="ExpdColors" Margin="10,10,10,10" Grid.Row="5" BorderBrush="DarkGray" IsExpanded="False">
@@ -365,8 +386,8 @@
                         </Expander.Header>
                         <Grid Height="100">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="240"/>
+                                <ColumnDefinition Width="280"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Vocabulary.BackColor, FallbackValue=BackColor}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <ComboBox ItemsSource="{Binding AvailableColors}" SelectedItem="{Binding SelectedBackColor}" IsEnabled="{Binding StandardBackColor}" Margin="20,10,150,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>

@@ -139,10 +139,10 @@
     <value>Configuração dos eixos</value>
   </data>
   <data name="AxisFontSize" xml:space="preserve">
-    <value>Tamanho da fonte dos eixos (X/Y)</value>
+    <value>Tamanho da fonte dos eixos (X/Y/Y2)</value>
   </data>
   <data name="AxisLabelsStyle" xml:space="preserve">
-    <value>Estilo dos valores dos eixos (X/Y)</value>
+    <value>Estilo dos valores dos eixos (X/Y/Y2)</value>
   </data>
   <data name="BackColor" xml:space="preserve">
     <value>Cor do fundo</value>
@@ -286,13 +286,13 @@
     <value>Linhas de grade principais</value>
   </data>
   <data name="MajorStep" xml:space="preserve">
-    <value>Passo principal (X/Y)</value>
+    <value>Passo principal (X/Y/Y2)</value>
   </data>
   <data name="MinorGridLines" xml:space="preserve">
     <value>Linhas de grade secundárias</value>
   </data>
   <data name="MinorStep" xml:space="preserve">
-    <value>Passo secundário (X/Y)</value>
+    <value>Passo secundário (X/Y/Y2)</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nome</value>
@@ -360,6 +360,9 @@
   <data name="Scientific" xml:space="preserve">
     <value>Científico</value>
   </data>
+  <data name="SecondY" xml:space="preserve">
+    <value>Segundo Y</value>
+  </data>
   <data name="ShowLegend" xml:space="preserve">
     <value>Mostrar legenda</value>
   </data>
@@ -376,7 +379,7 @@
     <value>Times New Roman</value>
   </data>
   <data name="TitleFontSize" xml:space="preserve">
-    <value>Tamnho da fonte do título</value>
+    <value>Tamanho da fonte do título</value>
   </data>
   <data name="TotalTime" xml:space="preserve">
     <value>Tempo total [s]</value>
@@ -398,6 +401,12 @@
   </data>
   <data name="XScale" xml:space="preserve">
     <value>Escala - X</value>
+  </data>
+  <data name="Y2AxisTitle" xml:space="preserve">
+    <value>Título do eixo Y secund.</value>
+  </data>
+  <data name="Y2Limits" xml:space="preserve">
+    <value>Limites do eixo Y secund. (mín./máx.)</value>
   </data>
   <data name="YAxisTitle" xml:space="preserve">
     <value>Título do eixo Y</value>

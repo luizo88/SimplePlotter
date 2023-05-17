@@ -3,6 +3,7 @@ using ImageMagick;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Legends;
+using OxyPlot.Series;
 using OxyPlot.Wpf;
 using SimplePlotterMisc;
 using System;
@@ -27,7 +28,7 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.2.0.0";
+            Version = "v. 1.3.0.0";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
@@ -98,7 +99,7 @@ namespace SimplePlotterVM
                 for (int i = 0; i < dtob.DataSeriesName.Count; i++)
                 {
                     DataSeriesController.Instance.DataSeries.Add(new DataSeriesObj(dtob.DataSeriesName[i], dtob.DataSeriesXPoints[i], dtob.DataSeriesYPoints[i], dtob.DataSeriesScaleX[i], dtob.DataSeriesScaleY[i],
-                        dtob.DataSeriesThick[i], dtob.DataSeriesLineStyle[i], dtob.DataSeriesColor[i], dtob.DataSeriesCustomColor[i], dtob.DataSeriesRGBDescription[i], dtob.DataSeriesLegend[i]));
+                        dtob.DataSeriesThick[i], dtob.DataSeriesLineStyle[i], dtob.DataSeriesColor[i], dtob.DataSeriesCustomColor[i], dtob.DataSeriesRGBDescription[i], dtob.DataSeriesLegend[i], dtob.DataSeriesSecondY[i]));
                 }
                 //values
                 ManualXMinAxisLimit = dtob.ManualXMinAxisLimit;
@@ -109,20 +110,31 @@ namespace SimplePlotterVM
                 ManualYMaxAxisLimit = dtob.ManualYMaxAxisLimit;
                 YAxisMin = dtob.YAxisMin;
                 YAxisMax = dtob.YAxisMax;
+                ManualY2MinAxisLimit = dtob.ManualY2MinAxisLimit;
+                ManualY2MaxAxisLimit = dtob.ManualY2MaxAxisLimit;
+                Y2AxisMin = dtob.Y2AxisMin;
+                Y2AxisMax = dtob.Y2AxisMax;
                 XAxisTitle = dtob.XAxisTitle;
                 YAxisTitle = dtob.YAxisTitle;
+                Y2AxisTitle = dtob.Y2AxisTitle;
                 XLogarithmicScale = dtob.XLogarithmicScale;
                 YLogarithmicScale = dtob.YLogarithmicScale;
+                Y2LogarithmicScale = dtob.Y2LogarithmicScale;
                 SelectedXAxisLabelFormat = dtob.SelectedXAxisLabelFormat;
                 SelectedYAxisLabelFormat = dtob.SelectedYAxisLabelFormat;
+                SelectedY2AxisLabelFormat = dtob.SelectedY2AxisLabelFormat;
                 XMajorGridLines = dtob.XMajorGridLines;
                 YMajorGridLines = dtob.YMajorGridLines;
+                Y2MajorGridLines = dtob.Y2MajorGridLines;
                 XMinorGridLines = dtob.XMinorGridLines;
                 YMinorGridLines = dtob.YMinorGridLines;
+                Y2MinorGridLines = dtob.Y2MinorGridLines;
                 XMajorStep = dtob.XMajorStep;
                 YMajorStep = dtob.YMajorStep;
+                Y2MajorStep = dtob.Y2MajorStep;
                 XMinorStep = dtob.XMinorStep;
                 YMinorStep = dtob.YMinorStep;
+                Y2MinorStep = dtob.Y2MinorStep;
                 ChartWidth = dtob.ChartWidth;
                 ChartHeight = dtob.ChartHeight;
                 ChartTitle = dtob.ChartTitle;
@@ -131,6 +143,7 @@ namespace SimplePlotterVM
                 SelectedFont = dtob.SelectedFont;
                 XAxisFontSize = dtob.XAxisFontSize;
                 YAxisFontSize = dtob.YAxisFontSize;
+                Y2AxisFontSize = dtob.Y2AxisFontSize;
                 TitleFontSize = dtob.TitleFontSize;
                 LegendFontSize = dtob.LegendFontSize;
                 SelectedBackColor = dtob.SelectedBackColor;
@@ -142,6 +155,8 @@ namespace SimplePlotterVM
                 SelectedGridLinesColor = dtob.SelectedGridLinesColor;
                 CustomGridLinesColor = dtob.CustomGridLinesColor;
                 GridLinesColorRGBDescription = dtob.GridLinesColorRGBDescription;
+                GIFTotalTime = dtob.GIFTotalTime;
+                GIFFramesPerSecond = dtob.GIFFramesPerSecond;
             }
             LongProcessRuning = false;
             updateDataSeries();
@@ -158,16 +173,16 @@ namespace SimplePlotterVM
             if (myBrowser.ShowDialog() == true)
             {
                 SimplePlotterData.DataObject dtOb = new SimplePlotterData.DataObject(AvailableDataSeries.ToList(), manualXMinAxisLimit, manualXMaxAxisLimit,
-                    xAxisMin, xAxisMax, manualYMinAxisLimit, manualYMaxAxisLimit, yAxisMin, yAxisMax,
-                    xAxisTitle, yAxisTitle, xLogarithmicScale, yLogarithmicScale,
-                    selectedXAxisLabelFormat, selectedYAxisLabelFormat,
-                    xMajorGridLines, yMajorGridLines, xMinorGridLines, yMinorGridLines,
-                    xMajorStep, yMajorStep, xMinorStep, yMinorStep, chartWidth, chartHeight, chartTitle,
+                    xAxisMin, xAxisMax, manualYMinAxisLimit, manualYMaxAxisLimit, yAxisMin, yAxisMax, manualY2MinAxisLimit, manualY2MaxAxisLimit, y2AxisMin, y2AxisMax,
+                    xAxisTitle, yAxisTitle, y2AxisTitle, xLogarithmicScale, yLogarithmicScale, y2LogarithmicScale,
+                    selectedXAxisLabelFormat, selectedYAxisLabelFormat, selectedY2AxisLabelFormat,
+                    xMajorGridLines, yMajorGridLines, y2MajorGridLines, xMinorGridLines, yMinorGridLines, y2MinorGridLines,
+                    xMajorStep, yMajorStep, y2MajorStep, xMinorStep, yMinorStep, y2MinorStep, chartWidth, chartHeight, chartTitle,
                     showLegend, selectedLegendPosition, selectedFont,
-                     xAxisFontSize, yAxisFontSize, titleFontSize, legendFontSize,
+                    xAxisFontSize, yAxisFontSize, y2AxisFontSize, titleFontSize, legendFontSize,
                     selectedBackColor, customBackColor, backColorRGBDescription,
                     selectedBackgroundColor, customBackgroundColor, backgroundColorRGBDescription,
-                    selectedGridLinesColor, customGridLinesColor, gridLinesColorRGBDescription);
+                    selectedGridLinesColor, customGridLinesColor, gridLinesColorRGBDescription, gifTotalTime, gifFramesPerSecond);
                 SimplePlotterData.FileManager.SaveXML(dtOb, myBrowser.FileName);
             }
         }
@@ -487,6 +502,54 @@ namespace SimplePlotterVM
             }
         }
 
+        private bool manualY2MinAxisLimit;
+        public bool ManualY2MinAxisLimit
+        {
+            get { return manualY2MinAxisLimit; }
+            set
+            {
+                manualY2MinAxisLimit = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool manualY2MaxAxisLimit;
+        public bool ManualY2MaxAxisLimit
+        {
+            get { return manualY2MaxAxisLimit; }
+            set
+            {
+                manualY2MaxAxisLimit = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double y2AxisMin;
+        public double Y2AxisMin
+        {
+            get { return y2AxisMin; }
+            set
+            {
+                y2AxisMin = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double y2AxisMax;
+        public double Y2AxisMax
+        {
+            get { return y2AxisMax; }
+            set
+            {
+                y2AxisMax = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
         private string xAxisTitle;
         public string XAxisTitle
         {
@@ -511,6 +574,18 @@ namespace SimplePlotterVM
             }
         }
 
+        private string y2AxisTitle;
+        public string Y2AxisTitle
+        {
+            get { return y2AxisTitle; }
+            set
+            {
+                y2AxisTitle = value;
+                updateTitles();
+                NotifyPropertyChanged();
+            }
+        }
+
         private bool xLogarithmicScale;
         public bool XLogarithmicScale
         {
@@ -530,6 +605,18 @@ namespace SimplePlotterVM
             set
             {
                 yLogarithmicScale = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool y2LogarithmicScale;
+        public bool Y2LogarithmicScale
+        {
+            get { return y2LogarithmicScale; }
+            set
+            {
+                y2LogarithmicScale = value;
                 updateEntirePlot();
                 NotifyPropertyChanged();
             }
@@ -570,6 +657,31 @@ namespace SimplePlotterVM
             }
         }
 
+        private SimplePlotterMisc.Enums.AxisLabelFormats selectedY2AxisLabelFormat;
+        public SimplePlotterMisc.Enums.AxisLabelFormats SelectedY2AxisLabelFormat
+        {
+            get { return selectedY2AxisLabelFormat; }
+            set
+            {
+                selectedY2AxisLabelFormat = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool hasSecondYAxis;
+        public bool HasSecondYAxis
+        {
+            get
+            {
+                var linq = from p
+                           in SimplePlotterMisc.DataSeriesController.Instance.DataSeries
+                           where p.SecondY
+                           select p;
+                return linq.Count() > 0;
+            }
+        }
+
         #endregion
 
         #region GRID LINES
@@ -598,6 +710,18 @@ namespace SimplePlotterVM
             }
         }
 
+        private bool y2MajorGridLines;
+        public bool Y2MajorGridLines
+        {
+            get { return y2MajorGridLines; }
+            set
+            {
+                y2MajorGridLines = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
         private bool xMinorGridLines;
         public bool XMinorGridLines
         {
@@ -621,6 +745,19 @@ namespace SimplePlotterVM
                 NotifyPropertyChanged();
             }
         }
+
+        private bool y2MinorGridLines;
+        public bool Y2MinorGridLines
+        {
+            get { return y2MinorGridLines; }
+            set
+            {
+                y2MinorGridLines = value;
+                updateEntirePlot();
+                NotifyPropertyChanged();
+            }
+        }
+
 
         private double xMajorStep;
         public double XMajorStep
@@ -652,6 +789,21 @@ namespace SimplePlotterVM
             }
         }
 
+        private double y2MajorStep;
+        public double Y2MajorStep
+        {
+            get { return y2MajorStep; }
+            set
+            {
+                if (value >= 0)
+                {
+                    y2MajorStep = value;
+                    updateEntirePlot();
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         private double xMinorStep;
         public double XMinorStep
         {
@@ -676,6 +828,21 @@ namespace SimplePlotterVM
                 if (value >= 0)
                 {
                     yMinorStep = value;
+                    updateEntirePlot();
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private double y2MinorStep;
+        public double Y2MinorStep
+        {
+            get { return y2MinorStep; }
+            set
+            {
+                if (value >= 0)
+                {
+                    y2MinorStep = value;
                     updateEntirePlot();
                     NotifyPropertyChanged();
                 }
@@ -813,6 +980,21 @@ namespace SimplePlotterVM
                 if (value > 0)
                 {
                     yAxisFontSize = value;
+                    updatePlotFonts();
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private double y2AxisFontSize;
+        public double Y2AxisFontSize
+        {
+            get { return y2AxisFontSize; }
+            set
+            {
+                if (value > 0)
+                {
+                    y2AxisFontSize = value;
                     updatePlotFonts();
                     NotifyPropertyChanged();
                 }
@@ -1154,8 +1336,7 @@ namespace SimplePlotterVM
             {
                 AvailableColorTemplates.Add((SimplePlotterMisc.Enums.ColorTemplates)item);
             }
-            xAxisTitle = "X";
-            yAxisTitle = "Y";
+            
             foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.AxisLabelFormats)))
             {
                 AvailableAxisLabelFormats.Add((SimplePlotterMisc.Enums.AxisLabelFormats)item);
@@ -1165,7 +1346,6 @@ namespace SimplePlotterVM
             {
                 AvailableFonts.Add((SimplePlotterMisc.Enums.Fonts)item);
             }
-            chartTitle = "Sample title";
             foreach (var item in Enum.GetValues(typeof(OxyPlot.Legends.LegendPosition)))
             {
                 AvailableLegendPositions.Add((OxyPlot.Legends.LegendPosition)item);
@@ -1183,25 +1363,38 @@ namespace SimplePlotterVM
             manualXMaxAxisLimit = false;
             manualYMinAxisLimit = false;
             manualYMaxAxisLimit = false;
+            manualY2MinAxisLimit = false;
+            manualY2MaxAxisLimit = false;
+            xAxisTitle = "X";
+            yAxisTitle = "Y";
+            y2AxisTitle = "Y2";
             xLogarithmicScale = false;
             yLogarithmicScale = false;
+            y2LogarithmicScale = false;
             selectedXAxisLabelFormat = SimplePlotterMisc.Enums.AxisLabelFormats.Default;
             selectedYAxisLabelFormat = SimplePlotterMisc.Enums.AxisLabelFormats.Default;
+            selectedY2AxisLabelFormat = SimplePlotterMisc.Enums.AxisLabelFormats.Default;
             xMajorGridLines = false;
             yMajorGridLines = false;
+            y2MajorGridLines = false;
             xMinorGridLines = false;
             yMinorGridLines = false;
+            y2MinorGridLines = false;
             xMajorStep = 0;
             yMajorStep = 0;
+            y2MajorStep = 0;
             xMinorStep = 0;
             yMinorStep = 0;
+            y2MinorStep = 0;
             SelectedFont = SimplePlotterMisc.Enums.Fonts.TimesNewRoman;
             xAxisFontSize = 0;
             yAxisFontSize = 0;
+            y2AxisFontSize = 0;
             titleFontSize = 0;
             legendFontSize = 0;
             chartWidth = 500;
             chartHeight = 500;
+            chartTitle = "Sample title";
             SelectedBackColor = SimplePlotterMisc.Enums.Colors.White;
             CustomBackColor = false;
             SelectedBackgroundColor = SimplePlotterMisc.Enums.Colors.White;
@@ -1257,13 +1450,13 @@ namespace SimplePlotterVM
         {
             if (!longProcessRuning)
             {
-                plotSeries(false);
                 updateLegend();
                 updateAxis();
                 updateGridLines();
                 updateTitles();
                 updatePlotFonts();
                 updateColors();
+                plotSeries(false);
                 plotObj.InvalidatePlot(true);
             }
         }
@@ -1272,13 +1465,13 @@ namespace SimplePlotterVM
         {
             if (!longProcessRuning)
             {
-                plotSeries(true, stepOfGIF);
                 updateLegend();
                 updateAxis();
                 updateGridLines();
                 updateTitles();
                 updatePlotFonts();
                 updateColors();
+                plotSeries(true, stepOfGIF);
                 plotObj.InvalidatePlot(true);
             }
         }
@@ -1311,6 +1504,7 @@ namespace SimplePlotterVM
                 serie.LineStyle = item.LineStyle;
                 serie.Color = item.OxyColor;
                 serie.RenderInLegend = item.Legend;
+                if (item.SecondY) serie.YAxisKey = "Y2";
                 plotObj.Series.Add(serie);
             }
             //refreshes to update axes
@@ -1343,6 +1537,7 @@ namespace SimplePlotterVM
             {
                 plotObj.Axes[0].Title = xAxisTitle;
                 plotObj.Axes[1].Title = yAxisTitle;
+                if (plotObj.Axes.Count > 2) plotObj.Axes[2].Title = y2AxisTitle;
                 plotObj.Title = chartTitle;
                 plotObj.InvalidatePlot(true);
             }
@@ -1361,6 +1556,7 @@ namespace SimplePlotterVM
             {
                 plotObj.Axes[0].FontSize = xAxisFontSize == 0 ? double.NaN : xAxisFontSize;
                 plotObj.Axes[1].FontSize = yAxisFontSize == 0 ? double.NaN : yAxisFontSize;
+                if (plotObj.Axes.Count > 2) plotObj.Axes[2].FontSize = y2AxisFontSize == 0 ? double.NaN : y2AxisFontSize;
             }
             plotObj.TitleFontSize = titleFontSize == 0 ? double.NaN : titleFontSize;
             plotObj.InvalidatePlot(true);
@@ -1372,22 +1568,39 @@ namespace SimplePlotterVM
             {
                 if (xLogarithmicScale)
                 {
-                    plotObj.Axes[0] = new LogarithmicAxis { Position = AxisPosition.Bottom };
+                    plotObj.Axes[0] = new LogarithmicAxis { Key = "X1", Position = AxisPosition.Bottom };
                 }
                 else
                 {
-                    plotObj.Axes[0] = new LinearAxis { Position = AxisPosition.Bottom };
+                    plotObj.Axes[0] = new LinearAxis { Key = "X1", Position = AxisPosition.Bottom };
                 }
                 if (yLogarithmicScale)
                 {
-                    plotObj.Axes[1] = new LogarithmicAxis { Position = AxisPosition.Left };
+                    plotObj.Axes[1] = new LogarithmicAxis { Key = "Y1", Position = AxisPosition.Left };
                 }
                 else
                 {
-                    plotObj.Axes[1] = new LinearAxis { Position = AxisPosition.Left };
+                    plotObj.Axes[1] = new LinearAxis { Key = "Y1", Position = AxisPosition.Left };
+                }
+                if (HasSecondYAxis)
+                {
+                    if (plotObj.Axes.Count < 3) plotObj.Axes.Add(new LinearAxis() { Key = "Y2", Position = AxisPosition.Right });
+                    if (y2LogarithmicScale)
+                    {
+                        plotObj.Axes[2] = new LogarithmicAxis { Key = "Y2", Position = AxisPosition.Right };
+                    }
+                    else
+                    {
+                        plotObj.Axes[2] = new LinearAxis { Key = "Y2", Position = AxisPosition.Right };
+                    }
+                }
+                else
+                {
+                    if (plotObj.Axes.Count > 2) plotObj.Axes.RemoveAt(2);
                 }
                 plotObj.Axes[0].LabelFormatter = SimplePlotterMisc.LabelFormatters.GetLabelFormatter(selectedXAxisLabelFormat);
                 plotObj.Axes[1].LabelFormatter = SimplePlotterMisc.LabelFormatters.GetLabelFormatter(selectedYAxisLabelFormat);
+                if (plotObj.Axes.Count > 2) plotObj.Axes[2].LabelFormatter = SimplePlotterMisc.LabelFormatters.GetLabelFormatter(selectedY2AxisLabelFormat);
                 //limits
                 //x
                 if (manualXMinAxisLimit) plotObj.Axes[0].Minimum = XAxisMin;
@@ -1395,6 +1608,12 @@ namespace SimplePlotterVM
                 //y
                 if (manualYMinAxisLimit) plotObj.Axes[1].Minimum = YAxisMin;
                 if (manualYMaxAxisLimit) plotObj.Axes[1].Maximum = YAxisMax;
+                //y2
+                if (plotObj.Axes.Count > 2)
+                {
+                    if (manualY2MinAxisLimit) plotObj.Axes[2].Minimum = Y2AxisMin;
+                    if (manualY2MaxAxisLimit) plotObj.Axes[2].Maximum = Y2AxisMax;
+                }
                 plotObj.InvalidatePlot(true);
             }
         }
@@ -1420,8 +1639,20 @@ namespace SimplePlotterVM
                 {
                     plotObj.Axes[1].MajorGridlineStyle = LineStyle.None;
                 }
+                if (plotObj.Axes.Count > 2)
+                {
+                    if (Y2MajorGridLines)
+                    {
+                        plotObj.Axes[2].MajorGridlineStyle = LineStyle.Solid;
+                    }
+                    else
+                    {
+                        plotObj.Axes[2].MajorGridlineStyle = LineStyle.None;
+                    }
+                }
                 plotObj.Axes[0].MajorStep = XMajorStep == 0 ? double.NaN : XMajorStep;
                 plotObj.Axes[1].MajorStep = YMajorStep == 0 ? double.NaN : YMajorStep;
+                if (plotObj.Axes.Count > 2) plotObj.Axes[2].MajorStep = Y2MajorStep == 0 ? double.NaN : Y2MajorStep;
                 //minor
                 if (XMinorGridLines)
                 {
@@ -1439,8 +1670,20 @@ namespace SimplePlotterVM
                 {
                     plotObj.Axes[1].MinorGridlineStyle = LineStyle.None;
                 }
+                if (plotObj.Axes.Count > 2)
+                {
+                    if (Y2MinorGridLines)
+                    {
+                        plotObj.Axes[2].MinorGridlineStyle = LineStyle.Dash;
+                    }
+                    else
+                    {
+                        plotObj.Axes[2].MinorGridlineStyle = LineStyle.None;
+                    }
+                }
                 plotObj.Axes[0].MinorStep = XMinorStep == 0 ? double.NaN : XMinorStep;
                 plotObj.Axes[1].MinorStep = YMinorStep == 0 ? double.NaN : YMinorStep;
+                if (plotObj.Axes.Count > 2) plotObj.Axes[2].MinorStep = Y2MinorStep == 0 ? double.NaN : Y2MinorStep;
                 plotObj.InvalidatePlot(true);
             }
         }

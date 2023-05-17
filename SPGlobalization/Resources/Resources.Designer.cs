@@ -124,7 +124,7 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Axis font size (X/Y).
+        ///   Looks up a localized string similar to Axis font size (X/Y/Y2).
         /// </summary>
         internal static string AxisFontSize {
             get {
@@ -133,7 +133,7 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Axis labels style (X/Y).
+        ///   Looks up a localized string similar to Axis labels style (X/Y/Y2).
         /// </summary>
         internal static string AxisLabelsStyle {
             get {
@@ -565,7 +565,7 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Major step (X/Y).
+        ///   Looks up a localized string similar to Major step (X/Y/Y2).
         /// </summary>
         internal static string MajorStep {
             get {
@@ -583,7 +583,7 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Minor step (X/Y).
+        ///   Looks up a localized string similar to Minor step (X/Y/Y2).
         /// </summary>
         internal static string MinorStep {
             get {
@@ -790,6 +790,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Second Y.
+        /// </summary>
+        internal static string SecondY {
+            get {
+                return ResourceManager.GetString("SecondY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show legend.
         /// </summary>
         internal static string ShowLegend {
@@ -903,6 +912,24 @@ namespace SPGlobalization.Resources {
         internal static string XScale {
             get {
                 return ResourceManager.GetString("XScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Second Y axis title.
+        /// </summary>
+        internal static string Y2AxisTitle {
+            get {
+                return ResourceManager.GetString("Y2AxisTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Second Y axis limits (min./max.).
+        /// </summary>
+        internal static string Y2Limits {
+            get {
+                return ResourceManager.GetString("Y2Limits", resourceCulture);
             }
         }
         

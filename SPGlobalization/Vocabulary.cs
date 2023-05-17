@@ -122,6 +122,7 @@ namespace SPGlobalization
         public string FontName { get { return string.Format("{0}", Resources.Resources.FontName); } }
         public string XAxisTitle { get { return string.Format("{0}", Resources.Resources.XAxisTitle); } }
         public string YAxisTitle { get { return string.Format("{0}", Resources.Resources.YAxisTitle); } }
+        public string Y2AxisTitle { get { return string.Format("{0}", Resources.Resources.Y2AxisTitle); } }
         public string ChartTitle { get { return string.Format("{0}", Resources.Resources.ChartTitle); } }
         public string LogarithmicScale { get { return string.Format("{0}", Resources.Resources.LogarithmicScale); } }
         public string GridLines { get { return string.Format("{0}", Resources.Resources.GridLines); } }
@@ -184,7 +185,9 @@ namespace SPGlobalization
         public string CreateGIF { get { return string.Format("{0}", Resources.Resources.CreateGIF); } }
         public string TotalTime { get { return string.Format("{0}", Resources.Resources.TotalTime); } }
         public string FramesPerSecond { get { return string.Format("{0}", Resources.Resources.FramesPerSecond); } }
-            
+        public string SecondY { get { return string.Format("{0}", Resources.Resources.SecondY); } }
+        public string Y2Limits { get { return string.Format("{0}", Resources.Resources.Y2Limits); } }
+        
         #endregion
 
         #region PUBLIC METHODS

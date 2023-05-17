@@ -26,6 +26,7 @@ namespace SimplePlotterMisc
         private string rgbDescription;
         private Tuple<byte, byte, byte> rgb;
         private bool legend;
+        private bool secondY;
         private List<PointObj> gifPoints = new List<PointObj>();
         private List<int> gifKeyIndexes = new List<int>();
 
@@ -54,7 +55,7 @@ namespace SimplePlotterMisc
         }
 
         public DataSeriesObj(string name, List<double> xPoints, List<double> yPoints, double xScale, double yScale,
-            double thick, OxyPlot.LineStyle lineStyle, SimplePlotterMisc.Enums.Colors color, bool customColor, string RGBDescription, bool legend)
+            double thick, OxyPlot.LineStyle lineStyle, SimplePlotterMisc.Enums.Colors color, bool customColor, string RGBDescription, bool legend, bool secondY)
         {
             this.name = name;
             this.xScale = xScale;
@@ -74,6 +75,7 @@ namespace SimplePlotterMisc
             this.CustomColor = customColor;
             this.RGBDescription = RGBDescription;
             this.legend = legend;
+            this.secondY = secondY;
         }
 
         #region PROPERTIES
@@ -256,6 +258,16 @@ namespace SimplePlotterMisc
             set
             {
                 legend = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool SecondY
+        {
+            get { return secondY; }
+            set
+            {
+                secondY = value;
                 NotifyPropertyChanged();
             }
         }

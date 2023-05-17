@@ -33,6 +33,7 @@ namespace SimplePlotterMisc
                 case "LineStyle":
                 case "RGBDescription":
                 case "Legend":
+                case "SecondY":
                     NotifyPropertyChanged("NeedToPlotAgain");
                     break;
             }

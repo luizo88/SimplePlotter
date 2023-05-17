@@ -139,10 +139,10 @@
     <value>Axis configuration</value>
   </data>
   <data name="AxisFontSize" xml:space="preserve">
-    <value>Axis font size (X/Y)</value>
+    <value>Axis font size (X/Y/Y2)</value>
   </data>
   <data name="AxisLabelsStyle" xml:space="preserve">
-    <value>Axis labels style (X/Y)</value>
+    <value>Axis labels style (X/Y/Y2)</value>
   </data>
   <data name="BackColor" xml:space="preserve">
     <value>Back color</value>
@@ -286,13 +286,13 @@
     <value>Major grid lines</value>
   </data>
   <data name="MajorStep" xml:space="preserve">
-    <value>Major step (X/Y)</value>
+    <value>Major step (X/Y/Y2)</value>
   </data>
   <data name="MinorGridLines" xml:space="preserve">
     <value>Minor grid lines</value>
   </data>
   <data name="MinorStep" xml:space="preserve">
-    <value>Minor step (X/Y)</value>
+    <value>Minor step (X/Y/Y2)</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -360,6 +360,9 @@
   <data name="Scientific" xml:space="preserve">
     <value>Scientific</value>
   </data>
+  <data name="SecondY" xml:space="preserve">
+    <value>Second Y</value>
+  </data>
   <data name="ShowLegend" xml:space="preserve">
     <value>Show legend</value>
   </data>
@@ -398,6 +401,12 @@
   </data>
   <data name="XScale" xml:space="preserve">
     <value>X scale</value>
+  </data>
+  <data name="Y2AxisTitle" xml:space="preserve">
+    <value>Second Y axis title</value>
+  </data>
+  <data name="Y2Limits" xml:space="preserve">
+    <value>Second Y axis limits (min./max.)</value>
   </data>
   <data name="YAxisTitle" xml:space="preserve">
     <value>Y axis title</value>
