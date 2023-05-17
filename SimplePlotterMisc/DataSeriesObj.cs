@@ -26,6 +26,8 @@ namespace SimplePlotterMisc
         private string rgbDescription;
         private Tuple<byte, byte, byte> rgb;
         private bool legend;
+        private List<PointObj> gifPoints = new List<PointObj>();
+        private List<int> gifKeyIndexes = new List<int>();
 
         public DataSeriesObj(string name, List<double> xPoints, List<double> yPoints) 
         {
@@ -258,6 +260,26 @@ namespace SimplePlotterMisc
             }
         }
 
+        public List<PointObj> GIFPoints
+        {
+            get { return gifPoints; }
+            set
+            {
+                gifPoints = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public List<int> GIFKeyIndexes
+        {
+            get { return gifKeyIndexes; }
+            set
+            {
+                gifKeyIndexes = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region PRIVATE METHODS
@@ -283,6 +305,40 @@ namespace SimplePlotterMisc
                 points.Add(new PointObj(xPoints[i], yPoints[i], scaleX, scaleY, xPoints[i] * xScale, yPoints[i] * YScale));
             }
             NotifyPropertyChanged("Points");
+        }
+
+        #endregion
+
+        #region PUBLIC METHODS
+
+        public void GenerateGIFPoints(int numberOfFrames)
+        {
+            gifPoints.Clear();
+            gifKeyIndexes.Clear();
+            double dx = points.Last().ScaledX / (numberOfFrames - 1);
+            int lastIndex = 0;
+            for (int i = 0; i < numberOfFrames - 1; i++)
+            {
+                //finds the last point of this section
+                double x = i * dx;
+                int index1 = points.IndexOf(points.Find(p => p.ScaledX > x)) - 1;
+                double x1 = points[index1].ScaledX;
+                double y1 = points[index1].ScaledY;
+                double x2 = points[index1 + 1].ScaledX;
+                double y2 = points[index1 + 1].ScaledY;
+                double y = y1 + (y2 - y1) / (x2 - x1) * (x - x1);
+                //adds the intermediate points
+                for (int j = lastIndex + 1; j < index1 + 1; j++)
+                {
+                    gifPoints.Add(new PointObj(points[j].ScaledX, points[j].ScaledY));
+                }
+                //adds the last point
+                gifPoints.Add(new PointObj(x, y));
+                gifKeyIndexes.Add(gifPoints.Count - 1);
+                lastIndex = index1;
+            }
+            gifPoints.Add(new PointObj(points.Last().ScaledX, points.Last().ScaledY));
+            gifKeyIndexes.Add(gifPoints.Count - 1);
         }
 
         #endregion

@@ -1,4 +1,5 @@
 ﻿using Auxiliary;
+using ImageMagick;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Legends;
@@ -15,7 +16,9 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Media.TextFormatting;
+using System.Windows.Shapes;
 
 namespace SimplePlotterVM
 {
@@ -24,7 +27,7 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.1.0.3";
+            Version = "v. 1.2.0.0";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
@@ -38,6 +41,7 @@ namespace SimplePlotterVM
             DataSeriesUp = new Auxiliary.DelegateCommand(dataSeriesUp, canMoveDataSeriesUp);
             DataSeriesDown = new Auxiliary.DelegateCommand(dataSeriesDown, canMoveDataSeriesDown);
             ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
+            CreateGIF = new Auxiliary.DelegateCommand(createGIF);
             updateCompositeInfo();
             addSampleDataSeries();
             //assings the event to update the graphic based on data series changes
@@ -72,6 +76,7 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand DataSeriesUp { get; set; }
         public Auxiliary.DelegateCommand DataSeriesDown { get; set; }
         public Auxiliary.DelegateCommand ApplyColorTemplate { get; set; }
+        public Auxiliary.DelegateCommand CreateGIF { get; set; }
 
         #endregion
 
@@ -286,6 +291,58 @@ namespace SimplePlotterVM
             }
             updateEntirePlot();
             LongProcessRuning = false;
+        }
+
+        private void createGIF(object parameter)
+        {
+            //https://stackoverflow.com/questions/1196322/how-to-create-an-animated-gif-in-net
+            SimplePlotterMisc.DataSeriesController.Instance.GenerateGIFPointsForAllSeries(gifNumberOfPoints);
+            using (MagickImageCollection collection = new MagickImageCollection())
+            {
+                for (int i = 0; i < gifNumberOfPoints; i++)
+                {
+                    updateEntirePlotToGIF(i + 1);
+                    var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
+                    using (var image = new MagickImage(bitmapToBytes(pngExporter.ExportToBitmap(plotObj))))
+                    {
+                        collection.Add(image.Clone());
+                        collection.Last().AnimationDelay = 100 / gifFramesPerSecond;
+                    }
+                }
+                // Optionally reduce colors
+                QuantizeSettings settings = new QuantizeSettings();
+                settings.Colors = 256;
+                collection.Quantize(settings);
+                // Optionally optimize the images (images should have the same size).
+                collection.Optimize();
+                // Save gif
+                collection.Write("C:\\Users\\Luizo\\Desktop\\3.gif");
+            }
+        }
+
+        private byte[] bitmapToBytes(BitmapSource bitmapsource)
+        {
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            MemoryStream memoryStream = new MemoryStream();
+            BitmapImage bImg = new BitmapImage();
+            encoder.Frames.Add(BitmapFrame.Create(bitmapsource));
+            encoder.Save(memoryStream);
+            memoryStream.Position = 0;
+            bImg.BeginInit();
+            bImg.StreamSource = memoryStream;
+            bImg.EndInit();
+            //imageToBytes
+            MemoryStream ms = null;
+            TiffBitmapEncoder enc = null;
+            enc = new TiffBitmapEncoder();
+            enc.Compression = TiffCompressOption.Ccitt4;
+            enc.Frames.Add(BitmapFrame.Create(bImg));
+            using (ms = new MemoryStream())
+            {
+                enc.Save(ms);
+            }
+            memoryStream.Close();
+            return ms.ToArray();
         }
 
         #endregion
@@ -1073,6 +1130,51 @@ namespace SimplePlotterVM
 
         #endregion
 
+        #region GIF
+
+        private double gifTotalTime;
+        public double GIFTotalTime
+        {
+            get { return gifTotalTime; }
+            set
+            {
+                if (value > 0)
+                {
+                    gifTotalTime = value;
+                    GIFNumberOfPoints = computeNumberOfFrames(gifTotalTime, gifFramesPerSecond);
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private int gifFramesPerSecond;
+        public int GIFFramesPerSecond
+        {
+            get { return gifFramesPerSecond; }
+            set
+            {
+                if (value > 0)
+                {
+                    gifFramesPerSecond = value;
+                    GIFNumberOfPoints = computeNumberOfFrames(gifTotalTime, gifFramesPerSecond);
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private int gifNumberOfPoints;
+        public int GIFNumberOfPoints
+        {
+            get { return gifNumberOfPoints; }
+            set
+            {
+                gifNumberOfPoints = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region PRIVATE METHODS
@@ -1138,7 +1240,9 @@ namespace SimplePlotterVM
             SelectedGridLinesColor = SimplePlotterMisc.Enums.Colors.Gray;
             CustomGridLinesColor = false;
             selectedLegendPosition = LegendPosition.TopRight;
-        }
+            GIFTotalTime = 1;
+            GIFFramesPerSecond = 10;
+    }
 
         private void updateDataSeries()
         {
@@ -1165,6 +1269,11 @@ namespace SimplePlotterVM
             NotifyPropertyChanged("SelectedDataSeriesPoints");
         }
 
+        private int computeNumberOfFrames(double totalGIFTime, int framesPerSecond)
+        {
+            return (int)Math.Round(totalGIFTime * framesPerSecond);
+        }
+
         #endregion
 
         #region PLOT METHODS
@@ -1179,7 +1288,7 @@ namespace SimplePlotterVM
         {
             if (!longProcessRuning)
             {
-                plotSeries();
+                plotSeries(false);
                 updateLegend();
                 updateAxis();
                 updateGridLines();
@@ -1190,7 +1299,22 @@ namespace SimplePlotterVM
             }
         }
 
-        public void plotSeries()
+        private void updateEntirePlotToGIF(int stepOfGIF)
+        {
+            if (!longProcessRuning)
+            {
+                plotSeries(true, stepOfGIF);
+                updateLegend();
+                updateAxis();
+                updateGridLines();
+                updateTitles();
+                updatePlotFonts();
+                updateColors();
+                plotObj.InvalidatePlot(true);
+            }
+        }
+
+        public void plotSeries(bool isForGIF, int stepOfGIF = 0)
         {
             //cleares old series
             plotObj.Series.Clear();
@@ -1198,9 +1322,20 @@ namespace SimplePlotterVM
             foreach (var item in SimplePlotterMisc.DataSeriesController.Instance.DataSeries)
             {
                 OxyPlot.Series.FunctionSeries serie = new OxyPlot.Series.FunctionSeries();
-                for (int i = 0; i < item.Length; i++)
+                if (isForGIF)
                 {
-                    serie.Points.Add(new OxyPlot.DataPoint(item.Points[i].ScaledX, item.Points[i].ScaledY));
+                    int limitIndexToPlot = item.GIFKeyIndexes[stepOfGIF - 1];
+                    for (int i = 0; i <= limitIndexToPlot; i++)
+                    {
+                        serie.Points.Add(new OxyPlot.DataPoint(item.GIFPoints[i].ScaledX, item.GIFPoints[i].ScaledY));
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < item.Length; i++)
+                    {
+                        serie.Points.Add(new OxyPlot.DataPoint(item.Points[i].ScaledX, item.Points[i].ScaledY));
+                    }
                 }
                 serie.Title = item.Name;
                 serie.StrokeThickness = item.Thick;

@@ -189,6 +189,9 @@
   <data name="CopyPlotToClipboard" xml:space="preserve">
     <value>Copiar gráfico al portapapeles</value>
   </data>
+  <data name="CreateGIF" xml:space="preserve">
+    <value>Crear GIF</value>
+  </data>
   <data name="CustomColor" xml:space="preserve">
     <value>Color pers.</value>
   </data>
@@ -221,6 +224,9 @@
   </data>
   <data name="FontStyle" xml:space="preserve">
     <value>Estilo de fuente</value>
+  </data>
+  <data name="FramesPerSecond" xml:space="preserve">
+    <value>Cuadros por segundo</value>
   </data>
   <data name="FranklinGothic" xml:space="preserve">
     <value>Franklin Gothic</value>
@@ -371,6 +377,9 @@
   </data>
   <data name="TitleFontSize" xml:space="preserve">
     <value>Tamaño de fuente del título</value>
+  </data>
+  <data name="TotalTime" xml:space="preserve">
+    <value>Tiempo total [s]</value>
   </data>
   <data name="Univers" xml:space="preserve">
     <value>Univers</value>

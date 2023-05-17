@@ -181,7 +181,10 @@ namespace SPGlobalization
         public string Options { get { return string.Format("{0}", Resources.Resources.Options); } }
         public string RestoreInitialConfig { get { return string.Format("{0}", Resources.Resources.RestoreInitialConfig); } }
         public string Plot { get { return string.Format("{0}", Resources.Resources.Plot); } }
-
+        public string CreateGIF { get { return string.Format("{0}", Resources.Resources.CreateGIF); } }
+        public string TotalTime { get { return string.Format("{0}", Resources.Resources.TotalTime); } }
+        public string FramesPerSecond { get { return string.Format("{0}", Resources.Resources.FramesPerSecond); } }
+            
         #endregion
 
         #region PUBLIC METHODS

@@ -95,6 +95,14 @@ namespace SimplePlotterMisc
             dataSeries.Insert(index + 1, dataSeriesToMove);
         }
 
+        public void GenerateGIFPointsForAllSeries(int numberOfPoints)
+        {            
+            foreach (var item in dataSeries)
+            {
+                item.GenerateGIFPoints(numberOfPoints);
+            }
+        }
+
         #endregion
 
     }

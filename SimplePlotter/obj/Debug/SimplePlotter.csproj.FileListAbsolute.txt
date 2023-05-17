@@ -28,3 +28,10 @@ C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\obj\Debug\Simple
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\bin\Debug\pt-BR\SPGlobalization.resources.dll
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\bin\Debug\SimplePlotterData.dll
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\bin\Debug\SimplePlotterData.pdb
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\bin\Debug\Magick.Native-Q16-arm64.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\bin\Debug\Magick.Native-Q16-x64.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\bin\Debug\Magick.Native-Q16-x86.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\bin\Debug\Magick.NET-Q16-AnyCPU.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\bin\Debug\Magick.NET.Core.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\bin\Debug\Magick.NET-Q16-AnyCPU.xml
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotter\bin\Debug\Magick.NET.Core.xml

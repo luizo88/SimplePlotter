@@ -277,6 +277,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create GIF.
+        /// </summary>
+        internal static string CreateGIF {
+            get {
+                return ResourceManager.GetString("CreateGIF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom color.
         /// </summary>
         internal static string CustomColor {
@@ -372,6 +381,15 @@ namespace SPGlobalization.Resources {
         internal static string FontStyle {
             get {
                 return ResourceManager.GetString("FontStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frames per second.
+        /// </summary>
+        internal static string FramesPerSecond {
+            get {
+                return ResourceManager.GetString("FramesPerSecond", resourceCulture);
             }
         }
         
@@ -822,6 +840,15 @@ namespace SPGlobalization.Resources {
         internal static string TitleFontSize {
             get {
                 return ResourceManager.GetString("TitleFontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total time [s].
+        /// </summary>
+        internal static string TotalTime {
+            get {
+                return ResourceManager.GetString("TotalTime", resourceCulture);
             }
         }
         

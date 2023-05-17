@@ -86,6 +86,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Expander Name="ExpdDataSeries" Margin="10,10,10,10" Grid.Row="0" BorderBrush="DarkGray" IsExpanded="True">
                         <Expander.Header>
@@ -224,7 +225,7 @@
                             <Button Command="{Binding ApplyColorTemplate}" Content="{Binding Vocabulary.Apply, FallbackValue=Apply}" Margin="450,370,20,0" VerticalAlignment="Top" Height="23"/>
                         </Grid>
                     </Expander>
-                    <Expander Name="AxisConfiguration" Margin="10,10,10,10" Grid.Row="1" BorderBrush="DarkGray" IsExpanded="False">
+                    <Expander Name="ExpdAxisConfiguration" Margin="10,10,10,10" Grid.Row="1" BorderBrush="DarkGray" IsExpanded="False">
                         <Expander.Header>
                             <DockPanel Width="495" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
@@ -263,7 +264,7 @@
                             <ComboBox ItemsSource="{Binding AvailableAxisLabelFormats}" SelectedItem="{Binding SelectedYAxisLabelFormat}" Margin="140,160,60,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
-                    <Expander Name="GridLines" Margin="10,10,10,10" Grid.Row="2" BorderBrush="DarkGray" IsExpanded="False">
+                    <Expander Name="ExpdGridLines" Margin="10,10,10,10" Grid.Row="2" BorderBrush="DarkGray" IsExpanded="False">
                         <Expander.Header>
                             <DockPanel Width="495" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
@@ -294,7 +295,7 @@
                             <TextBox Text="{Binding YMinorStep, UpdateSourceTrigger=LostFocus}" Margin="110,100,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
-                    <Expander Name="ChartBox" Margin="10,10,10,10" Grid.Row="3" BorderBrush="DarkGray" IsExpanded="False">
+                    <Expander Name="ExpdChartBox" Margin="10,10,10,10" Grid.Row="3" BorderBrush="DarkGray" IsExpanded="False">
                         <Expander.Header>
                             <DockPanel Width="495" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
@@ -322,7 +323,7 @@
                             <ComboBox ItemsSource="{Binding AvailableLegendPositions}" SelectedItem="{Binding SelectedLegendPosition}" Margin="20,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
-                    <Expander Name="ChartFontStyle" Margin="10,10,10,10" Grid.Row="4" BorderBrush="DarkGray" IsExpanded="False">
+                    <Expander Name="ExpdChartFontStyle" Margin="10,10,10,10" Grid.Row="4" BorderBrush="DarkGray" IsExpanded="False">
                         <Expander.Header>
                             <DockPanel Width="495" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
@@ -350,7 +351,7 @@
                             <TextBox Text="{Binding LegendFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,100,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
-                    <Expander Name="Colors" Margin="10,10,10,10" Grid.Row="5" BorderBrush="DarkGray" IsExpanded="False">
+                    <Expander Name="ExpdColors" Margin="10,10,10,10" Grid.Row="5" BorderBrush="DarkGray" IsExpanded="False">
                         <Expander.Header>
                             <DockPanel Width="495" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
@@ -379,6 +380,30 @@
                             <ComboBox ItemsSource="{Binding AvailableColors}" SelectedItem="{Binding SelectedGridLinesColor}" IsEnabled="{Binding StandardGridLinesColor}" Margin="20,70,150,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <CheckBox IsChecked="{Binding CustomGridLinesColor}" Margin="160,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding GridLinesColorRGBDescription, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding CustomGridLinesColor}" Margin="180,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Name="ExpdCreateGIF" Margin="10,10,10,10" Grid.Row="6" BorderBrush="DarkGray" IsExpanded="False">
+                        <Expander.Header>
+                            <DockPanel Width="495" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                <DockPanel.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="DarkGray" Offset="1"/>
+                                        <GradientStop Color="LightGray"/>
+                                    </LinearGradientBrush>
+                                </DockPanel.Background>
+                                <TextBlock Name="txtCreateGIF" Text="{Binding Vocabulary.CreateGIF, FallbackValue=CreateGIF}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            </DockPanel>
+                        </Expander.Header>
+                        <Grid Height="130">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="300"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{Binding Vocabulary.TotalTime, FallbackValue=TotalTime}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.FramesPerSecond, FallbackValue=FramesPerSecond}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <TextBox Text="{Binding GIFTotalTime, UpdateSourceTrigger=LostFocus}" Margin="20,10,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding GIFFramesPerSecond, UpdateSourceTrigger=LostFocus}" Margin="20,40,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <Button Content="{Binding Vocabulary.CreateGIF, FallbackValue=CreateGIF}" Command="{Binding CreateGIF}" Margin="20,70,210,0" VerticalAlignment="Top" Grid.Column="1" />
                         </Grid>
                     </Expander>
                 </Grid>
