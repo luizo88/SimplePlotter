@@ -332,7 +332,7 @@ namespace SimplePlotterMisc
             for (int i = 0; i < numberOfFrames - 1; i++)
             {
                 //finds the last point of this section
-                double x = i * dx;
+                double x = points[0].ScaledX + i * dx;
                 int index1 = points.IndexOf(points.Find(p => p.ScaledX > x)) - 1;
                 double x1 = points[index1].ScaledX;
                 double y1 = points[index1].ScaledY;
