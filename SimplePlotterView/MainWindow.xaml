@@ -394,7 +394,7 @@
                                 <TextBlock Name="txtCreateGIF" Text="{Binding Vocabulary.CreateGIF, FallbackValue=CreateGIF}" FontWeight="Bold" HorizontalAlignment="Center"/>
                             </DockPanel>
                         </Expander.Header>
-                        <Grid Height="130">
+                        <Grid Height="100">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="220"/>
                                 <ColumnDefinition Width="300"/>

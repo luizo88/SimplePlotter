@@ -300,49 +300,18 @@ namespace SimplePlotterVM
             myBrowser.FileName = string.Format("ChartGIF_{0}x{1}.gif", ChartWidth, ChartHeight);
             if (myBrowser.ShowDialog() == true)
             {
-                //https://stackoverflow.com/questions/1196322/how-to-create-an-animated-gif-in-net
+                List<BitmapSource> frames = new List<BitmapSource>();
                 SimplePlotterMisc.DataSeriesController.Instance.GenerateGIFPointsForAllSeries(gifNumberOfPoints);
-                using (MagickImageCollection collection = new MagickImageCollection())
+                for (int i = 0; i < gifNumberOfPoints; i++)
                 {
-                    for (int i = 0; i < gifNumberOfPoints; i++)
-                    {
-                        updateEntirePlotToGIF(i + 1);
-                        var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
-                        using (var image = new MagickImage(bitmapToBytes(pngExporter.ExportToBitmap(plotObj))))
-                        {
-                            collection.Add(image.Clone());
-                            collection.Last().AnimationDelay = 100 / gifFramesPerSecond;
-                        }
-                    }
-                    collection.Optimize();
-                    collection.Write(myBrowser.FileName);
+                    updateEntirePlotToGIF(i + 1);
+                    var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
+                    frames.Add(pngExporter.ExportToBitmap(plotObj));
                 }
+                MagickImageCollection collection = GIFGen.GIFGen.GetGIFObject(frames, true, 100 / gifFramesPerSecond);
+                collection.Write(myBrowser.FileName);
+                collection.Dispose();
             }
-        }
-
-        private byte[] bitmapToBytes(BitmapSource bitmapsource)
-        {
-            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-            MemoryStream memoryStream = new MemoryStream();
-            BitmapImage bImg = new BitmapImage();
-            encoder.Frames.Add(BitmapFrame.Create(bitmapsource));
-            encoder.Save(memoryStream);
-            memoryStream.Position = 0;
-            bImg.BeginInit();
-            bImg.StreamSource = memoryStream;
-            bImg.EndInit();
-            //imageToBytes
-            MemoryStream ms = null;
-            TiffBitmapEncoder enc = null;
-            enc = new TiffBitmapEncoder();
-            enc.Compression = TiffCompressOption.None;
-            enc.Frames.Add(BitmapFrame.Create(bImg));
-            using (ms = new MemoryStream())
-            {
-                enc.Save(ms);
-            }
-            memoryStream.Close();
-            return ms.ToArray();
         }
 
         #endregion

@@ -28,3 +28,5 @@ C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterVM\bin\Debug\Magi
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterVM\bin\Debug\Magick.NET.Core.dll
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterVM\bin\Debug\Magick.NET-Q16-AnyCPU.xml
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterVM\bin\Debug\Magick.NET.Core.xml
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterVM\bin\Debug\GIFGen.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterVM\bin\Debug\GIFGen.pdb

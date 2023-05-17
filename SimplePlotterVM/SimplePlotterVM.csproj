@@ -73,6 +73,10 @@
       <Project>{f79fff16-cac2-439c-82c6-f78ea7ff550a}</Project>
       <Name>Auxiliary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GIFGen\GIFGen.csproj">
+      <Project>{09d91dbd-84cf-453d-84c2-0e9ff8c8ac6f}</Project>
+      <Name>GIFGen</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimplePlotterData\SimplePlotterData.csproj">
       <Project>{61b8817f-87c5-43f2-927a-5c47837b91ce}</Project>
       <Name>SimplePlotterData</Name>

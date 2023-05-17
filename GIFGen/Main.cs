@@ -11,23 +11,22 @@ using System.Windows.Media.Imaging;
 
 namespace GIFGen
 {
-    public static class Main
+    public static class GIFGen
     {
+        //https://stackoverflow.com/questions/1196322/how-to-create-an-animated-gif-in-net
         public static MagickImageCollection GetGIFObject(List<BitmapSource> imageList, bool optimize, int animationDelayMS)
         {
-            using (MagickImageCollection collection = new MagickImageCollection())
+            MagickImageCollection collection = new MagickImageCollection();
+            for (int i = 0; i < imageList.Count; i++)
             {
-                for (int i = 0; i < imageList.Count; i++)
+                using (var image = new MagickImage(bitmapToBytes(imageList[i])))
                 {
-                    using (var image = new MagickImage(bitmapToBytes(imageList[i])))
-                    {
-                        collection.Add(image.Clone());
-                        collection.Last().AnimationDelay = animationDelayMS;
-                    }
+                    collection.Add(image.Clone());
+                    collection.Last().AnimationDelay = animationDelayMS;
                 }
-                if (optimize) collection.Optimize();
-                return collection;
             }
+            if (optimize) collection.Optimize();
+            return collection;
         }
 
         private static byte[] bitmapToBytes(BitmapSource bitmapsource)
