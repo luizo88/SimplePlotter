@@ -210,7 +210,6 @@ namespace SimplePlotterVM
                 var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
                 pngExporter.ExportToFile(PlotObj, myBrowser.FileName);
             }
-            
         }
 
         private void addDataSeries(object parameter)
@@ -295,28 +294,29 @@ namespace SimplePlotterVM
 
         private void createGIF(object parameter)
         {
-            //https://stackoverflow.com/questions/1196322/how-to-create-an-animated-gif-in-net
-            SimplePlotterMisc.DataSeriesController.Instance.GenerateGIFPointsForAllSeries(gifNumberOfPoints);
-            using (MagickImageCollection collection = new MagickImageCollection())
+            Microsoft.Win32.SaveFileDialog myBrowser = new Microsoft.Win32.SaveFileDialog();
+            myBrowser.Filter = "GIF (*.gif)|*.gif";
+            myBrowser.DefaultExt = "gif";
+            myBrowser.FileName = string.Format("ChartGIF_{0}x{1}.gif", ChartWidth, ChartHeight);
+            if (myBrowser.ShowDialog() == true)
             {
-                for (int i = 0; i < gifNumberOfPoints; i++)
+                //https://stackoverflow.com/questions/1196322/how-to-create-an-animated-gif-in-net
+                SimplePlotterMisc.DataSeriesController.Instance.GenerateGIFPointsForAllSeries(gifNumberOfPoints);
+                using (MagickImageCollection collection = new MagickImageCollection())
                 {
-                    updateEntirePlotToGIF(i + 1);
-                    var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
-                    using (var image = new MagickImage(bitmapToBytes(pngExporter.ExportToBitmap(plotObj))))
+                    for (int i = 0; i < gifNumberOfPoints; i++)
                     {
-                        collection.Add(image.Clone());
-                        collection.Last().AnimationDelay = 100 / gifFramesPerSecond;
+                        updateEntirePlotToGIF(i + 1);
+                        var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
+                        using (var image = new MagickImage(bitmapToBytes(pngExporter.ExportToBitmap(plotObj))))
+                        {
+                            collection.Add(image.Clone());
+                            collection.Last().AnimationDelay = 100 / gifFramesPerSecond;
+                        }
                     }
+                    collection.Optimize();
+                    collection.Write(myBrowser.FileName);
                 }
-                // Optionally reduce colors
-                QuantizeSettings settings = new QuantizeSettings();
-                settings.Colors = 256;
-                collection.Quantize(settings);
-                // Optionally optimize the images (images should have the same size).
-                collection.Optimize();
-                // Save gif
-                collection.Write("C:\\Users\\Luizo\\Desktop\\3.gif");
             }
         }
 
@@ -335,7 +335,7 @@ namespace SimplePlotterVM
             MemoryStream ms = null;
             TiffBitmapEncoder enc = null;
             enc = new TiffBitmapEncoder();
-            enc.Compression = TiffCompressOption.Ccitt4;
+            enc.Compression = TiffCompressOption.None;
             enc.Frames.Add(BitmapFrame.Create(bImg));
             using (ms = new MemoryStream())
             {
