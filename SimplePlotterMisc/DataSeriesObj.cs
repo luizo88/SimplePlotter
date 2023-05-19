@@ -52,6 +52,7 @@ namespace SimplePlotterMisc
             this.rgb = ColorTemplateController.GetRGBFromColor(color);
             this.rgbDescription = ColorTemplateController.GetRGBDescriptionFromColor(color);
             this.legend = true;
+            this.secondY = false;
         }
 
         public DataSeriesObj(string name, List<double> xPoints, List<double> yPoints, double xScale, double yScale,

@@ -28,7 +28,7 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.3.0.2";
+            Version = "v. 1.3.0.3";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
@@ -54,9 +54,20 @@ namespace SimplePlotterVM
 
         void onDataSeriesPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "NeedToPlotAgain")
+            if (e.PropertyName == "SecondY") updateNeedOfSecondY();
+            switch (e.PropertyName)
             {
-                if (!longProcessRuning) updateEntirePlot();
+                case "Name":
+                case "Points":
+                case "XScale":
+                case "YScale":
+                case "Thick":
+                case "LineStyle":
+                case "RGBDescription":
+                case "Legend":
+                case "SecondY":
+                    if (!longProcessRuning) updateEntirePlot();
+                    break;
             }
         }
 
@@ -673,13 +684,12 @@ namespace SimplePlotterVM
         private bool hasSecondYAxis;
         public bool HasSecondYAxis
         {
-            get
+            get { return hasSecondYAxis; }
+            set
             {
-                var linq = from p
-                           in SimplePlotterMisc.DataSeriesController.Instance.DataSeries
-                           where p.SecondY
-                           select p;
-                return linq.Count() > 0;
+                if (hasSecondYAxis == value) return;
+                hasSecondYAxis = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -1447,6 +1457,15 @@ namespace SimplePlotterVM
         private int computeNumberOfFrames(double totalGIFTime, int framesPerSecond)
         {
             return (int)Math.Round(totalGIFTime * framesPerSecond);
+        }
+
+        private void updateNeedOfSecondY()
+        {
+            var linq = from p
+                           in SimplePlotterMisc.DataSeriesController.Instance.DataSeries
+                       where p.SecondY
+                       select p;
+            HasSecondYAxis = linq.Count() > 0;
         }
 
         #endregion

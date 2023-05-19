@@ -23,20 +23,7 @@ namespace SimplePlotterMisc
 
         private void onDataSeriesPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            switch (e.PropertyName)
-            {
-                case "Name":
-                case "Points":
-                case "XScale":
-                case "YScale":
-                case "Thick":
-                case "LineStyle":
-                case "RGBDescription":
-                case "Legend":
-                case "SecondY":
-                    NotifyPropertyChanged("NeedToPlotAgain");
-                    break;
-            }
+            NotifyPropertyChanged(e.PropertyName);
         }
 
         #endregion

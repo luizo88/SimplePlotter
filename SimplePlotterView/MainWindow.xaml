@@ -156,7 +156,7 @@
                                         <GridViewColumn x:Name="CustomColor" Header="{Binding Vocabulary.CustomColor, FallbackValue=CustomColor}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <CheckBox IsChecked="{Binding CustomColor}" Content="" Background="{x:Null}" GotFocus="lvItem_GotFocus"/>
+                                                    <CheckBox IsChecked="{Binding CustomColor}" Content="" Background="{x:Null}" GotFocus="lvItem_GotFocus" HorizontalAlignment="Center"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -170,14 +170,14 @@
                                         <GridViewColumn x:Name="Legend" Header="{Binding Vocabulary.Legend, FallbackValue=Legend}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <CheckBox IsChecked="{Binding Legend}" Content="" Background="{x:Null}" GotFocus="lvItem_GotFocus"/>
+                                                    <CheckBox IsChecked="{Binding Legend}" Content="" Background="{x:Null}" GotFocus="lvItem_GotFocus" HorizontalAlignment="Center"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
                                         <GridViewColumn x:Name="SecondY" Header="{Binding Vocabulary.SecondY, FallbackValue=SecondX}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <CheckBox IsChecked="{Binding SecondY}" Content="" Background="{x:Null}" GotFocus="lvItem_GotFocus"/>
+                                                    <CheckBox IsChecked="{Binding SecondY}" Content="" Background="{x:Null}" GotFocus="lvItem_GotFocus" HorizontalAlignment="Center"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -265,19 +265,19 @@
                             <TextBox Text="{Binding YAxisMin, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualYMinAxisLimit}" Margin="20,40,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <CheckBox IsChecked="{Binding ManualYMaxAxisLimit}" Margin="93,43,172,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding YAxisMax, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualYMaxAxisLimit}" Margin="110,40,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding ManualY2MinAxisLimit}" Margin="3,73,262,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding ManualY2MinAxisLimit}" IsEnabled="{Binding HasSecondYAxis}" Margin="3,73,262,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding Y2AxisMin, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualY2MinAxisLimit}" Margin="20,70,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding ManualY2MaxAxisLimit}" Margin="93,73,172,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding ManualY2MaxAxisLimit}" IsEnabled="{Binding HasSecondYAxis}" Margin="93,73,172,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding Y2AxisMax, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ManualY2MaxAxisLimit}" Margin="110,70,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding XAxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding YAxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,130,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding Y2AxisTitle, UpdateSourceTrigger=LostFocus}" Margin="20,160,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding Y2AxisTitle, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding HasSecondYAxis}" Margin="20,160,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <CheckBox IsChecked="{Binding XLogarithmicScale}" Content="X" Margin="20,190,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <CheckBox IsChecked="{Binding YLogarithmicScale}" Content="Y" Margin="100,190,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <CheckBox IsChecked="{Binding Y2LogarithmicScale}" Content="Y2" Margin="180,190,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding Y2LogarithmicScale}" IsEnabled="{Binding HasSecondYAxis}" Content="Y2" Margin="180,190,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <ComboBox ItemsSource="{Binding AvailableAxisLabelFormats}" SelectedItem="{Binding SelectedXAxisLabelFormat}" Margin="20,220,180,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <ComboBox ItemsSource="{Binding AvailableAxisLabelFormats}" SelectedItem="{Binding SelectedYAxisLabelFormat}" Margin="100,220,100,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <ComboBox ItemsSource="{Binding AvailableAxisLabelFormats}" SelectedItem="{Binding SelectedY2AxisLabelFormat}" Margin="180,220,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <ComboBox ItemsSource="{Binding AvailableAxisLabelFormats}" SelectedItem="{Binding SelectedY2AxisLabelFormat}" IsEnabled="{Binding HasSecondYAxis}" Margin="180,220,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
                     <Expander Name="ExpdGridLines" Margin="10,10,10,10" Grid.Row="2" BorderBrush="DarkGray" IsExpanded="False">
@@ -303,16 +303,16 @@
                             <Label Content="{Binding Vocabulary.MinorStep, FallbackValue=MinorStep}" Margin="10,100,10,0" VerticalAlignment="Top" Grid.Column="0"/>
                             <CheckBox IsChecked="{Binding XMajorGridLines}" Content="X" Margin="20,13,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <CheckBox IsChecked="{Binding YMajorGridLines}" Content="Y" Margin="110,13,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <CheckBox IsChecked="{Binding Y2MajorGridLines}" Content="Y2" Margin="200,13,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding Y2MajorGridLines}" IsEnabled="{Binding HasSecondYAxis}" Content="Y2" Margin="200,13,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <CheckBox IsChecked="{Binding XMinorGridLines}" Content="X" Margin="20,43,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <CheckBox IsChecked="{Binding YMinorGridLines}" Content="Y" Margin="110,43,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <CheckBox IsChecked="{Binding Y2MinorGridLines}" Content="Y2" Margin="200,43,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
+                            <CheckBox IsChecked="{Binding Y2MinorGridLines}" IsEnabled="{Binding HasSecondYAxis}" Content="Y2" Margin="200,43,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
                             <TextBox Text="{Binding XMajorStep, UpdateSourceTrigger=LostFocus}" Margin="20,70,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding YMajorStep, UpdateSourceTrigger=LostFocus}" Margin="110,70,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding Y2MajorStep, UpdateSourceTrigger=LostFocus}" Margin="200,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding Y2MajorStep, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding HasSecondYAxis}" Margin="200,70,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding XMinorStep, UpdateSourceTrigger=LostFocus}" Margin="20,100,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding YMinorStep, UpdateSourceTrigger=LostFocus}" Margin="110,100,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding Y2MinorStep, UpdateSourceTrigger=LostFocus}" Margin="200,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding Y2MinorStep, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding HasSecondYAxis}" Margin="200,100,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
                     </Expander>
                     <Expander Name="ExpdChartBox" Margin="10,10,10,10" Grid.Row="3" BorderBrush="DarkGray" IsExpanded="False">
@@ -369,7 +369,7 @@
                             <ComboBox ItemsSource="{Binding AvailableFonts}" SelectedItem="{Binding SelectedFont}" Margin="20,10,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding XAxisFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,40,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding YAxisFontSize, UpdateSourceTrigger=LostFocus}" Margin="110,40,110,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding Y2AxisFontSize, UpdateSourceTrigger=LostFocus}" Margin="200,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding Y2AxisFontSize, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding HasSecondYAxis}" Margin="200,40,20,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding TitleFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,70,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                             <TextBox Text="{Binding LegendFontSize, UpdateSourceTrigger=LostFocus}" Margin="20,100,200,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
                         </Grid>
