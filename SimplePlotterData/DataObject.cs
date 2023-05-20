@@ -78,6 +78,7 @@ namespace SimplePlotterData
         public string GridLinesColorRGBDescription { get; set; }
         public double GIFTotalTime { get; set; }
         public int GIFFramesPerSecond { get; set; }
+        public bool InterpolateData { get; set; }
 
         public DataObject(List<SimplePlotterMisc.DataSeriesObj> dataSeries, bool manualXMinAxisLimit, bool manualXMaxAxisLimit,
             double xAxisMin, double xAxisMax, bool manualYMinAxisLimit, bool manualYMaxAxisLimit, double yAxisMin, double yAxisMax,
@@ -91,7 +92,8 @@ namespace SimplePlotterData
             double xAxisFontSize, double yAxisFontSize, double y2AxisFontSize, double titleFontSize, double legendFontSize,
             SimplePlotterMisc.Enums.Colors selectedBackColor, bool customBackColor, string backColorRGBDescription,
             SimplePlotterMisc.Enums.Colors selectedBackgroundColor, bool customBackgroundColor, string backgroundColorRGBDescription,
-            SimplePlotterMisc.Enums.Colors selectedGridLinesColor, bool customGridLinesColor, string gridLinesColorRGBDescription, double gifTotalTime, int gifFramesPerSecond)
+            SimplePlotterMisc.Enums.Colors selectedGridLinesColor, bool customGridLinesColor, string gridLinesColorRGBDescription,
+            double gifTotalTime, int gifFramesPerSecond, bool interpolateData)
         {
             //DataSeries
             DataSeriesName = new List<string>();
@@ -178,6 +180,7 @@ namespace SimplePlotterData
             GridLinesColorRGBDescription = gridLinesColorRGBDescription;
             GIFTotalTime = gifTotalTime;
             GIFFramesPerSecond = gifFramesPerSecond;
+            InterpolateData = interpolateData;
         }
 
         public DataObject()
@@ -185,7 +188,7 @@ namespace SimplePlotterData
                   false, false, false, SimplePlotterMisc.Enums.AxisLabelFormats.Default, SimplePlotterMisc.Enums.AxisLabelFormats.Default,
                   SimplePlotterMisc.Enums.AxisLabelFormats.Default, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0, 0, 0, "", false, LegendPosition.TopRight, false,
                   SimplePlotterMisc.Enums.Fonts.TimesNewRoman, 0, 0, 0, 0, 0, SimplePlotterMisc.Enums.Colors.White, false, "255|255|255",
-                  SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", 0, 0)
+                  SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", 0, 0, false)
         { }
 
     }

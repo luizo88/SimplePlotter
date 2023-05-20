@@ -188,7 +188,8 @@ namespace SPGlobalization
         public string SecondY { get { return string.Format("{0}", Resources.Resources.SecondY); } }
         public string Y2Limits { get { return string.Format("{0}", Resources.Resources.Y2Limits); } }
         public string ShowLegendArrows { get { return string.Format("{0}", Resources.Resources.ShowLegendArrows); } }
-        
+        public string InterpolateData { get { return string.Format("{0}", Resources.Resources.InterpolateData); } }
+
         #endregion
 
         #region PUBLIC METHODS

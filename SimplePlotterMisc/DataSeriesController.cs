@@ -83,11 +83,11 @@ namespace SimplePlotterMisc
             dataSeries.Insert(index + 1, dataSeriesToMove);
         }
 
-        public void GenerateGIFPointsForAllSeries(int numberOfPoints)
+        public void GenerateGIFPointsForAllSeries(int numberOfPoints, bool interpolateData)
         {            
             foreach (var item in dataSeries)
             {
-                item.GenerateGIFPoints(numberOfPoints);
+                item.GenerateGIFPoints(numberOfPoints, interpolateData);
             }
         }
 

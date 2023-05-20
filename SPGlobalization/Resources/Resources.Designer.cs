@@ -511,6 +511,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Interpolate data.
+        /// </summary>
+        internal static string InterpolateData {
+            get {
+                return ResourceManager.GetString("InterpolateData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string Language {

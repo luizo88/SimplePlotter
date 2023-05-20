@@ -267,6 +267,9 @@
   <data name="Interface" xml:space="preserve">
     <value>Interface</value>
   </data>
+  <data name="InterpolateData" xml:space="preserve">
+    <value>Interpolar dados</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Idioma</value>
   </data>

@@ -169,6 +169,7 @@ namespace SimplePlotterVM
                 GridLinesColorRGBDescription = dtob.GridLinesColorRGBDescription;
                 GIFTotalTime = dtob.GIFTotalTime;
                 GIFFramesPerSecond = dtob.GIFFramesPerSecond;
+                InterpolateData = dtob.InterpolateData;
             }
             LongProcessRuning = false;
             updateDataSeries();
@@ -194,7 +195,8 @@ namespace SimplePlotterVM
                     xAxisFontSize, yAxisFontSize, y2AxisFontSize, titleFontSize, legendFontSize,
                     selectedBackColor, customBackColor, backColorRGBDescription,
                     selectedBackgroundColor, customBackgroundColor, backgroundColorRGBDescription,
-                    selectedGridLinesColor, customGridLinesColor, gridLinesColorRGBDescription, gifTotalTime, gifFramesPerSecond);
+                    selectedGridLinesColor, customGridLinesColor, gridLinesColorRGBDescription,
+                    gifTotalTime, gifFramesPerSecond, interpolateData);
                 SimplePlotterData.FileManager.SaveXML(dtOb, myBrowser.FileName);
             }
         }
@@ -328,7 +330,7 @@ namespace SimplePlotterVM
             if (myBrowser.ShowDialog() == true)
             {
                 List<BitmapSource> frames = new List<BitmapSource>();
-                SimplePlotterMisc.DataSeriesController.Instance.GenerateGIFPointsForAllSeries(gifNumberOfPoints);
+                SimplePlotterMisc.DataSeriesController.Instance.GenerateGIFPointsForAllSeries(gifNumberOfPoints, interpolateData);
                 for (int i = 0; i < gifNumberOfPoints; i++)
                 {
                     updateEntirePlotToGIF(i + 1);
@@ -1347,6 +1349,17 @@ namespace SimplePlotterVM
             }
         }
 
+        private bool interpolateData;
+        public bool InterpolateData
+        {
+            get { return interpolateData; }
+            set
+            {
+                interpolateData = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #endregion
@@ -1427,6 +1440,7 @@ namespace SimplePlotterVM
             selectedLegendPosition = LegendPosition.TopRight;
             GIFTotalTime = 1;
             GIFFramesPerSecond = 10;
+            InterpolateData = false;
     }
 
         private void updateDataSeries()
