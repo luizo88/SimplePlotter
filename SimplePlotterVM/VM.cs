@@ -28,7 +28,7 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.3.0.4";
+            Version = "v. 1.3.0.5";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);

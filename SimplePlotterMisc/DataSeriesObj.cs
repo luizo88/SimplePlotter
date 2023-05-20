@@ -330,23 +330,6 @@ namespace SimplePlotterMisc
             gifKeyIndexes.Clear();
             if (interpolateData)
             {
-                gifPoints.Add(new PointObj(points[0].ScaledX, points[0].ScaledY));
-                gifKeyIndexes.Add(0);
-                int lastIndex = 0;
-                double pointsPerFrame = (double)points.Count / (numberOfFrames);
-                for (int i = 1; i <= numberOfFrames - 1; i++)
-                {
-                    int index1 = (int)Math.Floor(i * pointsPerFrame);
-                    for (int j = lastIndex + 1; j < index1 + 1; j++)
-                    {
-                        gifPoints.Add(new PointObj(points[j].ScaledX, points[j].ScaledY));
-                    }
-                    gifKeyIndexes.Add(gifPoints.Count - 1);
-                    lastIndex = index1;
-                }
-            }
-            else
-            {
                 double dx = points.Last().ScaledX / (numberOfFrames - 1);
                 int lastIndex = 0;
                 for (int i = 0; i < numberOfFrames - 1; i++)
@@ -371,6 +354,23 @@ namespace SimplePlotterMisc
                 }
                 gifPoints.Add(new PointObj(points.Last().ScaledX, points.Last().ScaledY));
                 gifKeyIndexes.Add(gifPoints.Count - 1);
+            }
+            else
+            {
+                gifPoints.Add(new PointObj(points[0].ScaledX, points[0].ScaledY));
+                gifKeyIndexes.Add(0);
+                int lastIndex = 0;
+                double pointsPerFrame = (double)points.Count / (numberOfFrames);
+                for (int i = 1; i <= numberOfFrames - 1; i++)
+                {
+                    int index1 = (int)Math.Floor(i * pointsPerFrame);
+                    for (int j = lastIndex + 1; j < index1 + 1; j++)
+                    {
+                        gifPoints.Add(new PointObj(points[j].ScaledX, points[j].ScaledY));
+                    }
+                    gifKeyIndexes.Add(gifPoints.Count - 1);
+                    lastIndex = index1;
+                }
             }
         }
 
