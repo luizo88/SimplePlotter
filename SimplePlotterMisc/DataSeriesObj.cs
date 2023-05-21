@@ -360,10 +360,10 @@ namespace SimplePlotterMisc
                 gifPoints.Add(new PointObj(points[0].ScaledX, points[0].ScaledY));
                 gifKeyIndexes.Add(0);
                 int lastIndex = 0;
-                double pointsPerFrame = (double)points.Count / (numberOfFrames);
+                double pointsPerFrame = (double)(points.Count - 1) / (numberOfFrames);
                 for (int i = 1; i <= numberOfFrames - 1; i++)
                 {
-                    int index1 = (int)Math.Floor(i * pointsPerFrame);
+                    int index1 = (int)Math.Round(i * pointsPerFrame);
                     for (int j = lastIndex + 1; j < index1 + 1; j++)
                     {
                         gifPoints.Add(new PointObj(points[j].ScaledX, points[j].ScaledY));
