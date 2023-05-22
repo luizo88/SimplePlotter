@@ -10,6 +10,9 @@ using System.Windows;
 
 namespace SimplePlotterMisc
 {
+    /// <summary>
+    /// A class to represent/controll a data series (a curve).
+    /// </summary>
     public class DataSeriesObj : Auxiliary.PropertyNotify
     {
         private string name;
@@ -30,6 +33,12 @@ namespace SimplePlotterMisc
         private List<PointObj> gifPoints = new List<PointObj>();
         private List<int> gifKeyIndexes = new List<int>();
 
+        /// <summary>
+        /// Creates a new data series with some default parameters.
+        /// </summary>
+        /// <param name="name">The name of the data series.</param>
+        /// <param name="xPoints">A list containing the x-coordinates.</param>
+        /// <param name="yPoints">A list containing the y-coordinates.</param>
         public DataSeriesObj(string name, List<double> xPoints, List<double> yPoints) 
         {
             this.name = name;
@@ -55,6 +64,21 @@ namespace SimplePlotterMisc
             this.secondY = false;
         }
 
+        /// <summary>
+        /// Creates a new data series.
+        /// </summary>
+        /// <param name="name">The name of the data series.</param>
+        /// <param name="xPoints">A list containing the x-coordinates.</param>
+        /// <param name="yPoints">A list containing the y-coordinates.</param>
+        /// <param name="xScale">The scale to be applied in the x-coordinates.</param>
+        /// <param name="yScale">The scale to be applied in the y-coordinates.</param>
+        /// <param name="thick">The thick (stroke) of the curve draw.</param>
+        /// <param name="lineStyle">The line style of the curve draw.</param>
+        /// <param name="color">The color of the curve draw.</param>
+        /// <param name="customColor">A boolean value indicating if the curve shall be drawn with a custom color.</param>
+        /// <param name="RGBDescription">The RGB description (in the form of "R|G|B") of the color.</param>
+        /// <param name="legend">A boolean value indicating if the curve name will apear in the legend box list.</param>
+        /// <param name="secondY">A boolean value indicating if the curve needs to be refered to the second (right) Y-axis.</param>
         public DataSeriesObj(string name, List<double> xPoints, List<double> yPoints, double xScale, double yScale,
             double thick, OxyPlot.LineStyle lineStyle, SimplePlotterMisc.Enums.Colors color, bool customColor, string RGBDescription, bool legend, bool secondY)
         {
@@ -81,6 +105,9 @@ namespace SimplePlotterMisc
 
         #region PROPERTIES
 
+        /// <summary>
+        /// Gets or sets the name of the data series.</param>
+        /// </summary>
         public string Name
         {
             get { return name; }
@@ -91,6 +118,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets a list containing the points of the curve (avoid to use the 'set').
+        /// </summary>
         public List<PointObj> Points
         {
             get { return points; }
@@ -101,6 +131,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets a list containing the x-coordinates.
+        /// </summary>
         public List<double> XPoints
         {
             get
@@ -111,6 +144,10 @@ namespace SimplePlotterMisc
                 return linq.ToList();
             }
         }
+
+        /// <summary>
+        /// Gets or sets a list containing the y-coordinates.
+        /// </summary>
         public List<double> YPoints
         {
             get
@@ -122,6 +159,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets the scale to be applied in the x-coordinates.
+        /// </summary>
         public double XScale
         {
             get { return xScale; }
@@ -133,6 +173,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets the scale to be applied in the y-coordinates.
+        /// </summary>
         public double YScale
         {
             get { return yScale; }
@@ -144,11 +187,17 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets the number of points of the curve.
+        /// </summary>
         public int Length
         {
             get { return points.Count; }
         }
 
+        /// <summary>
+        /// Gets the thick (stroke) of the curve draw.
+        /// </summary>
         public double Thick
         {
             get { return thick; }
@@ -159,6 +208,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets a list containing the available line styles.
+        /// </summary>
         public List<OxyPlot.LineStyle> AvailableLineStyles
         {
             get { return availableLineStyles; }
@@ -169,6 +221,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets the line style of the curve draw.
+        /// </summary>
         public OxyPlot.LineStyle LineStyle
         {
             get { return lineStyle; }
@@ -179,6 +234,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets a list containing the available line colors.
+        /// </summary>
         public List<Enums.Colors> AvailableColors
         {
             get { return availableColors; }
@@ -189,6 +247,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets the color of the curve draw.
+        /// </summary>
         public Enums.Colors Color
         {
             get { return color; }
@@ -201,11 +262,17 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets the color (in the format suitable for OxyPlot).
+        /// </summary>
         public OxyColor OxyColor
         {
             get { return OxyColor.FromRgb(rgb.Item1, rgb.Item2, rgb.Item3); }
         }
 
+        /// <summary>
+        /// Gets or sets a boolean value indicating if the curve shall be drawn with a custom color.
+        /// </summary>
         public bool CustomColor
         {
             get { return customColor; }
@@ -219,6 +286,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets a boolean value indicating if the curve shall be drawn with a standard color.
+        /// </summary>
         public bool StandardColor
         {
             get { return standardColor; }
@@ -229,6 +299,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets the RGB description (in the form of "R|G|B") of the color.
+        /// </summary>
         public string RGBDescription
         {
             get { return rgbDescription; }
@@ -243,6 +316,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets the RGB colors (best use RGBDescription).
+        /// </summary>
         public Tuple<byte, byte, byte> RGB
         {
             get { return rgb; }
@@ -253,6 +329,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the curve name needs to appear in the legend list or not.
+        /// </summary>
         public bool Legend
         {
             get { return legend; }
@@ -263,6 +342,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the curve shall use the right (second) Y-axis or not.
+        /// </summary>
         public bool SecondY
         {
             get { return secondY; }
@@ -273,6 +355,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets a list of points of the curve to be used in a GIF.
+        /// </summary>
         public List<PointObj> GIFPoints
         {
             get { return gifPoints; }
@@ -283,6 +368,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets the key index which need to be plotted in each frame form the GIFPoints.
+        /// </summary>
         public List<int> GIFKeyIndexes
         {
             get { return gifKeyIndexes; }
@@ -297,6 +385,9 @@ namespace SimplePlotterMisc
 
         #region PRIVATE METHODS
 
+        /// <summary>
+        /// Updates the points lists based on scale changes.
+        /// </summary>
         private void updatePointList()
         {
             var linqX = from p
@@ -310,6 +401,13 @@ namespace SimplePlotterMisc
             updatePointList(xScale, yScale, xPoints, yPoints);
         }
 
+        /// <summary>
+        /// Updates the points lists based on complete new parameters.
+        /// </summary>
+        /// <param name="scaleX">The new X-scale.</param>
+        /// <param name="scaleY">The new Y-scale.</param>
+        /// <param name="xPoints">The new x-coordinates.</param>
+        /// <param name="yPoints">The new y-coordinates.</param>
         private void updatePointList(double scaleX, double scaleY, List<double> xPoints, List<double> yPoints)
         {
             points.Clear();
@@ -324,6 +422,11 @@ namespace SimplePlotterMisc
 
         #region PUBLIC METHODS
 
+        /// <summary>
+        /// Generates the GIF points to be plotted on each frame.
+        /// </summary>
+        /// <param name="numberOfFrames">The desired number of frames.</param>
+        /// <param name="interpolateData">A boolean value indicating if the data shall be interpolated or not (with few points, is better to interpolate, but it can be messy if the x-coordinates not only grow).</param>
         public void GenerateGIFPoints(int numberOfFrames, bool interpolateData)
         {
             gifPoints.Clear();

@@ -10,8 +10,16 @@ using System.Windows;
 
 namespace SimplePlotterMisc
 {
+    /// <summary>
+    /// A class used to read and to interpret files.
+    /// </summary>
     public class FileReader
     {
+        /// <summary>
+        /// Returns a list of pair-coordinates from text-like files. It detects the separator.
+        /// </summary>
+        /// <param name="pathfile">The full path of the file.</param>
+        /// <returns></returns>
         public static Tuple<List<double>, List<double>> GetFileData(string pathfile)
         {
             Tuple<List<double>, List<double>> result = new Tuple<List<double>, List<double>>(new List<double>(), new List<double>());

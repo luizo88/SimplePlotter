@@ -70,8 +70,8 @@ namespace SimplePlotterMisc.Enums
     [TypeConverter(typeof(EnumDescriptionTypeConverter))]
     public enum ColorTemplates
     {
-        [LocalizedDescription("Rainbow")]
-        Rainbow = 0,
+        [LocalizedDescription("FEMM42")]
+        FEMM42 = 0,
         [LocalizedDescription("Cycle")]
         Cycle = 1,
         [LocalizedDescription("GrayScale")]

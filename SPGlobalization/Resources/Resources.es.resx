@@ -216,6 +216,9 @@
   <data name="ExportPlot" xml:space="preserve">
     <value>Guardar gráfico</value>
   </data>
+  <data name="FEMM42" xml:space="preserve">
+    <value>FEMM42</value>
+  </data>
   <data name="File" xml:space="preserve">
     <value>Archivo</value>
   </data>
@@ -317,9 +320,6 @@
   </data>
   <data name="PT" xml:space="preserve">
     <value>PT</value>
-  </data>
-  <data name="Rainbow" xml:space="preserve">
-    <value>Arcoiris</value>
   </data>
   <data name="Red" xml:space="preserve">
     <value>Rojo</value>

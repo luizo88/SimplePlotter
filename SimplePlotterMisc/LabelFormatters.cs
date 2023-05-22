@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace SimplePlotterMisc
 {
+    /// <summary>
+    /// A class used to handle useful label for axis-coordinates.
+    /// </summary>
     public static class LabelFormatters
     {
+        /// <summary>
+        /// Returns a function to be set in OxyPlot.
+        /// </summary>
+        /// <param name="style">The style to be used.</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public static Func<double, string> GetLabelFormatter(Enums.AxisLabelFormats style)
         {
             switch (style)
@@ -20,6 +29,11 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Use the default OxyPlot labelling.
+        /// </summary>
+        /// <param name="input">The value to be formatted.</param>
+        /// <returns></returns>
         public static string DoNothing(double input)
         {
             if (input > 100)
@@ -32,6 +46,11 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Applies the si suffix as labelling style.
+        /// </summary>
+        /// <param name="input">The value to be formatted.</param>
+        /// <returns></returns>
         public static string SI(double input)
         {
             double res = double.NaN;
@@ -84,24 +103,28 @@ namespace SimplePlotterMisc
             return double.IsNaN(res) ? Math.Round(input, 6).ToString() : $"{Math.Round(res, 6)}{suffix}";
         }
 
-        public static string Power10(this double x)
+        /// <summary>
+        /// Applies the log10 (something like 10^x) as labelling style.
+        /// </summary>
+        /// <param name="input">The value to be formatted.</param>
+        /// <returns></returns>
+        public static string Power10(this double input)
         {
             string format = "g4";
-            if (x == 0) return "0";
+            if (input == 0) return "0";
             const string sup_signs = "⁺⁻⁼⁽⁾ⁿ";
             const string sup_digits = "⁰¹²³⁴⁵⁶⁷⁸⁹";
-            if (double.IsNaN(x) || double.IsInfinity(x))
+            if (double.IsNaN(input) || double.IsInfinity(input))
             {
-                return x.ToString();
+                return input.ToString();
             }
-            int num_sign = Math.Sign(x);
-            x = Math.Abs(x);
+            int num_sign = Math.Sign(input);
+            input = Math.Abs(input);
             // group exponents in multiples of 3 (thousands)
-            //int exp = (int)Math.Floor(Math.Log(x, 10) / 3) * 3;
             // otherwise use:
-            int exp = (int)Math.Floor(Math.Round(Math.Log(x, 10), 6));
+            int exp = (int)Math.Floor(Math.Round(Math.Log(input, 10), 6));
             // and handle the exp==1 case separetly to avoid 10¹
-            x *= Math.Pow(10, -exp);
+            input *= Math.Pow(10, -exp);
             int exp_sign = Math.Sign(exp);
             exp = Math.Abs(exp);
             // Build the exponent string 'dig' from right to left
@@ -123,21 +146,20 @@ namespace SimplePlotterMisc
             if (dig.Length > 0)
             {
                 // has exponent
-                if (x == 1)
+                if (input == 1)
                 {
                     result = $"{sig}10{dig}";
                 }
                 else
                 {
-                    result = $"{sig}{x.ToString(format)}×10{dig}";
+                    result = $"{sig}{input.ToString(format)}×10{dig}";
                 }
             }
             else
             {
                 // no exponent
-                result = $"{sig}{x.ToString(format)}";
+                result = $"{sig}{input.ToString(format)}";
             }
-            //return $"{result,12}";
             return result;
         }
 

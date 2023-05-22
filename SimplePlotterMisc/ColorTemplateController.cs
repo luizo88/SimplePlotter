@@ -9,11 +9,11 @@ using System.Windows;
 
 namespace SimplePlotterMisc
 {
+    /// <summary>
+    /// A class to control/generate the colors scale in SimplePlotter.
+    /// </summary>
     public class ColorTemplateController : Auxiliary.PropertyNotify
     {
-        private static ColorTemplateController instance = new ColorTemplateController();
-        List<DataSeriesObj> dataSeries = new List<DataSeriesObj>();
-
         public ColorTemplateController() 
         {
 
@@ -21,7 +21,12 @@ namespace SimplePlotterMisc
 
         #region PRIVATE METHODS
 
-        private static List<Tuple<byte, byte, byte>> getRainbowColors(int numberOfColors)
+        /// <summary>
+        /// Returns a list of colors similar to the FEMM 4.2 software.
+        /// </summary>
+        /// <param name="numberOfColors">The number of colors in the scale.</param>
+        /// <returns></returns>
+        private static List<Tuple<byte, byte, byte>> getFEMM42Colors(int numberOfColors)
         {
             List<Tuple<byte, byte, byte>> result = new List<Tuple<byte, byte, byte>>();
             for (int i = 0; i < numberOfColors; i++)
@@ -35,6 +40,11 @@ namespace SimplePlotterMisc
             return result;
         }
 
+        /// <summary>
+        /// Returns a list of colors cycling between the default colors, except white.
+        /// </summary>
+        /// <param name="numberOfColors">The number of colors in the scale.</param>
+        /// <returns></returns>
         private static List<Tuple<byte, byte, byte>> getCycleColors(int numberOfColors)
         {
             List<Tuple<byte, byte, byte>> result = new List<Tuple<byte, byte, byte>>();
@@ -54,6 +64,11 @@ namespace SimplePlotterMisc
             return result;
         }
 
+        /// <summary>
+        /// Returns a list of colors similar to silicon-steel (of transfomer's cores).
+        /// </summary>
+        /// <param name="numberOfColors">The number of colors in the scale.</param>
+        /// <returns></returns>
         private static List<Tuple<byte, byte, byte>> getSiliconSteelColors(int numberOfColors)
         {
             List<Tuple<byte, byte, byte>> result = new List<Tuple<byte, byte, byte>>();
@@ -66,6 +81,13 @@ namespace SimplePlotterMisc
             return result;
         }
 
+        /// <summary>
+        /// Returns a smoth linear transition between two colors.
+        /// </summary>
+        /// <param name="firstColor">The first color.</param>
+        /// <param name="secondColor">The last color.</param>
+        /// <param name="numberOfColors">The total number of colors.</param>
+        /// <returns></returns>
         private static List<Tuple<byte, byte, byte>> getColorTransition(Tuple<byte, byte, byte> firstColor, Tuple<byte, byte, byte> secondColor, int numberOfColors)
         {
             List<Tuple<byte, byte, byte>> result = new List<Tuple<byte, byte, byte>>();
@@ -92,13 +114,19 @@ namespace SimplePlotterMisc
             return result;
         }
 
+        /// <summary>
+        /// Returns the first and last colors of default schemes.
+        /// </summary>
+        /// <param name="colorTemplates">A know color template/scheme.</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         private static Tuple<Tuple<byte, byte, byte>, Tuple<byte, byte, byte>> getFirstAndLastColors(Enums.ColorTemplates colorTemplates)
         {
             Tuple<byte, byte, byte> c1 = null;
             Tuple<byte, byte, byte> c2 = null;
             switch (colorTemplates)
             {
-                case Enums.ColorTemplates.Rainbow:
+                case Enums.ColorTemplates.FEMM42:
                 case Enums.ColorTemplates.Cycle:
                 case Enums.ColorTemplates.SiliconSteel:
                     return null;
@@ -144,13 +172,20 @@ namespace SimplePlotterMisc
 
         #region PUBLIC METHODS
 
+        /// <summary>
+        /// Returns the a list containing the RGB info for an know template/scheme in form of List<Tuple<R,G,B>>.
+        /// </summary>
+        /// <param name="colorTemplate">A know color template/scheme.</param>
+        /// <param name="numberOfColors">The total number of colors.</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public static List<Tuple<byte, byte, byte>> GetRGBListFromColorTemplate(Enums.ColorTemplates colorTemplate, int numberOfColors)
         {
             List<Tuple<byte, byte, byte>> result = new List<Tuple<byte, byte, byte>>();
             switch (colorTemplate)
             {
-                case Enums.ColorTemplates.Rainbow:
-                    foreach (var item in getRainbowColors(numberOfColors))
+                case Enums.ColorTemplates.FEMM42:
+                    foreach (var item in getFEMM42Colors(numberOfColors))
                     {
                         result.Add(item);
                     }

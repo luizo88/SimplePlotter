@@ -358,6 +358,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FEMM42.
+        /// </summary>
+        internal static string FEMM42 {
+            get {
+                return ResourceManager.GetString("FEMM42", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
         internal static string File {
@@ -660,15 +669,6 @@ namespace SPGlobalization.Resources {
         internal static string PT {
             get {
                 return ResourceManager.GetString("PT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rainbow.
-        /// </summary>
-        internal static string Rainbow {
-            get {
-                return ResourceManager.GetString("Rainbow", resourceCulture);
             }
         }
         

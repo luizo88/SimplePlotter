@@ -8,6 +8,9 @@ using System.Windows;
 
 namespace SimplePlotterMisc
 {
+    /// <summary>
+    /// A class to handle simple point objects.
+    /// </summary>
     public class PointObj : Auxiliary.PropertyNotify
     {
         double x;
@@ -53,6 +56,9 @@ namespace SimplePlotterMisc
 
         #region PROPERTIES
 
+        /// <summary>
+        /// Gets or sets the x-coordinate.
+        /// </summary>
         public double X
         {
             get { return x; }
@@ -64,6 +70,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets the y-coordinate.
+        /// </summary>
         public double Y
         {
             get { return y; }
@@ -75,6 +84,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets the scale to be applied to the x-coordinates.
+        /// </summary>
         public double ScaleX
         {
             get { return scaleX; }
@@ -86,6 +98,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets the scale to be applied to the Y-coordinates.
+        /// </summary>
         public double ScaleY
         {
             get { return scaleY; }
@@ -97,6 +112,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets the x-coordinate to be plotted.
+        /// </summary>
         public double ScaledX
         {
             get { return scaledX; }
@@ -107,6 +125,9 @@ namespace SimplePlotterMisc
             }
         }
 
+        /// <summary>
+        /// Gets or sets the y-coordinate to be plotted.
+        /// </summary>
         public double ScaledY
         {
             get { return scaledY; }
