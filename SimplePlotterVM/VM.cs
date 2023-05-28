@@ -28,7 +28,7 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.3.0.6";
+            Version = "v. 1.3.0.7";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
@@ -172,6 +172,7 @@ namespace SimplePlotterVM
                 InterpolateData = dtob.InterpolateData;
             }
             LongProcessRuning = false;
+            updateNeedOfSecondY();
             updateDataSeries();
             updateSelectedDataSeriesPoints();
             updateEntirePlot();
