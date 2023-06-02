@@ -466,6 +466,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -1161,15 +1169,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SimplePlotter"
-        "ProductCode" = "8:{6C12F3CC-61CE-404B-84BE-5FEB0D50E8F7}"
-        "PackageCode" = "8:{0CA8FAEB-FE1A-4C32-A7BB-102BDF52B6EA}"
+        "ProductCode" = "8:{8914FAAB-AC05-4E68-B857-4B951F80C828}"
+        "PackageCode" = "8:{8BF3AA2D-9066-485C-8C49-8D7A6581474B}"
         "UpgradeCode" = "8:{8988E661-1310-45D2-9BA1-CB23B3A4FAC1}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.3.0.2"
+        "ProductVersion" = "8:1.3.0.7"
         "Manufacturer" = "8:Luizo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
