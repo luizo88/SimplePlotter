@@ -64,6 +64,17 @@ namespace SimplePlotterMisc
 
         #endregion
 
+        #region PRIVATE METHODS
+
+        private DataSeriesObj ExecuteRamerDouglasPeuckerAlgorithm(DataSeriesObj oritinalDataSeries)
+        {
+            //https://stackoverflow.com/questions/7980586/how-to-reduce-the-number-of-points-in-a-curve-while-preserving-its-overall-shape
+            //https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
+            //pendente
+        }
+
+        #endregion
+
         #region PUBLIC METHODS
 
         /// <summary>

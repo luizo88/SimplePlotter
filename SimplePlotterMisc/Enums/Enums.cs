@@ -94,4 +94,11 @@ namespace SimplePlotterMisc.Enums
         SiliconSteel = 10
     }
 
+    [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+    public enum CompressingAlgorithms
+    {
+        [LocalizedDescription("Ramer_Douglas_Peucker")]
+        Ramer_Douglas_Peucker = 0
+    }
+
 }

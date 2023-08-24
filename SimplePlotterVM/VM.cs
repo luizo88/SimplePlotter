@@ -28,7 +28,7 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.3.0.7";
+            Version = "v. 1.3.1.0";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
@@ -41,6 +41,8 @@ namespace SimplePlotterVM
             RemoveDataSeries = new Auxiliary.DelegateCommand(removeDataSeries, canRemoveDataSeries);
             DataSeriesUp = new Auxiliary.DelegateCommand(dataSeriesUp, canMoveDataSeriesUp);
             DataSeriesDown = new Auxiliary.DelegateCommand(dataSeriesDown, canMoveDataSeriesDown);
+            ReduceNumberOfPoints = new Auxiliary.DelegateCommand(reduceNumberOfPoints, canReduceNumberOfPoints);
+            RoundDataSeriesPoints = new Auxiliary.DelegateCommand(roundDataSeriesPoints, canRoundDataSeriesPoints);
             ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
             CreateGIF = new Auxiliary.DelegateCommand(createGIF);
             updateCompositeInfo();
@@ -87,6 +89,8 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand RemoveDataSeries { get; set; }
         public Auxiliary.DelegateCommand DataSeriesUp { get; set; }
         public Auxiliary.DelegateCommand DataSeriesDown { get; set; }
+        public Auxiliary.DelegateCommand ReduceNumberOfPoints { get; set; }
+        public Auxiliary.DelegateCommand RoundDataSeriesPoints { get; set; }
         public Auxiliary.DelegateCommand ApplyColorTemplate { get; set; }
         public Auxiliary.DelegateCommand CreateGIF { get; set; }
 
@@ -309,6 +313,30 @@ namespace SimplePlotterVM
             return result;
         }
 
+        private void reduceNumberOfPoints(object parameter)
+        {
+            //pendente
+        }
+
+        private bool canReduceNumberOfPoints()
+        {
+            bool result = true;
+            result &= algorithmParameter1 > 0;
+            return result;
+        }
+
+        private void roundDataSeriesPoints(object parameter)
+        {
+            //pendente
+        }
+
+        private bool canRoundDataSeriesPoints()
+        {
+            bool result = true;
+            result &= numberOfDecimalPlaces >= 0;
+            return result;
+        }
+
         private void applyColorTemplate(object parameter)
         {
             LongProcessRuning = true;
@@ -380,6 +408,67 @@ namespace SimplePlotterVM
             {
                 selectedDataSeries = value;
                 if (selectedDataSeries != null) updateSelectedDataSeriesPoints();
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int numberOfPoints;
+        public int NumberOfPoints
+        {
+            get { return numberOfPoints; }
+            set
+            {
+                numberOfPoints = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double algorithmParameter1;
+        public double AlgorithmParameter1
+        {
+            get { return algorithmParameter1; }
+            set
+            {
+                if (value >= 0)
+                {
+                    algorithmParameter1 = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private int numberOfDecimalPlaces;
+        public int NumberOfDecimalPlaces
+        {
+            get { return numberOfDecimalPlaces; }
+            set
+            {
+                if (value >= 0)
+                {
+                    numberOfDecimalPlaces = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private ObservableCollection<SimplePlotterMisc.Enums.CompressingAlgorithms> availableCompressingAlgorithms = new ObservableCollection<SimplePlotterMisc.Enums.CompressingAlgorithms>();
+        public ObservableCollection<SimplePlotterMisc.Enums.CompressingAlgorithms> AvailableCompressingAlgorithms
+        {
+            get { return availableCompressingAlgorithms; }
+            set
+            {
+                availableCompressingAlgorithms = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private SimplePlotterMisc.Enums.CompressingAlgorithms selectedCompressingAlgorithms;
+        public SimplePlotterMisc.Enums.CompressingAlgorithms SelectedCompressingAlgorithms
+        {
+            get { return selectedCompressingAlgorithms; }
+            set
+            {
+                selectedCompressingAlgorithms = value;
                 NotifyPropertyChanged();
             }
         }
@@ -1369,11 +1458,14 @@ namespace SimplePlotterVM
 
         private void updateCompositeInfo()
         {
+            foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.CompressingAlgorithms)))
+            {
+                AvailableCompressingAlgorithms.Add((SimplePlotterMisc.Enums.CompressingAlgorithms)item);
+            }
             foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.ColorTemplates)))
             {
                 AvailableColorTemplates.Add((SimplePlotterMisc.Enums.ColorTemplates)item);
             }
-            
             foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.AxisLabelFormats)))
             {
                 AvailableAxisLabelFormats.Add((SimplePlotterMisc.Enums.AxisLabelFormats)item);
@@ -1396,6 +1488,8 @@ namespace SimplePlotterVM
 
         private void setInitialConfig()
         {
+            algorithmParameter1 = 0.1;
+            NumberOfDecimalPlaces = 2;
             manualXMinAxisLimit = false;
             manualXMaxAxisLimit = false;
             manualYMinAxisLimit = false;
@@ -1465,6 +1559,7 @@ namespace SimplePlotterVM
                 {
                     selectedDataSeriesPoints.Add(item);
                 }
+                NumberOfPoints = selectedDataSeries.Points.Count;
             }
             NotifyPropertyChanged("SelectedDataSeriesPoints");
         }

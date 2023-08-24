@@ -70,6 +70,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Algorithm parameter 1.
+        /// </summary>
+        internal static string AlgorithmParameter1 {
+            get {
+                return ResourceManager.GetString("AlgorithmParameter1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         internal static string Apply {
@@ -255,6 +264,15 @@ namespace SPGlobalization.Resources {
         internal static string ColorTemplate {
             get {
                 return ResourceManager.GetString("ColorTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compressing algorithm.
+        /// </summary>
+        internal static string CompressingAlgorithm {
+            get {
+                return ResourceManager.GetString("CompressingAlgorithm", resourceCulture);
             }
         }
         
@@ -619,6 +637,24 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of decimal places.
+        /// </summary>
+        internal static string NumberOfDecimalPlaces {
+            get {
+                return ResourceManager.GetString("NumberOfDecimalPlaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of points.
+        /// </summary>
+        internal static string NumberOfPoints {
+            get {
+                return ResourceManager.GetString("NumberOfPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
         internal static string Open {
@@ -673,6 +709,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ramer-Douglas-Peucker.
+        /// </summary>
+        internal static string Ramer_Douglas_Peucker {
+            get {
+                return ResourceManager.GetString("Ramer_Douglas_Peucker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Red.
         /// </summary>
         internal static string Red {
@@ -705,6 +750,15 @@ namespace SPGlobalization.Resources {
         internal static string RedToGreen {
             get {
                 return ResourceManager.GetString("RedToGreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reduce number of points.
+        /// </summary>
+        internal static string ReduceNumberOfPoints {
+            get {
+                return ResourceManager.GetString("ReduceNumberOfPoints", resourceCulture);
             }
         }
         
@@ -750,6 +804,15 @@ namespace SPGlobalization.Resources {
         internal static string Rockwell {
             get {
                 return ResourceManager.GetString("Rockwell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Round.
+        /// </summary>
+        internal static string Round {
+            get {
+                return ResourceManager.GetString("Round", resourceCulture);
             }
         }
         

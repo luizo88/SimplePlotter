@@ -120,6 +120,9 @@
   <data name="AddDataSeries" xml:space="preserve">
     <value>Añadir serie de datos</value>
   </data>
+  <data name="AlgorithmParameter1" xml:space="preserve">
+    <value>Primer parámetro del alg.</value>
+  </data>
   <data name="Apply" xml:space="preserve">
     <value>Aplicar</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="ColorTemplate" xml:space="preserve">
     <value>Paleta de colores</value>
+  </data>
+  <data name="CompressingAlgorithm" xml:space="preserve">
+    <value>Algoritmo de compresión</value>
   </data>
   <data name="Consolas" xml:space="preserve">
     <value>Consolas</value>
@@ -303,6 +309,12 @@
   <data name="Name" xml:space="preserve">
     <value>Nombre</value>
   </data>
+  <data name="NumberOfDecimalPlaces" xml:space="preserve">
+    <value>Número de decimales</value>
+  </data>
+  <data name="NumberOfPoints" xml:space="preserve">
+    <value>Número de puntos</value>
+  </data>
   <data name="Open" xml:space="preserve">
     <value>Abrir</value>
   </data>
@@ -321,6 +333,9 @@
   <data name="PT" xml:space="preserve">
     <value>PT</value>
   </data>
+  <data name="Ramer_Douglas_Peucker" xml:space="preserve">
+    <value>Ramer-Douglas-Peucker</value>
+  </data>
   <data name="Red" xml:space="preserve">
     <value>Rojo</value>
   </data>
@@ -332,6 +347,9 @@
   </data>
   <data name="RedToGreen" xml:space="preserve">
     <value>Rojo a verde</value>
+  </data>
+  <data name="ReduceNumberOfPoints" xml:space="preserve">
+    <value>Reducir número de puntos</value>
   </data>
   <data name="RefreshPlot" xml:space="preserve">
     <value>Actualizar el gráfico</value>
@@ -347,6 +365,9 @@
   </data>
   <data name="Rockwell" xml:space="preserve">
     <value>Rockwell</value>
+  </data>
+  <data name="Round" xml:space="preserve">
+    <value>Redondear</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Guardar</value>

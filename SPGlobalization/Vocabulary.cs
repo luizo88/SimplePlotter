@@ -189,6 +189,14 @@ namespace SPGlobalization
         public string Y2Limits { get { return string.Format("{0}", Resources.Resources.Y2Limits); } }
         public string ShowLegendArrows { get { return string.Format("{0}", Resources.Resources.ShowLegendArrows); } }
         public string InterpolateData { get { return string.Format("{0}", Resources.Resources.InterpolateData); } }
+        public string NumberOfPoints { get { return string.Format("{0}", Resources.Resources.NumberOfPoints); } }
+        public string CompressingAlgorithm { get { return string.Format("{0}", Resources.Resources.CompressingAlgorithm); } }
+        public string AlgorithmParameter1 { get { return string.Format("{0}", Resources.Resources.AlgorithmParameter1); } }
+        public string NumberOfDecimalPlaces { get { return string.Format("{0}", Resources.Resources.NumberOfDecimalPlaces); } }
+        public string ReduceNumberOfPoints { get { return string.Format("{0}", Resources.Resources.ReduceNumberOfPoints); } }
+        public string Round { get { return string.Format("{0}", Resources.Resources.Round); } }
+        public string Ramer_Douglas_Peucker { get { return string.Format("{0}", Resources.Resources.Ramer_Douglas_Peucker); } }
+        
 
         #endregion
 
