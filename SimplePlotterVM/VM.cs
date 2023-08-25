@@ -28,7 +28,7 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.3.2.0";
+            Version = "v. 1.3.3.0";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
@@ -178,6 +178,7 @@ namespace SimplePlotterVM
                 SelectedGridLinesColor = dtob.SelectedGridLinesColor;
                 CustomGridLinesColor = dtob.CustomGridLinesColor;
                 GridLinesColorRGBDescription = dtob.GridLinesColorRGBDescription;
+                SelectedGIFType = dtob.SelectedGIFType;
                 GIFTotalTime = dtob.GIFTotalTime;
                 GIFFramesPerSecond = dtob.GIFFramesPerSecond;
                 InterpolateData = dtob.InterpolateData;
@@ -208,7 +209,7 @@ namespace SimplePlotterVM
                     selectedBackColor, customBackColor, backColorRGBDescription,
                     selectedBackgroundColor, customBackgroundColor, backgroundColorRGBDescription,
                     selectedGridLinesColor, customGridLinesColor, gridLinesColorRGBDescription,
-                    gifTotalTime, gifFramesPerSecond, interpolateData);
+                    selectedGIFType, gifTotalTime, gifFramesPerSecond, interpolateData);
                 SimplePlotterData.FileManager.SaveXML(dtOb, myBrowser.FileName);
             }
         }
@@ -371,17 +372,47 @@ namespace SimplePlotterVM
             myBrowser.FileName = string.Format("ChartGIF_{0}x{1}.gif", ChartWidth, ChartHeight);
             if (myBrowser.ShowDialog() == true)
             {
-                List<BitmapSource> frames = new List<BitmapSource>();
-                SimplePlotterMisc.DataSeriesController.Instance.GenerateGIFPointsForAllSeries(gifNumberOfPoints, interpolateData);
-                for (int i = 0; i < gifNumberOfPoints; i++)
+                switch (selectedGIFType)
                 {
-                    updateEntirePlotToGIF(i + 1);
-                    var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
-                    frames.Add(pngExporter.ExportToBitmap(plotObj));
+                    case SimplePlotterMisc.Enums.GIFTypes.TimeRoll:
+                        List<BitmapSource> frames1 = new List<BitmapSource>();
+                        SimplePlotterMisc.DataSeriesController.Instance.GenerateGIFPointsForAllSeries(gifNumberOfPoints, interpolateData);
+                        for (int i = 0; i < gifNumberOfPoints; i++)
+                        {
+                            updateEntirePlotToGIF(i + 1);
+                            var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
+                            frames1.Add(pngExporter.ExportToBitmap(plotObj));
+                        }
+                        MagickImageCollection collection1 = GIFGen.GIFGen.GetGIFObject(frames1, true, 100 / gifFramesPerSecond);
+                        collection1.Write(myBrowser.FileName);
+                        collection1.Dispose();
+                        break;
+                    case SimplePlotterMisc.Enums.GIFTypes.SeriesRoll:
+                        List<BitmapSource> frames2 = new List<BitmapSource>();
+                        double numberOfSeries = (double)SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Count;
+                        double timePerSerie = gifTotalTime / numberOfSeries;
+                        List<DataSeriesObj> dsl = new List<DataSeriesObj>(SimplePlotterMisc.DataSeriesController.Instance.DataSeries);
+                        for (int i = 0; i < numberOfSeries; i++)
+                        {
+                            SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Clear();
+                            SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Add(dsl[i]);
+                            updateEntirePlot();
+                            var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
+                            frames2.Add(pngExporter.ExportToBitmap(plotObj));
+                        }
+                        SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Clear();
+                        foreach (var item in dsl)
+                        {
+                            SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Add(item);
+                        }
+                        updateEntirePlot();
+                        MagickImageCollection collection2 = GIFGen.GIFGen.GetGIFObject(frames2, true, (int)(100 * timePerSerie));
+                        collection2.Write(myBrowser.FileName);
+                        collection2.Dispose();
+                        break;
+                    default: throw new Exception("Not implemented GIF type.");
                 }
-                MagickImageCollection collection = GIFGen.GIFGen.GetGIFObject(frames, true, 100 / gifFramesPerSecond);
-                collection.Write(myBrowser.FileName);
-                collection.Dispose();
+                
             }
         }
 
@@ -1411,6 +1442,40 @@ namespace SimplePlotterVM
 
         #region GIF
 
+        private ObservableCollection<SimplePlotterMisc.Enums.GIFTypes> availableGIFTypes = new ObservableCollection<SimplePlotterMisc.Enums.GIFTypes>();
+        public ObservableCollection<SimplePlotterMisc.Enums.GIFTypes> AvailableGIFTypes
+        {
+            get { return availableGIFTypes; }
+            set
+            {
+                availableGIFTypes = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private SimplePlotterMisc.Enums.GIFTypes selectedGIFType;
+        public SimplePlotterMisc.Enums.GIFTypes SelectedGIFType
+        {
+            get { return selectedGIFType; }
+            set
+            {
+                selectedGIFType = value;
+                switch (selectedGIFType)
+                {
+                    case SimplePlotterMisc.Enums.GIFTypes.TimeRoll:
+                        NeedGifFramesPerSecond = true;
+                        NeedGifInterpolateData = true;
+                        break;
+                    case SimplePlotterMisc.Enums.GIFTypes.SeriesRoll:
+                        NeedGifFramesPerSecond = false;
+                        NeedGifInterpolateData = false;
+                        break;
+                    default: throw new Exception("Not implemented GIF type.");
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
         private double gifTotalTime;
         public double GIFTotalTime
         {
@@ -1423,6 +1488,17 @@ namespace SimplePlotterVM
                     GIFNumberOfPoints = computeNumberOfFrames(gifTotalTime, gifFramesPerSecond);
                     NotifyPropertyChanged();
                 }
+            }
+        }
+
+        private bool needGifFramesPerSecond;
+        public bool NeedGifFramesPerSecond
+        {
+            get { return needGifFramesPerSecond; }
+            set
+            {
+                needGifFramesPerSecond = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -1448,6 +1524,17 @@ namespace SimplePlotterVM
             set
             {
                 gifNumberOfPoints = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool needGifInterpolateData;
+        public bool NeedGifInterpolateData
+        {
+            get { return needGifFramesPerSecond; }
+            set
+            {
+                needGifInterpolateData = value;
                 NotifyPropertyChanged();
             }
         }
@@ -1495,6 +1582,10 @@ namespace SimplePlotterVM
             foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.Colors)))
             {
                 AvailableColors.Add((SimplePlotterMisc.Enums.Colors)item);
+            }
+            foreach (var item in Enum.GetValues(typeof(SimplePlotterMisc.Enums.GIFTypes)))
+            {
+                AvailableGIFTypes.Add((SimplePlotterMisc.Enums.GIFTypes)item);
             }
             setInitialConfig();
         }
@@ -1546,6 +1637,7 @@ namespace SimplePlotterVM
             SelectedGridLinesColor = SimplePlotterMisc.Enums.Colors.Gray;
             CustomGridLinesColor = false;
             selectedLegendPosition = LegendPosition.TopRight;
+            selectedGIFType = SimplePlotterMisc.Enums.GIFTypes.TimeRoll;
             GIFTotalTime = 1;
             GIFFramesPerSecond = 10;
             InterpolateData = false;

@@ -7,7 +7,7 @@
         xmlns:oxy="http://oxyplot.org/wpf"
         x:Class="SimplePlotterView.MainWindow"
         mc:Ignorable="d"
-        Title="SimplePlotter" Height="900" Width="1200" WindowState="Maximized" Icon="Resources/SimplePlotterIcon16x16.ico">
+        Title="SimplePlotter" Height="1050" Width="1200" WindowState="Maximized" Icon="Resources/SimplePlotterIcon16x16.ico">
     <Window.Resources>
         <ResourceDictionary Source="pack://application:,,,/SimplePlotterView;component/WindowsResources/ResourceDictionary.xaml" />
     </Window.Resources>
@@ -447,18 +447,20 @@
                                 <TextBlock Name="txtCreateGIF" Text="{Binding Vocabulary.CreateGIF, FallbackValue=CreateGIF}" FontWeight="Bold" HorizontalAlignment="Center"/>
                             </DockPanel>
                         </Expander.Header>
-                        <Grid Height="130">
+                        <Grid Height="160">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="220"/>
                                 <ColumnDefinition Width="300"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="{Binding Vocabulary.TotalTime, FallbackValue=TotalTime}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
-                            <Label Content="{Binding Vocabulary.FramesPerSecond, FallbackValue=FramesPerSecond}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
-                            <Label Content="{Binding Vocabulary.InterpolateData, FallbackValue=InterpolateData}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
-                            <TextBox Text="{Binding GIFTotalTime, UpdateSourceTrigger=LostFocus}" Margin="20,10,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <TextBox Text="{Binding GIFFramesPerSecond, UpdateSourceTrigger=LostFocus}" Margin="20,40,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
-                            <CheckBox IsChecked="{Binding InterpolateData}" Margin="20,73,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15"/>
-                            <Button Content="{Binding Vocabulary.CreateGIF, FallbackValue=CreateGIF}" Command="{Binding CreateGIF}" Margin="20,100,210,0" VerticalAlignment="Top" Grid.Column="1" />
+                            <Label Content="{Binding Vocabulary.GIFType, FallbackValue=GIFType}" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.TotalTime, FallbackValue=TotalTime}" Margin="10,40,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.FramesPerSecond, FallbackValue=FramesPerSecond}" Margin="10,70,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <Label Content="{Binding Vocabulary.InterpolateData, FallbackValue=InterpolateData}" Margin="10,100,10,0" VerticalAlignment="Top" Grid.Column="0"/>
+                            <ComboBox ItemsSource="{Binding AvailableGIFTypes}" SelectedItem="{Binding SelectedGIFType}" IsEnabled="{Binding StandardBackgroundColor}" Margin="20,10,120,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding GIFTotalTime, UpdateSourceTrigger=LostFocus}" Margin="20,40,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23"/>
+                            <TextBox Text="{Binding GIFFramesPerSecond, UpdateSourceTrigger=LostFocus}" Margin="20,70,210,0" VerticalAlignment="Top" Grid.Column="1" Height="23" IsEnabled="{Binding NeedGifFramesPerSecond}"/>
+                            <CheckBox IsChecked="{Binding InterpolateData}" Margin="20,103,20,0" VerticalAlignment="Top" Grid.Column="1" Height="15" IsEnabled="{Binding NeedGifInterpolateData}"/>
+                            <Button Content="{Binding Vocabulary.CreateGIF, FallbackValue=CreateGIF}" Command="{Binding CreateGIF}" Margin="20,130,210,0" VerticalAlignment="Top" Grid.Column="1" />
                         </Grid>
                     </Expander>
                 </Grid>

@@ -198,7 +198,9 @@ namespace SPGlobalization
         public string Ramer_Douglas_Peucker { get { return string.Format("{0}", Resources.Resources.Ramer_Douglas_Peucker); } }
         public string Marker { get { return string.Format("{0}", Resources.Resources.Marker); } }
         public string MarkerSize { get { return string.Format("{0}", Resources.Resources.MarkerSize); } }
-        
+        public string GIFType { get { return string.Format("{0}", Resources.Resources.GIFType); } }
+        public string TimeRoll { get { return string.Format("{0}", Resources.Resources.TimeRoll); } }
+        public string SeriesRoll { get { return string.Format("{0}", Resources.Resources.SeriesRoll); } }
 
 
         #endregion

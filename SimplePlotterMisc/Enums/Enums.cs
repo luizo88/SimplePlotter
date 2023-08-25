@@ -101,4 +101,13 @@ namespace SimplePlotterMisc.Enums
         Ramer_Douglas_Peucker = 0
     }
 
+    [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+    public enum GIFTypes
+    {
+        [LocalizedDescription("TimeRoll")]
+        TimeRoll = 0,
+        [LocalizedDescription("SeriesRoll")]
+        SeriesRoll = 1
+    }
+
 }

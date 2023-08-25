@@ -78,6 +78,7 @@ namespace SimplePlotterData
         public SimplePlotterMisc.Enums.Colors SelectedGridLinesColor { get; set; }
         public bool CustomGridLinesColor { get; set; }
         public string GridLinesColorRGBDescription { get; set; }
+        public SimplePlotterMisc.Enums.GIFTypes SelectedGIFType { get; set; }
         public double GIFTotalTime { get; set; }
         public int GIFFramesPerSecond { get; set; }
         public bool InterpolateData { get; set; }
@@ -95,7 +96,7 @@ namespace SimplePlotterData
             SimplePlotterMisc.Enums.Colors selectedBackColor, bool customBackColor, string backColorRGBDescription,
             SimplePlotterMisc.Enums.Colors selectedBackgroundColor, bool customBackgroundColor, string backgroundColorRGBDescription,
             SimplePlotterMisc.Enums.Colors selectedGridLinesColor, bool customGridLinesColor, string gridLinesColorRGBDescription,
-            double gifTotalTime, int gifFramesPerSecond, bool interpolateData)
+            SimplePlotterMisc.Enums.GIFTypes selectedGIFType, double gifTotalTime, int gifFramesPerSecond, bool interpolateData)
         {
             //DataSeries
             DataSeriesName = new List<string>();
@@ -184,6 +185,7 @@ namespace SimplePlotterData
             SelectedGridLinesColor = selectedGridLinesColor;
             CustomGridLinesColor = customGridLinesColor;
             GridLinesColorRGBDescription = gridLinesColorRGBDescription;
+            SelectedGIFType = selectedGIFType;
             GIFTotalTime = gifTotalTime;
             GIFFramesPerSecond = gifFramesPerSecond;
             InterpolateData = interpolateData;
@@ -194,7 +196,7 @@ namespace SimplePlotterData
                   false, false, false, SimplePlotterMisc.Enums.AxisLabelFormats.Default, SimplePlotterMisc.Enums.AxisLabelFormats.Default,
                   SimplePlotterMisc.Enums.AxisLabelFormats.Default, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0, 0, 0, "", false, LegendPosition.TopRight, false,
                   SimplePlotterMisc.Enums.Fonts.TimesNewRoman, 0, 0, 0, 0, 0, SimplePlotterMisc.Enums.Colors.White, false, "255|255|255",
-                  SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", 0, 0, false)
+                  SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", SimplePlotterMisc.Enums.GIFTypes.TimeRoll, 0, 0, false)
         { }
 
     }

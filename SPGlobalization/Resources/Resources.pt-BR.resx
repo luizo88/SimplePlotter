@@ -249,6 +249,9 @@
   <data name="Garamond" xml:space="preserve">
     <value>Garamond</value>
   </data>
+  <data name="GIFType" xml:space="preserve">
+    <value>Tipo do GIF</value>
+  </data>
   <data name="Gray" xml:space="preserve">
     <value>Cinza</value>
   </data>
@@ -393,6 +396,9 @@
   <data name="SecondY" xml:space="preserve">
     <value>Segundo Y</value>
   </data>
+  <data name="SeriesRoll" xml:space="preserve">
+    <value>Através das séries</value>
+  </data>
   <data name="ShowLegend" xml:space="preserve">
     <value>Mostrar legenda</value>
   </data>
@@ -407,6 +413,9 @@
   </data>
   <data name="Thick" xml:space="preserve">
     <value>Espessura</value>
+  </data>
+  <data name="TimeRoll" xml:space="preserve">
+    <value>Através do tempo</value>
   </data>
   <data name="TimesNewRoman" xml:space="preserve">
     <value>Times New Roman</value>

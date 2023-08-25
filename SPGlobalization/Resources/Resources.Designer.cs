@@ -457,6 +457,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GIF type.
+        /// </summary>
+        internal static string GIFType {
+            get {
+                return ResourceManager.GetString("GIFType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gray.
         /// </summary>
         internal static string Gray {
@@ -889,6 +898,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Series roll.
+        /// </summary>
+        internal static string SeriesRoll {
+            get {
+                return ResourceManager.GetString("SeriesRoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show legend.
         /// </summary>
         internal static string ShowLegend {
@@ -930,6 +948,15 @@ namespace SPGlobalization.Resources {
         internal static string Thick {
             get {
                 return ResourceManager.GetString("Thick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time roll.
+        /// </summary>
+        internal static string TimeRoll {
+            get {
+                return ResourceManager.GetString("TimeRoll", resourceCulture);
             }
         }
         
