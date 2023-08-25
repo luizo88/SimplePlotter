@@ -315,25 +315,31 @@ namespace SimplePlotterVM
 
         private void reduceNumberOfPoints(object parameter)
         {
-            //pendente
+            SimplePlotterMisc.DataSeriesController.Instance.AddNewSeriesUsingCompressingAlgorithm(selectedDataSeries, selectedCompressingAlgorithms, algorithmParameter1);
+            updateDataSeries();
+            updateEntirePlot();
         }
 
         private bool canReduceNumberOfPoints()
         {
             bool result = true;
             result &= algorithmParameter1 > 0;
+            result &= selectedDataSeries != null;
             return result;
         }
 
         private void roundDataSeriesPoints(object parameter)
         {
-            //pendente
+            SimplePlotterMisc.DataSeriesController.Instance.AddNewSeriesRounded(selectedDataSeries, numberOfDecimalPlaces);
+            updateDataSeries();
+            updateEntirePlot();
         }
 
         private bool canRoundDataSeriesPoints()
         {
             bool result = true;
             result &= numberOfDecimalPlaces >= 0;
+            result &= selectedDataSeries != null;
             return result;
         }
 

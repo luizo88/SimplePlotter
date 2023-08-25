@@ -201,7 +201,7 @@
                                 <TextBox Text="{Binding AlgorithmParameter1, UpdateSourceTrigger=LostFocus}" Margin="220,280,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
                                 <Button Command="{Binding ReduceNumberOfPoints}" Content="{Binding Vocabulary.ReduceNumberOfPoints, FallbackValue=ReduceNumberOfPoints}" Margin="220,310,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
                                 <TextBox Text="{Binding NumberOfDecimalPlaces, UpdateSourceTrigger=LostFocus}" Margin="220,340,130,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
-                                <Button Command="{Binding Round}" Content="{Binding Vocabulary.Round, FallbackValue=Round}" Margin="300,340,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
+                                <Button Command="{Binding RoundDataSeriesPoints}" Content="{Binding Vocabulary.Round, FallbackValue=Round}" Margin="300,340,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
                                 <ListView Margin="5,200,5,0" ItemsSource="{Binding SelectedDataSeriesPoints}" Height="265" VerticalAlignment="Top" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=3}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="{x:Type ListViewItem}">

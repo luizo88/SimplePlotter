@@ -54,6 +54,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RamerDouglasPeuckerAlgorithm.cs" />
     <Compile Include="ColorTemplateController.cs" />
     <Compile Include="DataSeriesController.cs" />
     <Compile Include="Enums\EnumBindingSourceExtension.cs" />

@@ -66,11 +66,31 @@ namespace SimplePlotterMisc
 
         #region PRIVATE METHODS
 
-        private DataSeriesObj ExecuteRamerDouglasPeuckerAlgorithm(DataSeriesObj oritinalDataSeries)
+        /// <summary>
+        /// Returns a new list of points based on the original points, but compressed (containing fewer points).
+        /// </summary>
+        /// <param name="originalPoints">The base list of points.</param>
+        /// <param name="epsilon">The parameter that defines the compression. Greater the parameter, greater the compression but lower the accuracy.</param>
+        /// <returns></returns>
+        private List<PointObj> executeRamerDouglasPeuckerAlgorithm(List<PointObj> originalPoints, double epsilon)
         {
-            //https://stackoverflow.com/questions/7980586/how-to-reduce-the-number-of-points-in-a-curve-while-preserving-its-overall-shape
-            //https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
-            //pendente
+            return RamerDouglasPeuckerAlgorithm.RamerDouglasPeucker(originalPoints, epsilon);
+        }
+
+        /// <summary>
+        /// Returns a new list of points, but rounded.
+        /// </summary>
+        /// <param name="originalPoints">The base list of points.</param>
+        /// <param name="decimalPlaces">The number of decimal places to round each coordinate.</param>
+        /// <returns></returns>
+        private List<PointObj> roundDataPoints(List<PointObj> originalPoints, int decimalPlaces)
+        {
+            List<PointObj> result = new List<PointObj>();
+            foreach (var item in originalPoints)
+            {
+                result.Add(new PointObj(Math.Round(item.X, decimalPlaces), Math.Round(item.Y, decimalPlaces)));
+            }
+            return result;
         }
 
         #endregion
@@ -124,6 +144,52 @@ namespace SimplePlotterMisc
             int index = dataSeries.IndexOf(dataSeriesToMove);
             dataSeries.RemoveAt(index);
             dataSeries.Insert(index + 1, dataSeriesToMove);
+        }
+
+        /// <summary>
+        /// Adds a new data series just after the selected data series, but compressed.
+        /// </summary>
+        /// <param name="dataSeriesToCompress">The data series to be used as a base.</param>
+        /// <param name="compressingAlgorithm">The selected compressing algorithm.</param>
+        /// <param name="parameter1">The first parameter to be used in the compressing algorithm.</param>
+        public void AddNewSeriesUsingCompressingAlgorithm(DataSeriesObj dataSeriesToCompress, Enums.CompressingAlgorithms compressingAlgorithm, double parameter1)
+        {
+            int index = dataSeries.IndexOf(dataSeriesToCompress);
+            switch (compressingAlgorithm)
+            {
+                case Enums.CompressingAlgorithms.Ramer_Douglas_Peucker:
+                    List<PointObj> np = executeRamerDouglasPeuckerAlgorithm(dataSeriesToCompress.Points, parameter1);
+                    var linqX = from p
+                                in np
+                                select p.X;
+                    var linqY = from p
+                                in np
+                                select p.Y;
+                    DataSeriesObj ds = new DataSeriesObj(dataSeriesToCompress.Name + "_new", linqX.ToList(), linqY.ToList());
+                    dataSeries.Insert(index + 1, ds);
+                    break;
+                default:
+                    throw new Exception("Not implemented compressing algorithm.");
+            }
+        }
+
+        /// <summary>
+        /// Adds a new data series just after the selected data series, but rounded.
+        /// </summary>
+        /// <param name="dataSeriesToRound">The data series to be used as a base.</param>
+        /// <param name="decimalPlaces">The number of decimal places.</param>
+        public void AddNewSeriesRounded(DataSeriesObj dataSeriesToRound, int decimalPlaces)
+        {
+            int index = dataSeries.IndexOf(dataSeriesToRound);
+            List<PointObj> np = roundDataPoints(dataSeriesToRound.Points, decimalPlaces);
+            var linqX = from p
+                        in np
+                        select p.X;
+            var linqY = from p
+                        in np
+                        select p.Y;
+            DataSeriesObj ds = new DataSeriesObj(dataSeriesToRound.Name + "_new", linqX.ToList(), linqY.ToList());
+            dataSeries.Insert(index + 1, ds);
         }
 
         /// <summary>
