@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataObject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <DataSeriesName />
+  <DataSeriesScaleX />
+  <DataSeriesScaleY />
+  <DataSeriesThick />
+  <DataSeriesLineStyle />
+  <DataSeriesMarkerType />
+  <DataSeriesMarkerSize />
+  <DataSeriesColor />
+  <DataSeriesCustomColor />
+  <DataSeriesRGBDescription />
+  <DataSeriesLegend />
+  <DataSeriesSecondY />
+  <DataSeriesXPoints />
+  <DataSeriesYPoints />
+  <ManualXMinAxisLimit>true</ManualXMinAxisLimit>
+  <ManualXMaxAxisLimit>true</ManualXMaxAxisLimit>
+  <XAxisMin>0</XAxisMin>
+  <XAxisMax>1</XAxisMax>
+  <ManualYMinAxisLimit>true</ManualYMinAxisLimit>
+  <ManualYMaxAxisLimit>true</ManualYMaxAxisLimit>
+  <YAxisMin>-15</YAxisMin>
+  <YAxisMax>15</YAxisMax>
+  <ManualY2MinAxisLimit>false</ManualY2MinAxisLimit>
+  <ManualY2MaxAxisLimit>false</ManualY2MaxAxisLimit>
+  <Y2AxisMin>0</Y2AxisMin>
+  <Y2AxisMax>0</Y2AxisMax>
+  <XAxisTitle>Winding length [p.u.]</XAxisTitle>
+  <YAxisTitle>Voltage [p.u.]</YAxisTitle>
+  <Y2AxisTitle>Y2</Y2AxisTitle>
+  <XLogarithmicScale>false</XLogarithmicScale>
+  <YLogarithmicScale>false</YLogarithmicScale>
+  <Y2LogarithmicScale>false</Y2LogarithmicScale>
+  <SelectedXAxisLabelFormat>Default</SelectedXAxisLabelFormat>
+  <SelectedYAxisLabelFormat>Default</SelectedYAxisLabelFormat>
+  <SelectedY2AxisLabelFormat>Default</SelectedY2AxisLabelFormat>
+  <XMajorGridLines>false</XMajorGridLines>
+  <YMajorGridLines>false</YMajorGridLines>
+  <Y2MajorGridLines>false</Y2MajorGridLines>
+  <XMinorGridLines>false</XMinorGridLines>
+  <YMinorGridLines>false</YMinorGridLines>
+  <Y2MinorGridLines>false</Y2MinorGridLines>
+  <XMajorStep>0</XMajorStep>
+  <YMajorStep>0</YMajorStep>
+  <Y2MajorStep>0</Y2MajorStep>
+  <XMinorStep>0</XMinorStep>
+  <YMinorStep>0</YMinorStep>
+  <Y2MinorStep>0</Y2MinorStep>
+  <ChartWidth>500</ChartWidth>
+  <ChartHeight>500</ChartHeight>
+  <ChartTitle>1st mode | no varistors</ChartTitle>
+  <ShowLegend>false</ShowLegend>
+  <SelectedLegendPosition>TopRight</SelectedLegendPosition>
+  <ShowLegendArrows>false</ShowLegendArrows>
+  <SelectedFont>TimesNewRoman</SelectedFont>
+  <XAxisFontSize>0</XAxisFontSize>
+  <YAxisFontSize>0</YAxisFontSize>
+  <Y2AxisFontSize>0</Y2AxisFontSize>
+  <TitleFontSize>0</TitleFontSize>
+  <LegendFontSize>0</LegendFontSize>
+  <SelectedBackColor>White</SelectedBackColor>
+  <CustomBackColor>false</CustomBackColor>
+  <BackColorRGBDescription>255|255|255</BackColorRGBDescription>
+  <SelectedBackgroundColor>White</SelectedBackgroundColor>
+  <CustomBackgroundColor>false</CustomBackgroundColor>
+  <BackgroundColorRGBDescription>255|255|255</BackgroundColorRGBDescription>
+  <SelectedGridLinesColor>Gray</SelectedGridLinesColor>
+  <CustomGridLinesColor>false</CustomGridLinesColor>
+  <GridLinesColorRGBDescription>160|160|160</GridLinesColorRGBDescription>
+  <SelectedGIFType>SeriesRoll</SelectedGIFType>
+  <GIFTotalTime>5</GIFTotalTime>
+  <GIFFramesPerSecond>10</GIFFramesPerSecond>
+  <InterpolateData>false</InterpolateData>
+</DataObject>

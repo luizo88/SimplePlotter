@@ -1,0 +1,17 @@
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\bin\Release\SPGlobalization.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\bin\Release\SPGlobalization.pdb
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\bin\Release\pt-BR\SPGlobalization.resources.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\bin\Release\es\SPGlobalization.resources.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\bin\Release\Auxiliary.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\bin\Release\Auxiliary.pdb
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\obj\Release\SPGlobalization.csproj.AssemblyReference.cache
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\obj\Release\SPGlobalization.Resources.Resources.resources
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\obj\Release\SPGlobalization.Resources.Resources.pt-BR.resources
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\obj\Release\SPGlobalization.Resources.Resources.es.resources
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\obj\Release\SPGlobalization.csproj.GenerateResource.cache
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\obj\Release\SPGlobalization.csproj.CoreCompileInputs.cache
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\obj\Release\pt-BR\SPGlobalization.resources.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\obj\Release\es\SPGlobalization.resources.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\obj\Release\SPGlobalization.csproj.CopyComplete
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\obj\Release\SPGlobalization.dll
+C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SPGlobalization\obj\Release\SPGlobalization.pdb

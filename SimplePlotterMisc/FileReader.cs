@@ -20,9 +20,9 @@ namespace SimplePlotterMisc
         /// </summary>
         /// <param name="pathfile">The full path of the file.</param>
         /// <returns></returns>
-        public static Tuple<List<double>, List<double>> GetFileData(string pathfile)
+        public static List<Tuple<List<double>, List<double>>> GetFileData(string pathfile)
         {
-            Tuple<List<double>, List<double>> result = new Tuple<List<double>, List<double>>(new List<double>(), new List<double>());
+            List<Tuple<List<double>, List<double>>> result = new List<Tuple<List<double>, List<double>>>();
             using (StreamReader reader = new StreamReader(pathfile))
             {
                 //pending: add multicolumn files
@@ -58,19 +58,28 @@ namespace SimplePlotterMisc
                     }
                     //adds the first line
                     string[] line = firstLine.Split(separator.ToCharArray());
-                    double x = double.Parse(line[0].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
-                    double y = double.Parse(line[1].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
-                    result.Item1.Add(x);
-                    result.Item2.Add(y);
+                    for (int i = 1; i < line.Count(); i++)
+                    {
+                        Tuple<List<double>, List<double>> serie = new Tuple<List<double>, List<double>>(new List<double>(), new List<double>());
+                        double x = double.Parse(line[0].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
+                        double y = double.Parse(line[i].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
+                        serie.Item1.Add(x);
+                        serie.Item2.Add(y);
+                        result.Add(serie);
+                    }
                 }
                 //add remaining lines
                 while (reader.Peek() >= 0)
                 {
                     string[] line = reader.ReadLine().Split(separator.ToCharArray());
-                    double x = double.Parse(line[0].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
-                    double y = double.Parse(line[1].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
-                    result.Item1.Add(x);
-                    result.Item2.Add(y);
+                    for (int i = 1; i < line.Count(); i++)
+                    {
+                        double x = double.Parse(line[0].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
+                        double y = double.Parse(line[i].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
+                        result[i - 1].Item1.Add(x);
+                        result[i - 1].Item2.Add(y);
+                    }
+                    
                 }
             }
             return result;
