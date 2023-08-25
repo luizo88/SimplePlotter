@@ -20,9 +20,9 @@ namespace SimplePlotterMisc
         /// </summary>
         /// <param name="pathfile">The full path of the file.</param>
         /// <returns></returns>
-        public static List<Tuple<List<double>, List<double>>> GetFileData(string pathfile)
+        public static List<Tuple<List<double>, List<double>, string>> GetFileData(string pathfile)
         {
-            List<Tuple<List<double>, List<double>>> result = new List<Tuple<List<double>, List<double>>>();
+            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
             using (StreamReader reader = new StreamReader(pathfile))
             {
                 //pending: add multicolumn files
@@ -30,10 +30,20 @@ namespace SimplePlotterMisc
                 string firstLine = "";
                 bool onFirstNumber = true;
                 bool onSecondNumber = false;
+                bool hasHeader = false;
+                string headerLine = "";
+                List<string> headers = new List<string>();
                 //finds the separator
                 if (reader.Peek() >= 0)
                 {
                     firstLine = reader.ReadLine();
+                    //check if it's a header
+                    if (!digitList.Contains(firstLine[0]))
+                    {
+                        hasHeader = true;
+                        headerLine = firstLine;
+                        firstLine = reader.ReadLine();
+                    }
                     foreach (var item in firstLine)
                     {
                         if (!onSecondNumber)
@@ -56,11 +66,28 @@ namespace SimplePlotterMisc
                             }
                         }
                     }
-                    //adds the first line
                     string[] line = firstLine.Split(separator.ToCharArray());
+                    //read the headers
+                    if (hasHeader)
+                    {
+                        string[] head = headerLine.Split(separator.ToCharArray());
+                        for (int i = 0; i < head.Count(); i++)
+                        {
+                            headers.Add(head[i]);
+                        }
+                    }
+                    else
+                    {
+                        int nSeries = line.Count() - 1;
+                        for (int i = 0; i < nSeries + 1; i++)
+                        {
+                            headers.Add("");
+                        }
+                    }
+                    //adds the first line
                     for (int i = 1; i < line.Count(); i++)
                     {
-                        Tuple<List<double>, List<double>> serie = new Tuple<List<double>, List<double>>(new List<double>(), new List<double>());
+                        Tuple<List<double>, List<double>, string> serie = new Tuple<List<double>, List<double>, string>(new List<double>(), new List<double>(), headers[i]);
                         double x = double.Parse(line[0].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
                         double y = double.Parse(line[i].Replace(',', '.'), System.Globalization.CultureInfo.InvariantCulture);
                         serie.Item1.Add(x);
@@ -79,7 +106,6 @@ namespace SimplePlotterMisc
                         result[i - 1].Item1.Add(x);
                         result[i - 1].Item2.Add(y);
                     }
-                    
                 }
             }
             return result;

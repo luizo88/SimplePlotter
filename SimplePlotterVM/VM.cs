@@ -28,7 +28,7 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.3.4.0";
+            Version = "v. 1.3.5.0";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
@@ -269,7 +269,15 @@ namespace SimplePlotterVM
                     var series = SimplePlotterMisc.FileReader.GetFileData(item);
                     for (int i = 0; i < series.Count; i++)
                     {
-                        string nameAux = string.Format("{0}{1}", name, series.Count == 1 ? "" : (i + 1).ToString());
+                        string nameAux = "";
+                        if (series[i].Item3 == "")
+                        {
+                            nameAux = string.Format("{0}{1}", name, series.Count == 1 ? "" : (i + 1).ToString());
+                        }
+                        else
+                        {
+                            nameAux = series[i].Item3;
+                        }
                         SimplePlotterMisc.DataSeriesController.Instance.AddDataSeries(nameAux, series[i].Item1, series[i].Item2);
                     }
                 }
