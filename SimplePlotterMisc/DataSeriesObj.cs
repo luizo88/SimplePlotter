@@ -22,7 +22,10 @@ namespace SimplePlotterMisc
         private double thick;
         private List<OxyPlot.LineStyle> availableLineStyles = new List<OxyPlot.LineStyle>();
         private OxyPlot.LineStyle lineStyle;
+        private List<OxyPlot.MarkerType> availableMarkerTypes = new List<OxyPlot.MarkerType>();
+        private OxyPlot.MarkerType markerType;
         private List<Enums.Colors> availableColors = new List<Enums.Colors>();
+        private double markerSize;
         private Enums.Colors color;
         private bool customColor;
         private bool standardColor;
@@ -45,12 +48,21 @@ namespace SimplePlotterMisc
             this.xScale = 1;
             this.yScale = 1;
             updatePointList(xScale, yScale, xPoints, yPoints);
-            this.thick = 1.5;
+            this.thick = GetDefaultDataSeriesThick();
             foreach (var item in Enum.GetValues(typeof(OxyPlot.LineStyle)))
             {
                 availableLineStyles.Add((OxyPlot.LineStyle)item);
             }
             this.lineStyle = OxyPlot.LineStyle.Solid;
+            foreach (var item in Enum.GetValues(typeof(OxyPlot.MarkerType)))
+            {
+                if ((OxyPlot.MarkerType)item != MarkerType.Custom)
+                {
+                    availableMarkerTypes.Add((OxyPlot.MarkerType)item);
+                }
+            }
+            this.markerType = OxyPlot.MarkerType.None;
+            this.MarkerSize = GetDefaultDataSeriesMarkerSize();
             foreach (var item in Enum.GetValues(typeof(Enums.Colors)))
             {
                 availableColors.Add((Enums.Colors)item);
@@ -74,13 +86,16 @@ namespace SimplePlotterMisc
         /// <param name="yScale">The scale to be applied in the y-coordinates.</param>
         /// <param name="thick">The thick (stroke) of the curve draw.</param>
         /// <param name="lineStyle">The line style of the curve draw.</param>
+        /// <param name="markerType">The type of the marker for each dot.</param>
+        /// <param name="markerSize">The size of the marker.</param>
         /// <param name="color">The color of the curve draw.</param>
         /// <param name="customColor">A boolean value indicating if the curve shall be drawn with a custom color.</param>
         /// <param name="RGBDescription">The RGB description (in the form of "R|G|B") of the color.</param>
         /// <param name="legend">A boolean value indicating if the curve name will apear in the legend box list.</param>
         /// <param name="secondY">A boolean value indicating if the curve needs to be refered to the second (right) Y-axis.</param>
         public DataSeriesObj(string name, List<double> xPoints, List<double> yPoints, double xScale, double yScale,
-            double thick, OxyPlot.LineStyle lineStyle, SimplePlotterMisc.Enums.Colors color, bool customColor, string RGBDescription, bool legend, bool secondY)
+            double thick, OxyPlot.LineStyle lineStyle, OxyPlot.MarkerType markerType, double markerSize, SimplePlotterMisc.Enums.Colors color,
+            bool customColor, string RGBDescription, bool legend, bool secondY)
         {
             this.name = name;
             this.xScale = xScale;
@@ -92,6 +107,12 @@ namespace SimplePlotterMisc
                 availableLineStyles.Add((OxyPlot.LineStyle)item);
             }
             this.lineStyle = lineStyle;
+            foreach (var item in Enum.GetValues(typeof(OxyPlot.MarkerType)))
+            {
+                availableMarkerTypes.Add((OxyPlot.MarkerType)item);
+            }
+            this.markerType = markerType;
+            this.markerSize = markerSize;
             foreach (var item in Enum.GetValues(typeof(Enums.Colors)))
             {
                 availableColors.Add((Enums.Colors)item);
@@ -196,7 +217,7 @@ namespace SimplePlotterMisc
         }
 
         /// <summary>
-        /// Gets the thick (stroke) of the curve draw.
+        /// Gets or sets the thick (stroke) of the curve draw.
         /// </summary>
         public double Thick
         {
@@ -230,6 +251,45 @@ namespace SimplePlotterMisc
             set
             {
                 lineStyle = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a list containing the available marker types.
+        /// </summary>
+        public List<OxyPlot.MarkerType> AvailableMarkerTypes
+        {
+            get { return availableMarkerTypes; }
+            set
+            {
+                availableMarkerTypes = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the marker type of the dots in the curve draw.
+        /// </summary>
+        public OxyPlot.MarkerType MarkerType
+        {
+            get { return markerType; }
+            set
+            {
+                markerType = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the size of the markers.
+        /// </summary>
+        public double MarkerSize
+        {
+            get { return markerSize; }
+            set
+            {
+                markerSize = value;
                 NotifyPropertyChanged();
             }
         }
@@ -421,6 +481,9 @@ namespace SimplePlotterMisc
         #endregion
 
         #region PUBLIC METHODS
+
+        public static double GetDefaultDataSeriesThick() { return 1.5; }
+        public static double GetDefaultDataSeriesMarkerSize() { return 3; }
 
         /// <summary>
         /// Generates the GIF points to be plotted on each frame.

@@ -78,7 +78,7 @@
         <Label Name="lblVersion" Content="{Binding Version, FallbackValue='v. x.X.X.X'}" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,0,0"/>
         <Expander Name="expd0" Margin="5,5,0,35" Grid.Row="1" Grid.Column="0" ExpandDirection="Right" IsExpanded="True">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,0" Grid.Row="1">
-                <Grid Background="#FFF7FAFD" HorizontalAlignment="Left" Width="700">
+                <Grid Background="#FFF7FAFD" HorizontalAlignment="Left" Width="750">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -90,7 +90,7 @@
                     </Grid.RowDefinitions>
                     <Expander Name="ExpdDataSeries" Margin="10,10,10,10" Grid.Row="0" BorderBrush="DarkGray" IsExpanded="True">
                         <Expander.Header>
-                            <DockPanel Width="655" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                            <DockPanel Width="745" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="DarkGray" Offset="1"/>
@@ -146,6 +146,20 @@
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
+                                        <GridViewColumn x:Name="Marker" Header="{Binding Vocabulary.Marker, FallbackValue=Marker}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox ItemsSource="{Binding AvailableMarkerTypes}" SelectedItem="{Binding MarkerType}" BorderThickness="0" GotFocus="lvItem_GotFocus"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="MarkerSize" Header="{Binding Vocabulary.MarkerSize, FallbackValue=MarkerSize}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding MarkerSize, Mode=TwoWay}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsEnabled="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
                                         <GridViewColumn x:Name="Color" Header="{Binding Vocabulary.Color, FallbackValue=Color}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
@@ -190,7 +204,7 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="420"/>
-                                    <ColumnDefinition Width="258"/>
+                                    <ColumnDefinition Width="308"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Content="{Binding Vocabulary.NumberOfPoints, FallbackValue=NumberOfPoints}" Margin="10,220,220,0" VerticalAlignment="Top" Grid.Column="0"/>
                                 <Label Content="{Binding Vocabulary.CompressingAlgorithm, FallbackValue=Algorithm}" Margin="10,250,200,0" VerticalAlignment="Top" Grid.Column="0"/>
@@ -244,8 +258,8 @@
                                 </ListView>
                             </Grid>
                             <Label Content="{Binding Vocabulary.ColorTemplate, FallbackValue=ColorTemplate}" Margin="10,470,500,0" VerticalAlignment="Top"/>
-                            <ComboBox ItemsSource="{Binding AvailableColorTemplates}" SelectedItem="{Binding SelectedColorTemplate}" Margin="200,470,320,0" VerticalAlignment="Top" Height="23"/>
-                            <Button Command="{Binding ApplyColorTemplate}" Content="{Binding Vocabulary.Apply, FallbackValue=Apply}" Margin="370,470,200,0" VerticalAlignment="Top" Height="23"/>
+                            <ComboBox ItemsSource="{Binding AvailableColorTemplates}" SelectedItem="{Binding SelectedColorTemplate}" Margin="200,470,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="150"/>
+                            <Button Command="{Binding ApplyColorTemplate}" Content="{Binding Vocabulary.Apply, FallbackValue=Apply}" Margin="370,470,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100"/>
                         </Grid>
                     </Expander>
                     <Expander Name="ExpdAxisConfiguration" Margin="10,10,10,10" Grid.Row="1" BorderBrush="DarkGray" IsExpanded="False">

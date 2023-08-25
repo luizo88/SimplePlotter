@@ -15,6 +15,8 @@ namespace SimplePlotterData
         public List<double> DataSeriesScaleY { get; set; }
         public List<double> DataSeriesThick { get; set; }
         public List<OxyPlot.LineStyle> DataSeriesLineStyle { get; set; }
+        public List<OxyPlot.MarkerType> DataSeriesMarkerType { get; set; }
+        public List<double> DataSeriesMarkerSize { get; set; }
         public List<SimplePlotterMisc.Enums.Colors> DataSeriesColor { get; set; }
         public List<bool> DataSeriesCustomColor { get; set; }
         public List<string> DataSeriesRGBDescription { get; set; }
@@ -100,7 +102,9 @@ namespace SimplePlotterData
             DataSeriesScaleX = new List<double>();
             DataSeriesScaleY = new List<double>();
             DataSeriesThick = new List<double>();
+            DataSeriesMarkerSize = new List<double>();
             DataSeriesLineStyle = new List<OxyPlot.LineStyle>();
+            DataSeriesMarkerType = new List<OxyPlot.MarkerType>();
             DataSeriesColor = new List<SimplePlotterMisc.Enums.Colors>();
             DataSeriesCustomColor = new List<bool>();
             DataSeriesRGBDescription = new List<string>();
@@ -115,6 +119,8 @@ namespace SimplePlotterData
                 DataSeriesScaleY.Add(item.YScale);
                 DataSeriesThick.Add(item.Thick);
                 DataSeriesLineStyle.Add(item.LineStyle);
+                DataSeriesMarkerType.Add(item.MarkerType);
+                DataSeriesMarkerSize.Add(item.MarkerSize);
                 DataSeriesColor.Add(item.Color);
                 DataSeriesCustomColor.Add(item.CustomColor);
                 DataSeriesRGBDescription.Add(item.RGBDescription);

@@ -28,7 +28,7 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.3.1.0";
+            Version = "v. 1.3.2.0";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
@@ -65,6 +65,8 @@ namespace SimplePlotterVM
                 case "YScale":
                 case "Thick":
                 case "LineStyle":
+                case "MarkerType":
+                case "MarkerSize":
                 case "RGBDescription":
                 case "Legend":
                 case "SecondY":
@@ -113,8 +115,13 @@ namespace SimplePlotterVM
                 //gets data series
                 for (int i = 0; i < dtob.DataSeriesName.Count; i++)
                 {
+                    //version workaround
+                    OxyPlot.MarkerType markerType = dtob.DataSeriesMarkerType.Count > 0 ? dtob.DataSeriesMarkerType[i] : OxyPlot.MarkerType.None;
+                    double markerSize = dtob.DataSeriesMarkerSize.Count > 0 ? dtob.DataSeriesMarkerSize[i] : DataSeriesObj.GetDefaultDataSeriesMarkerSize();
+                    //end of version workaround
                     DataSeriesController.Instance.DataSeries.Add(new DataSeriesObj(dtob.DataSeriesName[i], dtob.DataSeriesXPoints[i], dtob.DataSeriesYPoints[i], dtob.DataSeriesScaleX[i], dtob.DataSeriesScaleY[i],
-                        dtob.DataSeriesThick[i], dtob.DataSeriesLineStyle[i], dtob.DataSeriesColor[i], dtob.DataSeriesCustomColor[i], dtob.DataSeriesRGBDescription[i], dtob.DataSeriesLegend[i], dtob.DataSeriesSecondY[i]));
+                        dtob.DataSeriesThick[i], dtob.DataSeriesLineStyle[i], markerType, markerSize, dtob.DataSeriesColor[i], dtob.DataSeriesCustomColor[i],
+                        dtob.DataSeriesRGBDescription[i], dtob.DataSeriesLegend[i], dtob.DataSeriesSecondY[i]));
                 }
                 //values
                 ManualXMinAxisLimit = dtob.ManualXMinAxisLimit;
@@ -1648,9 +1655,17 @@ namespace SimplePlotterVM
                     }
                 }
                 serie.Title = string.Format("{0}{1}", (showLegendArrows ? (item.SecondY ? "[→] " : "[←] ") : ""), item.Name);
+                //line style
                 serie.StrokeThickness = item.Thick;
                 serie.LineStyle = item.LineStyle;
                 serie.Color = item.OxyColor;
+                //marker style
+                serie.MarkerFill = item.OxyColor;
+                serie.MarkerType = item.MarkerType;
+                serie.MarkerSize = item.MarkerSize;
+                serie.MarkerStrokeThickness = 1;
+                serie.MarkerStroke = item.OxyColor;
+                //legend
                 serie.RenderInLegend = item.Legend;
                 if (item.SecondY) serie.YAxisKey = "Y2";
                 plotObj.Series.Add(serie);

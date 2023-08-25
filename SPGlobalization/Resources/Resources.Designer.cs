@@ -610,6 +610,24 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Marker.
+        /// </summary>
+        internal static string Marker {
+            get {
+                return ResourceManager.GetString("Marker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to M. size.
+        /// </summary>
+        internal static string MarkerSize {
+            get {
+                return ResourceManager.GetString("MarkerSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minor grid lines.
         /// </summary>
         internal static string MinorGridLines {

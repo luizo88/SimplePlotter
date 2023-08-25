@@ -196,7 +196,10 @@ namespace SPGlobalization
         public string ReduceNumberOfPoints { get { return string.Format("{0}", Resources.Resources.ReduceNumberOfPoints); } }
         public string Round { get { return string.Format("{0}", Resources.Resources.Round); } }
         public string Ramer_Douglas_Peucker { get { return string.Format("{0}", Resources.Resources.Ramer_Douglas_Peucker); } }
+        public string Marker { get { return string.Format("{0}", Resources.Resources.Marker); } }
+        public string MarkerSize { get { return string.Format("{0}", Resources.Resources.MarkerSize); } }
         
+
 
         #endregion
 

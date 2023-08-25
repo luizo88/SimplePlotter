@@ -300,6 +300,12 @@
   <data name="MajorStep" xml:space="preserve">
     <value>Passo principal (X/Y/Y2)</value>
   </data>
+  <data name="Marker" xml:space="preserve">
+    <value>Marcador</value>
+  </data>
+  <data name="MarkerSize" xml:space="preserve">
+    <value>Tamanho m.</value>
+  </data>
   <data name="MinorGridLines" xml:space="preserve">
     <value>Linhas de grade secundárias</value>
   </data>
