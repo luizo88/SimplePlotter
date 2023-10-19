@@ -538,6 +538,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import .pl4 file.
+        /// </summary>
+        internal static string ImportPL4File {
+            get {
+                return ResourceManager.GetString("ImportPL4File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Interface.
         /// </summary>
         internal static string Interface {

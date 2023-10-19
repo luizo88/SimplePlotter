@@ -276,6 +276,9 @@
   <data name="Helvetica" xml:space="preserve">
     <value>Helvetica</value>
   </data>
+  <data name="ImportPL4File" xml:space="preserve">
+    <value>Import .pl4 file</value>
+  </data>
   <data name="Interface" xml:space="preserve">
     <value>Interface</value>
   </data>

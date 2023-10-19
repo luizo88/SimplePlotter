@@ -20,9 +20,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.TextFormatting;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace SimplePlotterVM
 {
+    
     public class VM : Auxiliary.PropertyNotify
     {
 
@@ -44,12 +46,13 @@ namespace SimplePlotterVM
             ReduceNumberOfPoints = new Auxiliary.DelegateCommand(reduceNumberOfPoints, canReduceNumberOfPoints);
             RoundDataSeriesPoints = new Auxiliary.DelegateCommand(roundDataSeriesPoints, canRoundDataSeriesPoints);
             ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
+            ImportPL4File = new Auxiliary.DelegateCommand(importPL4File);
             CreateGIF = new Auxiliary.DelegateCommand(createGIF);
             updateCompositeInfo();
             addSampleDataSeries();
             //assings the event to update the graphic based on data series changes
             SimplePlotterMisc.DataSeriesController.Instance.PropertyChanged += onDataSeriesPropertyChanged;
-            updateEntirePlot();
+            updateEntirePlot();           
         }
 
         #region EVENTS
@@ -94,6 +97,7 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand ReduceNumberOfPoints { get; set; }
         public Auxiliary.DelegateCommand RoundDataSeriesPoints { get; set; }
         public Auxiliary.DelegateCommand ApplyColorTemplate { get; set; }
+        public Auxiliary.DelegateCommand ImportPL4File { get; set; }
         public Auxiliary.DelegateCommand CreateGIF { get; set; }
 
         #endregion
@@ -373,6 +377,27 @@ namespace SimplePlotterVM
                 availableDataSeries[i].RGBDescription = string.Format("{0}|{1}|{2}", colorList[i].Item1, colorList[i].Item2, colorList[i].Item3);
             }
             updateEntirePlot();
+            LongProcessRuning = false;
+        }
+
+        private void importPL4File(object parameter)
+        {
+            LongProcessRuning = true;
+            Microsoft.Win32.OpenFileDialog myBrowser = new Microsoft.Win32.OpenFileDialog();
+            myBrowser.Filter = "PL4Files|*.pl4";
+            myBrowser.DefaultExt = "pl4";
+            myBrowser.Multiselect = false;
+            if (myBrowser.ShowDialog() == true)
+            {
+                var series = SimplePlotterMisc.FileReader.GetFileDataFromPL4File(myBrowser.FileName);
+                for (int i = 0; i < series.Count; i++)
+                {
+                    SimplePlotterMisc.DataSeriesController.Instance.AddDataSeries(series[i].Item3, series[i].Item1, series[i].Item2);
+                }
+                updateDataSeries();
+                updateSelectedDataSeriesPoints();
+                updateEntirePlot();
+            }
             LongProcessRuning = false;
         }
 

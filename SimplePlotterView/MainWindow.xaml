@@ -32,6 +32,11 @@
                         <Image Source="Resources/Save.ico" Height="16"/>
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem Name="menuImportPL4File" Header="{Binding Vocabulary.ImportPL4File, FallbackValue=ImportPL4File}" Command="{Binding ImportPL4File}">
+                    <MenuItem.Icon>
+                        <Image Source="Resources/Save.ico" Height="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Name="menuLanguage" Header="{Binding Vocabulary.Language, FallbackValue=Language}">
                 <MenuItem Name="menuInterface" Header="{Binding Vocabulary.Interface, FallbackValue=Interface}" IsEnabled="True">

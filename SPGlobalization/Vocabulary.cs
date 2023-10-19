@@ -201,7 +201,7 @@ namespace SPGlobalization
         public string GIFType { get { return string.Format("{0}", Resources.Resources.GIFType); } }
         public string TimeRoll { get { return string.Format("{0}", Resources.Resources.TimeRoll); } }
         public string SeriesRoll { get { return string.Format("{0}", Resources.Resources.SeriesRoll); } }
-
+        public string ImportPL4File { get { return string.Format("{0}", Resources.Resources.ImportPL4File); } }
 
         #endregion
 
