@@ -339,6 +339,9 @@
   <data name="OriginalY" xml:space="preserve">
     <value>Y (orig.)</value>
   </data>
+  <data name="ParseXToLog" xml:space="preserve">
+    <value>Transformar X para log.</value>
+  </data>
   <data name="Plot" xml:space="preserve">
     <value>Gráfico</value>
   </data>

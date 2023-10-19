@@ -485,6 +485,15 @@ namespace SimplePlotterMisc
         public static double GetDefaultDataSeriesThick() { return 1.5; }
         public static double GetDefaultDataSeriesMarkerSize() { return 3; }
 
+        public void ParseXToLog()
+        {
+            foreach (var item in points)
+            {
+                item.X = Math.Pow(10, item.X);
+            }
+            NotifyPropertyChanged("Points");
+        }
+
         /// <summary>
         /// Generates the GIF points to be plotted on each frame.
         /// </summary>

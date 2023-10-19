@@ -130,7 +130,7 @@ namespace SimplePlotterMisc
                 for (int j = 0; j < atpData.Item3.steps; j++)
                 {
                     double x = atpData.Item2[j, 0];
-                    double y = atpData.Item2[j, i];
+                    double y = atpData.Item2[j, i + 1];
                     serie.Item1.Add(x);
                     serie.Item2.Add(y);
                 }

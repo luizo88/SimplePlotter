@@ -60,7 +60,8 @@ namespace SimplePlotterMisc
                     {
                         br.BaseStream.Seek(5 * 16 + i * 16, SeekOrigin.Begin);
                         byte[] bytes = br.ReadBytes(16);
-                        int type = Convert.ToInt32(Encoding.UTF8.GetString(bytes.Skip(3).Take(1).ToArray()).Trim());
+                        string typeAux = Encoding.UTF8.GetString(bytes.Skip(3).Take(1).ToArray()).Trim();
+                        int type = typeAux == "?" ? 0 : Convert.ToInt32(typeAux);
                         string from = Encoding.UTF8.GetString(bytes.Skip(4).Take(6).ToArray()).Trim();
                         string to = Encoding.UTF8.GetString(bytes.Skip(10).Take(6).ToArray()).Trim();
                         dfHEAD.Rows.Add(type, from, to);
@@ -95,6 +96,8 @@ namespace SimplePlotterMisc
         {
             switch (type)
             {
+                case 0:
+                    return "Angle";
                 case 4:
                     return "V-node";
                 case 7:

@@ -45,6 +45,7 @@ namespace SimplePlotterVM
             DataSeriesDown = new Auxiliary.DelegateCommand(dataSeriesDown, canMoveDataSeriesDown);
             ReduceNumberOfPoints = new Auxiliary.DelegateCommand(reduceNumberOfPoints, canReduceNumberOfPoints);
             RoundDataSeriesPoints = new Auxiliary.DelegateCommand(roundDataSeriesPoints, canRoundDataSeriesPoints);
+            ParseXToLog = new Auxiliary.DelegateCommand(parseXToLog, canParseXToLog);
             ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
             ImportPL4File = new Auxiliary.DelegateCommand(importPL4File);
             CreateGIF = new Auxiliary.DelegateCommand(createGIF);
@@ -96,6 +97,7 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand DataSeriesDown { get; set; }
         public Auxiliary.DelegateCommand ReduceNumberOfPoints { get; set; }
         public Auxiliary.DelegateCommand RoundDataSeriesPoints { get; set; }
+        public Auxiliary.DelegateCommand ParseXToLog { get; set; }
         public Auxiliary.DelegateCommand ApplyColorTemplate { get; set; }
         public Auxiliary.DelegateCommand ImportPL4File { get; set; }
         public Auxiliary.DelegateCommand CreateGIF { get; set; }
@@ -363,6 +365,19 @@ namespace SimplePlotterVM
         {
             bool result = true;
             result &= numberOfDecimalPlaces >= 0;
+            result &= selectedDataSeries != null;
+            return result;
+        }
+
+        private void parseXToLog(object parameter)
+        {
+            selectedDataSeries.ParseXToLog();
+            updateEntirePlot();
+        }
+
+        private bool canParseXToLog()
+        {
+            bool result = true;
             result &= selectedDataSeries != null;
             return result;
         }

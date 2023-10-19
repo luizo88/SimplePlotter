@@ -727,6 +727,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parse X to log.
+        /// </summary>
+        internal static string ParseXToLog {
+            get {
+                return ResourceManager.GetString("ParseXToLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plot.
         /// </summary>
         internal static string Plot {
