@@ -123,6 +123,9 @@
   <data name="AlgorithmParameter1" xml:space="preserve">
     <value>Primer parámetro del alg.</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>Todo</value>
+  </data>
   <data name="Apply" xml:space="preserve">
     <value>Aplicar</value>
   </data>
@@ -340,7 +343,7 @@
     <value>Y (orig.)</value>
   </data>
   <data name="ParseXToLog" xml:space="preserve">
-    <value>Transformar X en log.</value>
+    <value>Transf. X en log.</value>
   </data>
   <data name="Plot" xml:space="preserve">
     <value>Gráfico</value>

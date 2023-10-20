@@ -203,6 +203,7 @@ namespace SPGlobalization
         public string SeriesRoll { get { return string.Format("{0}", Resources.Resources.SeriesRoll); } }
         public string ImportPL4File { get { return string.Format("{0}", Resources.Resources.ImportPL4File); } }
         public string ParseXToLog { get { return string.Format("{0}", Resources.Resources.ParseXToLog); } }
+        public string All { get { return string.Format("{0}", Resources.Resources.All); } }
 
         #endregion
 

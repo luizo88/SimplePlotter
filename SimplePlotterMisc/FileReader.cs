@@ -122,10 +122,10 @@ namespace SimplePlotterMisc
             var atpData = SimplePlotterMisc.PL4Reader.ReadPL4(pathfile);
             for (int i = 0; i < atpData.Item1.Rows.Count; i++)
             {
-                string type = PL4Reader.ConvertType(Convert.ToInt32(atpData.Item1.Rows[i][0]));
+                string type = atpData.Item1.Rows[i][0].ToString();
                 string n1 = atpData.Item1.Rows[i][1].ToString();
                 string n2 = atpData.Item1.Rows[i][2].ToString();
-                string seriesName = string.Format("{0}:{1}-{2}", type, n1, n2);
+                string seriesName = string.Format("{0}: {1}-{2}", type, n1, n2);
                 Tuple<List<double>, List<double>, string> serie = new Tuple<List<double>, List<double>, string>(new List<double>(), new List<double>(), seriesName);
                 for (int j = 0; j < atpData.Item3.steps; j++)
                 {

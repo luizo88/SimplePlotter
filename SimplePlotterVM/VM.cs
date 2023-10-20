@@ -30,7 +30,7 @@ namespace SimplePlotterVM
 
         public VM() 
         {
-            Version = "v. 1.3.5.0";
+            Version = "v. 1.3.6.0";
             //commands
             OpenFileCommand = new Auxiliary.DelegateCommand(openFile);
             SaveFileCommand = new Auxiliary.DelegateCommand(saveFile);
@@ -46,6 +46,7 @@ namespace SimplePlotterVM
             ReduceNumberOfPoints = new Auxiliary.DelegateCommand(reduceNumberOfPoints, canReduceNumberOfPoints);
             RoundDataSeriesPoints = new Auxiliary.DelegateCommand(roundDataSeriesPoints, canRoundDataSeriesPoints);
             ParseXToLog = new Auxiliary.DelegateCommand(parseXToLog, canParseXToLog);
+            ParseAllXToLog = new Auxiliary.DelegateCommand(parseAllXToLog, canParseAllXToLog);
             ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
             ImportPL4File = new Auxiliary.DelegateCommand(importPL4File);
             CreateGIF = new Auxiliary.DelegateCommand(createGIF);
@@ -98,6 +99,7 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand ReduceNumberOfPoints { get; set; }
         public Auxiliary.DelegateCommand RoundDataSeriesPoints { get; set; }
         public Auxiliary.DelegateCommand ParseXToLog { get; set; }
+        public Auxiliary.DelegateCommand ParseAllXToLog { get; set; }
         public Auxiliary.DelegateCommand ApplyColorTemplate { get; set; }
         public Auxiliary.DelegateCommand ImportPL4File { get; set; }
         public Auxiliary.DelegateCommand CreateGIF { get; set; }
@@ -379,6 +381,22 @@ namespace SimplePlotterVM
         {
             bool result = true;
             result &= selectedDataSeries != null;
+            return result;
+        }
+
+        private void parseAllXToLog(object parameter)
+        {
+            foreach (var item in AvailableDataSeries)
+            {
+                item.ParseXToLog();
+            }
+            updateEntirePlot();
+        }
+
+        private bool canParseAllXToLog()
+        {
+            bool result = true;
+            result &= AvailableDataSeries.Count > 0;
             return result;
         }
 

@@ -123,6 +123,9 @@
   <data name="AlgorithmParameter1" xml:space="preserve">
     <value>Algorithm parameter 1</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="Apply" xml:space="preserve">
     <value>Apply</value>
   </data>
