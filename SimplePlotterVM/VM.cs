@@ -444,11 +444,11 @@ namespace SimplePlotterVM
                 myBrowser.FileName = string.Format("ChartGIF_{0}x{1}.gif", ChartWidth, ChartHeight);
                 if (myBrowser.ShowDialog() == true)
                 {
-                    List<double> d = new List<double>();
-                    d.Add(0);
-                    d.Add(1);
-                    d.Add(2);
-                    string a = d[100].ToString();
+                    //List<double> d = new List<double>();
+                    //d.Add(0);
+                    //d.Add(1);
+                    //d.Add(2);
+                    //string a = d[100].ToString();
                     switch (selectedGIFType)
                     {
                         case SimplePlotterMisc.Enums.GIFTypes.TimeRoll:
@@ -483,7 +483,7 @@ namespace SimplePlotterVM
                                 SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Add(item);
                             }
                             updateEntirePlot();
-                            MagickImageCollection collection2 = GIFGen.GIFGen.GetGIFObject(frames2, true, (int)(100 * timePerSerie));
+                            MagickImageCollection collection2 = GIFGen.GIFGen.GetGIFObject(frames2, true, (int)(Math.Round(100 * timePerSerie, 0)));
                             collection2.Write(myBrowser.FileName);
                             collection2.Dispose();
                             break;
