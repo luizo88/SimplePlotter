@@ -436,53 +436,65 @@ namespace SimplePlotterVM
 
         private void createGIF(object parameter)
         {
-            Microsoft.Win32.SaveFileDialog myBrowser = new Microsoft.Win32.SaveFileDialog();
-            myBrowser.Filter = "GIF (*.gif)|*.gif";
-            myBrowser.DefaultExt = "gif";
-            myBrowser.FileName = string.Format("ChartGIF_{0}x{1}.gif", ChartWidth, ChartHeight);
-            if (myBrowser.ShowDialog() == true)
+            try
             {
-                switch (selectedGIFType)
+                Microsoft.Win32.SaveFileDialog myBrowser = new Microsoft.Win32.SaveFileDialog();
+                myBrowser.Filter = "GIF (*.gif)|*.gif";
+                myBrowser.DefaultExt = "gif";
+                myBrowser.FileName = string.Format("ChartGIF_{0}x{1}.gif", ChartWidth, ChartHeight);
+                if (myBrowser.ShowDialog() == true)
                 {
-                    case SimplePlotterMisc.Enums.GIFTypes.TimeRoll:
-                        List<BitmapSource> frames1 = new List<BitmapSource>();
-                        SimplePlotterMisc.DataSeriesController.Instance.GenerateGIFPointsForAllSeries(gifNumberOfPoints, interpolateData);
-                        for (int i = 0; i < gifNumberOfPoints; i++)
-                        {
-                            updateEntirePlotToGIF(i + 1);
-                            var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
-                            frames1.Add(pngExporter.ExportToBitmap(plotObj));
-                        }
-                        MagickImageCollection collection1 = GIFGen.GIFGen.GetGIFObject(frames1, true, 100 / gifFramesPerSecond);
-                        collection1.Write(myBrowser.FileName);
-                        collection1.Dispose();
-                        break;
-                    case SimplePlotterMisc.Enums.GIFTypes.SeriesRoll:
-                        List<BitmapSource> frames2 = new List<BitmapSource>();
-                        double numberOfSeries = (double)SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Count;
-                        double timePerSerie = gifTotalTime / numberOfSeries;
-                        List<DataSeriesObj> dsl = new List<DataSeriesObj>(SimplePlotterMisc.DataSeriesController.Instance.DataSeries);
-                        for (int i = 0; i < numberOfSeries; i++)
-                        {
+                    List<double> d = new List<double>();
+                    d.Add(0);
+                    d.Add(1);
+                    d.Add(2);
+                    string a = d[100].ToString();
+                    switch (selectedGIFType)
+                    {
+                        case SimplePlotterMisc.Enums.GIFTypes.TimeRoll:
+                            List<BitmapSource> frames1 = new List<BitmapSource>();
+                            SimplePlotterMisc.DataSeriesController.Instance.GenerateGIFPointsForAllSeries(gifNumberOfPoints, interpolateData);
+                            for (int i = 0; i < gifNumberOfPoints; i++)
+                            {
+                                updateEntirePlotToGIF(i + 1);
+                                var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
+                                frames1.Add(pngExporter.ExportToBitmap(plotObj));
+                            }
+                            MagickImageCollection collection1 = GIFGen.GIFGen.GetGIFObject(frames1, true, 100 / gifFramesPerSecond);
+                            collection1.Write(myBrowser.FileName);
+                            collection1.Dispose();
+                            break;
+                        case SimplePlotterMisc.Enums.GIFTypes.SeriesRoll:
+                            List<BitmapSource> frames2 = new List<BitmapSource>();
+                            double numberOfSeries = (double)SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Count;
+                            double timePerSerie = gifTotalTime / numberOfSeries;
+                            List<DataSeriesObj> dsl = new List<DataSeriesObj>(SimplePlotterMisc.DataSeriesController.Instance.DataSeries);
+                            for (int i = 0; i < numberOfSeries; i++)
+                            {
+                                SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Clear();
+                                SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Add(dsl[i]);
+                                updateEntirePlot();
+                                var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
+                                frames2.Add(pngExporter.ExportToBitmap(plotObj));
+                            }
                             SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Clear();
-                            SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Add(dsl[i]);
+                            foreach (var item in dsl)
+                            {
+                                SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Add(item);
+                            }
                             updateEntirePlot();
-                            var pngExporter = new PngExporter { Width = ChartWidth, Height = ChartHeight };
-                            frames2.Add(pngExporter.ExportToBitmap(plotObj));
-                        }
-                        SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Clear();
-                        foreach (var item in dsl)
-                        {
-                            SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Add(item);
-                        }
-                        updateEntirePlot();
-                        MagickImageCollection collection2 = GIFGen.GIFGen.GetGIFObject(frames2, true, (int)(100 * timePerSerie));
-                        collection2.Write(myBrowser.FileName);
-                        collection2.Dispose();
-                        break;
-                    default: throw new Exception("Not implemented GIF type.");
+                            MagickImageCollection collection2 = GIFGen.GIFGen.GetGIFObject(frames2, true, (int)(100 * timePerSerie));
+                            collection2.Write(myBrowser.FileName);
+                            collection2.Dispose();
+                            break;
+                        default: throw new Exception("Not implemented GIF type.");
+                    }
+
                 }
-                
+            }
+            catch (Exception ex)
+            {
+                Ex = ex;
             }
         }
 
