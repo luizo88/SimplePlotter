@@ -295,6 +295,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy data to clipboard.
+        /// </summary>
+        internal static string CopyDataToClipboard {
+            get {
+                return ResourceManager.GetString("CopyDataToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy plot to clipboard.
         /// </summary>
         internal static string CopyPlotToClipboard {
@@ -399,6 +408,15 @@ namespace SPGlobalization.Resources {
         internal static string File {
             get {
                 return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fixed step.
+        /// </summary>
+        internal static string FixedStep {
+            get {
+                return ResourceManager.GetString("FixedStep", resourceCulture);
             }
         }
         

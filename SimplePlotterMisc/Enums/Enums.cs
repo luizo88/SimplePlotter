@@ -98,7 +98,9 @@ namespace SimplePlotterMisc.Enums
     public enum CompressingAlgorithms
     {
         [LocalizedDescription("Ramer_Douglas_Peucker")]
-        Ramer_Douglas_Peucker = 0
+        Ramer_Douglas_Peucker = 0,
+        [LocalizedDescription("FixedStep")]
+        FixedStep = 1
     }
 
     [TypeConverter(typeof(EnumDescriptionTypeConverter))]

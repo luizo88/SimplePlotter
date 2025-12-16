@@ -204,7 +204,9 @@ namespace SPGlobalization
         public string ImportPL4File { get { return string.Format("{0}", Resources.Resources.ImportPL4File); } }
         public string ParseXToLog { get { return string.Format("{0}", Resources.Resources.ParseXToLog); } }
         public string All { get { return string.Format("{0}", Resources.Resources.All); } }
-
+        public string FixedStep { get { return string.Format("{0}", Resources.Resources.FixedStep); } }
+        public string CopyDataToClipboard { get { return string.Format("{0}", Resources.Resources.CopyDataToClipboard); } }
+        
         #endregion
 
         #region PUBLIC METHODS

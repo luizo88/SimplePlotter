@@ -78,6 +78,17 @@ namespace SimplePlotterMisc
         }
 
         /// <summary>
+        /// Returns a new list of points based on the original points, but with fixed step.
+        /// </summary>
+        /// <param name="originalPoints">The base list of points.</param>
+        /// <param name="desiredNumberOfPoints">The desired number of points.</param>
+        /// <returns></returns>
+        private List<PointObj> executeFixedStepAlgorithm(List<PointObj> originalPoints, int desiredNumberOfPoints)
+        {
+            return FixedStepAlgorithm.FixStep(originalPoints, desiredNumberOfPoints);
+        }
+
+        /// <summary>
         /// Returns a new list of points, but rounded.
         /// </summary>
         /// <param name="originalPoints">The base list of points.</param>
@@ -167,6 +178,17 @@ namespace SimplePlotterMisc
                                 select p.Y;
                     DataSeriesObj ds = new DataSeriesObj(dataSeriesToCompress.Name + "_new", linqX.ToList(), linqY.ToList());
                     dataSeries.Insert(index + 1, ds);
+                    break;
+                case Enums.CompressingAlgorithms.FixedStep:
+                    List<PointObj> np1 = executeFixedStepAlgorithm(dataSeriesToCompress.Points, (int)parameter1);
+                    var linqX1 = from p
+                                in np1
+                                select p.X;
+                    var linqY1 = from p
+                                in np1
+                                select p.Y;
+                    DataSeriesObj ds1 = new DataSeriesObj(dataSeriesToCompress.Name + "_new", linqX1.ToList(), linqY1.ToList());
+                    dataSeries.Insert(index + 1, ds1);
                     break;
                 default:
                     throw new Exception("Not implemented compressing algorithm.");

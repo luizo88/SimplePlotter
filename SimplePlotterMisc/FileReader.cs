@@ -139,7 +139,7 @@ namespace SimplePlotterMisc
             return result;
         }
 
-        public static List<char> digitList = new List<char> { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', 'e', '+', '-' };
+        public static List<char> digitList = new List<char> { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', 'e', 'E', '+', '-' };
 
     }
 

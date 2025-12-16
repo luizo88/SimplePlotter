@@ -195,6 +195,9 @@
   <data name="Consolas" xml:space="preserve">
     <value>Consolas</value>
   </data>
+  <data name="CopyDataToClipboard" xml:space="preserve">
+    <value>Copiar datos al portapapeles</value>
+  </data>
   <data name="CopyPlotToClipboard" xml:space="preserve">
     <value>Copiar gráfico al portapapeles</value>
   </data>
@@ -230,6 +233,9 @@
   </data>
   <data name="File" xml:space="preserve">
     <value>Archivo</value>
+  </data>
+  <data name="FixedStep" xml:space="preserve">
+    <value>Paso fijo</value>
   </data>
   <data name="FontName" xml:space="preserve">
     <value>Nombre de la fuente</value>

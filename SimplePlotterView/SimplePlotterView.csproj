@@ -123,6 +123,10 @@
       <Project>{f79fff16-cac2-439c-82c6-f78ea7ff550a}</Project>
       <Name>Auxiliary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SimplePlotterMisc\SimplePlotterMisc.csproj">
+      <Project>{A2577089-6AEC-44B0-9D57-F46A52A5E635}</Project>
+      <Name>SimplePlotterMisc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimplePlotterVM\SimplePlotterVM.csproj">
       <Project>{b8bdea03-e2cf-4146-84b2-c038163a2c9d}</Project>
       <Name>SimplePlotterVM</Name>

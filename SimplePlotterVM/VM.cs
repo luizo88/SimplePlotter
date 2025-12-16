@@ -41,12 +41,14 @@ namespace SimplePlotterVM
             ExportPlot = new Auxiliary.DelegateCommand(exportPlot);
             AddDataSeries = new Auxiliary.DelegateCommand(addDataSeries);
             RemoveDataSeries = new Auxiliary.DelegateCommand(removeDataSeries, canRemoveDataSeries);
+            RemoveDataSeriesExtended = new Auxiliary.DelegateCommand(removeDataSeriesExtended, canRemoveDataSeries);
             DataSeriesUp = new Auxiliary.DelegateCommand(dataSeriesUp, canMoveDataSeriesUp);
             DataSeriesDown = new Auxiliary.DelegateCommand(dataSeriesDown, canMoveDataSeriesDown);
             ReduceNumberOfPoints = new Auxiliary.DelegateCommand(reduceNumberOfPoints, canReduceNumberOfPoints);
             RoundDataSeriesPoints = new Auxiliary.DelegateCommand(roundDataSeriesPoints, canRoundDataSeriesPoints);
             ParseXToLog = new Auxiliary.DelegateCommand(parseXToLog, canParseXToLog);
             ParseAllXToLog = new Auxiliary.DelegateCommand(parseAllXToLog, canParseAllXToLog);
+            CopyDataToClipboard = new Auxiliary.DelegateCommand(copyDataToClipboard, canCopyDataToClipboard);
             ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
             ImportPL4File = new Auxiliary.DelegateCommand(importPL4File);
             CreateGIF = new Auxiliary.DelegateCommand(createGIF);
@@ -94,12 +96,14 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand Plot { get; set; }
         public Auxiliary.DelegateCommand AddDataSeries { get; set; }
         public Auxiliary.DelegateCommand RemoveDataSeries { get; set; }
+        public Auxiliary.DelegateCommand RemoveDataSeriesExtended { get; set; }
         public Auxiliary.DelegateCommand DataSeriesUp { get; set; }
         public Auxiliary.DelegateCommand DataSeriesDown { get; set; }
         public Auxiliary.DelegateCommand ReduceNumberOfPoints { get; set; }
         public Auxiliary.DelegateCommand RoundDataSeriesPoints { get; set; }
         public Auxiliary.DelegateCommand ParseXToLog { get; set; }
         public Auxiliary.DelegateCommand ParseAllXToLog { get; set; }
+        public Auxiliary.DelegateCommand CopyDataToClipboard { get; set; }
         public Auxiliary.DelegateCommand ApplyColorTemplate { get; set; }
         public Auxiliary.DelegateCommand ImportPL4File { get; set; }
         public Auxiliary.DelegateCommand CreateGIF { get; set; }
@@ -306,6 +310,18 @@ namespace SimplePlotterVM
             if (SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Count > 0) SelectedDataSeries = SimplePlotterMisc.DataSeriesController.Instance.DataSeries[Math.Min(index, SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Count - 1)];
         }
 
+        private void removeDataSeriesExtended(object parameter)
+        {
+            foreach (var item in selectedDataSeriesExtended)
+            {
+                SimplePlotterMisc.DataSeriesController.Instance.RemoveDataSeries(item);
+            }
+            updateDataSeries();
+            updateSelectedDataSeriesPoints();
+            updateEntirePlot();
+            //if (SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Count > 0) SelectedDataSeries = SimplePlotterMisc.DataSeriesController.Instance.DataSeries[Math.Min(index, SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Count - 1)];
+        }
+
         private bool canRemoveDataSeries()
         {
             bool result = true;
@@ -397,6 +413,18 @@ namespace SimplePlotterVM
         {
             bool result = true;
             result &= AvailableDataSeries.Count > 0;
+            return result;
+        }
+
+        private void copyDataToClipboard(object parameter)
+        {
+            System.Windows.Clipboard.SetText(selectedDataSeries.GetDataString());
+        }
+
+        private bool canCopyDataToClipboard()
+        {
+            bool result = true;
+            result &= selectedDataSeries != null;
             return result;
         }
 
@@ -628,6 +656,18 @@ namespace SimplePlotterVM
             set
             {
                 selectedColorTemplate = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        //workaround to delete several dataseries at once
+        private ObservableCollection<SimplePlotterMisc.DataSeriesObj> selectedDataSeriesExtended = new ObservableCollection<SimplePlotterMisc.DataSeriesObj>();
+        public ObservableCollection<SimplePlotterMisc.DataSeriesObj> SelectedDataSeriesExtended
+        {
+            get { return selectedDataSeriesExtended; }
+            set
+            {
+                selectedDataSeriesExtended = value;
                 NotifyPropertyChanged();
             }
         }

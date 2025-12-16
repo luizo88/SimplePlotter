@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PL4Reader.cs" />
+    <Compile Include="FixedStepAlgorithm.cs" />
     <Compile Include="RamerDouglasPeuckerAlgorithm.cs" />
     <Compile Include="ColorTemplateController.cs" />
     <Compile Include="DataSeriesController.cs" />

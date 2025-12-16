@@ -494,6 +494,20 @@ namespace SimplePlotterMisc
             NotifyPropertyChanged("Points");
         }
 
+        public string GetDataString()
+        {
+            var result = new StringBuilder("");
+            result.Append("X Y");
+            for (int i = 0; i < points.Count; i++)
+            {
+                result.Append("\n");
+                result.Append(points[i].X);
+                result.Append(" ");
+                result.Append(points[i].Y);
+            }
+            return result.ToString();
+        }
+
         /// <summary>
         /// Generates the GIF points to be plotted on each frame.
         /// </summary>

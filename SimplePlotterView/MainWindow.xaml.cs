@@ -1,7 +1,12 @@
-﻿using OxyPlot;
+﻿using Auxiliary;
+using OxyPlot;
+using SimplePlotterMisc;
 using SimplePlotterVM;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,6 +20,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xaml;
+using System.Xml.Linq;
 
 namespace SimplePlotterView
 {
@@ -156,6 +163,37 @@ namespace SimplePlotterView
             return (T)parent;
         }
 
+        //private void lv_EnterPressed(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Enter)
+        //    {
+        //        TextBox tb = (TextBox)sender;
+        //        ListViewItem lvi = getAncestorOfType<ListViewItem>(tb);
+        //        ListView lv = getAncestorOfType<ListView>(lvi);
+        //        bool shiftPressed = Keyboard.Modifiers.HasFlag(ModifierKeys.Shift);
+        //        int currentSelected = lv.SelectedIndex;
+        //        if (shiftPressed && currentSelected == 0) return;
+        //        if (!shiftPressed && currentSelected == lv.Items.Count - 1) return;
+        //        int total = lv.Items.Count;
+        //        if (currentSelected < total)
+        //        {
+        //            BindingExpression be = tb.GetBindingExpression(TextBox.TextProperty);
+        //            ListViewItem nlvi = (ListViewItem)lv.ItemContainerGenerator.ContainerFromIndex(currentSelected + (shiftPressed ? -1 : 1));
+        //            foreach (var txtBx in findVisualChildren<TextBox>(lv))
+        //            {
+        //                BindingExpression nbe = txtBx.GetBindingExpression(TextBox.TextProperty);
+        //                if (txtBx.DataContext == nlvi.DataContext && be.ResolvedSourcePropertyName == nbe.ResolvedSourcePropertyName)
+        //                {
+        //                    Keyboard.Focus(txtBx);
+        //                    txtBx.SelectAll();
+        //                    return;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+        // Pending to change this method to a non VM dependent, but listview.SelectedItems is tough
         private void lv_EnterPressed(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -163,26 +201,64 @@ namespace SimplePlotterView
                 TextBox tb = (TextBox)sender;
                 ListViewItem lvi = getAncestorOfType<ListViewItem>(tb);
                 ListView lv = getAncestorOfType<ListView>(lvi);
-                bool shiftPressed = Keyboard.Modifiers.HasFlag(ModifierKeys.Shift);
-                int currentSelected = lv.SelectedIndex;
-                if (shiftPressed && currentSelected == 0) return;
-                if (!shiftPressed && currentSelected == lv.Items.Count - 1) return;
-                int total = lv.Items.Count;
-                if (currentSelected < total)
+                if (lv.SelectedItems.Count > 1)
                 {
+                    VM dc = lv.DataContext as VM;
+                    dc.LongProcessRuning = true;
+                    string newValue = tb.Text;
                     BindingExpression be = tb.GetBindingExpression(TextBox.TextProperty);
-                    ListViewItem nlvi = (ListViewItem)lv.ItemContainerGenerator.ContainerFromIndex(currentSelected + (shiftPressed ? -1 : 1));
-                    foreach (var txtBx in findVisualChildren<TextBox>(lv))
+                    foreach (DataSeriesObj ds in lv.SelectedItems)
                     {
-                        BindingExpression nbe = txtBx.GetBindingExpression(TextBox.TextProperty);
-                        if (txtBx.DataContext == nlvi.DataContext && be.ResolvedSourcePropertyName == nbe.ResolvedSourcePropertyName)
+                        Type type = typeof(DataSeriesObj);
+                        PropertyInfo myPropertyInfo = type.GetProperty(be.ResolvedSourcePropertyName);
+                        if (myPropertyInfo != null)
                         {
-                            Keyboard.Focus(txtBx);
-                            txtBx.SelectAll();
-                            return;
+                            myPropertyInfo.SetValue(ds, Convert.ToDouble(newValue), null);
+                        }
+                    }
+                    dc.LongProcessRuning = false;
+                    return;
+                }
+                else
+                {
+                    bool shiftPressed = Keyboard.Modifiers.HasFlag(ModifierKeys.Shift);
+                    int currentSelected = lv.SelectedIndex;
+                    if (shiftPressed && currentSelected == 0) return;
+                    if (!shiftPressed && currentSelected == lv.Items.Count - 1) return;
+                    int total = lv.Items.Count;
+                    if (currentSelected < total)
+                    {
+                        BindingExpression be = tb.GetBindingExpression(TextBox.TextProperty);
+                        ListViewItem nlvi = (ListViewItem)lv.ItemContainerGenerator.ContainerFromIndex(currentSelected + (shiftPressed ? -1 : 1));
+                        foreach (var txtBx in findVisualChildren<TextBox>(lv))
+                        {
+                            BindingExpression nbe = txtBx.GetBindingExpression(TextBox.TextProperty);
+                            if (txtBx.DataContext == nlvi.DataContext && be.ResolvedSourcePropertyName == nbe.ResolvedSourcePropertyName)
+                            {
+                                Keyboard.Focus(txtBx);
+                                txtBx.SelectAll();
+                                return;
+                            }
                         }
                     }
                 }
+            }
+        }
+
+        // Pending to change this method to a non VM dependent, but listview.SelectedItems is tough
+        private void lv_DeletePressed(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                ListView lv = (ListView)sender;
+                VM dc = lv.DataContext as VM;
+                foreach (var item in lv.SelectedItems)
+                {
+                    dc.SelectedDataSeriesExtended.Add((DataSeriesObj)item);
+                }
+                DelegateCommand delC = dc.RemoveDataSeriesExtended;
+                delC.Execute(true);
+                dc.SelectedDataSeriesExtended.Clear();
             }
         }
 
