@@ -215,6 +215,25 @@ namespace SimplePlotterMisc
         }
 
         /// <summary>
+        /// Adds a new data series just after the selected data series, but the DFT.
+        /// </summary>
+        /// <param name="dataSeriesToPerformDFT">The data series to be used as a base.</param>
+        /// <param name="N">The lenght of the DFT.</param>
+        public void AddNewSeriesDFT(DataSeriesObj dataSeriesToPerformDFT, int N)
+        {
+            int index = dataSeries.IndexOf(dataSeriesToPerformDFT);
+            List<PointObj> np = FTAlgorithm.RunFT2(dataSeriesToPerformDFT.Points, N);
+            var linqX = from p
+                        in np
+                        select p.X;
+            var linqY = from p
+                        in np
+                        select p.Y;
+            DataSeriesObj ds = new DataSeriesObj(dataSeriesToPerformDFT.Name + "_DFT", linqX.ToList(), linqY.ToList());
+            dataSeries.Insert(index + 1, ds);
+        }
+
+        /// <summary>
         /// Generates (creates inside each data series) the points to be used to generate a GIF.
         /// </summary>
         /// <param name="numberOfPoints">The total number of points </param>

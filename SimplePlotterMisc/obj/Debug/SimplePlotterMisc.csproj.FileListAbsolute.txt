@@ -55,3 +55,5 @@ C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlot
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePl.A2F3D3E1.Up2Date
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlotterMisc.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlotterMisc.pdb
+C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\ComplexNumbers.dll
+C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\ComplexNumbers.pdb

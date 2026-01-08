@@ -223,7 +223,8 @@
                                 <Button Command="{Binding RoundDataSeriesPoints}" Content="{Binding Vocabulary.Round, FallbackValue=Round}" Margin="300,340,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
                                 <Button Command="{Binding ParseXToLog}" Content="{Binding Vocabulary.ParseXToLog, FallbackValue=ParseXToLog}" Margin="220,370,80,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
                                 <Button Command="{Binding ParseAllXToLog}" Content="{Binding Vocabulary.All, FallbackValue=All}" Margin="350,370,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
-                                <Button Command="{Binding CopyDataToClipboard}" Content="{Binding Vocabulary.CopyDataToClipboard, FallbackValue=CopyDataToClipboard}" Margin="220,400,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
+                                <Button Command="{Binding PerformFFT}" Content="{Binding Vocabulary.PerformFFT, FallbackValue=PerformFFT}" Margin="220,400,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
+                                <Button Command="{Binding CopyDataToClipboard}" Content="{Binding Vocabulary.CopyDataToClipboard, FallbackValue=CopyDataToClipboard}" Margin="220,430,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
                                 <!--<ListView Margin="5,200,5,0" ItemsSource="{Binding SelectedDataSeriesPoints}" Height="265" VerticalAlignment="Top" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=3}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="{x:Type ListViewItem}">

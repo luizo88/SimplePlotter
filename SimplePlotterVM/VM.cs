@@ -48,6 +48,7 @@ namespace SimplePlotterVM
             RoundDataSeriesPoints = new Auxiliary.DelegateCommand(roundDataSeriesPoints, canRoundDataSeriesPoints);
             ParseXToLog = new Auxiliary.DelegateCommand(parseXToLog, canParseXToLog);
             ParseAllXToLog = new Auxiliary.DelegateCommand(parseAllXToLog, canParseAllXToLog);
+            PerformFFT = new Auxiliary.DelegateCommand(performFFT, canPerformFFT);
             CopyDataToClipboard = new Auxiliary.DelegateCommand(copyDataToClipboard, canCopyDataToClipboard);
             ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
             ImportPL4File = new Auxiliary.DelegateCommand(importPL4File);
@@ -103,6 +104,8 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand RoundDataSeriesPoints { get; set; }
         public Auxiliary.DelegateCommand ParseXToLog { get; set; }
         public Auxiliary.DelegateCommand ParseAllXToLog { get; set; }
+
+        public Auxiliary.DelegateCommand PerformFFT { get; set; }
         public Auxiliary.DelegateCommand CopyDataToClipboard { get; set; }
         public Auxiliary.DelegateCommand ApplyColorTemplate { get; set; }
         public Auxiliary.DelegateCommand ImportPL4File { get; set; }
@@ -413,6 +416,21 @@ namespace SimplePlotterVM
         {
             bool result = true;
             result &= AvailableDataSeries.Count > 0;
+            return result;
+        }
+
+        private void performFFT(object parameter)
+        {
+            SimplePlotterMisc.DataSeriesController.Instance.AddNewSeriesDFT(selectedDataSeries, (int)algorithmParameter1);
+            updateDataSeries();
+            updateEntirePlot();
+        }
+
+        private bool canPerformFFT()
+        {
+            bool result = true;
+            result &= algorithmParameter1 >= 0;
+            result &= selectedDataSeries != null;
             return result;
         }
 

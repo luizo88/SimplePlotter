@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ComplexNumbers">
+      <HintPath>..\..\ComplexNumbers\ComplexNumbers\bin\Release\ComplexNumbers.dll</HintPath>
+    </Reference>
     <Reference Include="OxyPlot, Version=2.1.2.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.Core.2.1.2\lib\net45\OxyPlot.dll</HintPath>
     </Reference>
@@ -43,6 +46,7 @@
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Printing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -56,6 +60,7 @@
   <ItemGroup>
     <Compile Include="PL4Reader.cs" />
     <Compile Include="FixedStepAlgorithm.cs" />
+    <Compile Include="FTAlgorithm.cs" />
     <Compile Include="RamerDouglasPeuckerAlgorithm.cs" />
     <Compile Include="ColorTemplateController.cs" />
     <Compile Include="DataSeriesController.cs" />
