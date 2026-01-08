@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -242,6 +243,166 @@ namespace SimplePlotterMisc
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Calcula a FFT de um sinal real amostrado uniformemente.
+        /// Entrada: pontos (X=tempo ou eixo amostral, Y=sinal). Pontos devem estar ordenados e com passo constante em X.
+        /// Saída: lista de pontos (X=frequência [Hz], Y=magnitude).
+        /// </summary>
+        public static List<PointObj> RunFT3(
+            IReadOnlyList<PointObj> samples,
+            bool oneSided = true,
+            bool removeMean = false,
+            bool applyHannWindow = false,
+            double uniformTolerance = 1e-9)
+        {
+            if (samples == null) throw new ArgumentNullException(nameof(samples));
+            if (samples.Count < 2) throw new ArgumentException("É necessário pelo menos 2 amostras.", nameof(samples));
+
+            // Garante ordenação por X (se já vier ordenado, o custo é pequeno; se não, corrige).
+            var s = samples.OrderBy(p => p.X).ToArray();
+
+            // Verifica amostragem uniforme e calcula dt e Fs.
+            double dt = s[1].X - s[0].X;
+            if (dt <= 0) throw new ArgumentException("X deve ser estritamente crescente.", nameof(samples));
+
+            for (int i = 2; i < s.Length; i++)
+            {
+                double dti = s[i].X - s[i - 1].X;
+                double err = Math.Abs(dti - dt);
+                double scale = Math.Max(1.0, Math.Abs(dt));
+                if (err > uniformTolerance * scale)
+                {
+                    throw new ArgumentException(
+                        "A FFT requer amostragem uniforme em X. Detectada variação no passo entre pontos.",
+                        nameof(samples));
+                }
+            }
+
+            double fs = 1.0 / dt;
+
+            // Zero padding para próxima potência de 2
+            int n = s.Length;
+            int nFft = NextPowerOfTwo(n);
+
+            // Monta vetor complexo (real) com opções de pré-processamento
+            double mean = 0.0;
+            if (removeMean)
+            {
+                for (int i = 0; i < n; i++) mean += s[i].Y;
+                mean /= n;
+            }
+
+            var x = new Complex[nFft];
+            for (int i = 0; i < n; i++)
+            {
+                double v = s[i].Y - (removeMean ? mean : 0.0);
+
+                if (applyHannWindow)
+                {
+                    // Janela de Hann no trecho útil (n amostras)
+                    double w = 0.5 * (1.0 - Math.Cos(2.0 * Math.PI * i / (n - 1)));
+                    v *= w;
+                }
+
+                x[i] = new Complex(v, 0.0);
+            }
+            for (int i = n; i < nFft; i++) x[i] = Complex.Zero;
+
+            // FFT in-place
+            FftInPlace(x);
+
+            // Monta espectro de magnitude com normalização
+            // Convenção: magnitude unilateral para sinal real:
+            //  - DC (k=0): |X[0]|/N
+            //  - Nyquist (k=N/2, se N par): |X[k]|/N
+            //  - Demais bins (1..N/2-1): 2*|X[k]|/N
+            int maxK = oneSided ? (nFft / 2) : (nFft - 1);
+            var result = new List<PointObj>(maxK + 1);
+
+            if (oneSided)
+            {
+                for (int k = 0; k <= nFft / 2; k++)
+                {
+                    double freq = k * fs / nFft;
+                    double mag = x[k].Magnitude / nFft;
+
+                    bool isDc = (k == 0);
+                    bool isNyquist = (k == nFft / 2);
+
+                    if (!isDc && !isNyquist)
+                        mag *= 2.0;
+
+                    result.Add(new PointObj(freq, mag));
+                }
+            }
+            else
+            {
+                for (int k = 0; k <= maxK; k++)
+                {
+                    double freq = k * fs / nFft;       // espectro “0..Fs”
+                    double mag = x[k].Magnitude / nFft; // normalizado por N
+                    result.Add(new PointObj(freq, mag));
+                }
+            }
+
+            return result;
+        }
+
+        // FFT iterativa Cooley-Tukey radix-2 (in-place)
+        private static void FftInPlace(Complex[] buffer)
+        {
+            int n = buffer.Length;
+            if ((n & (n - 1)) != 0) throw new ArgumentException("O tamanho do FFT deve ser potência de 2.");
+
+            // Bit-reversal permutation
+            int j = 0;
+            for (int i = 1; i < n; i++)
+            {
+                int bit = n >> 1;
+                while ((j & bit) != 0)
+                {
+                    j ^= bit;
+                    bit >>= 1;
+                }
+                j ^= bit;
+
+                if (i < j)
+                {
+                    (buffer[i], buffer[j]) = (buffer[j], buffer[i]);
+                }
+            }
+
+            // Danielson-Lanczos
+            for (int len = 2; len <= n; len <<= 1)
+            {
+                double ang = -2.0 * Math.PI / len;
+                Complex wLen = new Complex(Math.Cos(ang), Math.Sin(ang));
+
+                for (int i = 0; i < n; i += len)
+                {
+                    Complex w = Complex.One;
+                    int half = len >> 1;
+
+                    for (int k = 0; k < half; k++)
+                    {
+                        Complex u = buffer[i + k];
+                        Complex v = w * buffer[i + k + half];
+                        buffer[i + k] = u + v;
+                        buffer[i + k + half] = u - v;
+                        w *= wLen;
+                    }
+                }
+            }
+        }
+
+        private static int NextPowerOfTwo(int v)
+        {
+            if (v < 1) return 1;
+            int p = 1;
+            while (p < v) p <<= 1;
+            return p;
         }
 
     }

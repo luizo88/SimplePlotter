@@ -215,21 +215,22 @@ namespace SimplePlotterMisc
         }
 
         /// <summary>
-        /// Adds a new data series just after the selected data series, but the DFT.
+        /// Adds a new data series just after the selected data series, but the FFT.
         /// </summary>
-        /// <param name="dataSeriesToPerformDFT">The data series to be used as a base.</param>
-        /// <param name="N">The lenght of the DFT.</param>
-        public void AddNewSeriesDFT(DataSeriesObj dataSeriesToPerformDFT, int N)
+        /// <param name="dataSeriesToPerformFFT">The data series to be used as a base.</param>
+        /// <param name="numberOfPoints">The number of points in the equivalent curve (must be a power of 2).</param>
+        public void AddNewSeriesDFT(DataSeriesObj dataSeriesToPerformFFT, int numberOfPoints)
         {
-            int index = dataSeries.IndexOf(dataSeriesToPerformDFT);
-            List<PointObj> np = FTAlgorithm.RunFT2(dataSeriesToPerformDFT.Points, N);
+            int index = dataSeries.IndexOf(dataSeriesToPerformFFT);
+            List<PointObj> equivDataSeries = executeFixedStepAlgorithm(dataSeriesToPerformFFT.Points, numberOfPoints);
+            List<PointObj> np = FTAlgorithm.RunFT3(equivDataSeries);
             var linqX = from p
                         in np
                         select p.X;
             var linqY = from p
                         in np
                         select p.Y;
-            DataSeriesObj ds = new DataSeriesObj(dataSeriesToPerformDFT.Name + "_DFT", linqX.ToList(), linqY.ToList());
+            DataSeriesObj ds = new DataSeriesObj(dataSeriesToPerformFFT.Name + "_DFT", linqX.ToList(), linqY.ToList());
             dataSeries.Insert(index + 1, ds);
         }
 
