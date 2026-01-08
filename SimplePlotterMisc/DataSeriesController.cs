@@ -230,7 +230,7 @@ namespace SimplePlotterMisc
             var linqY = from p
                         in np
                         select p.Y;
-            DataSeriesObj ds = new DataSeriesObj(dataSeriesToPerformFFT.Name + "_DFT", linqX.ToList(), linqY.ToList());
+            DataSeriesObj ds = new DataSeriesObj(dataSeriesToPerformFFT.Name + "_FFT" + numberOfPoints.ToString(), linqX.ToList(), linqY.ToList());
             dataSeries.Insert(index + 1, ds);
         }
 

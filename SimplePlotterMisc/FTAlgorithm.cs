@@ -1,5 +1,8 @@
-﻿using System;
+﻿using SimplePlotterMisc.Enums;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -10,6 +13,9 @@ namespace SimplePlotterMisc
     //Done by chatGPT... need to be corrected/improved... still, it works.
     public static class FTAlgorithm
     {
+
+        #region old methods
+
         /// <summary>
         /// Calcula o espectro de amplitude |X(f)| em 'terms' frequências, de 0 até Nyquist,
         /// a partir de amostras (X,Y) ordenadas em X. Suporta espaçamento não-uniforme em X
@@ -244,6 +250,14 @@ namespace SimplePlotterMisc
 
             return result;
         }
+
+        #endregion
+
+        //Observações práticas(para evitar “amplitudes estranhas” em baixa frequência)
+        //Remover a média(DC) quase sempre ajuda(já está removeMean: true).
+        //Se o sinal não contiver um número inteiro de períodos dentro da janela, pode haver vazamento espectral; nesse caso, applyHannWindow: true costuma melhorar.
+        //Se seus pontos em X não forem uniformes, FFT direta não é válida: precisa reamostrar/interpolar antes.
+        //Se você colar aqui um exemplo pequeno do seu sinal (10–20 pontos) e o intervalo típico em X, eu consigo validar o mapeamento de frequência e a escala de amplitude para o seu caso.
 
         /// <summary>
         /// Calcula a FFT de um sinal real amostrado uniformemente.
