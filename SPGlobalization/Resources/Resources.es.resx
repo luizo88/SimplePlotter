@@ -159,6 +159,12 @@
   <data name="BackgroundColor" xml:space="preserve">
     <value>Color de fondo del quadro</value>
   </data>
+  <data name="BarsWidth" xml:space="preserve">
+    <value>Ancho de las barras</value>
+  </data>
+  <data name="BarType" xml:space="preserve">
+    <value>Tipo barra</value>
+  </data>
   <data name="Black" xml:space="preserve">
     <value>Negro</value>
   </data>
@@ -302,6 +308,9 @@
   </data>
   <data name="Helvetica" xml:space="preserve">
     <value>Helvetica</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Esconder</value>
   </data>
   <data name="ImportPL4File" xml:space="preserve">
     <value>Importar archivo .pl4</value>

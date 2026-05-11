@@ -33,6 +33,8 @@ namespace SimplePlotterMisc
         private Tuple<byte, byte, byte> rgb;
         private bool legend;
         private bool secondY;
+        private bool hide;
+        private bool barType;
         private List<PointObj> gifPoints = new List<PointObj>();
         private List<int> gifKeyIndexes = new List<int>();
 
@@ -74,6 +76,8 @@ namespace SimplePlotterMisc
             this.rgbDescription = ColorTemplateController.GetRGBDescriptionFromColor(color);
             this.legend = true;
             this.secondY = false;
+            this.hide = false;
+            this.barType = false;
         }
 
         /// <summary>
@@ -93,9 +97,11 @@ namespace SimplePlotterMisc
         /// <param name="RGBDescription">The RGB description (in the form of "R|G|B") of the color.</param>
         /// <param name="legend">A boolean value indicating if the curve name will apear in the legend box list.</param>
         /// <param name="secondY">A boolean value indicating if the curve needs to be refered to the second (right) Y-axis.</param>
+        /// <param name="hide">A boolean value indicating whether the curve shall be hide in the graphic.</param>
+        /// <param name="barType">A boolean value indicating whether the curve shall be presented as 'bar type'</param>
         public DataSeriesObj(string name, List<double> xPoints, List<double> yPoints, double xScale, double yScale,
             double thick, OxyPlot.LineStyle lineStyle, OxyPlot.MarkerType markerType, double markerSize, SimplePlotterMisc.Enums.Colors color,
-            bool customColor, string RGBDescription, bool legend, bool secondY)
+            bool customColor, string RGBDescription, bool legend, bool secondY, bool hide, bool barType)
         {
             this.name = name;
             this.xScale = xScale;
@@ -122,6 +128,8 @@ namespace SimplePlotterMisc
             this.RGBDescription = RGBDescription;
             this.legend = legend;
             this.secondY = secondY;
+            this.hide = hide;
+            this.barType = barType;
         }
 
         #region PROPERTIES
@@ -411,6 +419,32 @@ namespace SimplePlotterMisc
             set
             {
                 secondY = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether the curve shall be hide in the graphic.
+        /// </summary>
+        public bool Hide
+        {
+            get { return hide; }
+            set
+            {
+                hide = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether the curve shall be presented as 'bar type'.
+        /// </summary>
+        public bool BarType
+        {
+            get { return barType; }
+            set
+            {
+                barType = value;
                 NotifyPropertyChanged();
             }
         }

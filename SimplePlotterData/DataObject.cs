@@ -22,6 +22,8 @@ namespace SimplePlotterData
         public List<string> DataSeriesRGBDescription { get; set; }
         public List<bool> DataSeriesLegend { get; set; }
         public List<bool> DataSeriesSecondY { get; set; }
+        public List<bool> DataSeriesHide { get; set; }
+        public List<bool> DataSeriesBarType { get; set; }
         public List<List<double>> DataSeriesXPoints { get; set; }
         public List<List<double>> DataSeriesYPoints { get; set; }
         public bool ManualXMinAxisLimit { get; set; }
@@ -111,6 +113,8 @@ namespace SimplePlotterData
             DataSeriesRGBDescription = new List<string>();
             DataSeriesLegend = new List<bool>();
             DataSeriesSecondY = new List<bool>();
+            DataSeriesHide = new List<bool>();
+            DataSeriesBarType = new List<bool>();
             DataSeriesXPoints = new List<List<double>>();
             DataSeriesYPoints = new List<List<double>>();
             foreach (var item in dataSeries)
@@ -127,6 +131,8 @@ namespace SimplePlotterData
                 DataSeriesRGBDescription.Add(item.RGBDescription);
                 DataSeriesLegend.Add(item.Legend);
                 DataSeriesSecondY.Add(item.SecondY);
+                DataSeriesHide.Add(item.Hide);
+                DataSeriesBarType.Add(item.BarType);
                 DataSeriesXPoints.Add(item.XPoints);
                 DataSeriesYPoints.Add(item.YPoints);
             }
@@ -196,7 +202,8 @@ namespace SimplePlotterData
                   false, false, false, SimplePlotterMisc.Enums.AxisLabelFormats.Default, SimplePlotterMisc.Enums.AxisLabelFormats.Default,
                   SimplePlotterMisc.Enums.AxisLabelFormats.Default, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0, 0, 0, "", false, LegendPosition.TopRight, false,
                   SimplePlotterMisc.Enums.Fonts.TimesNewRoman, 0, 0, 0, 0, 0, SimplePlotterMisc.Enums.Colors.White, false, "255|255|255",
-                  SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", SimplePlotterMisc.Enums.GIFTypes.TimeRoll, 0, 0, false)
+                  SimplePlotterMisc.Enums.Colors.White, false, "255|255|255", SimplePlotterMisc.Enums.Colors.White, false, "255|255|255",
+                  SimplePlotterMisc.Enums.GIFTypes.TimeRoll, 0, 0, false)
         { }
 
     }

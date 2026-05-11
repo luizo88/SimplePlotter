@@ -187,6 +187,24 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bars width.
+        /// </summary>
+        internal static string BarsWidth {
+            get {
+                return ResourceManager.GetString("BarsWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bar type.
+        /// </summary>
+        internal static string BarType {
+            get {
+                return ResourceManager.GetString("BarType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Black.
         /// </summary>
         internal static string Black {
@@ -615,6 +633,15 @@ namespace SPGlobalization.Resources {
         internal static string Helvetica {
             get {
                 return ResourceManager.GetString("Helvetica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide.
+        /// </summary>
+        internal static string Hide {
+            get {
+                return ResourceManager.GetString("Hide", resourceCulture);
             }
         }
         

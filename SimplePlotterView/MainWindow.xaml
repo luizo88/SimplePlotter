@@ -83,7 +83,7 @@
         <Label Name="lblVersion" Content="{Binding Version, FallbackValue='v. x.X.X.X'}" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,0,0"/>
         <Expander Name="expd0" Margin="5,5,0,35" Grid.Row="1" Grid.Column="0" ExpandDirection="Right" IsExpanded="True">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,0" Grid.Row="1">
-                <Grid Background="#FFF7FAFD" HorizontalAlignment="Left" Width="750">
+                <Grid Background="#FFF7FAFD" HorizontalAlignment="Left" Width="880">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -95,7 +95,7 @@
                     </Grid.RowDefinitions>
                     <Expander Name="ExpdDataSeries" Margin="10,10,10,10" Grid.Row="0" BorderBrush="DarkGray" IsExpanded="True">
                         <Expander.Header>
-                            <DockPanel Width="745" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                            <DockPanel Width="835" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="DarkGray" Offset="1"/>
@@ -107,6 +107,7 @@
                         </Expander.Header>
                         <Grid>
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -205,6 +206,20 @@
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <CheckBox IsChecked="{Binding SecondY}" Content="" Background="{x:Null}" GotFocus="lvItem_GotFocus" HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="Hide" Header="{Binding Vocabulary.Hide, FallbackValue=Hide}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox IsChecked="{Binding Hide}" Content="" Background="{x:Null}" GotFocus="lvItem_GotFocus" HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="BarType" Header="{Binding Vocabulary.BarType, FallbackValue=BarType}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox IsChecked="{Binding BarType}" Content="" Background="{x:Null}" GotFocus="lvItem_GotFocus" HorizontalAlignment="Center"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -374,6 +389,27 @@
                                     <Label Content="{Binding Vocabulary.ColorTemplate, FallbackValue=ColorTemplate}" Margin="10,10,10,0" VerticalAlignment="Top"/>
                                     <ComboBox ItemsSource="{Binding AvailableColorTemplates}" SelectedItem="{Binding SelectedColorTemplate}" Margin="200,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="150"/>
                                     <Button Command="{Binding ApplyColorTemplate}" Content="{Binding Vocabulary.Apply, FallbackValue=Apply}" Margin="370,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100" Grid.ColumnSpan="2"/>
+                                </Grid>
+                            </Expander>
+                            <Expander Name="ExpdMiscellaneous" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="5">
+                                <Expander.Header>
+                                    <DockPanel Width="695" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                        <DockPanel.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="DarkGray" Offset="1"/>
+                                                <GradientStop Color="LightGray"/>
+                                            </LinearGradientBrush>
+                                        </DockPanel.Background>
+                                        <TextBlock Name="txtMiscellaneous" Text="{Binding Vocabulary.Miscellaneous, FallbackValue=Miscellaneous}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    </DockPanel>
+                                </Expander.Header>
+                                <Grid Height="40">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="420"/>
+                                        <ColumnDefinition Width="308"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="{Binding Vocabulary.BarsWidth, FallbackValue=BarsWidth}" Margin="10,10,10,0" VerticalAlignment="Top"/>
+                                    <TextBox Text="{Binding BarsWidth, UpdateSourceTrigger=LostFocus}" Margin="220,10,20,0" VerticalAlignment="Top" Height="23"/>
                                 </Grid>
                             </Expander>
                             <Grid>

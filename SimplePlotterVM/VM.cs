@@ -81,6 +81,8 @@ namespace SimplePlotterVM
                 case "RGBDescription":
                 case "Legend":
                 case "SecondY":
+                case "Hide":
+                case "BarType":
                     if (!longProcessRuning) updateEntirePlot();
                     break;
             }
@@ -138,10 +140,12 @@ namespace SimplePlotterVM
                     //version workaround
                     OxyPlot.MarkerType markerType = dtob.DataSeriesMarkerType.Count > 0 ? dtob.DataSeriesMarkerType[i] : OxyPlot.MarkerType.None;
                     double markerSize = dtob.DataSeriesMarkerSize.Count > 0 ? dtob.DataSeriesMarkerSize[i] : DataSeriesObj.GetDefaultDataSeriesMarkerSize();
+                    bool hide = dtob.DataSeriesHide.Count > 0 ? dtob.DataSeriesHide[i] : false;
+                    bool barType = dtob.DataSeriesBarType.Count > 0 ? dtob.DataSeriesBarType[i] : false;
                     //end of version workaround
                     DataSeriesController.Instance.DataSeries.Add(new DataSeriesObj(dtob.DataSeriesName[i], dtob.DataSeriesXPoints[i], dtob.DataSeriesYPoints[i], dtob.DataSeriesScaleX[i], dtob.DataSeriesScaleY[i],
                         dtob.DataSeriesThick[i], dtob.DataSeriesLineStyle[i], markerType, markerSize, dtob.DataSeriesColor[i], dtob.DataSeriesCustomColor[i],
-                        dtob.DataSeriesRGBDescription[i], dtob.DataSeriesLegend[i], dtob.DataSeriesSecondY[i]));
+                        dtob.DataSeriesRGBDescription[i], dtob.DataSeriesLegend[i], dtob.DataSeriesSecondY[i], dtob.DataSeriesHide[i], dtob.DataSeriesBarType[i]));
                 }
                 //values
                 ManualXMinAxisLimit = dtob.ManualXMinAxisLimit;
@@ -730,6 +734,21 @@ namespace SimplePlotterVM
             }
         }
 
+        private double barsWidth;
+        public double BarsWidth
+        {
+            get { return barsWidth; }
+            set
+            {
+                if (value > 0)
+                {
+                    barsWidth = value;
+                    plotSeries(false);
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         private ObservableCollection<SimplePlotterMisc.Enums.CompressingAlgorithms> availableCompressingAlgorithms = new ObservableCollection<SimplePlotterMisc.Enums.CompressingAlgorithms>();
         public ObservableCollection<SimplePlotterMisc.Enums.CompressingAlgorithms> AvailableCompressingAlgorithms
         {
@@ -1072,6 +1091,7 @@ namespace SimplePlotterVM
             {
                 if (hasSecondYAxis == value) return;
                 hasSecondYAxis = value;
+                updateAxis();
                 NotifyPropertyChanged();
             }
         }
@@ -1839,10 +1859,11 @@ namespace SimplePlotterVM
 
         private void setInitialConfig()
         {
-            numberOfPoints = 1000;
-            numberOfPointsFFT = 1024;
-            algorithmParameter1 = 0.1;
+            NumberOfPoints = 1000;
+            NumberOfPointsFFT = 1024;
+            AlgorithmParameter1 = 0.1;
             NumberOfDecimalPlaces = 2;
+            barsWidth = 15;
             manualXMinAxisLimit = false;
             manualXMaxAxisLimit = false;
             manualYMinAxisLimit = false;
@@ -1981,7 +2002,11 @@ namespace SimplePlotterVM
             //adds new series
             foreach (var item in SimplePlotterMisc.DataSeriesController.Instance.DataSeries)
             {
-                OxyPlot.Series.FunctionSeries serie = new OxyPlot.Series.FunctionSeries();
+                OxyPlot.Series.DataPointSeries serie = new OxyPlot.Series.LineSeries();
+                if (item.BarType)
+                {
+                    serie = new OxyPlot.Series.LinearBarSeries();
+                }
                 if (isForGIF)
                 {
                     int limitIndexToPlot = item.GIFKeyIndexes[stepOfGIF - 1];
@@ -1998,23 +2023,75 @@ namespace SimplePlotterVM
                     }
                 }
                 serie.Title = string.Format("{0}{1}", (showLegendArrows ? (item.SecondY ? "[→] " : "[←] ") : ""), item.Name);
-                //line style
-                serie.StrokeThickness = item.Thick;
-                serie.LineStyle = item.LineStyle;
-                serie.Color = item.OxyColor;
-                //marker style
-                serie.MarkerFill = item.OxyColor;
-                serie.MarkerType = item.MarkerType;
-                serie.MarkerSize = item.MarkerSize;
-                serie.MarkerStrokeThickness = 1;
-                serie.MarkerStroke = item.OxyColor;
+                if (item.BarType)
+                {
+                    ((LinearBarSeries)serie).FillColor = item.OxyColor;
+                    ((LinearBarSeries)serie).BarWidth = barsWidth;
+                }
+                else
+                {
+                    //line style
+                    ((LineSeries)serie).StrokeThickness = item.Thick;
+                    ((LineSeries)serie).LineStyle = item.LineStyle;
+                    ((LineSeries)serie).Color = item.OxyColor;
+                    //marker style
+                    ((LineSeries)serie).MarkerFill = item.OxyColor;
+                    ((LineSeries)serie).MarkerType = item.MarkerType;
+                    ((LineSeries)serie).MarkerSize = item.MarkerSize;
+                    ((LineSeries)serie).MarkerStrokeThickness = 1;
+                    ((LineSeries)serie).MarkerStroke = item.OxyColor;
+                }
                 //legend
                 serie.RenderInLegend = item.Legend;
                 if (item.SecondY) serie.YAxisKey = "Y2";
+                serie.IsVisible = !item.Hide;
                 plotObj.Series.Add(serie);
             }
             //refreshes to update axes
             plotObj.InvalidatePlot(true);
+
+
+
+            ////cleares old series
+            //plotObj.Series.Clear();
+            ////adds new series
+            //foreach (var item in SimplePlotterMisc.DataSeriesController.Instance.DataSeries)
+            //{
+            //    OxyPlot.Series.LineSeries serie = new OxyPlot.Series.LineSeries();
+            //    if (isForGIF)
+            //    {
+            //        int limitIndexToPlot = item.GIFKeyIndexes[stepOfGIF - 1];
+            //        for (int i = 0; i <= limitIndexToPlot; i++)
+            //        {
+            //            serie.Points.Add(new OxyPlot.DataPoint(item.GIFPoints[i].ScaledX, item.GIFPoints[i].ScaledY));
+            //        }
+            //    }
+            //    else
+            //    {
+            //        for (int i = 0; i < item.Length; i++)
+            //        {
+            //            serie.Points.Add(new OxyPlot.DataPoint(item.Points[i].ScaledX, item.Points[i].ScaledY));
+            //        }
+            //    }
+            //    serie.Title = string.Format("{0}{1}", (showLegendArrows ? (item.SecondY ? "[→] " : "[←] ") : ""), item.Name);
+            //    //line style
+            //    serie.StrokeThickness = item.Thick;
+            //    serie.LineStyle = item.LineStyle;
+            //    serie.Color = item.OxyColor;
+            //    //marker style
+            //    serie.MarkerFill = item.OxyColor;
+            //    serie.MarkerType = item.MarkerType;
+            //    serie.MarkerSize = item.MarkerSize;
+            //    serie.MarkerStrokeThickness = 1;
+            //    serie.MarkerStroke = item.OxyColor;
+            //    //legend
+            //    serie.RenderInLegend = item.Legend;
+            //    if (item.SecondY) serie.YAxisKey = "Y2";
+            //    serie.IsVisible = !item.Hide;
+            //    plotObj.Series.Add(serie);
+            //}
+            ////refreshes to update axes
+            //plotObj.InvalidatePlot(true);
         }
 
         private void updateLegend()

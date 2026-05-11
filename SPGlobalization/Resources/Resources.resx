@@ -159,6 +159,12 @@
   <data name="BackgroundColor" xml:space="preserve">
     <value>Background color</value>
   </data>
+  <data name="BarsWidth" xml:space="preserve">
+    <value>Bars width</value>
+  </data>
+  <data name="BarType" xml:space="preserve">
+    <value>Bar type</value>
+  </data>
   <data name="Black" xml:space="preserve">
     <value>Black</value>
   </data>
@@ -302,6 +308,9 @@
   </data>
   <data name="Helvetica" xml:space="preserve">
     <value>Helvetica</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Hide</value>
   </data>
   <data name="ImportPL4File" xml:space="preserve">
     <value>Import .pl4 file</value>

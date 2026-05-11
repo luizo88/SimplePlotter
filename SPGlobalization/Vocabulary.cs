@@ -219,6 +219,9 @@ namespace SPGlobalization
         public string Trim { get { return string.Format("{0}", Resources.Resources.Trim); } }
         public string TrimSeries { get { return string.Format("{0}", Resources.Resources.TrimSeries); } }
         public string TrimAllSeries { get { return string.Format("{0}", Resources.Resources.TrimAllSeries); } }
+        public string Hide { get { return string.Format("{0}", Resources.Resources.Hide); } }
+        public string BarType { get { return string.Format("{0}", Resources.Resources.BarType); } }
+        public string BarsWidth { get { return string.Format("{0}", Resources.Resources.BarsWidth); } }
 
         #endregion
 
