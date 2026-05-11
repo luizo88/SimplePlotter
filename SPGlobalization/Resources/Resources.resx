@@ -120,6 +120,9 @@
   <data name="AddDataSeries" xml:space="preserve">
     <value>Add data series</value>
   </data>
+  <data name="AdvancedAlgorithms" xml:space="preserve">
+    <value>Advanced algorithms</value>
+  </data>
   <data name="AlgorithmParameter1" xml:space="preserve">
     <value>Algorithm parameter 1</value>
   </data>
@@ -207,11 +210,20 @@
   <data name="CustomColor" xml:space="preserve">
     <value>Custom color</value>
   </data>
+  <data name="CutAll" xml:space="preserve">
+    <value>Cut all</value>
+  </data>
   <data name="Cycle" xml:space="preserve">
     <value>Cycle</value>
   </data>
+  <data name="DataFixAndManipulation" xml:space="preserve">
+    <value>Data fix and manipulation</value>
+  </data>
   <data name="DataSeries" xml:space="preserve">
     <value>Data series</value>
+  </data>
+  <data name="DecimalPlaces" xml:space="preserve">
+    <value>Decimal places</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Default</value>
@@ -225,11 +237,17 @@
   <data name="ES" xml:space="preserve">
     <value>ES</value>
   </data>
+  <data name="ExpansionN" xml:space="preserve">
+    <value>Expansion (N)</value>
+  </data>
   <data name="ExportPlot" xml:space="preserve">
     <value>Export plot</value>
   </data>
   <data name="FEMM42" xml:space="preserve">
     <value>FEMM42</value>
+  </data>
+  <data name="FFT" xml:space="preserve">
+    <value>FFT</value>
   </data>
   <data name="File" xml:space="preserve">
     <value>File</value>
@@ -306,6 +324,9 @@
   <data name="LegendPosition" xml:space="preserve">
     <value>Legend position</value>
   </data>
+  <data name="LinearToLog" xml:space="preserve">
+    <value>Linear to log</value>
+  </data>
   <data name="LogarithmicScale" xml:space="preserve">
     <value>Logarithmic scale</value>
   </data>
@@ -351,6 +372,9 @@
   <data name="ParseXToLog" xml:space="preserve">
     <value>Parse X to log</value>
   </data>
+  <data name="PerformFFT" xml:space="preserve">
+    <value>Perform FFT</value>
+  </data>
   <data name="Plot" xml:space="preserve">
     <value>Plot</value>
   </data>
@@ -375,8 +399,14 @@
   <data name="ReduceNumberOfPoints" xml:space="preserve">
     <value>Reduce number of points</value>
   </data>
+  <data name="ReducePoints" xml:space="preserve">
+    <value>Reduce points</value>
+  </data>
   <data name="RefreshPlot" xml:space="preserve">
     <value>Refresh plot</value>
+  </data>
+  <data name="RemoveAllDataSeries" xml:space="preserve">
+    <value>Remove all series</value>
   </data>
   <data name="RemoveDataSeries" xml:space="preserve">
     <value>Remove data series</value>
@@ -411,6 +441,9 @@
   <data name="SecondY" xml:space="preserve">
     <value>Second Y</value>
   </data>
+  <data name="SeriesColors" xml:space="preserve">
+    <value>Series colors</value>
+  </data>
   <data name="SeriesRoll" xml:space="preserve">
     <value>Series roll</value>
   </data>
@@ -440,6 +473,15 @@
   </data>
   <data name="TotalTime" xml:space="preserve">
     <value>Total time [s]</value>
+  </data>
+  <data name="Trim" xml:space="preserve">
+    <value>Trim</value>
+  </data>
+  <data name="TrimAllSeries" xml:space="preserve">
+    <value>Trim all series</value>
+  </data>
+  <data name="TrimSeries" xml:space="preserve">
+    <value>Trim series</value>
   </data>
   <data name="Univers" xml:space="preserve">
     <value>Univers</value>

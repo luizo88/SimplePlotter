@@ -104,6 +104,23 @@ namespace SimplePlotterMisc
             return result;
         }
 
+        /// <summary>
+        /// Returns a new list of points, but trimed.
+        /// </summary>
+        /// <param name="originalPoints">The base list of points.</param>
+        /// <param name="minX">The minimum value for X axis.</param>
+        /// <param name="maxX">The minimum value for Y axis.</param>
+        /// <returns></returns>
+        private List<PointObj> trimSeries(List<PointObj> originalPoints, double minX, double maxX)
+        {
+            List<PointObj> result = new List<PointObj>();
+            foreach (var item in originalPoints)
+            {
+                if (item.X >= minX && item.X <= maxX) result.Add(new PointObj(item.X, item.Y));
+            }
+            return result;
+        }
+
         #endregion
 
         #region PUBLIC METHODS
@@ -124,13 +141,24 @@ namespace SimplePlotterMisc
         }
 
         /// <summary>
-        /// Remove a deta series from the list.
+        /// Remove a data series from the list.
         /// </summary>
         /// <param name="dataSeriesToRemove">The data series to be removed.</param>
         public void RemoveDataSeries(DataSeriesObj dataSeriesToRemove)
         {
             dataSeriesToRemove.PropertyChanged -= onDataSeriesPropertyChanged;
             dataSeries.Remove(dataSeriesToRemove);
+            NotifyPropertyChanged("DataSeries");
+            NotifyPropertyChanged("NeedToPlotAgain");
+        }
+
+        /// <summary>
+        /// Remove all data series from the list.
+        /// </summary>
+        /// <param name="dataSeriesToRemove">The data series to be removed.</param>
+        public void RemoveAllDataSeries()
+        {
+            dataSeries.Clear();
             NotifyPropertyChanged("DataSeries");
             NotifyPropertyChanged("NeedToPlotAgain");
         }
@@ -212,6 +240,40 @@ namespace SimplePlotterMisc
                         select p.Y;
             DataSeriesObj ds = new DataSeriesObj(dataSeriesToRound.Name + "_new", linqX.ToList(), linqY.ToList());
             dataSeries.Insert(index + 1, ds);
+        }
+
+        /// <summary>
+        /// Adds a new data series just after the selected data series, but trimed.
+        /// </summary>
+        /// <param name="dataSeriesToTrim">The data series to be used as a base.</param>
+        /// <param name="minX">The minimum value for X axis.</param>
+        /// <param name="maxX">The minimum value for Y axis.</param>
+        public void AddNewSeriesTrimed(DataSeriesObj dataSeriesToTrim, double minX, double maxX)
+        {
+            int index = dataSeries.IndexOf(dataSeriesToTrim);
+            List<PointObj> np = trimSeries(dataSeriesToTrim.Points, minX, maxX);
+            var linqX = from p
+                        in np
+                        select p.X;
+            var linqY = from p
+                        in np
+                        select p.Y;
+            DataSeriesObj ds = new DataSeriesObj(dataSeriesToTrim.Name + "_new", linqX.ToList(), linqY.ToList());
+            dataSeries.Insert(index + 1, ds);
+        }
+
+        /// <summary>
+        /// Adds a new data series just after the selected data series, but trimed.
+        /// </summary>
+        /// <param name="minX">The minimum value for X axis.</param>
+        /// <param name="maxX">The minimum value for Y axis.</param>
+        public void TrimAllSeries(List<DataSeriesObj> allSeries, double minX, double maxX)
+        {
+            for (int i = 0; i < allSeries.Count; i++)
+            {
+                List<PointObj> np = trimSeries(allSeries[i].Points, minX, maxX);
+                allSeries[i].Points = np;
+            }
         }
 
         /// <summary>

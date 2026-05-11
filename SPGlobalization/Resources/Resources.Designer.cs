@@ -70,6 +70,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced algorithms.
+        /// </summary>
+        internal static string AdvancedAlgorithms {
+            get {
+                return ResourceManager.GetString("AdvancedAlgorithms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Algorithm parameter 1.
         /// </summary>
         internal static string AlgorithmParameter1 {
@@ -331,6 +340,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cut all.
+        /// </summary>
+        internal static string CutAll {
+            get {
+                return ResourceManager.GetString("CutAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cycle.
         /// </summary>
         internal static string Cycle {
@@ -340,11 +358,29 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data fix and manipulation.
+        /// </summary>
+        internal static string DataFixAndManipulation {
+            get {
+                return ResourceManager.GetString("DataFixAndManipulation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data series.
         /// </summary>
         internal static string DataSeries {
             get {
                 return ResourceManager.GetString("DataSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decimal places.
+        /// </summary>
+        internal static string DecimalPlaces {
+            get {
+                return ResourceManager.GetString("DecimalPlaces", resourceCulture);
             }
         }
         
@@ -385,6 +421,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expansion (N).
+        /// </summary>
+        internal static string ExpansionN {
+            get {
+                return ResourceManager.GetString("ExpansionN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export plot.
         /// </summary>
         internal static string ExportPlot {
@@ -399,6 +444,15 @@ namespace SPGlobalization.Resources {
         internal static string FEMM42 {
             get {
                 return ResourceManager.GetString("FEMM42", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FFT.
+        /// </summary>
+        internal static string FFT {
+            get {
+                return ResourceManager.GetString("FFT", resourceCulture);
             }
         }
         
@@ -628,6 +682,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Linear to log.
+        /// </summary>
+        internal static string LinearToLog {
+            get {
+                return ResourceManager.GetString("LinearToLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logarithmic scale.
         /// </summary>
         internal static string LogarithmicScale {
@@ -763,6 +826,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Perform FFT.
+        /// </summary>
+        internal static string PerformFFT {
+            get {
+                return ResourceManager.GetString("PerformFFT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plot.
         /// </summary>
         internal static string Plot {
@@ -835,11 +907,29 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reduce points.
+        /// </summary>
+        internal static string ReducePoints {
+            get {
+                return ResourceManager.GetString("ReducePoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh plot.
         /// </summary>
         internal static string RefreshPlot {
             get {
                 return ResourceManager.GetString("RefreshPlot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove all series.
+        /// </summary>
+        internal static string RemoveAllDataSeries {
+            get {
+                return ResourceManager.GetString("RemoveAllDataSeries", resourceCulture);
             }
         }
         
@@ -943,6 +1033,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Series colors.
+        /// </summary>
+        internal static string SeriesColors {
+            get {
+                return ResourceManager.GetString("SeriesColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Series roll.
         /// </summary>
         internal static string SeriesRoll {
@@ -1029,6 +1128,33 @@ namespace SPGlobalization.Resources {
         internal static string TotalTime {
             get {
                 return ResourceManager.GetString("TotalTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trim.
+        /// </summary>
+        internal static string Trim {
+            get {
+                return ResourceManager.GetString("Trim", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trim all series.
+        /// </summary>
+        internal static string TrimAllSeries {
+            get {
+                return ResourceManager.GetString("TrimAllSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trim series.
+        /// </summary>
+        internal static string TrimSeries {
+            get {
+                return ResourceManager.GetString("TrimSeries", resourceCulture);
             }
         }
         

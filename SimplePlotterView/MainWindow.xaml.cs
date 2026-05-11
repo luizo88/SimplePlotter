@@ -264,5 +264,9 @@ namespace SimplePlotterView
 
         #endregion
 
+        private void SelectAllDataSeries_Click(object sender, RoutedEventArgs e)
+        {
+            lvDataSeries.SelectAll();
+        }
     }
 }

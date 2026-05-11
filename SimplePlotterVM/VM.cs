@@ -41,6 +41,7 @@ namespace SimplePlotterVM
             ExportPlot = new Auxiliary.DelegateCommand(exportPlot);
             AddDataSeries = new Auxiliary.DelegateCommand(addDataSeries);
             RemoveDataSeries = new Auxiliary.DelegateCommand(removeDataSeries, canRemoveDataSeries);
+            RemoveAllDataSeries = new Auxiliary.DelegateCommand(removeAllDataSeries, canRemoveAllDataSeries);
             RemoveDataSeriesExtended = new Auxiliary.DelegateCommand(removeDataSeriesExtended, canRemoveDataSeries);
             DataSeriesUp = new Auxiliary.DelegateCommand(dataSeriesUp, canMoveDataSeriesUp);
             DataSeriesDown = new Auxiliary.DelegateCommand(dataSeriesDown, canMoveDataSeriesDown);
@@ -48,6 +49,8 @@ namespace SimplePlotterVM
             RoundDataSeriesPoints = new Auxiliary.DelegateCommand(roundDataSeriesPoints, canRoundDataSeriesPoints);
             ParseXToLog = new Auxiliary.DelegateCommand(parseXToLog, canParseXToLog);
             ParseAllXToLog = new Auxiliary.DelegateCommand(parseAllXToLog, canParseAllXToLog);
+            TrimSeries = new Auxiliary.DelegateCommand(trimSeries, canTrimSeries);
+            TrimAllSeries = new Auxiliary.DelegateCommand(trimAllSeries, canTrimAllSeries);
             PerformFFT = new Auxiliary.DelegateCommand(performFFT, canPerformFFT);
             CopyDataToClipboard = new Auxiliary.DelegateCommand(copyDataToClipboard, canCopyDataToClipboard);
             ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
@@ -97,6 +100,7 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand Plot { get; set; }
         public Auxiliary.DelegateCommand AddDataSeries { get; set; }
         public Auxiliary.DelegateCommand RemoveDataSeries { get; set; }
+        public Auxiliary.DelegateCommand RemoveAllDataSeries { get; set; }
         public Auxiliary.DelegateCommand RemoveDataSeriesExtended { get; set; }
         public Auxiliary.DelegateCommand DataSeriesUp { get; set; }
         public Auxiliary.DelegateCommand DataSeriesDown { get; set; }
@@ -104,7 +108,8 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand RoundDataSeriesPoints { get; set; }
         public Auxiliary.DelegateCommand ParseXToLog { get; set; }
         public Auxiliary.DelegateCommand ParseAllXToLog { get; set; }
-
+        public Auxiliary.DelegateCommand TrimSeries { get; set; }
+        public Auxiliary.DelegateCommand TrimAllSeries { get; set; }
         public Auxiliary.DelegateCommand PerformFFT { get; set; }
         public Auxiliary.DelegateCommand CopyDataToClipboard { get; set; }
         public Auxiliary.DelegateCommand ApplyColorTemplate { get; set; }
@@ -313,6 +318,14 @@ namespace SimplePlotterVM
             if (SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Count > 0) SelectedDataSeries = SimplePlotterMisc.DataSeriesController.Instance.DataSeries[Math.Min(index, SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Count - 1)];
         }
 
+        private void removeAllDataSeries(object parameter)
+        {
+            SimplePlotterMisc.DataSeriesController.Instance.RemoveAllDataSeries();
+            updateDataSeries();
+            updateSelectedDataSeriesPoints();
+            updateEntirePlot();
+        }
+
         private void removeDataSeriesExtended(object parameter)
         {
             foreach (var item in selectedDataSeriesExtended)
@@ -329,6 +342,13 @@ namespace SimplePlotterVM
         {
             bool result = true;
             result &= selectedDataSeries != null;
+            return result;
+        }
+
+        private bool canRemoveAllDataSeries()
+        {
+            bool result = true;
+            result &= availableDataSeries.Count > 0;
             return result;
         }
 
@@ -419,9 +439,41 @@ namespace SimplePlotterVM
             return result;
         }
 
+        private void trimSeries(object parameter)
+        {
+            SimplePlotterMisc.DataSeriesController.Instance.AddNewSeriesTrimed(selectedDataSeries, minXEdit, maxXEdit);
+            updateDataSeries();
+            updateEntirePlot();
+        }
+
+        private bool canTrimSeries()
+        {
+            bool result = true;
+            result &= selectedDataSeries != null;
+            result &= MinXEdit >= MinX;
+            result &= MaxXEdit <= MaxX;
+            result &= MaxXEdit > MinXEdit;
+            return result;
+        }
+
+        private void trimAllSeries(object parameter)
+        {
+            SimplePlotterMisc.DataSeriesController.Instance.TrimAllSeries(AvailableDataSeries.ToList(), minXEdit, maxXEdit);
+            updateDataSeries();
+            updateEntirePlot();
+        }
+
+        private bool canTrimAllSeries()
+        {
+            bool result = true;
+            result &= availableDataSeries.Count > 0;
+            result &= MaxXEdit > MinXEdit;
+            return result;
+        }
+
         private void performFFT(object parameter)
         {
-            SimplePlotterMisc.DataSeriesController.Instance.AddNewSeriesDFT(selectedDataSeries, (int)algorithmParameter1);
+            SimplePlotterMisc.DataSeriesController.Instance.AddNewSeriesDFT(selectedDataSeries, (int)numberOfPointsFFT);
             updateDataSeries();
             updateEntirePlot();
         }
@@ -591,6 +643,61 @@ namespace SimplePlotterVM
             set
             {
                 numberOfPoints = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double minX;
+        public double MinX
+        {
+            get { return minX; }
+            set
+            {
+                minX = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double maxX;
+        public double MaxX
+        {
+            get { return maxX; }
+            set
+            {
+                maxX = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double minXEdit;
+        public double MinXEdit
+        {
+            get { return minXEdit; }
+            set
+            {
+                minXEdit = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double maxXEdit;
+        public double MaxXEdit
+        {
+            get { return maxXEdit; }
+            set
+            {
+                maxXEdit = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int numberOfPointsFFT;
+        public int NumberOfPointsFFT
+        {
+            get { return numberOfPointsFFT; }
+            set
+            {
+                numberOfPointsFFT = value;
                 NotifyPropertyChanged();
             }
         }
@@ -1732,6 +1839,8 @@ namespace SimplePlotterVM
 
         private void setInitialConfig()
         {
+            numberOfPoints = 1000;
+            numberOfPointsFFT = 1024;
             algorithmParameter1 = 0.1;
             NumberOfDecimalPlaces = 2;
             manualXMinAxisLimit = false;
@@ -1805,6 +1914,8 @@ namespace SimplePlotterVM
                     selectedDataSeriesPoints.Add(item);
                 }
                 NumberOfPoints = selectedDataSeries.Points.Count;
+                MinX = SelectedDataSeries.Points.Min(x => x.X);
+                MaxX = SelectedDataSeries.Points.Max(x => x.X);
             }
             NotifyPropertyChanged("SelectedDataSeriesPoints");
         }

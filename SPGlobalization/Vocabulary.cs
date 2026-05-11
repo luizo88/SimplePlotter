@@ -204,9 +204,22 @@ namespace SPGlobalization
         public string ImportPL4File { get { return string.Format("{0}", Resources.Resources.ImportPL4File); } }
         public string ParseXToLog { get { return string.Format("{0}", Resources.Resources.ParseXToLog); } }
         public string All { get { return string.Format("{0}", Resources.Resources.All); } }
-        public string FixedStep { get { return string.Format("{0}", Resources.Resources.FixedStep); } }
         public string CopyDataToClipboard { get { return string.Format("{0}", Resources.Resources.CopyDataToClipboard); } }
-        
+        public string RemoveAllDataSeries { get { return string.Format("{0}", Resources.Resources.RemoveAllDataSeries); } }
+        public string ReducePoints { get { return string.Format("{0}", Resources.Resources.ReducePoints); } }
+        public string AdvancedAlgorithms { get { return string.Format("{0}", Resources.Resources.AdvancedAlgorithms); } }
+        public string DataFixAndManipulation { get { return string.Format("{0}", Resources.Resources.DataFixAndManipulation); } }
+        public string DecimalPlaces { get { return string.Format("{0}", Resources.Resources.DecimalPlaces); } }
+        public string LinearToLog { get { return string.Format("{0}", Resources.Resources.LinearToLog); } }
+        public string FFT { get { return string.Format("{0}", Resources.Resources.FFT); } }
+        public string ExpansionN { get { return string.Format("{0}", Resources.Resources.ExpansionN); } }
+        public string SeriesColors { get { return string.Format("{0}", Resources.Resources.SeriesColors); } }
+        public string PerformFFT { get { return string.Format("{0}", Resources.Resources.PerformFFT); } }
+        public string FixedStep { get { return string.Format("{0}", Resources.Resources.FixedStep); } }
+        public string Trim { get { return string.Format("{0}", Resources.Resources.Trim); } }
+        public string TrimSeries { get { return string.Format("{0}", Resources.Resources.TrimSeries); } }
+        public string TrimAllSeries { get { return string.Format("{0}", Resources.Resources.TrimAllSeries); } }
+
         #endregion
 
         #region PUBLIC METHODS

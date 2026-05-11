@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePlotterData", "Simple
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GIFGen", "GIFGen\GIFGen.csproj", "{09D91DBD-84CF-453D-84C2-0E9FF8C8AC6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GifTest1", "GifTest1\GifTest1.csproj", "{AC87E861-E90F-4BA1-946B-28BB57245878}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{09D91DBD-84CF-453D-84C2-0E9FF8C8AC6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09D91DBD-84CF-453D-84C2-0E9FF8C8AC6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09D91DBD-84CF-453D-84C2-0E9FF8C8AC6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC87E861-E90F-4BA1-946B-28BB57245878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC87E861-E90F-4BA1-946B-28BB57245878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC87E861-E90F-4BA1-946B-28BB57245878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC87E861-E90F-4BA1-946B-28BB57245878}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

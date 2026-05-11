@@ -267,9 +267,9 @@ namespace SimplePlotterMisc
         public static List<PointObj> RunFT3(
             IReadOnlyList<PointObj> samples,
             bool oneSided = true,
-            bool removeMean = false,
+            bool removeMean = true,
             bool applyHannWindow = false,
-            double uniformTolerance = 1e-9)
+            double uniformTolerance = 1e-4)//originalmente era 1e-9
         {
             if (samples == null) throw new ArgumentNullException(nameof(samples));
             if (samples.Count < 2) throw new ArgumentException("É necessário pelo menos 2 amostras.", nameof(samples));

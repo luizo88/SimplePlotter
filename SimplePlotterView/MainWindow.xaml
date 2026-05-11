@@ -105,9 +105,17 @@
                                 <TextBlock Name="txtDataSeries" Text="{Binding Vocabulary.DataSeries, FallbackValue=DataSeries}" FontWeight="Bold" HorizontalAlignment="Center"/>
                             </DockPanel>
                         </Expander.Header>
-                        <Grid Height="500">
-                            <Button Command="{Binding AddDataSeries}" Content="{Binding Vocabulary.AddDataSeries, FallbackValue=AddDataSeries}" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Width="150" Height="23"/>
-                            <ListView Margin="5,40,5,0" ItemsSource="{Binding AvailableDataSeries}" SelectedItem="{Binding SelectedDataSeries, Mode=TwoWay}" Height="140" VerticalAlignment="Top" Grid.ColumnSpan="1" SelectionMode="Extended" d:ItemsSource="{d:SampleData ItemCount=3}" KeyDown="lv_DeletePressed">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Button Command="{Binding AddDataSeries}" Content="{Binding Vocabulary.AddDataSeries, FallbackValue=AddDataSeries}" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="0"/>
+                            <Button Click="SelectAllDataSeries_Click" Content="{Binding Vocabulary.SelectAll, FallbackValue=SelectAll}" HorizontalAlignment="Left" Margin="573,10,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="0"/>
+                            <ListView Margin="5,40,5,0" ItemsSource="{Binding AvailableDataSeries}" SelectedItem="{Binding SelectedDataSeries, Mode=TwoWay}" Height="140" VerticalAlignment="Top" Grid.ColumnSpan="1" SelectionMode="Extended" d:ItemsSource="{d:SampleData ItemCount=3}" KeyDown="lv_DeletePressed" Name="lvDataSeries" Grid.Row="0">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListViewItem}">
                                         <Setter Property="Height" Value="Auto"/>
@@ -203,72 +211,213 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-                            <Button Command="{Binding RemoveDataSeries}" Content="{Binding Vocabulary.RemoveDataSeries, FallbackValue=RemoveDataSeries}" HorizontalAlignment="Left" Margin="5,190,0,0" VerticalAlignment="Top" Width="150" Height="23"/>
-                            <Button Command="{Binding DataSeriesUp}" Content="{Binding Vocabulary.ArrowUp, FallbackValue=ArrowUp}" HorizontalAlignment="Left" Margin="165,190,0,0" VerticalAlignment="Top" Width="50" Height="23"/>
-                            <Button Command="{Binding DataSeriesDown}" Content="{Binding Vocabulary.ArrowDown, FallbackValue=ArrowDown}" HorizontalAlignment="Left" Margin="225,190,0,0" VerticalAlignment="Top" Width="50" Height="23"/>
+                            <Button Command="{Binding RemoveDataSeries}" Content="{Binding Vocabulary.RemoveDataSeries, FallbackValue=RemoveDataSeries}" HorizontalAlignment="Left" Margin="5,190,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="0"/>
+                            <Button Command="{Binding DataSeriesUp}" Content="{Binding Vocabulary.ArrowUp, FallbackValue=ArrowUp}" HorizontalAlignment="Left" Margin="165,190,0,0" VerticalAlignment="Top" Width="50" Height="23" Grid.Row="0"/>
+                            <Button Command="{Binding DataSeriesDown}" Content="{Binding Vocabulary.ArrowDown, FallbackValue=ArrowDown}" HorizontalAlignment="Left" Margin="225,190,0,0" VerticalAlignment="Top" Width="50" Height="23" Grid.Row="0"/>
+                            <Button Command="{Binding RemoveAllDataSeries}" Content="{Binding Vocabulary.RemoveAllDataSeries, FallbackValue=RemoveAllDataSeries}" HorizontalAlignment="Left" Margin="573,190,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="0"/>
+                            <Expander Name="ExpdReducePoints" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="1">
+                                <Expander.Header>
+                                    <DockPanel Width="695" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                        <DockPanel.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="DarkGray" Offset="1"/>
+                                                <GradientStop Color="LightGray"/>
+                                            </LinearGradientBrush>
+                                        </DockPanel.Background>
+                                        <TextBlock Name="txtReducePoints" Text="{Binding Vocabulary.ReducePoints, FallbackValue=ReducePoints}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    </DockPanel>
+                                </Expander.Header>
+                                <Grid Height="100">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="420"/>
+                                        <ColumnDefinition Width="308"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="{Binding Vocabulary.CompressingAlgorithm, FallbackValue=Algorithm}" Margin="10,10,200,0" VerticalAlignment="Top"/>
+                                    <Label Content="{Binding Vocabulary.AlgorithmParameter1, FallbackValue=AlgorithmParameter1}" Margin="10,40,200,0" VerticalAlignment="Top"/>
+                                    <ComboBox ItemsSource="{Binding AvailableCompressingAlgorithms}" SelectedItem="{Binding SelectedCompressingAlgorithms}" Margin="220,10,20,0" VerticalAlignment="Top" Height="23"/>
+                                    <TextBox Text="{Binding AlgorithmParameter1, UpdateSourceTrigger=LostFocus}" Margin="220,40,20,0" VerticalAlignment="Top" Height="23"/>
+                                    <TextBox Text="{Binding NumberOfPoints, UpdateSourceTrigger=LostFocus}" Margin="10,40,180,0" VerticalAlignment="Top" Height="23" IsReadOnly="True" Grid.Column="1"/>
+                                    <Button Command="{Binding ReduceNumberOfPoints}" Content="{Binding Vocabulary.ReduceNumberOfPoints, FallbackValue=ReduceNumberOfPoints}" Margin="220,70,20,0" VerticalAlignment="Top" Height="23"/>
+                                </Grid>
+                            </Expander>
+                            <Expander Name="ExpdDataFixAndManipulation" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="2">
+                                <Expander.Header>
+                                    <DockPanel Width="695" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                        <DockPanel.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="DarkGray" Offset="1"/>
+                                                <GradientStop Color="LightGray"/>
+                                            </LinearGradientBrush>
+                                        </DockPanel.Background>
+                                        <TextBlock Name="txtDataFixAndManipulation" Text="{Binding Vocabulary.DataFixAndManipulation, FallbackValue=DataFixAndManipulation}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    </DockPanel>
+                                </Expander.Header>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Expander Name="ExpdDecimalPlaces" Width="500" Margin="5,10,5,5" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="0" >
+                                        <Expander.Header>
+                                            <DockPanel Width="470" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                                <DockPanel.Background>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="DarkGray" Offset="1"/>
+                                                        <GradientStop Color="LightGray"/>
+                                                    </LinearGradientBrush>
+                                                </DockPanel.Background>
+                                                <TextBlock Name="txtDecimalPlaces" Text="{Binding Vocabulary.DecimalPlaces, FallbackValue=DecimalPlaces}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                            </DockPanel>
+                                        </Expander.Header>
+                                        <Grid Height="40">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="420"/>
+                                                <ColumnDefinition Width="308"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="{Binding Vocabulary.NumberOfDecimalPlaces, FallbackValue=NumberOfDecimalPlaces}" Margin="10,10,200,0" VerticalAlignment="Top"/>
+                                            <TextBox Text="{Binding NumberOfDecimalPlaces, UpdateSourceTrigger=LostFocus}" Margin="220,10,130,0" VerticalAlignment="Top" Height="23"/>
+                                            <Button Command="{Binding RoundDataSeriesPoints}" Content="{Binding Vocabulary.Round, FallbackValue=Round}" Margin="300,10,20,0" VerticalAlignment="Top" Height="23"/>
+                                        </Grid>
+                                    </Expander>
+                                    <Expander Name="ExpdLinearToLog" Width="500" Margin="5,10,5,5" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="1" >
+                                        <Expander.Header>
+                                            <DockPanel Width="470" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                                <DockPanel.Background>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="DarkGray" Offset="1"/>
+                                                        <GradientStop Color="LightGray"/>
+                                                    </LinearGradientBrush>
+                                                </DockPanel.Background>
+                                                <TextBlock Name="txtLinearToLog" Text="{Binding Vocabulary.LinearToLog, FallbackValue=LinearToLog}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                            </DockPanel>
+                                        </Expander.Header>
+                                        <Grid Height="40">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="420"/>
+                                                <ColumnDefinition Width="308"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Command="{Binding ParseXToLog}" Content="{Binding Vocabulary.ParseXToLog, FallbackValue=ParseXToLog}" Margin="220,10,80,0" VerticalAlignment="Top" Height="23"/>
+                                            <Button Command="{Binding ParseAllXToLog}" Content="{Binding Vocabulary.All, FallbackValue=All}" Margin="350,10,20,0" VerticalAlignment="Top" Height="23"/>
+                                        </Grid>
+                                    </Expander>
+                                    <Expander Name="ExpdTrim" Width="500" Margin="5,10,5,5" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="2" >
+                                        <Expander.Header>
+                                            <DockPanel Width="470" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                                <DockPanel.Background>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="DarkGray" Offset="1"/>
+                                                        <GradientStop Color="LightGray"/>
+                                                    </LinearGradientBrush>
+                                                </DockPanel.Background>
+                                                <TextBlock Name="txtTrim" Text="{Binding Vocabulary.Trim, FallbackValue=Trim}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                            </DockPanel>
+                                        </Expander.Header>
+                                        <Grid Height="130">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="420"/>
+                                                <ColumnDefinition Width="308"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="{Binding Vocabulary.MinimumX, FallbackValue=MinimumX}" Margin="10,10,220,0" VerticalAlignment="Top"/>
+                                            <Label Content="{Binding Vocabulary.MaximumX, FallbackValue=MaximumX}" Margin="10,40,220,0" VerticalAlignment="Top"/>
+                                            <TextBox Text="{Binding MinXEdit, UpdateSourceTrigger=LostFocus}" Margin="220,10,20,0" VerticalAlignment="Top" Height="23"/>
+                                            <TextBox Text="{Binding MinX, UpdateSourceTrigger=LostFocus}" Margin="10,10,235,0" VerticalAlignment="Top" Height="23" IsReadOnly="True" Grid.Column="1"/>
+                                            <TextBox Text="{Binding MaxXEdit, UpdateSourceTrigger=LostFocus}" Margin="220,40,20,0" VerticalAlignment="Top" Height="23"/>
+                                            <TextBox Text="{Binding MaxX, UpdateSourceTrigger=LostFocus}" Margin="10,40,235,0" VerticalAlignment="Top" Height="23" IsReadOnly="True" Grid.Column="1"/>
+                                            <Button Command="{Binding TrimSeries}" Content="{Binding Vocabulary.TrimSeries, FallbackValue=TrimSeries}" Margin="220,70,20,0" VerticalAlignment="Top" Height="23"/>
+                                            <Button Command="{Binding TrimAllSeries}" Content="{Binding Vocabulary.TrimAllSeries, FallbackValue=TrimAllSeries}" Margin="220,100,20,0" VerticalAlignment="Top" Height="23"/>
+                                        </Grid>
+                                    </Expander>
+                                    <Button Command="{Binding CopyDataToClipboard}" Content="{Binding Vocabulary.CopyDataToClipboard, FallbackValue=CopyDataToClipboard}" Margin="320,5,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
+                                </Grid>
+                            </Expander>
+                            <Expander Name="ExpdFFT" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="3">
+                                <Expander.Header>
+                                    <DockPanel Width="695" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                        <DockPanel.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="DarkGray" Offset="1"/>
+                                                <GradientStop Color="LightGray"/>
+                                            </LinearGradientBrush>
+                                        </DockPanel.Background>
+                                        <TextBlock Name="txtFFT" Text="{Binding Vocabulary.FFT, FallbackValue=FFT}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    </DockPanel>
+                                </Expander.Header>
+                                <Grid Height="70">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="420"/>
+                                        <ColumnDefinition Width="308"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="{Binding Vocabulary.ExpansionN, FallbackValue=ExpansionN}" Margin="10,10,220,0" VerticalAlignment="Top"/>
+                                    <TextBox Text="{Binding NumberOfPointsFFT, UpdateSourceTrigger=LostFocus}" Margin="220,10,20,0" VerticalAlignment="Top" Height="23"/>
+                                    <Button Command="{Binding PerformFFT}" Content="{Binding Vocabulary.PerformFFT, FallbackValue=PerformFFT}" Margin="220,40,20,0" VerticalAlignment="Top" Height="23"/>
+                                </Grid>
+                            </Expander>
+                            <Expander Name="ExpdSeriesColors" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="4">
+                                <Expander.Header>
+                                    <DockPanel Width="695" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                        <DockPanel.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="DarkGray" Offset="1"/>
+                                                <GradientStop Color="LightGray"/>
+                                            </LinearGradientBrush>
+                                        </DockPanel.Background>
+                                        <TextBlock Name="txtSeriesColors" Text="{Binding Vocabulary.SeriesColors, FallbackValue=SeriesColors}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    </DockPanel>
+                                </Expander.Header>
+                                <Grid Height="40">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="420"/>
+                                        <ColumnDefinition Width="308"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="{Binding Vocabulary.ColorTemplate, FallbackValue=ColorTemplate}" Margin="10,10,10,0" VerticalAlignment="Top"/>
+                                    <ComboBox ItemsSource="{Binding AvailableColorTemplates}" SelectedItem="{Binding SelectedColorTemplate}" Margin="200,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="150"/>
+                                    <Button Command="{Binding ApplyColorTemplate}" Content="{Binding Vocabulary.Apply, FallbackValue=Apply}" Margin="370,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100" Grid.ColumnSpan="2"/>
+                                </Grid>
+                            </Expander>
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="420"/>
-                                    <ColumnDefinition Width="308"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Content="{Binding Vocabulary.NumberOfPoints, FallbackValue=NumberOfPoints}" Margin="10,220,220,0" VerticalAlignment="Top" Grid.Column="0"/>
-                                <Label Content="{Binding Vocabulary.CompressingAlgorithm, FallbackValue=Algorithm}" Margin="10,250,200,0" VerticalAlignment="Top" Grid.Column="0"/>
-                                <Label Content="{Binding Vocabulary.AlgorithmParameter1, FallbackValue=AlgorithmParameter1}" Margin="10,280,200,0" VerticalAlignment="Top" Grid.Column="0"/>
-                                <Label Content="{Binding Vocabulary.NumberOfDecimalPlaces, FallbackValue=NumberOfDecimalPlaces}" Margin="10,340,200,0" VerticalAlignment="Top" Grid.Column="0"/>
-                                <TextBox Text="{Binding NumberOfPoints, UpdateSourceTrigger=LostFocus}" Margin="220,220,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23" IsReadOnly="True"/>
-                                <ComboBox ItemsSource="{Binding AvailableCompressingAlgorithms}" SelectedItem="{Binding SelectedCompressingAlgorithms}" Margin="220,250,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
-                                <TextBox Text="{Binding AlgorithmParameter1, UpdateSourceTrigger=LostFocus}" Margin="220,280,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
-                                <Button Command="{Binding ReduceNumberOfPoints}" Content="{Binding Vocabulary.ReduceNumberOfPoints, FallbackValue=ReduceNumberOfPoints}" Margin="220,310,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
-                                <TextBox Text="{Binding NumberOfDecimalPlaces, UpdateSourceTrigger=LostFocus}" Margin="220,340,130,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
-                                <Button Command="{Binding RoundDataSeriesPoints}" Content="{Binding Vocabulary.Round, FallbackValue=Round}" Margin="300,340,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
-                                <Button Command="{Binding ParseXToLog}" Content="{Binding Vocabulary.ParseXToLog, FallbackValue=ParseXToLog}" Margin="220,370,80,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
-                                <Button Command="{Binding ParseAllXToLog}" Content="{Binding Vocabulary.All, FallbackValue=All}" Margin="350,370,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
-                                <Button Command="{Binding PerformFFT}" Content="{Binding Vocabulary.PerformFFT, FallbackValue=PerformFFT}" Margin="220,400,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
-                                <Button Command="{Binding CopyDataToClipboard}" Content="{Binding Vocabulary.CopyDataToClipboard, FallbackValue=CopyDataToClipboard}" Margin="220,430,20,0" VerticalAlignment="Top" Grid.Column="0" Height="23"/>
                                 <!--<ListView Margin="5,200,5,0" ItemsSource="{Binding SelectedDataSeriesPoints}" Height="265" VerticalAlignment="Top" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=3}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="{x:Type ListViewItem}">
-                                            <Setter Property="Height" Value="Auto"/>
-                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn x:Name="OriginalX" Header="{Binding Vocabulary.OriginalX, FallbackValue=OriginalX}">
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBox Text="{Binding X, Mode=TwoWay}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsEnabled="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn x:Name="OriginalY" Header="{Binding Vocabulary.OriginalY, FallbackValue=OriginalY}">
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBox Text="{Binding Y, Mode=TwoWay}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsEnabled="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn x:Name="ScaledX" Header="{Binding Vocabulary.ScaledX, FallbackValue=ScaledX}">
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBox Text="{Binding ScaledX}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsReadOnly="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn x:Name="ScaledY" Header="{Binding Vocabulary.ScaledY, FallbackValue=ScaledY}">
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBox Text="{Binding ScaledY}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsReadOnly="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>-->
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="Height" Value="Auto"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn x:Name="OriginalX" Header="{Binding Vocabulary.OriginalX, FallbackValue=OriginalX}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding X, Mode=TwoWay}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsEnabled="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="OriginalY" Header="{Binding Vocabulary.OriginalY, FallbackValue=OriginalY}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding Y, Mode=TwoWay}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsEnabled="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="ScaledX" Header="{Binding Vocabulary.ScaledX, FallbackValue=ScaledX}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding ScaledX}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsReadOnly="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="ScaledY" Header="{Binding Vocabulary.ScaledY, FallbackValue=ScaledY}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Text="{Binding ScaledY}" TextAlignment="Center" BorderThickness="0" Background="{x:Null}" IsReadOnly="True" GotFocus="lvItem_GotFocus" KeyDown="lv_EnterPressed"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>-->
                             </Grid>
-                            <Label Content="{Binding Vocabulary.ColorTemplate, FallbackValue=ColorTemplate}" Margin="10,470,500,0" VerticalAlignment="Top"/>
-                            <ComboBox ItemsSource="{Binding AvailableColorTemplates}" SelectedItem="{Binding SelectedColorTemplate}" Margin="200,470,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="150"/>
-                            <Button Command="{Binding ApplyColorTemplate}" Content="{Binding Vocabulary.Apply, FallbackValue=Apply}" Margin="370,470,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100"/>
                         </Grid>
                     </Expander>
                     <Expander Name="ExpdAxisConfiguration" Margin="10,10,10,10" Grid.Row="1" BorderBrush="DarkGray" IsExpanded="False">

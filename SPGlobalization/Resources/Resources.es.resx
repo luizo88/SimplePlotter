@@ -120,6 +120,9 @@
   <data name="AddDataSeries" xml:space="preserve">
     <value>Añadir serie de datos</value>
   </data>
+  <data name="AdvancedAlgorithms" xml:space="preserve">
+    <value>Algoritmos avanzados</value>
+  </data>
   <data name="AlgorithmParameter1" xml:space="preserve">
     <value>Primer parámetro del alg.</value>
   </data>
@@ -207,11 +210,20 @@
   <data name="CustomColor" xml:space="preserve">
     <value>Color pers.</value>
   </data>
+  <data name="CutAll" xml:space="preserve">
+    <value>Recortar tudo</value>
+  </data>
   <data name="Cycle" xml:space="preserve">
     <value>Cíclico</value>
   </data>
+  <data name="DataFixAndManipulation" xml:space="preserve">
+    <value>Corrección y manipulación de datos</value>
+  </data>
   <data name="DataSeries" xml:space="preserve">
     <value>Serie de datos</value>
+  </data>
+  <data name="DecimalPlaces" xml:space="preserve">
+    <value>Cifras decimales</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Estándar</value>
@@ -225,11 +237,17 @@
   <data name="ES" xml:space="preserve">
     <value>ES</value>
   </data>
+  <data name="ExpansionN" xml:space="preserve">
+    <value>Expansión (N)</value>
+  </data>
   <data name="ExportPlot" xml:space="preserve">
     <value>Guardar gráfico</value>
   </data>
   <data name="FEMM42" xml:space="preserve">
     <value>FEMM42</value>
+  </data>
+  <data name="FFT" xml:space="preserve">
+    <value>FFT</value>
   </data>
   <data name="File" xml:space="preserve">
     <value>Archivo</value>
@@ -306,6 +324,9 @@
   <data name="LegendPosition" xml:space="preserve">
     <value>posición de leyenda</value>
   </data>
+  <data name="LinearToLog" xml:space="preserve">
+    <value>Lineal a logaritmo</value>
+  </data>
   <data name="LogarithmicScale" xml:space="preserve">
     <value>Escala logarítmica</value>
   </data>
@@ -351,6 +372,9 @@
   <data name="ParseXToLog" xml:space="preserve">
     <value>Transf. X en log.</value>
   </data>
+  <data name="PerformFFT" xml:space="preserve">
+    <value>Executar FFT</value>
+  </data>
   <data name="Plot" xml:space="preserve">
     <value>Gráfico</value>
   </data>
@@ -375,8 +399,14 @@
   <data name="ReduceNumberOfPoints" xml:space="preserve">
     <value>Reducir número de puntos</value>
   </data>
+  <data name="ReducePoints" xml:space="preserve">
+    <value>Reducir puntos</value>
+  </data>
   <data name="RefreshPlot" xml:space="preserve">
     <value>Actualizar el gráfico</value>
+  </data>
+  <data name="RemoveAllDataSeries" xml:space="preserve">
+    <value>Eliminar todas las series</value>
   </data>
   <data name="RemoveDataSeries" xml:space="preserve">
     <value>Eliminar serie de datos</value>
@@ -411,6 +441,9 @@
   <data name="SecondY" xml:space="preserve">
     <value>Segundo Y</value>
   </data>
+  <data name="SeriesColors" xml:space="preserve">
+    <value>Colores de las series</value>
+  </data>
   <data name="SeriesRoll" xml:space="preserve">
     <value>A través de las series</value>
   </data>
@@ -440,6 +473,15 @@
   </data>
   <data name="TotalTime" xml:space="preserve">
     <value>Tiempo total [s]</value>
+  </data>
+  <data name="Trim" xml:space="preserve">
+    <value>Recortar</value>
+  </data>
+  <data name="TrimAllSeries" xml:space="preserve">
+    <value>Recortar tudo</value>
+  </data>
+  <data name="TrimSeries" xml:space="preserve">
+    <value>Recortar serie</value>
   </data>
   <data name="Univers" xml:space="preserve">
     <value>Univers</value>
