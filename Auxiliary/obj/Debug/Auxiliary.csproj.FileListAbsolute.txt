@@ -4,3 +4,9 @@ C:\Users\Luizo\source\repos\luizo88\SimplePlotter\Auxiliary\obj\Debug\Auxiliary.
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\Auxiliary\obj\Debug\Auxiliary.csproj.CoreCompileInputs.cache
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\Auxiliary\obj\Debug\Auxiliary.dll
 C:\Users\Luizo\source\repos\luizo88\SimplePlotter\Auxiliary\obj\Debug\Auxiliary.pdb
+C:\Users\Admin\Source\Repos\SimplePlotter\Auxiliary\bin\Debug\Auxiliary.dll
+C:\Users\Admin\Source\Repos\SimplePlotter\Auxiliary\bin\Debug\Auxiliary.pdb
+C:\Users\Admin\Source\Repos\SimplePlotter\Auxiliary\obj\Debug\Auxiliary.csproj.AssemblyReference.cache
+C:\Users\Admin\Source\Repos\SimplePlotter\Auxiliary\obj\Debug\Auxiliary.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Source\Repos\SimplePlotter\Auxiliary\obj\Debug\Auxiliary.dll
+C:\Users\Admin\Source\Repos\SimplePlotter\Auxiliary\obj\Debug\Auxiliary.pdb

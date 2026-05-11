@@ -120,7 +120,6 @@ C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\bin\Debug\Magick.NET
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\bin\Debug\es\SPGlobalization.resources.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\bin\Debug\pt-BR\SPGlobalization.resources.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\obj\Debug\SimplePlotterView.csproj.AssemblyReference.cache
-C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\obj\Debug\SimplePlotterView.exe.config
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\obj\Debug\MainWindow.g.cs
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\obj\Debug\App.g.cs
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\obj\Debug\GeneratedInternalTypeHelper.g.cs

@@ -109,7 +109,6 @@ C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\Magick.NET.Cor
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\es\SPGlobalization.resources.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\pt-BR\SPGlobalization.resources.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\obj\Debug\SimplePlotter.csproj.AssemblyReference.cache
-C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\obj\Debug\SimplePlotter.exe.config
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\obj\Debug\SimplePlotter.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\obj\Debug\SimplePl.5D369D79.Up2Date
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\obj\Debug\SimplePlotter.exe
