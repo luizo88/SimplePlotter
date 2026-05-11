@@ -26,6 +26,7 @@ namespace SimplePlotterData
         public List<bool> DataSeriesBarType { get; set; }
         public List<List<double>> DataSeriesXPoints { get; set; }
         public List<List<double>> DataSeriesYPoints { get; set; }
+        public double BarsWidth { get; set; }
         public bool ManualXMinAxisLimit { get; set; }
         public bool ManualXMaxAxisLimit { get; set; }
         public double XAxisMin { get; set; }
@@ -85,7 +86,7 @@ namespace SimplePlotterData
         public int GIFFramesPerSecond { get; set; }
         public bool InterpolateData { get; set; }
 
-        public DataObject(List<SimplePlotterMisc.DataSeriesObj> dataSeries, bool manualXMinAxisLimit, bool manualXMaxAxisLimit,
+        public DataObject(List<SimplePlotterMisc.DataSeriesObj> dataSeries, double barsWidth, bool manualXMinAxisLimit, bool manualXMaxAxisLimit,
             double xAxisMin, double xAxisMax, bool manualYMinAxisLimit, bool manualYMaxAxisLimit, double yAxisMin, double yAxisMax,
             bool manualY2MinAxisLimit, bool manualY2MaxAxisLimit, double y2AxisMin, double y2AxisMax,
             string xAxisTitle, string yAxisTitle, string y2AxisTitle, bool xLogarithmicScale, bool yLogarithmicScale, bool y2LogarithmicScale,
@@ -137,6 +138,7 @@ namespace SimplePlotterData
                 DataSeriesYPoints.Add(item.YPoints);
             }
             //values
+            BarsWidth = barsWidth;
             ManualXMinAxisLimit = manualXMinAxisLimit;
             ManualXMaxAxisLimit = manualXMaxAxisLimit;
             XAxisMin = xAxisMin;
@@ -198,7 +200,7 @@ namespace SimplePlotterData
         }
 
         public DataObject()
-            : this(new List<SimplePlotterMisc.DataSeriesObj>(), false, false, 0, 0, false, false, 0, 0, false, false, 0, 0, "", "", "",
+            : this(new List<SimplePlotterMisc.DataSeriesObj>(), 0, false, false, 0, 0, false, false, 0, 0, false, false, 0, 0, "", "", "",
                   false, false, false, SimplePlotterMisc.Enums.AxisLabelFormats.Default, SimplePlotterMisc.Enums.AxisLabelFormats.Default,
                   SimplePlotterMisc.Enums.AxisLabelFormats.Default, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0, 0, 0, "", false, LegendPosition.TopRight, false,
                   SimplePlotterMisc.Enums.Fonts.TimesNewRoman, 0, 0, 0, 0, 0, SimplePlotterMisc.Enums.Colors.White, false, "255|255|255",

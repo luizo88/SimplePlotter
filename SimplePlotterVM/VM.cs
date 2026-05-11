@@ -145,9 +145,10 @@ namespace SimplePlotterVM
                     //end of version workaround
                     DataSeriesController.Instance.DataSeries.Add(new DataSeriesObj(dtob.DataSeriesName[i], dtob.DataSeriesXPoints[i], dtob.DataSeriesYPoints[i], dtob.DataSeriesScaleX[i], dtob.DataSeriesScaleY[i],
                         dtob.DataSeriesThick[i], dtob.DataSeriesLineStyle[i], markerType, markerSize, dtob.DataSeriesColor[i], dtob.DataSeriesCustomColor[i],
-                        dtob.DataSeriesRGBDescription[i], dtob.DataSeriesLegend[i], dtob.DataSeriesSecondY[i], dtob.DataSeriesHide[i], dtob.DataSeriesBarType[i]));
+                        dtob.DataSeriesRGBDescription[i], dtob.DataSeriesLegend[i], dtob.DataSeriesSecondY[i], hide, barType));
                 }
                 //values
+                BarsWidth = dtob.BarsWidth;
                 ManualXMinAxisLimit = dtob.ManualXMinAxisLimit;
                 ManualXMaxAxisLimit = dtob.ManualXMaxAxisLimit;
                 XAxisMin = dtob.XAxisMin;
@@ -222,7 +223,7 @@ namespace SimplePlotterVM
             myBrowser.FileName = "SimplePlotterFile.xml";
             if (myBrowser.ShowDialog() == true)
             {
-                SimplePlotterData.DataObject dtOb = new SimplePlotterData.DataObject(AvailableDataSeries.ToList(), manualXMinAxisLimit, manualXMaxAxisLimit,
+                SimplePlotterData.DataObject dtOb = new SimplePlotterData.DataObject(AvailableDataSeries.ToList(), barsWidth, manualXMinAxisLimit, manualXMaxAxisLimit,
                     xAxisMin, xAxisMax, manualYMinAxisLimit, manualYMaxAxisLimit, yAxisMin, yAxisMax, manualY2MinAxisLimit, manualY2MaxAxisLimit, y2AxisMin, y2AxisMax,
                     xAxisTitle, yAxisTitle, y2AxisTitle, xLogarithmicScale, yLogarithmicScale, y2LogarithmicScale,
                     selectedXAxisLabelFormat, selectedYAxisLabelFormat, selectedY2AxisLabelFormat,
