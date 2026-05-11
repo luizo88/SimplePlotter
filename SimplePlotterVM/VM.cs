@@ -2003,96 +2003,78 @@ namespace SimplePlotterVM
             //adds new series
             foreach (var item in SimplePlotterMisc.DataSeriesController.Instance.DataSeries)
             {
-                OxyPlot.Series.DataPointSeries serie = new OxyPlot.Series.LineSeries();
+                //---------------
+                //in case of bars
+                //---------------
                 if (item.BarType)
                 {
-                    serie = new OxyPlot.Series.LinearBarSeries();
-                }
-                if (isForGIF)
-                {
-                    int limitIndexToPlot = item.GIFKeyIndexes[stepOfGIF - 1];
-                    for (int i = 0; i <= limitIndexToPlot; i++)
+                    OxyPlot.Series.LinearBarSeries barSerie = new OxyPlot.Series.LinearBarSeries();
+                    if (isForGIF)
                     {
-                        serie.Points.Add(new OxyPlot.DataPoint(item.GIFPoints[i].ScaledX, item.GIFPoints[i].ScaledY));
+                        int limitIndexToPlot = item.GIFKeyIndexes[stepOfGIF - 1];
+                        for (int i = 0; i <= limitIndexToPlot; i++)
+                        {
+                            barSerie.Points.Add(new OxyPlot.DataPoint(item.GIFPoints[i].ScaledX, item.GIFPoints[i].ScaledY));
+                        }
                     }
-                }
-                else
-                {
-                    for (int i = 0; i < item.Length; i++)
+                    else
                     {
-                        serie.Points.Add(new OxyPlot.DataPoint(item.Points[i].ScaledX, item.Points[i].ScaledY));
+                        for (int i = 0; i < item.Length; i++)
+                        {
+                            barSerie.Points.Add(new OxyPlot.DataPoint(item.Points[i].ScaledX, item.Points[i].ScaledY));
+                        }
                     }
-                }
-                serie.Title = string.Format("{0}{1}", (showLegendArrows ? (item.SecondY ? "[→] " : "[←] ") : ""), item.Name);
-                if (item.BarType)
-                {
-                    ((LinearBarSeries)serie).FillColor = item.OxyColor;
-                    ((LinearBarSeries)serie).BarWidth = barsWidth;
-                }
-                else
-                {
+                    barSerie.Title = string.Format("{0}{1}", (showLegendArrows ? (item.SecondY ? "[→] " : "[←] ") : ""), item.Name);
                     //line style
-                    ((LineSeries)serie).StrokeThickness = item.Thick;
-                    ((LineSeries)serie).LineStyle = item.LineStyle;
-                    ((LineSeries)serie).Color = item.OxyColor;
-                    //marker style
-                    ((LineSeries)serie).MarkerFill = item.OxyColor;
-                    ((LineSeries)serie).MarkerType = item.MarkerType;
-                    ((LineSeries)serie).MarkerSize = item.MarkerSize;
-                    ((LineSeries)serie).MarkerStrokeThickness = 1;
-                    ((LineSeries)serie).MarkerStroke = item.OxyColor;
+                    barSerie.FillColor = item.OxyColor;
+                    barSerie.BarWidth = barsWidth;
+                    //legend
+                    barSerie.RenderInLegend = item.Legend;
+                    if (item.SecondY) barSerie.YAxisKey = "Y2";
+                    barSerie.IsVisible = !item.Hide;
+                    plotObj.Series.Add(barSerie);
                 }
-                //legend
-                serie.RenderInLegend = item.Legend;
-                if (item.SecondY) serie.YAxisKey = "Y2";
-                serie.IsVisible = !item.Hide;
-                plotObj.Series.Add(serie);
+                //---------------
+                //in case of line
+                //---------------
+                else
+                {
+                    OxyPlot.Series.LineSeries lineSerie = new OxyPlot.Series.LineSeries();
+                    if (isForGIF)
+                    {
+                        int limitIndexToPlot = item.GIFKeyIndexes[stepOfGIF - 1];
+                        for (int i = 0; i <= limitIndexToPlot; i++)
+                        {
+                            lineSerie.Points.Add(new OxyPlot.DataPoint(item.GIFPoints[i].ScaledX, item.GIFPoints[i].ScaledY));
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < item.Length; i++)
+                        {
+                            lineSerie.Points.Add(new OxyPlot.DataPoint(item.Points[i].ScaledX, item.Points[i].ScaledY));
+                        }
+                    }
+                    lineSerie.Title = string.Format("{0}{1}", (showLegendArrows ? (item.SecondY ? "[→] " : "[←] ") : ""), item.Name);
+                    //line style
+                    lineSerie.StrokeThickness = item.Thick;
+                    lineSerie.LineStyle = item.LineStyle;
+                    lineSerie.Color = item.OxyColor;
+                    //marker style
+                    lineSerie.MarkerFill = item.OxyColor;
+                    lineSerie.MarkerType = item.MarkerType;
+                    lineSerie.MarkerSize = item.MarkerSize;
+                    lineSerie.MarkerStrokeThickness = 1;
+                    lineSerie.MarkerStroke = item.OxyColor;
+                    //legend
+                    lineSerie.RenderInLegend = item.Legend;
+                    if (item.SecondY) lineSerie.YAxisKey = "Y2";
+                    lineSerie.IsVisible = !item.Hide;
+                    plotObj.Series.Add(lineSerie);
+                }
             }
             //refreshes to update axes
             plotObj.InvalidatePlot(true);
-
-
-
-            ////cleares old series
-            //plotObj.Series.Clear();
-            ////adds new series
-            //foreach (var item in SimplePlotterMisc.DataSeriesController.Instance.DataSeries)
-            //{
-            //    OxyPlot.Series.LineSeries serie = new OxyPlot.Series.LineSeries();
-            //    if (isForGIF)
-            //    {
-            //        int limitIndexToPlot = item.GIFKeyIndexes[stepOfGIF - 1];
-            //        for (int i = 0; i <= limitIndexToPlot; i++)
-            //        {
-            //            serie.Points.Add(new OxyPlot.DataPoint(item.GIFPoints[i].ScaledX, item.GIFPoints[i].ScaledY));
-            //        }
-            //    }
-            //    else
-            //    {
-            //        for (int i = 0; i < item.Length; i++)
-            //        {
-            //            serie.Points.Add(new OxyPlot.DataPoint(item.Points[i].ScaledX, item.Points[i].ScaledY));
-            //        }
-            //    }
-            //    serie.Title = string.Format("{0}{1}", (showLegendArrows ? (item.SecondY ? "[→] " : "[←] ") : ""), item.Name);
-            //    //line style
-            //    serie.StrokeThickness = item.Thick;
-            //    serie.LineStyle = item.LineStyle;
-            //    serie.Color = item.OxyColor;
-            //    //marker style
-            //    serie.MarkerFill = item.OxyColor;
-            //    serie.MarkerType = item.MarkerType;
-            //    serie.MarkerSize = item.MarkerSize;
-            //    serie.MarkerStrokeThickness = 1;
-            //    serie.MarkerStroke = item.OxyColor;
-            //    //legend
-            //    serie.RenderInLegend = item.Legend;
-            //    if (item.SecondY) serie.YAxisKey = "Y2";
-            //    serie.IsVisible = !item.Hide;
-            //    plotObj.Series.Add(serie);
-            //}
-            ////refreshes to update axes
-            //plotObj.InvalidatePlot(true);
         }
 
         private void updateLegend()
