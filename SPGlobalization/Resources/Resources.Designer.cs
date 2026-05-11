@@ -187,6 +187,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bars gap.
+        /// </summary>
+        internal static string BarsGap {
+            get {
+                return ResourceManager.GetString("BarsGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bars width.
         /// </summary>
         internal static string BarsWidth {

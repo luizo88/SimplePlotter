@@ -403,13 +403,15 @@
                                         <TextBlock Name="txtMiscellaneous" Text="{Binding Vocabulary.Miscellaneous, FallbackValue=Miscellaneous}" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     </DockPanel>
                                 </Expander.Header>
-                                <Grid Height="40">
+                                <Grid Height="70">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="420"/>
                                         <ColumnDefinition Width="308"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Content="{Binding Vocabulary.BarsWidth, FallbackValue=BarsWidth}" Margin="10,10,10,0" VerticalAlignment="Top"/>
+                                    <Label Content="{Binding Vocabulary.BarsGap, FallbackValue=BarsGap}" Margin="10,40,10,0" VerticalAlignment="Top"/>
                                     <TextBox Text="{Binding BarsWidth, UpdateSourceTrigger=LostFocus}" Margin="220,10,20,0" VerticalAlignment="Top" Height="23"/>
+                                    <TextBox Text="{Binding BarsGap, UpdateSourceTrigger=LostFocus}" Margin="220,40,20,0" VerticalAlignment="Top" Height="23"/>
                                 </Grid>
                             </Expander>
                             <Grid>

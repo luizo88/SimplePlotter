@@ -149,6 +149,7 @@ namespace SimplePlotterVM
                 }
                 //values
                 BarsWidth = dtob.BarsWidth;
+                BarsGap = dtob.BarsGap;
                 ManualXMinAxisLimit = dtob.ManualXMinAxisLimit;
                 ManualXMaxAxisLimit = dtob.ManualXMaxAxisLimit;
                 XAxisMin = dtob.XAxisMin;
@@ -223,7 +224,7 @@ namespace SimplePlotterVM
             myBrowser.FileName = "SimplePlotterFile.xml";
             if (myBrowser.ShowDialog() == true)
             {
-                SimplePlotterData.DataObject dtOb = new SimplePlotterData.DataObject(AvailableDataSeries.ToList(), barsWidth, manualXMinAxisLimit, manualXMaxAxisLimit,
+                SimplePlotterData.DataObject dtOb = new SimplePlotterData.DataObject(AvailableDataSeries.ToList(), barsWidth, barsGap, manualXMinAxisLimit, manualXMaxAxisLimit,
                     xAxisMin, xAxisMax, manualYMinAxisLimit, manualYMaxAxisLimit, yAxisMin, yAxisMax, manualY2MinAxisLimit, manualY2MaxAxisLimit, y2AxisMin, y2AxisMax,
                     xAxisTitle, yAxisTitle, y2AxisTitle, xLogarithmicScale, yLogarithmicScale, y2LogarithmicScale,
                     selectedXAxisLabelFormat, selectedYAxisLabelFormat, selectedY2AxisLabelFormat,
@@ -744,6 +745,21 @@ namespace SimplePlotterVM
                 if (value > 0)
                 {
                     barsWidth = value;
+                    plotSeries(false);
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private double barsGap;
+        public double BarsGap
+        {
+            get { return barsGap; }
+            set
+            {
+                if (value >= 0)
+                {
+                    barsGap = value;
                     plotSeries(false);
                     NotifyPropertyChanged();
                 }
@@ -1860,11 +1876,12 @@ namespace SimplePlotterVM
 
         private void setInitialConfig()
         {
-            NumberOfPoints = 1000;
-            NumberOfPointsFFT = 1024;
-            AlgorithmParameter1 = 0.1;
-            NumberOfDecimalPlaces = 2;
-            barsWidth = 15;
+            numberOfPoints = 1000;
+            numberOfPointsFFT = 1024;
+            algorithmParameter1 = 0.1;
+            numberOfDecimalPlaces = 2;
+            barsWidth = 0.2;
+            barsGap = 0.05;
             manualXMinAxisLimit = false;
             manualXMaxAxisLimit = false;
             manualYMinAxisLimit = false;
@@ -2001,33 +2018,39 @@ namespace SimplePlotterVM
             //cleares old series
             plotObj.Series.Clear();
             //adds new series
+            int barCount = 0;
+            int numberOfBarSeries = SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Count(x => x.BarType);
+            double totalBarWidth = numberOfBarSeries * barsWidth + (numberOfBarSeries - 1) * barsGap;
             foreach (var item in SimplePlotterMisc.DataSeriesController.Instance.DataSeries)
             {
-                //---------------
-                //in case of bars
-                //---------------
                 if (item.BarType)
                 {
-                    OxyPlot.Series.LinearBarSeries barSerie = new OxyPlot.Series.LinearBarSeries();
+                    //---------------
+                    //in case of bars
+                    //---------------
+                    double leftOffset = -totalBarWidth / 2;
+                    barCount++;
+                    leftOffset += barsWidth * (barCount - 1) + barsGap * (barCount - 1);
+                    OxyPlot.Series.RectangleBarSeries barSerie = new OxyPlot.Series.RectangleBarSeries();
                     if (isForGIF)
                     {
                         int limitIndexToPlot = item.GIFKeyIndexes[stepOfGIF - 1];
                         for (int i = 0; i <= limitIndexToPlot; i++)
                         {
-                            barSerie.Points.Add(new OxyPlot.DataPoint(item.GIFPoints[i].ScaledX, item.GIFPoints[i].ScaledY));
+                            barSerie.Items.Add(new RectangleBarItem(item.GIFPoints[i].ScaledX + leftOffset, 0, item.GIFPoints[i].ScaledX + leftOffset + barsWidth, item.GIFPoints[i].ScaledY));
                         }
                     }
                     else
                     {
                         for (int i = 0; i < item.Length; i++)
                         {
-                            barSerie.Points.Add(new OxyPlot.DataPoint(item.Points[i].ScaledX, item.Points[i].ScaledY));
+                            barSerie.Items.Add(new RectangleBarItem(item.Points[i].ScaledX +leftOffset, 0, item.Points[i].ScaledX + leftOffset + barsWidth, item.Points[i].ScaledY));
                         }
                     }
                     barSerie.Title = string.Format("{0}{1}", (showLegendArrows ? (item.SecondY ? "[→] " : "[←] ") : ""), item.Name);
                     //line style
+                    barSerie.StrokeThickness = 0;
                     barSerie.FillColor = item.OxyColor;
-                    barSerie.BarWidth = barsWidth;
                     //legend
                     barSerie.RenderInLegend = item.Legend;
                     if (item.SecondY) barSerie.YAxisKey = "Y2";

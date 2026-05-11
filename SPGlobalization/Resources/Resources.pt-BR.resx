@@ -159,6 +159,9 @@
   <data name="BackgroundColor" xml:space="preserve">
     <value>Cor do plano de fundo</value>
   </data>
+  <data name="BarsGap" xml:space="preserve">
+    <value>Espaço entre barras</value>
+  </data>
   <data name="BarsWidth" xml:space="preserve">
     <value>Largura das barras</value>
   </data>
