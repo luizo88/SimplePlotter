@@ -222,7 +222,9 @@ namespace SPGlobalization
         public string Hide { get { return string.Format("{0}", Resources.Resources.Hide); } }
         public string BarType { get { return string.Format("{0}", Resources.Resources.BarType); } }
         public string BarsWidth { get { return string.Format("{0}", Resources.Resources.BarsWidth); } }
-        public string BarsGap { get { return string.Format("{0}", Resources.Resources.BarsWidth); } }
+        public string BarsGap { get { return string.Format("{0}", Resources.Resources.BarsGap); } }
+        public string RemoveDC { get { return string.Format("{0}", Resources.Resources.RemoveDC); } }
+        
 
         #endregion
 

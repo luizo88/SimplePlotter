@@ -423,6 +423,9 @@
   <data name="RemoveDataSeries" xml:space="preserve">
     <value>Remove data series</value>
   </data>
+  <data name="RemoveDC" xml:space="preserve">
+    <value>Remove DC</value>
+  </data>
   <data name="RestoreInitialConfig" xml:space="preserve">
     <value>Restore initial configuration</value>
   </data>

@@ -979,6 +979,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove DC.
+        /// </summary>
+        internal static string RemoveDC {
+            get {
+                return ResourceManager.GetString("RemoveDC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restore initial configuration.
         /// </summary>
         internal static string RestoreInitialConfig {

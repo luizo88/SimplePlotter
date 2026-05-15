@@ -359,14 +359,16 @@
                                         <TextBlock Name="txtFFT" Text="{Binding Vocabulary.FFT, FallbackValue=FFT}" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     </DockPanel>
                                 </Expander.Header>
-                                <Grid Height="70">
+                                <Grid Height="100">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="420"/>
                                         <ColumnDefinition Width="308"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Content="{Binding Vocabulary.ExpansionN, FallbackValue=ExpansionN}" Margin="10,10,220,0" VerticalAlignment="Top"/>
+                                    <Label Content="{Binding Vocabulary.RemoveDC, FallbackValue=RemoveDC}" Margin="10,40,220,0" VerticalAlignment="Top"/>
                                     <TextBox Text="{Binding NumberOfPointsFFT, UpdateSourceTrigger=LostFocus}" Margin="220,10,20,0" VerticalAlignment="Top" Height="23"/>
-                                    <Button Command="{Binding PerformFFT}" Content="{Binding Vocabulary.PerformFFT, FallbackValue=PerformFFT}" Margin="220,40,20,0" VerticalAlignment="Top" Height="23"/>
+                                    <CheckBox IsChecked="{Binding RemoveDC}" Margin="220,43,20,0" VerticalAlignment="Top" Height="15"/>
+                                    <Button Command="{Binding PerformFFT}" Content="{Binding Vocabulary.PerformFFT, FallbackValue=PerformFFT}" Margin="220,70,20,0" VerticalAlignment="Top" Height="23"/>
                                 </Grid>
                             </Expander>
                             <Expander Name="ExpdSeriesColors" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="4">

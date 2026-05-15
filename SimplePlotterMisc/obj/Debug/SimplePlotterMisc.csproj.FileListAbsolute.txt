@@ -39,12 +39,14 @@ C:\Users\Luizo\source\repos\luizo88\SimplePlotter\SimplePlotterMisc\obj\Debug\Si
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\SimplePlotterMisc.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\SimplePlotterMisc.pdb
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\Auxiliary.dll
+C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\ComplexNumbers.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\OxyPlot.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\OxyPlot.Wpf.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\OxyPlot.Wpf.Shared.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\SPGlobalization.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\Auxiliary.pdb
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\SPGlobalization.pdb
+C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\ComplexNumbers.pdb
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\OxyPlot.xml
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\OxyPlot.Wpf.xml
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\OxyPlot.Wpf.Shared.xml
@@ -55,5 +57,3 @@ C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlot
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePl.A2F3D3E1.Up2Date
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlotterMisc.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\obj\Debug\SimplePlotterMisc.pdb
-C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\ComplexNumbers.dll
-C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterMisc\bin\Debug\ComplexNumbers.pdb

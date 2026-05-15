@@ -281,11 +281,12 @@ namespace SimplePlotterMisc
         /// </summary>
         /// <param name="dataSeriesToPerformFFT">The data series to be used as a base.</param>
         /// <param name="numberOfPoints">The number of points in the equivalent curve (must be a power of 2).</param>
-        public void AddNewSeriesDFT(DataSeriesObj dataSeriesToPerformFFT, int numberOfPoints)
+        /// <param name="removeDC">A boolean value indicating if the DC component should be removed.</param>
+        public void AddNewSeriesDFT(DataSeriesObj dataSeriesToPerformFFT, int numberOfPoints, bool removeDC)
         {
             int index = dataSeries.IndexOf(dataSeriesToPerformFFT);
             List<PointObj> equivDataSeries = executeFixedStepAlgorithm(dataSeriesToPerformFFT.Points, numberOfPoints);
-            List<PointObj> np = FTAlgorithm.RunFT3(equivDataSeries);
+            List<PointObj> np = FTAlgorithm.RunFT3(equivDataSeries, removeDC);
             var linqX = from p
                         in np
                         select p.X;

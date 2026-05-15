@@ -26,11 +26,12 @@ namespace SimplePlotterMisc
             //compute and save intermediate points
             int cont = 0;
             double currentX = pointList[cont].X;
+            double x0 = currentX;
             double currentY = pointList[cont].Y;
             double nextX = pointList[cont + 1].X;
             for (int i = 1; i < desiredNumberOfPoints - 1; i++)
             {
-                double newX = i * step;
+                double newX = x0 + i * step;
                 //check if it changed the pair
                 if (newX > nextX)
                 {

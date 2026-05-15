@@ -479,7 +479,7 @@ namespace SimplePlotterVM
 
         private void performFFT(object parameter)
         {
-            SimplePlotterMisc.DataSeriesController.Instance.AddNewSeriesDFT(selectedDataSeries, (int)numberOfPointsFFT);
+            SimplePlotterMisc.DataSeriesController.Instance.AddNewSeriesDFT(selectedDataSeries, (int)numberOfPointsFFT, removeDC);
             updateDataSeries();
             updateEntirePlot();
         }
@@ -704,6 +704,17 @@ namespace SimplePlotterVM
             set
             {
                 numberOfPointsFFT = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool removeDC;
+        public bool RemoveDC
+        {
+            get { return removeDC; }
+            set
+            {
+                removeDC = value;
                 NotifyPropertyChanged();
             }
         }
@@ -1878,6 +1889,7 @@ namespace SimplePlotterVM
         {
             numberOfPoints = 1000;
             numberOfPointsFFT = 1024;
+            removeDC = false;
             algorithmParameter1 = 0.1;
             numberOfDecimalPlaces = 2;
             barsWidth = 0.2;

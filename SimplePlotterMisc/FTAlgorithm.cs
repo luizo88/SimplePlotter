@@ -265,9 +265,8 @@ namespace SimplePlotterMisc
         /// Saída: lista de pontos (X=frequência [Hz], Y=magnitude).
         /// </summary>
         public static List<PointObj> RunFT3(
-            IReadOnlyList<PointObj> samples,
+            IReadOnlyList<PointObj> samples, bool removeMean,
             bool oneSided = true,
-            bool removeMean = true,
             bool applyHannWindow = false,
             double uniformTolerance = 1e-4)//originalmente era 1e-9
         {

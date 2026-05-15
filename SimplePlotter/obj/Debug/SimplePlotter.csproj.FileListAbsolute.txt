@@ -86,8 +86,8 @@ C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\OxyPlot.Wpf.dl
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\OxyPlot.Wpf.Shared.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\SimplePlotterView.exe
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\SimplePlotterVM.dll
-C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\Auxiliary.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\SimplePlotterMisc.dll
+C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\Auxiliary.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\SPGlobalization.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\SimplePlotterData.dll
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\Magick.NET-Q16-AnyCPU.dll
@@ -99,8 +99,8 @@ C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\OxyPlot.xml
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\OxyPlot.Wpf.xml
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\OxyPlot.Wpf.Shared.xml
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\SimplePlotterVM.pdb
-C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\Auxiliary.pdb
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\SimplePlotterMisc.pdb
+C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\Auxiliary.pdb
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\SPGlobalization.pdb
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\SimplePlotterData.pdb
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotter\bin\Debug\Magick.NET-Q16-AnyCPU.xml
