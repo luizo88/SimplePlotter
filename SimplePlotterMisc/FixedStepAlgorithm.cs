@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace SimplePlotterMisc
 {
-    //https://rosettacode.org/wiki/Ramer-Douglas-Peucker_line_simplification
     public static class FixedStepAlgorithm
     {
         public static List<PointObj> FixStep(List<PointObj> pointList, double desiredNumberOfPoints)

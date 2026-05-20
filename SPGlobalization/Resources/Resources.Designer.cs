@@ -142,6 +142,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Average.
+        /// </summary>
+        internal static string Average {
+            get {
+                return ResourceManager.GetString("Average", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Axis configuration.
         /// </summary>
         internal static string AxisConfiguration {
@@ -336,6 +345,15 @@ namespace SPGlobalization.Resources {
         internal static string CopyDataToClipboard {
             get {
                 return ResourceManager.GetString("CopyDataToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy data to LaTeX.
+        /// </summary>
+        internal static string CopyDataToLaTeX {
+            get {
+                return ResourceManager.GetString("CopyDataToLaTeX", resourceCulture);
             }
         }
         
@@ -772,6 +790,24 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum.
+        /// </summary>
+        internal static string Maximum {
+            get {
+                return ResourceManager.GetString("Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum.
+        /// </summary>
+        internal static string Minimum {
+            get {
+                return ResourceManager.GetString("Minimum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minor grid lines.
         /// </summary>
         internal static string MinorGridLines {
@@ -1006,6 +1042,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RMS.
+        /// </summary>
+        internal static string RMS {
+            get {
+                return ResourceManager.GetString("RMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rockwell.
         /// </summary>
         internal static string Rockwell {
@@ -1074,6 +1119,15 @@ namespace SPGlobalization.Resources {
         internal static string SecondY {
             get {
                 return ResourceManager.GetString("SecondY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        internal static string SelectAll {
+            get {
+                return ResourceManager.GetString("SelectAll", resourceCulture);
             }
         }
         

@@ -528,6 +528,41 @@ namespace SimplePlotterMisc
             NotifyPropertyChanged("Points");
         }
 
+        public double GetMinimum()
+        {
+            double result = points.Min(x => x.Y);
+            return result;
+        }
+
+        public double GetAverage()
+        {
+            double result = 0;
+            for (int i = 1; i < points.Count; i++)
+            {
+                result += (points[i].Y + points[i - 1].Y) / 2 * (points[i].X - points[i - 1].X);
+            }
+            result = result / (points.Last().X - points[0].X);
+            return result;
+        }
+
+        public double GetMaximum()
+        {
+            double result = points.Max(x => x.Y);
+            return result;
+        }
+
+        public double GetRMS()
+        {
+            double result = 0;
+            for (int i = 1; i < points.Count; i++)
+            {
+                result += Math.Pow((points[i].Y + points[i - 1].Y) / 2, 2) * (points[i].X - points[i - 1].X);
+            }
+            result = result / (points.Last().X - points[0].X);
+            result = Math.Sqrt(result);
+            return result;
+        }
+
         public string GetDataString()
         {
             var result = new StringBuilder("");
@@ -538,6 +573,20 @@ namespace SimplePlotterMisc
                 result.Append(points[i].X);
                 result.Append(" ");
                 result.Append(points[i].Y);
+            }
+            return result.ToString();
+        }
+
+        public string GetDataToLatex()
+        {
+            var result = new StringBuilder("");
+            for (int i = 0; i < points.Count; i++)
+            {
+                result.Append("(");
+                result.Append(points[i].X);
+                result.Append(",");
+                result.Append(points[i].Y);
+                result.Append(")");
             }
             return result.ToString();
         }

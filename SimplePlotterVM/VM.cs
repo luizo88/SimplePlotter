@@ -53,7 +53,12 @@ namespace SimplePlotterVM
             TrimAllSeries = new Auxiliary.DelegateCommand(trimAllSeries, canTrimAllSeries);
             PerformFFT = new Auxiliary.DelegateCommand(performFFT, canPerformFFT);
             CopyDataToClipboard = new Auxiliary.DelegateCommand(copyDataToClipboard, canCopyDataToClipboard);
+            CopyDataToLatexPlot = new Auxiliary.DelegateCommand(copyDataToLatexPlot, canCopyDataToLatexPlot);
             ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
+            GetCurveMinimum = new Auxiliary.DelegateCommand(getCurveMinimum, canGetCurveMinimum);
+            GetCurveAverage = new Auxiliary.DelegateCommand(getCurveAverage, canGetCurveAverage);
+            GetCurveMaximum = new Auxiliary.DelegateCommand(getCurveMaximum, canGetCurveMaximum);
+            GetCurveRMS = new Auxiliary.DelegateCommand(getCurveRMS, canGetCurveRMS);
             ImportPL4File = new Auxiliary.DelegateCommand(importPL4File);
             CreateGIF = new Auxiliary.DelegateCommand(createGIF);
             updateCompositeInfo();
@@ -114,7 +119,12 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand TrimAllSeries { get; set; }
         public Auxiliary.DelegateCommand PerformFFT { get; set; }
         public Auxiliary.DelegateCommand CopyDataToClipboard { get; set; }
+        public Auxiliary.DelegateCommand CopyDataToLatexPlot { get; set; }
         public Auxiliary.DelegateCommand ApplyColorTemplate { get; set; }
+        public Auxiliary.DelegateCommand GetCurveMinimum { get; set; }
+        public Auxiliary.DelegateCommand GetCurveAverage { get; set; }
+        public Auxiliary.DelegateCommand GetCurveMaximum { get; set; }
+        public Auxiliary.DelegateCommand GetCurveRMS { get; set; }
         public Auxiliary.DelegateCommand ImportPL4File { get; set; }
         public Auxiliary.DelegateCommand CreateGIF { get; set; }
 
@@ -504,6 +514,66 @@ namespace SimplePlotterVM
             return result;
         }
 
+        private void copyDataToLatexPlot(object parameter)
+        {
+            System.Windows.Clipboard.SetText(selectedDataSeries.GetDataToLatex());
+        }
+
+        private bool canCopyDataToLatexPlot()
+        {
+            bool result = true;
+            result &= selectedDataSeries != null;
+            return result;
+        }
+
+        private void getCurveMinimum(object parameter)
+        {
+            CurveMinimum = selectedDataSeries.GetMinimum();
+        }
+
+        private bool canGetCurveMinimum()
+        {
+            bool result = true;
+            result &= selectedDataSeries != null;
+            return result;
+        }
+
+        private void getCurveAverage(object parameter)
+        {
+            CurveAverage = selectedDataSeries.GetAverage();
+        }
+
+        private bool canGetCurveAverage()
+        {
+            bool result = true;
+            result &= selectedDataSeries != null;
+            return result;
+        }
+
+        private void getCurveMaximum(object parameter)
+        {
+            CurveMaximum = selectedDataSeries.GetMaximum();
+        }
+
+        private bool canGetCurveMaximum()
+        {
+            bool result = true;
+            result &= selectedDataSeries != null;
+            return result;
+        }
+
+        private void getCurveRMS(object parameter)
+        {
+            CurveRMS = selectedDataSeries.GetRMS();
+        }
+
+        private bool canGetCurveRMS()
+        {
+            bool result = true;
+            result &= selectedDataSeries != null;
+            return result;
+        }
+
         private void applyColorTemplate(object parameter)
         {
             LongProcessRuning = true;
@@ -774,6 +844,50 @@ namespace SimplePlotterVM
                     plotSeries(false);
                     NotifyPropertyChanged();
                 }
+            }
+        }
+
+        private double curveMinimum;
+        public double CurveMinimum
+        {
+            get { return curveMinimum; }
+            set
+            {
+                curveMinimum = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double curveAverage;
+        public double CurveAverage
+        {
+            get { return curveAverage; }
+            set
+            {
+                curveAverage = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double curveMaximum;
+        public double CurveMaximum
+        {
+            get { return curveMaximum; }
+            set
+            {
+                curveMaximum = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double curveRMS;
+        public double CurveRMS
+        {
+            get { return curveRMS; }
+            set
+            {
+                curveRMS = value;
+                NotifyPropertyChanged();
             }
         }
 

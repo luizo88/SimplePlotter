@@ -224,7 +224,13 @@ namespace SPGlobalization
         public string BarsWidth { get { return string.Format("{0}", Resources.Resources.BarsWidth); } }
         public string BarsGap { get { return string.Format("{0}", Resources.Resources.BarsGap); } }
         public string RemoveDC { get { return string.Format("{0}", Resources.Resources.RemoveDC); } }
-        
+        public string Minimum { get { return string.Format("{0}", Resources.Resources.Minimum); } }
+        public string Average { get { return string.Format("{0}", Resources.Resources.Average); } }
+        public string Maximum { get { return string.Format("{0}", Resources.Resources.Maximum); } }
+        public string RMS { get { return string.Format("{0}", Resources.Resources.RMS); } }
+        public string CopyDataToLaTeX { get { return string.Format("{0}", Resources.Resources.CopyDataToLaTeX); } }
+        public string SelectAll { get { return string.Format("{0}", Resources.Resources.SelectAll); } }
+
 
         #endregion
 

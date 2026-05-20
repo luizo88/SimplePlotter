@@ -144,6 +144,9 @@
   <data name="Avenir" xml:space="preserve">
     <value>Avenir</value>
   </data>
+  <data name="Average" xml:space="preserve">
+    <value>Average</value>
+  </data>
   <data name="AxisConfiguration" xml:space="preserve">
     <value>Axis configuration</value>
   </data>
@@ -209,6 +212,9 @@
   </data>
   <data name="CopyDataToClipboard" xml:space="preserve">
     <value>Copy data to clipboard</value>
+  </data>
+  <data name="CopyDataToLaTeX" xml:space="preserve">
+    <value>Copy data to LaTeX</value>
   </data>
   <data name="CopyPlotToClipboard" xml:space="preserve">
     <value>Copy plot to clipboard</value>
@@ -354,6 +360,12 @@
   <data name="MarkerSize" xml:space="preserve">
     <value>M. size</value>
   </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
   <data name="MinorGridLines" xml:space="preserve">
     <value>Minor grid lines</value>
   </data>
@@ -432,6 +444,9 @@
   <data name="RGB" xml:space="preserve">
     <value>RGB</value>
   </data>
+  <data name="RMS" xml:space="preserve">
+    <value>RMS</value>
+  </data>
   <data name="Rockwell" xml:space="preserve">
     <value>Rockwell</value>
   </data>
@@ -455,6 +470,9 @@
   </data>
   <data name="SecondY" xml:space="preserve">
     <value>Second Y</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select all</value>
   </data>
   <data name="SeriesColors" xml:space="preserve">
     <value>Series colors</value>

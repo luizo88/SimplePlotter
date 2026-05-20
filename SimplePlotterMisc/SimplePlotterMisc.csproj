@@ -58,6 +58,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurveResults.cs" />
     <Compile Include="PL4Reader.cs" />
     <Compile Include="FixedStepAlgorithm.cs" />
     <Compile Include="FTAlgorithm.cs" />

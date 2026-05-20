@@ -144,6 +144,9 @@
   <data name="Avenir" xml:space="preserve">
     <value>Avenir</value>
   </data>
+  <data name="Average" xml:space="preserve">
+    <value>Promedio</value>
+  </data>
   <data name="AxisConfiguration" xml:space="preserve">
     <value>Configuración de ejes</value>
   </data>
@@ -209,6 +212,9 @@
   </data>
   <data name="CopyDataToClipboard" xml:space="preserve">
     <value>Copiar datos al portapapeles</value>
+  </data>
+  <data name="CopyDataToLaTeX" xml:space="preserve">
+    <value>Copiar datos a LaTeX</value>
   </data>
   <data name="CopyPlotToClipboard" xml:space="preserve">
     <value>Copiar gráfico al portapapeles</value>
@@ -354,6 +360,12 @@
   <data name="MarkerSize" xml:space="preserve">
     <value>Tamaño m.</value>
   </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Máximo</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Mínimo</value>
+  </data>
   <data name="MinorGridLines" xml:space="preserve">
     <value>Líneas de cuadrícula menores</value>
   </data>
@@ -432,6 +444,9 @@
   <data name="RGB" xml:space="preserve">
     <value>RGB</value>
   </data>
+  <data name="RMS" xml:space="preserve">
+    <value>RMS</value>
+  </data>
   <data name="Rockwell" xml:space="preserve">
     <value>Rockwell</value>
   </data>
@@ -455,6 +470,9 @@
   </data>
   <data name="SecondY" xml:space="preserve">
     <value>Segundo Y</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Seleccionar todo</value>
   </data>
   <data name="SeriesColors" xml:space="preserve">
     <value>Colores de las series</value>

@@ -95,7 +95,7 @@
                     </Grid.RowDefinitions>
                     <Expander Name="ExpdDataSeries" Margin="10,10,10,10" Grid.Row="0" BorderBrush="DarkGray" IsExpanded="True">
                         <Expander.Header>
-                            <DockPanel Width="835" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                            <DockPanel Width="895" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
                                 <DockPanel.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="DarkGray" Offset="1"/>
@@ -113,10 +113,11 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Button Command="{Binding AddDataSeries}" Content="{Binding Vocabulary.AddDataSeries, FallbackValue=AddDataSeries}" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="0"/>
                             <Button Click="SelectAllDataSeries_Click" Content="{Binding Vocabulary.SelectAll, FallbackValue=SelectAll}" HorizontalAlignment="Left" Margin="573,10,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="0"/>
-                            <ListView Margin="5,40,5,0" ItemsSource="{Binding AvailableDataSeries}" SelectedItem="{Binding SelectedDataSeries, Mode=TwoWay}" Height="140" VerticalAlignment="Top" Grid.ColumnSpan="1" SelectionMode="Extended" d:ItemsSource="{d:SampleData ItemCount=3}" KeyDown="lv_DeletePressed" Name="lvDataSeries" Grid.Row="0">
+                            <ListView Margin="5,40,5,0" ItemsSource="{Binding AvailableDataSeries}" SelectedItem="{Binding SelectedDataSeries, Mode=TwoWay}" Height="200" VerticalAlignment="Top" Grid.ColumnSpan="1" SelectionMode="Extended" d:ItemsSource="{d:SampleData ItemCount=3}" KeyDown="lv_DeletePressed" Name="lvDataSeries" Grid.Row="0">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListViewItem}">
                                         <Setter Property="Height" Value="Auto"/>
@@ -226,10 +227,10 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-                            <Button Command="{Binding RemoveDataSeries}" Content="{Binding Vocabulary.RemoveDataSeries, FallbackValue=RemoveDataSeries}" HorizontalAlignment="Left" Margin="5,190,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="0"/>
-                            <Button Command="{Binding DataSeriesUp}" Content="{Binding Vocabulary.ArrowUp, FallbackValue=ArrowUp}" HorizontalAlignment="Left" Margin="165,190,0,0" VerticalAlignment="Top" Width="50" Height="23" Grid.Row="0"/>
-                            <Button Command="{Binding DataSeriesDown}" Content="{Binding Vocabulary.ArrowDown, FallbackValue=ArrowDown}" HorizontalAlignment="Left" Margin="225,190,0,0" VerticalAlignment="Top" Width="50" Height="23" Grid.Row="0"/>
-                            <Button Command="{Binding RemoveAllDataSeries}" Content="{Binding Vocabulary.RemoveAllDataSeries, FallbackValue=RemoveAllDataSeries}" HorizontalAlignment="Left" Margin="573,190,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="0"/>
+                            <Button Command="{Binding RemoveDataSeries}" Content="{Binding Vocabulary.RemoveDataSeries, FallbackValue=RemoveDataSeries}" HorizontalAlignment="Left" Margin="5,250,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="0"/>
+                            <Button Command="{Binding DataSeriesUp}" Content="{Binding Vocabulary.ArrowUp, FallbackValue=ArrowUp}" HorizontalAlignment="Left" Margin="165,250,0,0" VerticalAlignment="Top" Width="50" Height="23" Grid.Row="0"/>
+                            <Button Command="{Binding DataSeriesDown}" Content="{Binding Vocabulary.ArrowDown, FallbackValue=ArrowDown}" HorizontalAlignment="Left" Margin="225,250,0,0" VerticalAlignment="Top" Width="50" Height="23" Grid.Row="0"/>
+                            <Button Command="{Binding RemoveAllDataSeries}" Content="{Binding Vocabulary.RemoveAllDataSeries, FallbackValue=RemoveAllDataSeries}" HorizontalAlignment="Left" Margin="573,250,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="0"/>
                             <Expander Name="ExpdReducePoints" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="1">
                                 <Expander.Header>
                                     <DockPanel Width="695" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
@@ -345,6 +346,7 @@
                                         </Grid>
                                     </Expander>
                                     <Button Command="{Binding CopyDataToClipboard}" Content="{Binding Vocabulary.CopyDataToClipboard, FallbackValue=CopyDataToClipboard}" Margin="320,5,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
+                                    <Button Command="{Binding CopyDataToLatexPlot}" Content="{Binding Vocabulary.CopyDataToLaTeX, FallbackValue=CopyDataToLaTeX}" Margin="320,35,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
                                 </Grid>
                             </Expander>
                             <Expander Name="ExpdFFT" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="3">
@@ -414,6 +416,29 @@
                                     <Label Content="{Binding Vocabulary.BarsGap, FallbackValue=BarsGap}" Margin="10,40,10,0" VerticalAlignment="Top"/>
                                     <TextBox Text="{Binding BarsWidth, UpdateSourceTrigger=LostFocus}" Margin="220,10,20,0" VerticalAlignment="Top" Height="23"/>
                                     <TextBox Text="{Binding BarsGap, UpdateSourceTrigger=LostFocus}" Margin="220,40,20,0" VerticalAlignment="Top" Height="23"/>
+                                </Grid>
+                            </Expander>
+                            <Expander Name="ExpdResults" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="6">
+                                <Expander.Header>
+                                    <DockPanel Width="695" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                        <DockPanel.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="DarkGray" Offset="1"/>
+                                                <GradientStop Color="LightGray"/>
+                                            </LinearGradientBrush>
+                                        </DockPanel.Background>
+                                        <TextBlock Name="txtResults" Text="{Binding Vocabulary.Results, FallbackValue=Results}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    </DockPanel>
+                                </Expander.Header>
+                                <Grid Height="70">
+                                    <Button Command="{Binding GetCurveMinimum}" Content="{Binding Vocabulary.Minimum, FallbackValue=Minimum}" Margin="20,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100"/>
+                                    <Button Command="{Binding GetCurveAverage}" Content="{Binding Vocabulary.Average, FallbackValue=Average}" Margin="130,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100"/>
+                                    <Button Command="{Binding GetCurveMaximum}" Content="{Binding Vocabulary.Maximum, FallbackValue=Maximum}" Margin="240,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100"/>
+                                    <Button Command="{Binding GetCurveRMS}" Content="{Binding Vocabulary.RMS, FallbackValue=RMS}" Margin="350,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100"/>
+                                    <TextBox Text="{Binding CurveMinimum, UpdateSourceTrigger=LostFocus}" Margin="20,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100" IsReadOnly="True"/>
+                                    <TextBox Text="{Binding CurveAverage, UpdateSourceTrigger=LostFocus}" Margin="130,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100" IsReadOnly="True"/>
+                                    <TextBox Text="{Binding CurveMaximum, UpdateSourceTrigger=LostFocus}" Margin="240,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100" IsReadOnly="True"/>
+                                    <TextBox Text="{Binding CurveRMS, UpdateSourceTrigger=LostFocus}" Margin="350,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100" IsReadOnly="True"/>
                                 </Grid>
                             </Expander>
                             <Grid>
