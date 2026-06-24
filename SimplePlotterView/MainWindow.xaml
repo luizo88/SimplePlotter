@@ -346,7 +346,8 @@
                                         </Grid>
                                     </Expander>
                                     <Button Command="{Binding CopyDataToClipboard}" Content="{Binding Vocabulary.CopyDataToClipboard, FallbackValue=CopyDataToClipboard}" Margin="320,5,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
-                                    <Button Command="{Binding CopyDataToLatexPlot}" Content="{Binding Vocabulary.CopyDataToLaTeX, FallbackValue=CopyDataToLaTeX}" Margin="320,35,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
+                                    <Button Command="{Binding CopyAllDataToClipboard}" Content="{Binding Vocabulary.CopyAllDataToClipboard, FallbackValue=CopyAllDataToClipboard}" Margin="320,35,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
+                                    <Button Command="{Binding CopyDataToLatexPlot}" Content="{Binding Vocabulary.CopyDataToLaTeX, FallbackValue=CopyDataToLaTeX}" Margin="320,65,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
                                 </Grid>
                             </Expander>
                             <Expander Name="ExpdFFT" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="3">

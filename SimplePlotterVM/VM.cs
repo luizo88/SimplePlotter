@@ -53,6 +53,7 @@ namespace SimplePlotterVM
             TrimAllSeries = new Auxiliary.DelegateCommand(trimAllSeries, canTrimAllSeries);
             PerformFFT = new Auxiliary.DelegateCommand(performFFT, canPerformFFT);
             CopyDataToClipboard = new Auxiliary.DelegateCommand(copyDataToClipboard, canCopyDataToClipboard);
+            CopyAllDataToClipboard = new Auxiliary.DelegateCommand(copyAllDataToClipboard, canCopyAllDataToClipboard);
             CopyDataToLatexPlot = new Auxiliary.DelegateCommand(copyDataToLatexPlot, canCopyDataToLatexPlot);
             ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
             GetCurveMinimum = new Auxiliary.DelegateCommand(getCurveMinimum, canGetCurveMinimum);
@@ -119,6 +120,7 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand TrimAllSeries { get; set; }
         public Auxiliary.DelegateCommand PerformFFT { get; set; }
         public Auxiliary.DelegateCommand CopyDataToClipboard { get; set; }
+        public Auxiliary.DelegateCommand CopyAllDataToClipboard { get; set; }
         public Auxiliary.DelegateCommand CopyDataToLatexPlot { get; set; }
         public Auxiliary.DelegateCommand ApplyColorTemplate { get; set; }
         public Auxiliary.DelegateCommand GetCurveMinimum { get; set; }
@@ -511,6 +513,18 @@ namespace SimplePlotterVM
         {
             bool result = true;
             result &= selectedDataSeries != null;
+            return result;
+        }
+
+        private void copyAllDataToClipboard(object parameter)
+        {
+            System.Windows.Clipboard.SetText(DataSeriesController.Instance.GetAllDataPoints());
+        }
+
+        private bool canCopyAllDataToClipboard()
+        {
+            bool result = true;
+            result &= availableDataSeries.Count > 0;
             return result;
         }
 

@@ -213,6 +213,9 @@
   <data name="Consolas" xml:space="preserve">
     <value>Consolas</value>
   </data>
+  <data name="CopyAllDataToClipboard" xml:space="preserve">
+    <value>Copy all data to clipboard</value>
+  </data>
   <data name="CopyDataToClipboard" xml:space="preserve">
     <value>Copy data to clipboard</value>
   </data>

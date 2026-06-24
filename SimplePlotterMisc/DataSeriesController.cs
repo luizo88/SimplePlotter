@@ -1,4 +1,5 @@
 ﻿using OxyPlot.Series;
+using SimplePlotterMisc.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -308,6 +309,35 @@ namespace SimplePlotterMisc
             {
                 item.GenerateGIFPoints(numberOfPoints, interpolateData);
             }
+        }
+
+        /// <summary>
+        /// Gets all data from all series and put it on a single string (to use in "copy to clipboard" operations). It always assume all X are the same
+        /// </summary>
+        /// <returns></returns>
+        public string GetAllDataPoints()
+        {
+            var result = new StringBuilder("");
+            string separator = " ";
+            //headers
+            result.Append("X");
+            foreach (DataSeriesObj item in dataSeries)
+            {
+                result.Append(separator);
+                result.Append(item.Name);
+            }
+            //points
+            for (int i = 0; i < dataSeries[0].Points.Count; i++)
+            {
+                result.Append("\n");
+                result.Append(dataSeries[0].Points[i].X);
+                for (int j = 0; j < dataSeries.Count; j++)
+                {
+                    result.Append(separator);
+                    result.Append(dataSeries[j].Points[i].Y);
+                }
+            }
+            return result.ToString();
         }
 
         #endregion

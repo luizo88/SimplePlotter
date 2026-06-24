@@ -577,6 +577,27 @@ namespace SimplePlotterMisc
             return result.ToString();
         }
 
+        public string GetXDataString()
+        {
+            var result = new StringBuilder("");
+            for (int i = 0; i < points.Count; i++)
+            {
+                result.Append("\n");
+                result.Append(points[i].X * yScale);
+            }
+            return result.ToString();
+        }
+        public string GetYDataString()
+        {
+            var result = new StringBuilder("");
+            for (int i = 0; i < points.Count; i++)
+            {
+                result.Append("\n");
+                result.Append(points[i].Y * yScale);
+            }
+            return result.ToString();
+        }
+
         public string GetDataToLatex()
         {
             var result = new StringBuilder("");

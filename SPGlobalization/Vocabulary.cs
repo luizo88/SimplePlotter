@@ -232,8 +232,8 @@ namespace SPGlobalization
         public string SelectAll { get { return string.Format("{0}", Resources.Resources.SelectAll); } }
         public string BlueToGreen { get { return string.Format("{0}", Resources.Resources.BlueToGreen); } }
         public string GreenToBlue { get { return string.Format("{0}", Resources.Resources.GreenToBlue); } }
-
-
+        public string CopyAllDataToClipboard { get { return string.Format("{0}", Resources.Resources.CopyAllDataToClipboard); } }
+        
         #endregion
 
         #region PUBLIC METHODS

@@ -349,6 +349,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy all data to clipboard.
+        /// </summary>
+        internal static string CopyAllDataToClipboard {
+            get {
+                return ResourceManager.GetString("CopyAllDataToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy data to clipboard.
         /// </summary>
         internal static string CopyDataToClipboard {
