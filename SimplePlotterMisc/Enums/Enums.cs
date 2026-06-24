@@ -90,8 +90,12 @@ namespace SimplePlotterMisc.Enums
         GreenToRed = 8,
         [LocalizedDescription("RedToGreen")]
         RedToGreen = 9,
+        [LocalizedDescription("BlueToGreen")]
+        BlueToGreen = 10,
+        [LocalizedDescription("GreenToBlue")]
+        GreenToBlue = 11,
         [LocalizedDescription("SiliconSteel")]
-        SiliconSteel = 10
+        SiliconSteel = 12
     }
 
     [TypeConverter(typeof(EnumDescriptionTypeConverter))]

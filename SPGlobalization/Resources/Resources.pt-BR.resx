@@ -180,6 +180,9 @@
   <data name="BlueScale" xml:space="preserve">
     <value>Escala de azul</value>
   </data>
+  <data name="BlueToGreen" xml:space="preserve">
+    <value>Azul para verde</value>
+  </data>
   <data name="BlueToRed" xml:space="preserve">
     <value>Azul para vermelho</value>
   </data>
@@ -305,6 +308,9 @@
   </data>
   <data name="GreenScale" xml:space="preserve">
     <value>Escala de verde</value>
+  </data>
+  <data name="GreenToBlue" xml:space="preserve">
+    <value>Verde para azul</value>
   </data>
   <data name="GreenToRed" xml:space="preserve">
     <value>Verde para vermelho</value>

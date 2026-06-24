@@ -570,9 +570,9 @@ namespace SimplePlotterMisc
             for (int i = 0; i < points.Count; i++)
             {
                 result.Append("\n");
-                result.Append(points[i].X);
+                result.Append(points[i].X * xScale);
                 result.Append(" ");
-                result.Append(points[i].Y);
+                result.Append(points[i].Y * yScale);
             }
             return result.ToString();
         }
@@ -583,9 +583,9 @@ namespace SimplePlotterMisc
             for (int i = 0; i < points.Count; i++)
             {
                 result.Append("(");
-                result.Append(points[i].X);
+                result.Append(points[i].X * xScale);
                 result.Append(",");
-                result.Append(points[i].Y);
+                result.Append(points[i].Y * yScale);
                 result.Append(")");
             }
             return result.ToString();

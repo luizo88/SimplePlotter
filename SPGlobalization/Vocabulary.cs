@@ -230,6 +230,8 @@ namespace SPGlobalization
         public string RMS { get { return string.Format("{0}", Resources.Resources.RMS); } }
         public string CopyDataToLaTeX { get { return string.Format("{0}", Resources.Resources.CopyDataToLaTeX); } }
         public string SelectAll { get { return string.Format("{0}", Resources.Resources.SelectAll); } }
+        public string BlueToGreen { get { return string.Format("{0}", Resources.Resources.BlueToGreen); } }
+        public string GreenToBlue { get { return string.Format("{0}", Resources.Resources.GreenToBlue); } }
 
 
         #endregion

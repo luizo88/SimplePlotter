@@ -158,6 +158,14 @@ namespace SimplePlotterMisc
                     c1 = new Tuple<byte, byte, byte>(0, 200, 0);
                     c2 = new Tuple<byte, byte, byte>(240, 0, 0);
                     break;
+                case Enums.ColorTemplates.BlueToGreen:
+                    c1 = new Tuple<byte, byte, byte>(0, 0, 240);
+                    c2 = new Tuple<byte, byte, byte>(0, 200, 0);
+                    break;
+                case Enums.ColorTemplates.GreenToBlue:
+                    c1 = new Tuple<byte, byte, byte>(0, 200, 0);
+                    c2 = new Tuple<byte, byte, byte>(0, 0, 240);
+                    break;
                 case Enums.ColorTemplates.RedToGreen:
                     c1 = new Tuple<byte, byte, byte>(240, 0, 0);
                     c2 = new Tuple<byte, byte, byte>(0, 200, 0);
@@ -204,6 +212,8 @@ namespace SimplePlotterMisc
                 case Enums.ColorTemplates.RedToBlue:
                 case Enums.ColorTemplates.GreenToRed:
                 case Enums.ColorTemplates.RedToGreen:
+                case Enums.ColorTemplates.BlueToGreen:
+                case Enums.ColorTemplates.GreenToBlue:
                     Tuple<Tuple<byte, byte, byte>, Tuple<byte, byte, byte>> refColors = getFirstAndLastColors(colorTemplate);
                     foreach (var item in getColorTransition(refColors.Item1, refColors.Item2, numberOfColors))
                     {

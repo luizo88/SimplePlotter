@@ -250,6 +250,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blue to green.
+        /// </summary>
+        internal static string BlueToGreen {
+            get {
+                return ResourceManager.GetString("BlueToGreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blue to red.
         /// </summary>
         internal static string BlueToRed {
@@ -624,6 +633,15 @@ namespace SPGlobalization.Resources {
         internal static string GreenScale {
             get {
                 return ResourceManager.GetString("GreenScale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green to blue.
+        /// </summary>
+        internal static string GreenToBlue {
+            get {
+                return ResourceManager.GetString("GreenToBlue", resourceCulture);
             }
         }
         
