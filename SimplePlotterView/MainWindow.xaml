@@ -37,6 +37,11 @@
                         <Image Source="Resources/ImportATPPL4.ico" Height="16"/>
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem Name="menuImportLTSpicePolar" Header="{Binding Vocabulary.ImportLTSpicePolar, FallbackValue=ImportLTSpicePolar}" Command="{Binding ImportLTSpicePolar}">
+                    <MenuItem.Icon>
+                        <Image Source="Resources/ImportLTSpicePolar.ico" Height="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Name="menuLanguage" Header="{Binding Vocabulary.Language, FallbackValue=Language}">
                 <MenuItem Name="menuInterface" Header="{Binding Vocabulary.Interface, FallbackValue=Interface}" IsEnabled="True">
@@ -348,6 +353,7 @@
                                     <Button Command="{Binding CopyDataToClipboard}" Content="{Binding Vocabulary.CopyDataToClipboard, FallbackValue=CopyDataToClipboard}" Margin="320,5,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
                                     <Button Command="{Binding CopyAllDataToClipboard}" Content="{Binding Vocabulary.CopyAllDataToClipboard, FallbackValue=CopyAllDataToClipboard}" Margin="320,35,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
                                     <Button Command="{Binding CopyDataToLatexPlot}" Content="{Binding Vocabulary.CopyDataToLaTeX, FallbackValue=CopyDataToLaTeX}" Margin="320,65,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
+                                    <Button Command="{Binding GenerateMaxEnvelope}" Content="{Binding Vocabulary.GenerateMaxEnvelope, FallbackValue=GenerateMaxEnvelope}" Margin="320,95,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
                                 </Grid>
                             </Expander>
                             <Expander Name="ExpdFFT" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="3">

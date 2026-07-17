@@ -601,6 +601,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate max. envelope.
+        /// </summary>
+        internal static string GenerateMaxEnvelope {
+            get {
+                return ResourceManager.GetString("GenerateMaxEnvelope", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GIF type.
         /// </summary>
         internal static string GIFType {
@@ -696,6 +705,15 @@ namespace SPGlobalization.Resources {
         internal static string Hide {
             get {
                 return ResourceManager.GetString("Hide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import from LTSpice (polar format).
+        /// </summary>
+        internal static string ImportLTSpicePolar {
+            get {
+                return ResourceManager.GetString("ImportLTSpicePolar", resourceCulture);
             }
         }
         

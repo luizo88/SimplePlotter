@@ -233,7 +233,9 @@ namespace SPGlobalization
         public string BlueToGreen { get { return string.Format("{0}", Resources.Resources.BlueToGreen); } }
         public string GreenToBlue { get { return string.Format("{0}", Resources.Resources.GreenToBlue); } }
         public string CopyAllDataToClipboard { get { return string.Format("{0}", Resources.Resources.CopyAllDataToClipboard); } }
-        
+        public string ImportLTSpicePolar { get { return string.Format("{0}", Resources.Resources.ImportLTSpicePolar); } }
+        public string GenerateMaxEnvelope { get { return string.Format("{0}", Resources.Resources.GenerateMaxEnvelope); } }
+
         #endregion
 
         #region PUBLIC METHODS

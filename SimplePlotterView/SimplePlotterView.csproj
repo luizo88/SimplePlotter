@@ -161,5 +161,8 @@
   <ItemGroup>
     <Resource Include="Resources\ImportATPPL4.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ImportLTSPicePolar.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

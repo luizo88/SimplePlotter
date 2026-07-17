@@ -240,6 +240,51 @@ namespace SimplePlotterMisc
             return result;
         }
 
+        // <summary>
+        /// Returns a list of pair-coordinates from ltspice-like (polar format) files that are generate by LTSpice (the circuit simulator).
+        /// </summary>
+        /// <param name="pathfile">The full path of the file.</param>
+        /// <returns></returns>
+        public static List<Tuple<List<double>, List<double>, string>> GetFileDataLTSpicePolar(string pathfile)
+        {
+            List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
+            System.IO.StreamReader file = new System.IO.StreamReader(pathfile);
+            string line = file.ReadLine();
+            //first line (headers)
+            line = line.Replace("\t", " ").ToString();
+            List<string> data = line.Split(' ').ToList();
+            List<string> seriesNames = new List<string>();
+            for (int i = 1; i < data.Count(); i++)
+            {
+                seriesNames.Add(data[i]);
+            }
+            //data series
+            List<List<double>> allData = new List<List<double>>();
+            allData.Add(new List<double>());
+            for (int i = 0; i < seriesNames.Count; i++)
+            {
+                allData.Add(new List<double>());
+            }
+            while ((line = file.ReadLine()) != null)
+            {
+                line = line.Replace("\t", " ").ToString();
+                data = line.Split(' ').ToList();
+                //x
+                allData[0].Add(Convert.ToDouble(data[0]));
+                //y
+                for (int i = 1; i < allData.Count; i++)
+                {
+                    string y = data[i].Split('d')[0].Substring(1);
+                    allData[i].Add(Math.Pow(10, Convert.ToDouble(y) / 20));
+                }
+            }
+            for (int i = 1; i <= seriesNames.Count; i++)
+            {
+                result.Add(new Tuple<List<double>, List<double>, string>(allData[0], allData[i], seriesNames[i - 1]));
+            }
+            return result;
+        }
+
         public static List<char> digitList = new List<char> { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', 'e', 'E', '+', '-' };
 
     }

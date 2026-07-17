@@ -297,6 +297,9 @@
   <data name="Garamond" xml:space="preserve">
     <value>Garamond</value>
   </data>
+  <data name="GenerateMaxEnvelope" xml:space="preserve">
+    <value>Generate max. envelope</value>
+  </data>
   <data name="GIFType" xml:space="preserve">
     <value>GIF type</value>
   </data>
@@ -329,6 +332,9 @@
   </data>
   <data name="Hide" xml:space="preserve">
     <value>Hide</value>
+  </data>
+  <data name="ImportLTSpicePolar" xml:space="preserve">
+    <value>Import from LTSpice (polar format)</value>
   </data>
   <data name="ImportPL4File" xml:space="preserve">
     <value>Import .pl4 file</value>

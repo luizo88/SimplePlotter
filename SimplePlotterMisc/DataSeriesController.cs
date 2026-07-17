@@ -299,6 +299,24 @@ namespace SimplePlotterMisc
         }
 
         /// <summary>
+        /// Adds a new data series (in the last position) containing the max. envelope of all series.
+        /// </summary>
+        public void AddEnvelope()
+        {
+            List<double> envelope = new List<double>();
+            for (int i = 0; i < dataSeries[0].XPoints.Count; i++)
+            {
+                double max = -99999999999999999;
+                for (int j = 1; j < dataSeries.Count; j++)
+                {
+                    max = Math.Max(max, dataSeries[j].YPoints[i]);
+                }
+                envelope.Add(max);
+            }
+            dataSeries.Add(new DataSeriesObj("envelope", dataSeries[0].XPoints, envelope));
+        }
+
+        /// <summary>
         /// Generates (creates inside each data series) the points to be used to generate a GIF.
         /// </summary>
         /// <param name="numberOfPoints">The total number of points </param>

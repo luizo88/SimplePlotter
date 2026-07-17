@@ -55,12 +55,14 @@ namespace SimplePlotterVM
             CopyDataToClipboard = new Auxiliary.DelegateCommand(copyDataToClipboard, canCopyDataToClipboard);
             CopyAllDataToClipboard = new Auxiliary.DelegateCommand(copyAllDataToClipboard, canCopyAllDataToClipboard);
             CopyDataToLatexPlot = new Auxiliary.DelegateCommand(copyDataToLatexPlot, canCopyDataToLatexPlot);
+            GenerateMaxEnvelope = new Auxiliary.DelegateCommand(generateMaxEnvelope, canGenerateMaxEnvelope);
             ApplyColorTemplate = new Auxiliary.DelegateCommand(applyColorTemplate);
             GetCurveMinimum = new Auxiliary.DelegateCommand(getCurveMinimum, canGetCurveMinimum);
             GetCurveAverage = new Auxiliary.DelegateCommand(getCurveAverage, canGetCurveAverage);
             GetCurveMaximum = new Auxiliary.DelegateCommand(getCurveMaximum, canGetCurveMaximum);
             GetCurveRMS = new Auxiliary.DelegateCommand(getCurveRMS, canGetCurveRMS);
             ImportPL4File = new Auxiliary.DelegateCommand(importPL4File);
+            ImportLTSpicePolar = new Auxiliary.DelegateCommand(importLTSpicePolar);
             CreateGIF = new Auxiliary.DelegateCommand(createGIF);
             updateCompositeInfo();
             addSampleDataSeries();
@@ -122,12 +124,14 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand CopyDataToClipboard { get; set; }
         public Auxiliary.DelegateCommand CopyAllDataToClipboard { get; set; }
         public Auxiliary.DelegateCommand CopyDataToLatexPlot { get; set; }
+        public Auxiliary.DelegateCommand GenerateMaxEnvelope { get; set; }
         public Auxiliary.DelegateCommand ApplyColorTemplate { get; set; }
         public Auxiliary.DelegateCommand GetCurveMinimum { get; set; }
         public Auxiliary.DelegateCommand GetCurveAverage { get; set; }
         public Auxiliary.DelegateCommand GetCurveMaximum { get; set; }
         public Auxiliary.DelegateCommand GetCurveRMS { get; set; }
         public Auxiliary.DelegateCommand ImportPL4File { get; set; }
+        public Auxiliary.DelegateCommand ImportLTSpicePolar { get; set; }
         public Auxiliary.DelegateCommand CreateGIF { get; set; }
 
         #endregion
@@ -540,6 +544,24 @@ namespace SimplePlotterVM
             return result;
         }
 
+        private void generateMaxEnvelope(object parameter)
+        {
+            SimplePlotterMisc.DataSeriesController.Instance.AddEnvelope();
+            updateDataSeries();
+            updateEntirePlot();
+        }
+
+        private bool canGenerateMaxEnvelope()
+        {
+            bool result = true;
+            result &= AvailableDataSeries.Count > 1;
+            for (int i = 1; i < AvailableDataSeries.Count; i++)
+            {
+                result &= AvailableDataSeries[i].XPoints.Count == AvailableDataSeries[0].XPoints.Count;
+            }
+            return result;
+        }
+
         private void getCurveMinimum(object parameter)
         {
             CurveMinimum = selectedDataSeries.GetMinimum();
@@ -611,6 +633,27 @@ namespace SimplePlotterVM
             if (myBrowser.ShowDialog() == true)
             {
                 var series = SimplePlotterMisc.FileReader.GetFileDataFromPL4File(myBrowser.FileName);
+                for (int i = 0; i < series.Count; i++)
+                {
+                    SimplePlotterMisc.DataSeriesController.Instance.AddDataSeries(series[i].Item3, series[i].Item1, series[i].Item2);
+                }
+                updateDataSeries();
+                updateSelectedDataSeriesPoints();
+                updateEntirePlot();
+            }
+            LongProcessRuning = false;
+        }
+
+        private void importLTSpicePolar(object parameter)
+        {
+            LongProcessRuning = true;
+            Microsoft.Win32.OpenFileDialog myBrowser = new Microsoft.Win32.OpenFileDialog();
+            myBrowser.Filter = "LTSpice output|*.txt";
+            myBrowser.DefaultExt = "txt";
+            myBrowser.Multiselect = false;
+            if (myBrowser.ShowDialog() == true)
+            {
+                var series = SimplePlotterMisc.FileReader.GetFileDataLTSpicePolar(myBrowser.FileName);
                 for (int i = 0; i < series.Count; i++)
                 {
                     SimplePlotterMisc.DataSeriesController.Instance.AddDataSeries(series[i].Item3, series[i].Item1, series[i].Item2);
