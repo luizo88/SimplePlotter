@@ -333,11 +333,17 @@
   <data name="Hide" xml:space="preserve">
     <value>Esconder</value>
   </data>
+  <data name="ImportFromLTSpice" xml:space="preserve">
+    <value>Importar desde LTSpice</value>
+  </data>
   <data name="ImportLTSpicePolar" xml:space="preserve">
     <value>Importar desde LTSpice (formato polar)</value>
   </data>
   <data name="ImportPL4File" xml:space="preserve">
     <value>Importar archivo .pl4</value>
+  </data>
+  <data name="IncludePhase" xml:space="preserve">
+    <value>Incluir fase</value>
   </data>
   <data name="Interface" xml:space="preserve">
     <value>Interfaz</value>
@@ -355,7 +361,13 @@
     <value>Tamaño de fuente de leyenda</value>
   </data>
   <data name="LegendPosition" xml:space="preserve">
-    <value>posición de leyenda</value>
+    <value>Posición de leyenda</value>
+  </data>
+  <data name="LimitMaxPhase" xml:space="preserve">
+    <value>Limitar fase máx.</value>
+  </data>
+  <data name="LimitMinPhase" xml:space="preserve">
+    <value>Limitar fase mín.</value>
   </data>
   <data name="LinearToLog" xml:space="preserve">
     <value>Lineal a logaritmo</value>

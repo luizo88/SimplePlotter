@@ -37,11 +37,11 @@
                         <Image Source="Resources/ImportATPPL4.ico" Height="16"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Name="menuImportLTSpicePolar" Header="{Binding Vocabulary.ImportLTSpicePolar, FallbackValue=ImportLTSpicePolar}" Command="{Binding ImportLTSpicePolar}">
+                <!--<MenuItem Name="menuImportLTSpicePolar" Header="{Binding Vocabulary.ImportLTSpicePolar, FallbackValue=ImportLTSpicePolar}" Command="{Binding ImportLTSpicePolar}">
                     <MenuItem.Icon>
                         <Image Source="Resources/ImportLTSpicePolar.ico" Height="16"/>
                     </MenuItem.Icon>
-                </MenuItem>
+                </MenuItem>-->
             </MenuItem>
             <MenuItem Name="menuLanguage" Header="{Binding Vocabulary.Language, FallbackValue=Language}">
                 <MenuItem Name="menuInterface" Header="{Binding Vocabulary.Interface, FallbackValue=Interface}" IsEnabled="True">
@@ -112,6 +112,7 @@
                         </Expander.Header>
                         <Grid>
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -447,6 +448,63 @@
                                     <TextBox Text="{Binding CurveMaximum, UpdateSourceTrigger=LostFocus}" Margin="240,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100" IsReadOnly="True"/>
                                     <TextBox Text="{Binding CurveRMS, UpdateSourceTrigger=LostFocus}" Margin="350,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="23" Width="100" IsReadOnly="True"/>
                                 </Grid>
+                            </Expander>
+                            <Expander Name="ExpdImport" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="7">
+                                <Expander.Header>
+                                    <DockPanel Width="695" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                        <DockPanel.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="DarkGray" Offset="1"/>
+                                                <GradientStop Color="LightGray"/>
+                                            </LinearGradientBrush>
+                                        </DockPanel.Background>
+                                        <TextBlock Name="txImport" Text="{Binding Vocabulary.Import, FallbackValue=Import}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    </DockPanel>
+                                </Expander.Header>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Expander Name="ExpdLTSpice" Width="500" Margin="5,10,5,5" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="0" >
+                                        <Expander.Header>
+                                            <DockPanel Width="470" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                                <DockPanel.Background>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="DarkGray" Offset="1"/>
+                                                        <GradientStop Color="LightGray"/>
+                                                    </LinearGradientBrush>
+                                                </DockPanel.Background>
+                                                <TextBlock Name="txtLTSpice" Text="{Binding Vocabulary.LTSpice, FallbackValue=LTSpice}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                            </DockPanel>
+                                        </Expander.Header>
+                                        <Grid Height="130">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="420"/>
+                                                <ColumnDefinition Width="308"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="{Binding Vocabulary.IncludePhase, FallbackValue=IncludePhase}" Margin="10,10,220,0" VerticalAlignment="Top"/>
+                                            <Label Content="{Binding Vocabulary.LimitMaxPhase, FallbackValue=LimitMaxPhase}" Margin="10,40,220,0" VerticalAlignment="Top"/>
+                                            <Label Content="{Binding Vocabulary.LimitMinPhase, FallbackValue=LimitMinPhase}" Margin="10,70,220,0" VerticalAlignment="Top"/>
+                                            <CheckBox IsChecked="{Binding IncludePhase}" Margin="220,13,20,0" VerticalAlignment="Top" Height="15"/>
+                                            <CheckBox IsChecked="{Binding LimitMaxPhase}" Margin="220,43,20,0" VerticalAlignment="Top" Height="15"/>
+                                            <TextBox Text="{Binding MaxPhase, UpdateSourceTrigger=LostFocus}" Margin="260,40,20,0" VerticalAlignment="Top" Height="23"/>
+                                            <CheckBox IsChecked="{Binding LimitMinPhase}" Margin="220,73,20,0" VerticalAlignment="Top" Height="15"/>
+                                            <TextBox Text="{Binding MinPhase, UpdateSourceTrigger=LostFocus}" Margin="260,70,20,0" VerticalAlignment="Top" Height="23"/>
+                                            <Button Command="{Binding ImportFromLTSpice}" Content="{Binding Vocabulary.ImportFromLTSpice, FallbackValue=ImportFromLTSpice}" Margin="220,100,20,0" VerticalAlignment="Top" Height="23"/>
+                                        </Grid>
+                                    </Expander>
+                                </Grid>
+                                <!--<Grid Height="100">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="420"/>
+                                        <ColumnDefinition Width="308"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="{Binding Vocabulary.ExpansionN, FallbackValue=ExpansionN}" Margin="10,10,220,0" VerticalAlignment="Top"/>
+                                    <Label Content="{Binding Vocabulary.RemoveDC, FallbackValue=RemoveDC}" Margin="10,40,220,0" VerticalAlignment="Top"/>
+                                    <TextBox Text="{Binding NumberOfPointsFFT, UpdateSourceTrigger=LostFocus}" Margin="220,10,20,0" VerticalAlignment="Top" Height="23"/>
+                                    <CheckBox IsChecked="{Binding RemoveDC}" Margin="220,43,20,0" VerticalAlignment="Top" Height="15"/>
+                                    <Button Command="{Binding PerformFFT}" Content="{Binding Vocabulary.PerformFFT, FallbackValue=PerformFFT}" Margin="220,70,20,0" VerticalAlignment="Top" Height="23"/>
+                                </Grid>-->
                             </Expander>
                             <Grid>
                                 <!--<ListView Margin="5,200,5,0" ItemsSource="{Binding SelectedDataSeriesPoints}" Height="265" VerticalAlignment="Top" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=3}">

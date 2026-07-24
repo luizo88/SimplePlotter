@@ -709,6 +709,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import from LTSpice.
+        /// </summary>
+        internal static string ImportFromLTSpice {
+            get {
+                return ResourceManager.GetString("ImportFromLTSpice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import from LTSpice (polar format).
         /// </summary>
         internal static string ImportLTSpicePolar {
@@ -723,6 +732,15 @@ namespace SPGlobalization.Resources {
         internal static string ImportPL4File {
             get {
                 return ResourceManager.GetString("ImportPL4File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include phase.
+        /// </summary>
+        internal static string IncludePhase {
+            get {
+                return ResourceManager.GetString("IncludePhase", resourceCulture);
             }
         }
         
@@ -777,6 +795,24 @@ namespace SPGlobalization.Resources {
         internal static string LegendPosition {
             get {
                 return ResourceManager.GetString("LegendPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Limit max. phase.
+        /// </summary>
+        internal static string LimitMaxPhase {
+            get {
+                return ResourceManager.GetString("LimitMaxPhase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Limit min. phase.
+        /// </summary>
+        internal static string LimitMinPhase {
+            get {
+                return ResourceManager.GetString("LimitMinPhase", resourceCulture);
             }
         }
         

@@ -235,6 +235,11 @@ namespace SPGlobalization
         public string CopyAllDataToClipboard { get { return string.Format("{0}", Resources.Resources.CopyAllDataToClipboard); } }
         public string ImportLTSpicePolar { get { return string.Format("{0}", Resources.Resources.ImportLTSpicePolar); } }
         public string GenerateMaxEnvelope { get { return string.Format("{0}", Resources.Resources.GenerateMaxEnvelope); } }
+        public string IncludePhase { get { return string.Format("{0}", Resources.Resources.IncludePhase); } }
+        public string LimitMaxPhase { get { return string.Format("{0}", Resources.Resources.LimitMaxPhase); } }
+        public string LimitMinPhase { get { return string.Format("{0}", Resources.Resources.LimitMinPhase); } }
+        public string ImportFromLTSpice { get { return string.Format("{0}", Resources.Resources.ImportFromLTSpice); } }
+
 
         #endregion
 

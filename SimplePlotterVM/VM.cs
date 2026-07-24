@@ -62,7 +62,7 @@ namespace SimplePlotterVM
             GetCurveMaximum = new Auxiliary.DelegateCommand(getCurveMaximum, canGetCurveMaximum);
             GetCurveRMS = new Auxiliary.DelegateCommand(getCurveRMS, canGetCurveRMS);
             ImportPL4File = new Auxiliary.DelegateCommand(importPL4File);
-            ImportLTSpicePolar = new Auxiliary.DelegateCommand(importLTSpicePolar);
+            ImportFromLTSpice = new Auxiliary.DelegateCommand(importLTSpice);
             CreateGIF = new Auxiliary.DelegateCommand(createGIF);
             updateCompositeInfo();
             addSampleDataSeries();
@@ -131,7 +131,7 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand GetCurveMaximum { get; set; }
         public Auxiliary.DelegateCommand GetCurveRMS { get; set; }
         public Auxiliary.DelegateCommand ImportPL4File { get; set; }
-        public Auxiliary.DelegateCommand ImportLTSpicePolar { get; set; }
+        public Auxiliary.DelegateCommand ImportFromLTSpice { get; set; }
         public Auxiliary.DelegateCommand CreateGIF { get; set; }
 
         #endregion
@@ -644,7 +644,7 @@ namespace SimplePlotterVM
             LongProcessRuning = false;
         }
 
-        private void importLTSpicePolar(object parameter)
+        private void importLTSpice(object parameter)
         {
             LongProcessRuning = true;
             Microsoft.Win32.OpenFileDialog myBrowser = new Microsoft.Win32.OpenFileDialog();
@@ -653,10 +653,11 @@ namespace SimplePlotterVM
             myBrowser.Multiselect = false;
             if (myBrowser.ShowDialog() == true)
             {
-                var series = SimplePlotterMisc.FileReader.GetFileDataLTSpicePolar(myBrowser.FileName);
+                var series = SimplePlotterMisc.FileReader.GetFileDataLTSpicePolar(myBrowser.FileName, includePhase, limitMaxPhase, maxPhase, limitMinPhase, minPhase);
                 for (int i = 0; i < series.Count; i++)
                 {
                     SimplePlotterMisc.DataSeriesController.Instance.AddDataSeries(series[i].Item3, series[i].Item1, series[i].Item2);
+                    if (SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Last().Name.Contains("ARG")) SimplePlotterMisc.DataSeriesController.Instance.DataSeries.Last().SecondY = true;
                 }
                 updateDataSeries();
                 updateSelectedDataSeriesPoints();
@@ -842,6 +843,61 @@ namespace SimplePlotterVM
             set
             {
                 removeDC = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool includePhase;
+        public bool IncludePhase
+        {
+            get { return includePhase; }
+            set
+            {
+                includePhase = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool limitMaxPhase;
+        public bool LimitMaxPhase
+        {
+            get { return limitMaxPhase; }
+            set
+            {
+                limitMaxPhase = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double maxPhase;
+        public double MaxPhase
+        {
+            get { return maxPhase; }
+            set
+            {
+                maxPhase = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool limitMinPhase;
+        public bool LimitMinPhase
+        {
+            get { return limitMinPhase; }
+            set
+            {
+                limitMinPhase = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double minPhase;
+        public double MinPhase
+        {
+            get { return minPhase; }
+            set
+            {
+                minPhase = value;
                 NotifyPropertyChanged();
             }
         }
@@ -2065,6 +2121,11 @@ namespace SimplePlotterVM
             numberOfDecimalPlaces = 2;
             barsWidth = 0.2;
             barsGap = 0.05;
+            includePhase = false;
+            limitMaxPhase = false;
+            maxPhase = 0;
+            LimitMinPhase = false;
+            minPhase = 0;
             manualXMinAxisLimit = false;
             manualXMaxAxisLimit = false;
             manualYMinAxisLimit = false;

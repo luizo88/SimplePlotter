@@ -240,12 +240,18 @@ namespace SimplePlotterMisc
             return result;
         }
 
-        // <summary>
+        /// <summary>
         /// Returns a list of pair-coordinates from ltspice-like (polar format) files that are generate by LTSpice (the circuit simulator).
         /// </summary>
         /// <param name="pathfile">The full path of the file.</param>
+        /// <param name="importPhase">A boolean value indicating if the phase shall be imported along with the magnitude.</param>
+        /// <param name="limitMaxPhase">A boolean value indicating if the maximum phase shall be limited.</param>
+        /// <param name="maxPhase">The maximum phase.</param>
+        /// <param name="limitMinPhase">A boolean value indicating if the minimum phase shall be limited.</param>
+        /// <param name="minPhase">The minimum phase.</param>
         /// <returns></returns>
-        public static List<Tuple<List<double>, List<double>, string>> GetFileDataLTSpicePolar(string pathfile)
+        public static List<Tuple<List<double>, List<double>, string>> GetFileDataLTSpicePolar(string pathfile, bool importPhase, bool limitMaxPhase,
+            double maxPhase, bool limitMinPhase, double minPhase)
         {
             List<Tuple<List<double>, List<double>, string>> result = new List<Tuple<List<double>, List<double>, string>>();
             System.IO.StreamReader file = new System.IO.StreamReader(pathfile);
@@ -254,16 +260,23 @@ namespace SimplePlotterMisc
             line = line.Replace("\t", " ").ToString();
             List<string> data = line.Split(' ').ToList();
             List<string> seriesNames = new List<string>();
+            //ABS
             for (int i = 1; i < data.Count(); i++)
             {
-                seriesNames.Add(data[i]);
+                seriesNames.Add(data[i] + "_ABS");
+                if (importPhase) seriesNames.Add(data[i] + "_ARG");
             }
             //data series
             List<List<double>> allData = new List<List<double>>();
+            ///FREQ
             allData.Add(new List<double>());
-            for (int i = 0; i < seriesNames.Count; i++)
+            double seriesCountDevider = importPhase ? 2 : 1;
+            for (int i = 0; i < seriesNames.Count / seriesCountDevider; i++)
             {
+                //ABS
                 allData.Add(new List<double>());
+                //ARG
+                if (importPhase) allData.Add(new List<double>());
             }
             while ((line = file.ReadLine()) != null)
             {
@@ -272,10 +285,27 @@ namespace SimplePlotterMisc
                 //x
                 allData[0].Add(Convert.ToDouble(data[0]));
                 //y
-                for (int i = 1; i < allData.Count; i++)
+                for (int i = 1; i <= seriesNames.Count / seriesCountDevider; i++)
                 {
+                    //ABS
                     string y = data[i].Split('d')[0].Substring(1);
                     allData[i].Add(Math.Pow(10, Convert.ToDouble(y) / 20));
+                    //ARG
+                    if (importPhase)
+                    {
+                        y = data[i].Split(',')[1];
+                        y = y.Remove(y.Length - 2);
+                        double yr = Convert.ToDouble(y);
+                        if (limitMinPhase)
+                        {
+                            yr = yr < minPhase ? yr + 360 : yr;
+                        }
+                        if (limitMaxPhase)
+                        {
+                            yr = yr > maxPhase ? yr - 360 : yr;
+                        }
+                        allData[i + seriesNames.Count / 2].Add(yr);
+                    }
                 }
             }
             for (int i = 1; i <= seriesNames.Count; i++)
