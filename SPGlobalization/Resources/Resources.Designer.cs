@@ -133,6 +133,15 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ↑↓.
+        /// </summary>
+        internal static string ArrowUpArrowDown {
+            get {
+                return ResourceManager.GetString("ArrowUpArrowDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Avenir.
         /// </summary>
         internal static string Avenir {
@@ -1312,6 +1321,33 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Translate all series.
+        /// </summary>
+        internal static string TranslateAllSeries {
+            get {
+                return ResourceManager.GetString("TranslateAllSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translate series.
+        /// </summary>
+        internal static string TranslateSeries {
+            get {
+                return ResourceManager.GetString("TranslateSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translation.
+        /// </summary>
+        internal static string Translation {
+            get {
+                return ResourceManager.GetString("Translation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trim.
         /// </summary>
         internal static string Trim {
@@ -1371,6 +1407,15 @@ namespace SPGlobalization.Resources {
         internal static string XAxisTitle {
             get {
                 return ResourceManager.GetString("XAxisTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X interval.
+        /// </summary>
+        internal static string XInterval {
+            get {
+                return ResourceManager.GetString("XInterval", resourceCulture);
             }
         }
         

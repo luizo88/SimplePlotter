@@ -236,6 +236,7 @@
                             <Button Command="{Binding RemoveDataSeries}" Content="{Binding Vocabulary.RemoveDataSeries, FallbackValue=RemoveDataSeries}" HorizontalAlignment="Left" Margin="5,250,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="0"/>
                             <Button Command="{Binding DataSeriesUp}" Content="{Binding Vocabulary.ArrowUp, FallbackValue=ArrowUp}" HorizontalAlignment="Left" Margin="165,250,0,0" VerticalAlignment="Top" Width="50" Height="23" Grid.Row="0"/>
                             <Button Command="{Binding DataSeriesDown}" Content="{Binding Vocabulary.ArrowDown, FallbackValue=ArrowDown}" HorizontalAlignment="Left" Margin="225,250,0,0" VerticalAlignment="Top" Width="50" Height="23" Grid.Row="0"/>
+                            <Button Command="{Binding DataSeriesFlip}" Content="{Binding Vocabulary.ArrowUpArrowDown, FallbackValue=ArrowUpArrowDown}" HorizontalAlignment="Left" Margin="285,250,0,0" VerticalAlignment="Top" Width="50" Height="23" Grid.Row="0"/>
                             <Button Command="{Binding RemoveAllDataSeries}" Content="{Binding Vocabulary.RemoveAllDataSeries, FallbackValue=RemoveAllDataSeries}" HorizontalAlignment="Left" Margin="573,250,0,0" VerticalAlignment="Top" Width="150" Height="23" Grid.Row="0"/>
                             <Expander Name="ExpdReducePoints" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="1">
                                 <Expander.Header>
@@ -276,6 +277,7 @@
                                 </Expander.Header>
                                 <Grid>
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -351,10 +353,33 @@
                                             <Button Command="{Binding TrimAllSeries}" Content="{Binding Vocabulary.TrimAllSeries, FallbackValue=TrimAllSeries}" Margin="220,100,20,0" VerticalAlignment="Top" Height="23"/>
                                         </Grid>
                                     </Expander>
-                                    <Button Command="{Binding CopyDataToClipboard}" Content="{Binding Vocabulary.CopyDataToClipboard, FallbackValue=CopyDataToClipboard}" Margin="320,5,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
-                                    <Button Command="{Binding CopyAllDataToClipboard}" Content="{Binding Vocabulary.CopyAllDataToClipboard, FallbackValue=CopyAllDataToClipboard}" Margin="320,35,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
-                                    <Button Command="{Binding CopyDataToLatexPlot}" Content="{Binding Vocabulary.CopyDataToLaTeX, FallbackValue=CopyDataToLaTeX}" Margin="320,65,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
-                                    <Button Command="{Binding GenerateMaxEnvelope}" Content="{Binding Vocabulary.GenerateMaxEnvelope, FallbackValue=GenerateMaxEnvelope}" Margin="320,95,210,5" VerticalAlignment="Top" Height="23" Grid.Row="3"/>
+                                    <Expander Name="ExpdTranslation" Width="500" Margin="5,10,5,5" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="3" >
+                                        <Expander.Header>
+                                            <DockPanel Width="470" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}, Mode=FindAncestor}}">
+                                                <DockPanel.Background>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="DarkGray" Offset="1"/>
+                                                        <GradientStop Color="LightGray"/>
+                                                    </LinearGradientBrush>
+                                                </DockPanel.Background>
+                                                <TextBlock Name="txtTranslation" Text="{Binding Vocabulary.Translation, FallbackValue=Translation}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                            </DockPanel>
+                                        </Expander.Header>
+                                        <Grid Height="100">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="420"/>
+                                                <ColumnDefinition Width="308"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="{Binding Vocabulary.XInterval, FallbackValue=XInterval}" Margin="10,10,220,0" VerticalAlignment="Top"/>
+                                            <TextBox Text="{Binding XIntervalToTranslate, UpdateSourceTrigger=LostFocus}" Margin="220,10,20,0" VerticalAlignment="Top" Height="23"/>
+                                            <Button Command="{Binding TranslateSeries}" Content="{Binding Vocabulary.TranslateSeries, FallbackValue=TranslateSeries}" Margin="220,40,20,0" VerticalAlignment="Top" Height="23"/>
+                                            <Button Command="{Binding TranslateAllSeries}" Content="{Binding Vocabulary.TranslateAllSeries, FallbackValue=TranslateAllSeries}" Margin="220,70,20,0" VerticalAlignment="Top" Height="23"/>
+                                        </Grid>
+                                    </Expander>
+                                    <Button Command="{Binding CopyDataToClipboard}" Content="{Binding Vocabulary.CopyDataToClipboard, FallbackValue=CopyDataToClipboard}" Margin="320,5,210,5" VerticalAlignment="Top" Height="23" Grid.Row="4"/>
+                                    <Button Command="{Binding CopyAllDataToClipboard}" Content="{Binding Vocabulary.CopyAllDataToClipboard, FallbackValue=CopyAllDataToClipboard}" Margin="320,35,210,5" VerticalAlignment="Top" Height="23" Grid.Row="4"/>
+                                    <Button Command="{Binding CopyDataToLatexPlot}" Content="{Binding Vocabulary.CopyDataToLaTeX, FallbackValue=CopyDataToLaTeX}" Margin="320,65,210,5" VerticalAlignment="Top" Height="23" Grid.Row="4"/>
+                                    <Button Command="{Binding GenerateMaxEnvelope}" Content="{Binding Vocabulary.GenerateMaxEnvelope, FallbackValue=GenerateMaxEnvelope}" Margin="320,95,210,5" VerticalAlignment="Top" Height="23" Grid.Row="4"/>
                                 </Grid>
                             </Expander>
                             <Expander Name="ExpdFFT" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="3">

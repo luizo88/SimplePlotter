@@ -122,6 +122,22 @@ namespace SimplePlotterMisc
             return result;
         }
 
+        /// <summary>
+        /// Returns a new list of points, but translated in X.
+        /// </summary>
+        /// <param name="originalPoints">The base list of points.</param>
+        /// <param name="xInterval">The value to sum on x-axis.</param>
+        /// <returns></returns>
+        private List<PointObj> translateSeries(List<PointObj> originalPoints, double xInterval)
+        {
+            List<PointObj> result = new List<PointObj>();
+            foreach (var item in originalPoints)
+            {
+                result.Add(new PointObj(item.X + xInterval, item.Y));
+            }
+            return result;
+        }
+
         #endregion
 
         #region PUBLIC METHODS
@@ -184,6 +200,14 @@ namespace SimplePlotterMisc
             int index = dataSeries.IndexOf(dataSeriesToMove);
             dataSeries.RemoveAt(index);
             dataSeries.Insert(index + 1, dataSeriesToMove);
+        }
+
+        /// <summary>
+        /// Inverts the order of data series in the list.
+        /// </summary>
+        public void FlipDataSeries()
+        {
+            dataSeries.Reverse();
         }
 
         /// <summary>
@@ -273,6 +297,38 @@ namespace SimplePlotterMisc
             for (int i = 0; i < allSeries.Count; i++)
             {
                 List<PointObj> np = trimSeries(allSeries[i].Points, minX, maxX);
+                allSeries[i].Points = np;
+            }
+        }
+
+        /// <summary>
+        /// Adds a new data series just after the selected data series, but trimed.
+        /// </summary>
+        /// <param name="dataSeriesToTranslate">The data series to be used as a base.</param>
+        /// <param name="xInterval">The value to sum on x-axis.</param>
+        public void AddNewSeriesTranslated(DataSeriesObj dataSeriesToTranslate, double xInterval)
+        {
+            int index = dataSeries.IndexOf(dataSeriesToTranslate);
+            List<PointObj> np = translateSeries(dataSeriesToTranslate.Points, xInterval);
+            var linqX = from p
+                        in np
+                        select p.X;
+            var linqY = from p
+                        in np
+                        select p.Y;
+            DataSeriesObj ds = new DataSeriesObj(dataSeriesToTranslate.Name + "_new", linqX.ToList(), linqY.ToList());
+            dataSeries.Insert(index + 1, ds);
+        }
+
+        /// <summary>
+        /// Adds a new data series just after the selected data series, but translated.
+        /// </summary>
+        /// <param name="xInterval">The value to sum on x-axis.</param>
+        public void TranslateAllSeries(List<DataSeriesObj> allSeries, double xInterval)
+        {
+            for (int i = 0; i < allSeries.Count; i++)
+            {
+                List<PointObj> np = translateSeries(allSeries[i].Points, xInterval);
                 allSeries[i].Points = np;
             }
         }

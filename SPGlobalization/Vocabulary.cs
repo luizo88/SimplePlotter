@@ -94,6 +94,7 @@ namespace SPGlobalization
         public string RemoveDataSeries { get { return string.Format("{0}", Resources.Resources.RemoveDataSeries); } }
         public string ArrowUp { get { return string.Format("{0}", Resources.Resources.ArrowUp); } }
         public string ArrowDown { get { return string.Format("{0}", Resources.Resources.ArrowDown); } }
+        public string ArrowUpArrowDown { get { return string.Format("{0}", Resources.Resources.ArrowUpArrowDown); } }
         public string AxisConfiguration { get { return string.Format("{0}", Resources.Resources.AxisConfiguration); } }
         public string XScale { get { return string.Format("{0}", Resources.Resources.XScale); } }
         public string YScale { get { return string.Format("{0}", Resources.Resources.YScale); } }
@@ -239,6 +240,10 @@ namespace SPGlobalization
         public string LimitMaxPhase { get { return string.Format("{0}", Resources.Resources.LimitMaxPhase); } }
         public string LimitMinPhase { get { return string.Format("{0}", Resources.Resources.LimitMinPhase); } }
         public string ImportFromLTSpice { get { return string.Format("{0}", Resources.Resources.ImportFromLTSpice); } }
+        public string Translation { get { return string.Format("{0}", Resources.Resources.Translation); } }
+        public string XInterval { get { return string.Format("{0}", Resources.Resources.XInterval); } }
+        public string TranslateSeries { get { return string.Format("{0}", Resources.Resources.TranslateSeries); } }
+        public string TranslateAllSeries { get { return string.Format("{0}", Resources.Resources.TranslateAllSeries); } }
 
 
         #endregion

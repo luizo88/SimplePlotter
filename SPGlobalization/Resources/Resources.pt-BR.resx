@@ -141,6 +141,9 @@
   <data name="ArrowUp" xml:space="preserve">
     <value>↑</value>
   </data>
+  <data name="ArrowUpArrowDown" xml:space="preserve">
+    <value>↑↓</value>
+  </data>
   <data name="Avenir" xml:space="preserve">
     <value>Avenir</value>
   </data>
@@ -534,6 +537,15 @@
   <data name="TotalTime" xml:space="preserve">
     <value>Tempo total [s]</value>
   </data>
+  <data name="TranslateAllSeries" xml:space="preserve">
+    <value>Transladar todas as séries</value>
+  </data>
+  <data name="TranslateSeries" xml:space="preserve">
+    <value>Transladar série</value>
+  </data>
+  <data name="Translation" xml:space="preserve">
+    <value>Translação</value>
+  </data>
   <data name="Trim" xml:space="preserve">
     <value>Cortar</value>
   </data>
@@ -554,6 +566,9 @@
   </data>
   <data name="XAxisTitle" xml:space="preserve">
     <value>Título do eixo X</value>
+  </data>
+  <data name="XInterval" xml:space="preserve">
+    <value>Intervalo em X</value>
   </data>
   <data name="XLimits" xml:space="preserve">
     <value>Limites do eixo X (mín./máx.)</value>

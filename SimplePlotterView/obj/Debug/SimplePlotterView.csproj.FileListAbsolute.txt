@@ -134,3 +134,4 @@ C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\obj\Debug\SimplePlot
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\obj\Debug\SimplePl.D5B8D54D.Up2Date
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\obj\Debug\SimplePlotterView.exe
 C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\obj\Debug\SimplePlotterView.pdb
+C:\Users\Admin\Source\Repos\SimplePlotter\SimplePlotterView\obj\Debug\SimplePlotterView.exe.config

@@ -45,12 +45,15 @@ namespace SimplePlotterVM
             RemoveDataSeriesExtended = new Auxiliary.DelegateCommand(removeDataSeriesExtended, canRemoveDataSeries);
             DataSeriesUp = new Auxiliary.DelegateCommand(dataSeriesUp, canMoveDataSeriesUp);
             DataSeriesDown = new Auxiliary.DelegateCommand(dataSeriesDown, canMoveDataSeriesDown);
+            DataSeriesFlip = new Auxiliary.DelegateCommand(dataSeriesFlip, canDataSeriesFlip);
             ReduceNumberOfPoints = new Auxiliary.DelegateCommand(reduceNumberOfPoints, canReduceNumberOfPoints);
             RoundDataSeriesPoints = new Auxiliary.DelegateCommand(roundDataSeriesPoints, canRoundDataSeriesPoints);
             ParseXToLog = new Auxiliary.DelegateCommand(parseXToLog, canParseXToLog);
             ParseAllXToLog = new Auxiliary.DelegateCommand(parseAllXToLog, canParseAllXToLog);
             TrimSeries = new Auxiliary.DelegateCommand(trimSeries, canTrimSeries);
             TrimAllSeries = new Auxiliary.DelegateCommand(trimAllSeries, canTrimAllSeries);
+            TranslateSeries = new Auxiliary.DelegateCommand(translateSeries, canTranslateSeries);
+            TranslateAllSeries = new Auxiliary.DelegateCommand(translateAllSeries, canTranslateAllSeries);
             PerformFFT = new Auxiliary.DelegateCommand(performFFT, canPerformFFT);
             CopyDataToClipboard = new Auxiliary.DelegateCommand(copyDataToClipboard, canCopyDataToClipboard);
             CopyAllDataToClipboard = new Auxiliary.DelegateCommand(copyAllDataToClipboard, canCopyAllDataToClipboard);
@@ -114,12 +117,15 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand RemoveDataSeriesExtended { get; set; }
         public Auxiliary.DelegateCommand DataSeriesUp { get; set; }
         public Auxiliary.DelegateCommand DataSeriesDown { get; set; }
+        public Auxiliary.DelegateCommand DataSeriesFlip { get; set; }
         public Auxiliary.DelegateCommand ReduceNumberOfPoints { get; set; }
         public Auxiliary.DelegateCommand RoundDataSeriesPoints { get; set; }
         public Auxiliary.DelegateCommand ParseXToLog { get; set; }
         public Auxiliary.DelegateCommand ParseAllXToLog { get; set; }
         public Auxiliary.DelegateCommand TrimSeries { get; set; }
         public Auxiliary.DelegateCommand TrimAllSeries { get; set; }
+        public Auxiliary.DelegateCommand TranslateSeries { get; set; }
+        public Auxiliary.DelegateCommand TranslateAllSeries { get; set; }
         public Auxiliary.DelegateCommand PerformFFT { get; set; }
         public Auxiliary.DelegateCommand CopyDataToClipboard { get; set; }
         public Auxiliary.DelegateCommand CopyAllDataToClipboard { get; set; }
@@ -402,6 +408,19 @@ namespace SimplePlotterVM
             return result;
         }
 
+        private void dataSeriesFlip(object parameter)
+        {
+            SimplePlotterMisc.DataSeriesController.Instance.FlipDataSeries();
+            updateDataSeries();
+        }
+
+        private bool canDataSeriesFlip()
+        {
+            bool result = true;
+            result &= availableDataSeries.Count > 1;
+            return result;
+        }
+
         private void reduceNumberOfPoints(object parameter)
         {
             SimplePlotterMisc.DataSeriesController.Instance.AddNewSeriesUsingCompressingAlgorithm(selectedDataSeries, selectedCompressingAlgorithms, algorithmParameter1);
@@ -490,6 +509,36 @@ namespace SimplePlotterVM
             bool result = true;
             result &= availableDataSeries.Count > 0;
             result &= MaxXEdit > MinXEdit;
+            return result;
+        }
+
+        private void translateSeries(object parameter)
+        {
+            SimplePlotterMisc.DataSeriesController.Instance.AddNewSeriesTranslated(selectedDataSeries, xIntervalToTranslate);
+            updateDataSeries();
+            updateEntirePlot();
+        }
+
+        private bool canTranslateSeries()
+        {
+            bool result = true;
+            result &= selectedDataSeries != null;
+            result &= xIntervalToTranslate != 0;
+            return result;
+        }
+
+        private void translateAllSeries(object parameter)
+        {
+            SimplePlotterMisc.DataSeriesController.Instance.TranslateAllSeries(AvailableDataSeries.ToList(), xIntervalToTranslate);
+            updateDataSeries();
+            updateEntirePlot();
+        }
+
+        private bool canTranslateAllSeries()
+        {
+            bool result = true;
+            result &= availableDataSeries.Count > 0;
+            result &= xIntervalToTranslate != 0;
             return result;
         }
 
@@ -821,6 +870,17 @@ namespace SimplePlotterVM
             set
             {
                 maxXEdit = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double xIntervalToTranslate;
+        public double XIntervalToTranslate
+        {
+            get { return xIntervalToTranslate; }
+            set
+            {
+                xIntervalToTranslate = value;
                 NotifyPropertyChanged();
             }
         }
@@ -2126,6 +2186,9 @@ namespace SimplePlotterVM
             maxPhase = 0;
             LimitMinPhase = false;
             minPhase = 0;
+            minXEdit = 0;
+            maxXEdit = 0;
+            xIntervalToTranslate = 0;
             manualXMinAxisLimit = false;
             manualXMaxAxisLimit = false;
             manualYMinAxisLimit = false;
