@@ -47,6 +47,7 @@ namespace SimplePlotterVM
             DataSeriesDown = new Auxiliary.DelegateCommand(dataSeriesDown, canMoveDataSeriesDown);
             DataSeriesFlip = new Auxiliary.DelegateCommand(dataSeriesFlip, canDataSeriesFlip);
             ReduceNumberOfPoints = new Auxiliary.DelegateCommand(reduceNumberOfPoints, canReduceNumberOfPoints);
+            ReducePointsToAllSeries = new Auxiliary.DelegateCommand(reduceNumberOfPointsAllSeries, canReduceNumberOfPointsAllSeries);
             RoundDataSeriesPoints = new Auxiliary.DelegateCommand(roundDataSeriesPoints, canRoundDataSeriesPoints);
             ParseXToLog = new Auxiliary.DelegateCommand(parseXToLog, canParseXToLog);
             ParseAllXToLog = new Auxiliary.DelegateCommand(parseAllXToLog, canParseAllXToLog);
@@ -119,6 +120,7 @@ namespace SimplePlotterVM
         public Auxiliary.DelegateCommand DataSeriesDown { get; set; }
         public Auxiliary.DelegateCommand DataSeriesFlip { get; set; }
         public Auxiliary.DelegateCommand ReduceNumberOfPoints { get; set; }
+        public Auxiliary.DelegateCommand ReducePointsToAllSeries { get; set; }
         public Auxiliary.DelegateCommand RoundDataSeriesPoints { get; set; }
         public Auxiliary.DelegateCommand ParseXToLog { get; set; }
         public Auxiliary.DelegateCommand ParseAllXToLog { get; set; }
@@ -433,6 +435,21 @@ namespace SimplePlotterVM
             bool result = true;
             result &= algorithmParameter1 > 0;
             result &= selectedDataSeries != null;
+            return result;
+        }
+
+        private void reduceNumberOfPointsAllSeries(object parameter)
+        {
+            SimplePlotterMisc.DataSeriesController.Instance.CompressAllSeriesUsingCompressingAlgorithm(availableDataSeries.ToList(), selectedCompressingAlgorithms, algorithmParameter1);
+            updateDataSeries();
+            updateEntirePlot();
+        }
+
+        private bool canReduceNumberOfPointsAllSeries()
+        {
+            bool result = true;
+            result &= algorithmParameter1 > 0;
+            result &= availableDataSeries.Count > 0;
             return result;
         }
 

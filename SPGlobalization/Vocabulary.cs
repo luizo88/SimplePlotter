@@ -244,6 +244,10 @@ namespace SPGlobalization
         public string XInterval { get { return string.Format("{0}", Resources.Resources.XInterval); } }
         public string TranslateSeries { get { return string.Format("{0}", Resources.Resources.TranslateSeries); } }
         public string TranslateAllSeries { get { return string.Format("{0}", Resources.Resources.TranslateAllSeries); } }
+        public string ReduceToAllSeries { get { return string.Format("{0}", Resources.Resources.ReduceToAllSeries); } }
+        public string ReducePointsToAllSeries { get { return string.Format("{0}", Resources.Resources.ReducePointsToAllSeries); } }
+        
+
 
 
         #endregion

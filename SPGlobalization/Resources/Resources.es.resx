@@ -456,6 +456,12 @@
   <data name="ReducePoints" xml:space="preserve">
     <value>Reducir puntos</value>
   </data>
+  <data name="ReducePointsToAllSeries" xml:space="preserve">
+    <value>Reducir puntos a todas las series</value>
+  </data>
+  <data name="ReduceToAllSeries" xml:space="preserve">
+    <value>Reducir a todas las series</value>
+  </data>
   <data name="RefreshPlot" xml:space="preserve">
     <value>Actualizar el gráfico</value>
   </data>

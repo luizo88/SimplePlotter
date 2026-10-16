@@ -250,7 +250,7 @@
                                         <TextBlock Name="txtReducePoints" Text="{Binding Vocabulary.ReducePoints, FallbackValue=ReducePoints}" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     </DockPanel>
                                 </Expander.Header>
-                                <Grid Height="100">
+                                <Grid Height="130">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="420"/>
                                         <ColumnDefinition Width="308"/>
@@ -261,6 +261,7 @@
                                     <TextBox Text="{Binding AlgorithmParameter1, UpdateSourceTrigger=LostFocus}" Margin="220,40,20,0" VerticalAlignment="Top" Height="23"/>
                                     <TextBox Text="{Binding NumberOfPoints, UpdateSourceTrigger=LostFocus}" Margin="10,40,180,0" VerticalAlignment="Top" Height="23" IsReadOnly="True" Grid.Column="1"/>
                                     <Button Command="{Binding ReduceNumberOfPoints}" Content="{Binding Vocabulary.ReduceNumberOfPoints, FallbackValue=ReduceNumberOfPoints}" Margin="220,70,20,0" VerticalAlignment="Top" Height="23"/>
+                                    <Button Command="{Binding ReducePointsToAllSeries}" Content="{Binding Vocabulary.ReducePointsToAllSeries, FallbackValue=ReducePointsToAllSeries}" Margin="220,100,20,0" VerticalAlignment="Top" Height="23"/>
                                 </Grid>
                             </Expander>
                             <Expander Name="ExpdDataFixAndManipulation" Margin="5,10,5,10" VerticalAlignment="Top" BorderBrush="DarkGray" IsExpanded="False" Grid.Row="2">

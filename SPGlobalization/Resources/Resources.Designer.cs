@@ -1078,6 +1078,24 @@ namespace SPGlobalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reduce points to all series.
+        /// </summary>
+        internal static string ReducePointsToAllSeries {
+            get {
+                return ResourceManager.GetString("ReducePointsToAllSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reduce to all series.
+        /// </summary>
+        internal static string ReduceToAllSeries {
+            get {
+                return ResourceManager.GetString("ReduceToAllSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh plot.
         /// </summary>
         internal static string RefreshPlot {

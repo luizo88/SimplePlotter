@@ -249,6 +249,46 @@ namespace SimplePlotterMisc
         }
 
         /// <summary>
+        /// Compress all data series using the selected algorithm.
+        /// </summary>
+        /// <param name="allSeries">The series to compress.</param>
+        /// <param name="compressingAlgorithm">The selected compressing algorithm.</param>
+        /// <param name="parameter1">The first parameter to be used in the compressing algorithm.</param>
+        public void CompressAllSeriesUsingCompressingAlgorithm(List<DataSeriesObj> allSeries, Enums.CompressingAlgorithms compressingAlgorithm, double parameter1)
+        {
+            for (int i = 0; i < allSeries.Count; i++)
+            {
+                switch (compressingAlgorithm)
+                {
+                    case Enums.CompressingAlgorithms.Ramer_Douglas_Peucker:
+                        List<PointObj> np = executeRamerDouglasPeuckerAlgorithm(allSeries[i].Points, parameter1);
+                        var linqX = from p
+                                    in np
+                                    select p.X;
+                        var linqY = from p
+                                    in np
+                                    select p.Y;
+                        List<PointObj> pointList = linqX.ToList().Zip(linqY.ToList(), (x, y) => new PointObj(x, y)).ToList();
+                        allSeries[i].Points = pointList;
+                        break;
+                    case Enums.CompressingAlgorithms.FixedStep:
+                        List<PointObj> np1 = executeFixedStepAlgorithm(allSeries[i].Points, (int)parameter1);
+                        var linqX1 = from p
+                                    in np1
+                                     select p.X;
+                        var linqY1 = from p
+                                    in np1
+                                     select p.Y;
+                        List<PointObj> pointList1 = linqX1.ToList().Zip(linqY1.ToList(), (x, y) => new PointObj(x, y)).ToList();
+                        allSeries[i].Points = pointList1;
+                        break;
+                    default:
+                        throw new Exception("Not implemented compressing algorithm.");
+                }
+            }
+        }
+
+        /// <summary>
         /// Adds a new data series just after the selected data series, but rounded.
         /// </summary>
         /// <param name="dataSeriesToRound">The data series to be used as a base.</param>
@@ -290,6 +330,7 @@ namespace SimplePlotterMisc
         /// <summary>
         /// Adds a new data series just after the selected data series, but trimed.
         /// </summary>
+        /// <param name="allSeries">The series to trim.</param>
         /// <param name="minX">The minimum value for X axis.</param>
         /// <param name="maxX">The minimum value for Y axis.</param>
         public void TrimAllSeries(List<DataSeriesObj> allSeries, double minX, double maxX)
